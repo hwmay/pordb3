@@ -7,7 +7,7 @@ import urllib.request, urllib.error, urllib.parse
 import tempfile
 import zipfile
 
-file_download = "https://github.com/hwmay/pordb/archive/master.zip"
+file_download = "https://github.com/hwmay/pordb3/archive/master.zip"
 
 class UpdateVersion(QtGui.QDialog, pordb_update_version):
 	def __init__(self, version, whatsnew):

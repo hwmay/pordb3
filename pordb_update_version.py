@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_update_version.ui'
 #
-# Created: Mon Mar  3 01:48:32 2014
+# Created: Sat Apr 19 22:54:50 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -77,9 +77,9 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "PorDB Update", None))
+        Dialog.setWindowTitle(_translate("Dialog", "PorDB3 Update", None))
         self.label_2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:12pt;\">What\'s new:</span></p></body></html>", None))
-        self.label_3.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">New version of PorDB available</span></p></body></html>", None))
+        self.label_3.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">New version of PorDB3 available</span></p></body></html>", None))
         self.label.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Do you want to perform the update?</span></p></body></html>", None))
         self.pushButtonYes.setText(_translate("Dialog", "Yes", None))
         self.pushButtonNo.setText(_translate("Dialog", "No", None))

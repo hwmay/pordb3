@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PorDB create cover</string>
+   <string>Create cover</string>
   </property>
   <property name="windowIcon">
    <iconset>

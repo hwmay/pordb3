@@ -54,7 +54,7 @@ db_host = "localhost"
 try:
 	conn = psycopg2.connect(database=dbname, host=db_host)
 except Exception as e:
-	print("FATAL PorDB: Database server not running")
+	print("FATAL PorDB3: Database server not running")
 	sys.exit()
 
 def age(dob):
@@ -240,7 +240,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		self.toolBar.removeAction(self.actionAnzahlBilder)
 		
-		self.setWindowTitle("PorDB")
+		self.setWindowTitle("PorDB3")
 		self.screen = QtGui.QDesktopWidget().screenGeometry()
 		#print self.screen.width(), self.screen.height()
 		if initial_run:

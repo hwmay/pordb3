@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PorDB select image</string>
+   <string>Select image</string>
   </property>
   <property name="windowIcon">
    <iconset>

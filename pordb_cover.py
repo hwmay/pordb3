@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_cover.ui'
 #
-# Created: Fri Jun 15 01:43:57 2012
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Sat Apr 19 22:56:04 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -142,17 +151,17 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "PorDB create cover", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("Dialog", "Image1", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("Dialog", "Image2", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setWhatsThis(QtGui.QApplication.translate("Dialog", "Please mark the frontpage. This will be inserted on the left site of the new cover.", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Dialog", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+        Dialog.setWindowTitle(_translate("Dialog", "Create cover", None))
+        self.groupBox.setTitle(_translate("Dialog", "Image1", None))
+        self.groupBox_2.setTitle(_translate("Dialog", "Image2", None))
+        self.label.setWhatsThis(_translate("Dialog", "Please mark the frontpage. This will be inserted on the left site of the new cover.", None))
+        self.label.setText(_translate("Dialog", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Please mark the frontpage</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Filename:", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditDateiname.setWhatsThis(QtGui.QApplication.translate("Dialog", "Filename of the new cover", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonCoverOriginalAlt.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used original title will be entered", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonCover.setText(QtGui.QApplication.translate("Dialog", "Create cover", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonCancel.setText(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Please mark the frontpage</span></p></body></html>", None))
+        self.label_2.setText(_translate("Dialog", "Filename:", None))
+        self.lineEditDateiname.setWhatsThis(_translate("Dialog", "Filename of the new cover", None))
+        self.pushButtonCoverOriginalAlt.setWhatsThis(_translate("Dialog", "Last used original title will be entered", None))
+        self.pushButtonCover.setText(_translate("Dialog", "Create cover", None))
+        self.pushButtonCancel.setText(_translate("Dialog", "Cancel", None))
 

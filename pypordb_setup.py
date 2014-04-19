@@ -110,12 +110,12 @@ class Dialog(QtGui.QDialog, Dialog):
 		file = zipfile.ZipFile(self.file, "r")
 		zipfile.ZipFile.extractall(file, self.verzeichnis)
 		#os.rename(self.verzeichnis +os.sep +"pypordb" +os.sep +"nicht_vorhanden.jpg", os.path.expanduser("~") +os.sep +"thumbs_sammlung" +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg")
-		self.listWidget.addItem(self.trUtf8("Congratulations, PorDB installation was successful!"))
+		self.listWidget.addItem(self.trUtf8("Congratulations, PorDB3 installation was successful!"))
 		self.listWidget.addItem("")
 		self.listWidget.addItem(self.trUtf8("How to start?"))
 		self.listWidget.addItem(self.trUtf8("Postgresql database server must be running!"))
 		self.listWidget.addItem(self.trUtf8("Go to install directory ") +self.verzeichnis +os.sep +"pordb-master")
-		self.listWidget.addItem(self.trUtf8("Start the PorDB with command 'python pordb.py &'"))
+		self.listWidget.addItem(self.trUtf8("Start the PorDB3 with command 'python3 pordb.py &'"))
 		
 	def create_directory(self, directory):
 		try:

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_actor_details.ui'
 #
-# Created: Mon Feb 24 17:52:30 2014
+# Created: Sat Apr 19 22:55:17 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -118,7 +118,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "PorDB actor details", None))
+        Dialog.setWindowTitle(_translate("Dialog", "Actor details", None))
         self.labelName.setText(_translate("Dialog", "TextLabel", None))
         self.labelTattoosC.setText(_translate("Dialog", "Tattoos:", None))
         self.labelUrl.setText(_translate("Dialog", "Url on IAFD:", None))

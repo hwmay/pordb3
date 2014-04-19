@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PorDB actor details</string>
+   <string>Actor details</string>
   </property>
   <property name="windowIcon">
    <iconset>

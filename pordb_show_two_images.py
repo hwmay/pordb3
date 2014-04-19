@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_show_two_images.ui'
 #
-# Created: Mon Jan 27 16:33:21 2014
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Sat Apr 19 22:53:36 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -139,7 +139,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "PorDB select image", None))
+        Dialog.setWindowTitle(_translate("Dialog", "Select image", None))
         self.groupBox.setTitle(_translate("Dialog", "Image1", None))
         self.groupBox_2.setTitle(_translate("Dialog", "Image2", None))
         self.label.setText(_translate("Dialog", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

@@ -59,7 +59,6 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
 			for i in liste:
 				data = datei.read(i)
 				df = i.replace("pordb3-master/", "")
-				print (df)
 				if df:
 					if df != "pypordb/":
 						writefile = open(df, "wb")

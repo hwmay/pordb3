@@ -1,0 +1,1 @@
+psql -f /home/ego/postgres/pordb_create_db.txt

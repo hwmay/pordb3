@@ -1,0 +1,2478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1015</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>pypordb/8027068_splash.png</normaloff>pypordb/8027068_splash.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="handleWidth">
+       <number>4</number>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_akt_verzeichnis">
+            <property name="toolTip">
+             <string>act. directory</string>
+            </property>
+            <property name="whatsThis">
+             <string>Actual directory</string>
+            </property>
+            <property name="text">
+             <string>act. directory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonRefresh">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Refresh view or working directory</string>
+            </property>
+            <property name="whatsThis">
+             <string>Sometimes it happens that the automatically refresh does not work. With this button you can force a refresh.</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>pypordb/appointment-recurring.png</normaloff>pypordb/appointment-recurring.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonDir">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Change directory</string>
+            </property>
+            <property name="whatsThis">
+             <string>Change actual directory.</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <activeon>pypordb/folder.svg</activeon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidgetBilderAktuell">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
+          <property name="whatsThis">
+           <string>Actual image files in working directory. For adding the image file to the database, double click on it or mark it and press F5. If 2 image files are marked, the dialog for adding a cover will appear.</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragOnly</enum>
+          </property>
+          <property name="defaultDropAction">
+           <enum>Qt::CopyAction</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+          <attribute name="horizontalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="tab_1">
+        <attribute name="title">
+         <string>Images</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QTableWidget" name="tableWidgetBilder">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+           <property name="whatsThis">
+            <string>Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted in mode of viewing clips or the actors data will be shown in mode of viewing actors. In mode of viewing clips F12 toggles showing complete data (title and image file) or not.</string>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::DropOnly</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::CopyAction</enum>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>499</number>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>200</number>
+           </attribute>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Actors</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_12">
+             <item>
+              <widget class="QLabel" name="labelDarsteller">
+               <property name="minimumSize">
+                <size>
+                 <width>391</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>391</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>400</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_6">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelBildanzeige">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="acceptDrops">
+                   <bool>true</bool>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Image of the actor</string>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_2">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>590</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="0" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QPushButton" name="bildAnzeige">
+                  <property name="minimumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Show actor and search for actors
+Ctrl+B</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>The most significant button: shows all information of the actor</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>pypordb/bild.gif</normaloff>pypordb/bild.gif</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBoxSex">
+                  <property name="minimumSize">
+                   <size>
+                    <width>72</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>72</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Gender</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Filter selection for gender</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>whatever</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Male</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Female</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonDarstellerSuchen">
+                  <property name="minimumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Search actor, Ctrl+shift+F</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Search for actors</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+Shift+F</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonUmbenennen">
+                  <property name="minimumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Rename actor, Ctrl+U</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Rename actor</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>pypordb/umbenennen.gif</normaloff>pypordb/umbenennen.gif</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+U</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonDarstellerBild">
+                  <property name="minimumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Adopt new image of the actor, Ctrl+J</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Replace existing image of the actor with a new one</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>pypordb/user-identity.png</normaloff>pypordb/user-identity.png</iconset>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+J</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="labelAktiv">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Active from ... to according IAFD and last visit of IAFD with this actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelFehler">
+                    <property name="minimumSize">
+                     <size>
+                      <width>391</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>391</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="label_9">
+                    <property name="maximumSize">
+                     <size>
+                      <width>41</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Movies:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="labelFilme">
+                    <property name="maximumSize">
+                     <size>
+                      <width>41</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Films according to the IAFD&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string/>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="label_8">
+                    <property name="minimumSize">
+                     <size>
+                      <width>41</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>41</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Age:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QLabel" name="labelAlter">
+                    <property name="minimumSize">
+                     <size>
+                      <width>61</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>61</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_5">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_4">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_5">
+                        <item>
+                         <widget class="QLabel" name="labelText">
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="comboBoxEthnicFilter">
+                          <property name="maximumSize">
+                           <size>
+                            <width>40</width>
+                            <height>26</height>
+                           </size>
+                          </property>
+                          <property name="toolTip">
+                           <string>Filter on ethnic</string>
+                          </property>
+                          <property name="whatsThis">
+                           <string>Filter partners on ethnic</string>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>w</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>a</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>s</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>l</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="comboBoxCSFilter">
+                          <property name="maximumSize">
+                           <size>
+                            <width>80</width>
+                            <height>29</height>
+                           </size>
+                          </property>
+                          <property name="toolTip">
+                           <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Filter on cumshot&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                          <property name="whatsThis">
+                           <string>Filter on cumshot</string>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>f Facial</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>h Handjob</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>t Tits</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>c Creampie</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>x Analcreampie</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>o Oralcreampie</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>v Cunt</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>b Belly</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>a Ass</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>s Others</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pushButtonSortPartner">
+                          <property name="toolTip">
+                           <string>Sort on ...</string>
+                          </property>
+                          <property name="text">
+                           <string>Quantity</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <widget class="QListWidget" name="listWidgetDarsteller">
+                        <property name="contextMenuPolicy">
+                         <enum>Qt::CustomContextMenu</enum>
+                        </property>
+                        <property name="whatsThis">
+                         <string>Has acted with</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_6">
+                        <item>
+                         <widget class="QPushButton" name="pushButtonPartnerZeigen">
+                          <property name="toolTip">
+                           <string>Show partners</string>
+                          </property>
+                          <property name="whatsThis">
+                           <string>Show actors in first tab</string>
+                          </property>
+                          <property name="text">
+                           <string>Show actors</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pushButtonPseudo">
+                          <property name="whatsThis">
+                           <string>Add alias</string>
+                          </property>
+                          <property name="text">
+                           <string>Alias</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_2">
+                      <item>
+                       <widget class="QLabel" name="label_16">
+                        <property name="text">
+                         <string>Cumshots:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QListWidget" name="listWidgetStatistik">
+                        <property name="font">
+                         <font>
+                          <family>Monospace</family>
+                         </font>
+                        </property>
+                        <property name="contextMenuPolicy">
+                         <enum>Qt::CustomContextMenu</enum>
+                        </property>
+                        <property name="whatsThis">
+                         <string>Cumshot statistic</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_3">
+                        <item>
+                         <widget class="QLabel" name="label_17">
+                          <property name="text">
+                           <string>Films:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pushButtonSort">
+                          <property name="toolTip">
+                           <string>Sort on ...</string>
+                          </property>
+                          <property name="whatsThis">
+                           <string>Sort alphabetically or on year</string>
+                          </property>
+                          <property name="text">
+                           <string>Year</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <widget class="QListWidget" name="listWidgetFilme">
+                        <property name="contextMenuPolicy">
+                         <enum>Qt::CustomContextMenu</enum>
+                        </property>
+                        <property name="whatsThis">
+                         <string>Movies with this actor in the database</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="0" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_10">
+                      <item>
+                       <widget class="QLabel" name="label">
+                        <property name="text">
+                         <string>Gender</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxGeschlecht">
+                        <item>
+                         <property name="text">
+                          <string>w</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>m</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_2">
+                        <property name="text">
+                         <string>Quantity</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditAnzahl">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>41</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="whatsThis">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quantity of films in the PorDB&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_7">
+                        <property name="text">
+                         <string>Born</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditGeboren">
+                        <property name="maximumSize">
+                         <size>
+                          <width>98</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_3">
+                        <property name="text">
+                         <string>Hair color</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxHaarfarbe">
+                        <item>
+                         <property name="text">
+                          <string>bl</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>br</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>r</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>s</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="1" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_15">
+                      <item>
+                       <widget class="QLabel" name="label_4">
+                        <property name="maximumSize">
+                         <size>
+                          <width>45</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Nation</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxNation"/>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="2" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_12">
+                      <item>
+                       <widget class="QLabel" name="label_5">
+                        <property name="maximumSize">
+                         <size>
+                          <width>45</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Tattoo</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditTattoo"/>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="3" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout">
+                      <item>
+                       <widget class="QLabel" name="label_6">
+                        <property name="maximumSize">
+                         <size>
+                          <width>45</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Ethnic</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxEthnic">
+                        <property name="maximumSize">
+                         <size>
+                          <width>40</width>
+                          <height>26</height>
+                         </size>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>w</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>a</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>s</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>l</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonIAFDholen">
+                        <property name="toolTip">
+                         <string>Get actors information from the IAFD, Ctrl+I</string>
+                        </property>
+                        <property name="text">
+                         <string>Get data from the IAFD</string>
+                        </property>
+                        <property name="shortcut">
+                         <string>Ctrl+I</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonDarstellerLoeschen">
+                        <property name="toolTip">
+                         <string>Delete all information from this actor inclusive the image, Ctrl+L</string>
+                        </property>
+                        <property name="text">
+                         <string>Delete actor</string>
+                        </property>
+                        <property name="shortcut">
+                         <string>Ctrl+L</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonDarstellerspeichern">
+                        <property name="maximumSize">
+                         <size>
+                          <width>80</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Save changes, Ctrl+S</string>
+                        </property>
+                        <property name="whatsThis">
+                         <string>Save actor data</string>
+                        </property>
+                        <property name="text">
+                         <string>Save</string>
+                        </property>
+                        <property name="shortcut">
+                         <string>Ctrl+S</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QPushButton" name="pushButtonIAFDBackground">
+                      <property name="toolTip">
+                       <string>Update actors data from the IAFD, Ctrl+shift+A</string>
+                      </property>
+                      <property name="text">
+                       <string>Update data from the IAFD</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>Ctrl+Shift+A</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_3">
+        <attribute name="title">
+         <string>Search file</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_9">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_20">
+             <item>
+              <widget class="QPushButton" name="pushButtonClear">
+               <property name="toolTip">
+                <string>Strg+L</string>
+               </property>
+               <property name="text">
+                <string>Clear search field</string>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+L</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditSuchen">
+               <property name="whatsThis">
+                <string>Search field</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>File size:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditFilesizeFrom">
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter file size here. You can enter a single file size, or a range. Select the unit from the combobox in the right.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;When something is entered in the search field on the left, it is combined with the size field with &amp;quot;and&amp;quot;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_19">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditFilesizeTo">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter file size here. You can enter a single file size, or a range. Select the unit from the combobox in the right.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;When something is entered in the search field on the left, it is combined with the size field with &amp;quot;and&amp;quot;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBoxFilesizeUnit">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select the unit for the file size.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;MB = Megabyte&lt;/p&gt;&lt;p&gt;GB = Gigabyte&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Bytes</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonSuchen">
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Execute search, Enter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+               </property>
+               <property name="shortcut">
+                <string>Return</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonUebernehmen">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copy content from this search field to the main search field, Ctrl+PageUp&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string/>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <activeon>pypordb/go-up.svg</activeon>
+                </iconset>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+PgUp</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>mpg_katalog</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_21">
+                <item>
+                 <widget class="QLabel" name="labelMpgGefunden">
+                  <property name="minimumSize">
+                   <size>
+                    <width>126</width>
+                    <height>14</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>0 found</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditSearchMpg"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonSearchMpg">
+                  <property name="whatsThis">
+                   <string>Search in results</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="labelMpgFound">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="0">
+               <widget class="QTableWidget" name="tableWidget">
+                <property name="toolTip">
+                 <string/>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search result from file catalog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_3">
+             <property name="title">
+              <string>Vid</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_22">
+                <item>
+                 <widget class="QLabel" name="labelVidGefunden">
+                  <property name="minimumSize">
+                   <size>
+                    <width>126</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>140</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>0 found</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditSearchVid"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonSearchVid">
+                  <property name="toolTip">
+                   <string>Search in results</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="labelVidFound">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="0">
+               <widget class="QTableWidget" name="tableWidget1">
+                <property name="toolTip">
+                 <string/>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search result from database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_4">
+        <attribute name="title">
+         <string>Search on IAFD</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_10">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QPushButton" name="pushButtonBack">
+               <property name="toolTip">
+                <string>back</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/go-previous.svg</normaloff>pypordb/go-previous.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonForward">
+               <property name="toolTip">
+                <string>forward</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/go-next.svg</normaloff>pypordb/go-next.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonIAFD">
+               <property name="toolTip">
+                <string>Load IAFD site</string>
+               </property>
+               <property name="whatsThis">
+                <string>Load IAFD site</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/favicon.ico</normaloff>pypordb/favicon.ico</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditSearchWebsite">
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="whatsThis">
+                <string>Enter text to search in website</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonSearchWebsite">
+               <property name="toolTip">
+                <string>Search in website, Ctrl+shift+F</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+Shift+F</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonVideo">
+               <property name="whatsThis">
+                <string>Check which movies are in database.</string>
+               </property>
+               <property name="text">
+                <string>Movies available?</string>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+E</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonAbholen">
+               <property name="whatsThis">
+                <string>Adopt actors data from the IAFD.</string>
+               </property>
+               <property name="text">
+                <string>Get actor data</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonMovie">
+               <property name="whatsThis">
+                <string>Adopt movie data from the IAFD.
+
+This is very useful for adding new scenes from the selected movie.</string>
+               </property>
+               <property name="text">
+                <string>Enter clips for shown video</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditURL">
+               <property name="whatsThis">
+                <string>Adress bar</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonUrl">
+               <property name="toolTip">
+                <string>Bookmarks</string>
+               </property>
+               <property name="whatsThis">
+                <string>Maintenance of bookmarks</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/bookmarks.png</normaloff>pypordb/bookmarks.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QWebView" name="webView">
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="whatsThis">
+              <string>Web content, controls:
+Back: Z
+Forward: X
+Stop: S</string>
+             </property>
+             <property name="url">
+              <url>
+               <string>about:blank</string>
+              </url>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_5">
+        <attribute name="title">
+         <string>Statistics</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="0" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <item>
+            <widget class="QTableWidget" name="tableWidgetStatistik">
+             <property name="whatsThis">
+              <string>Statistics</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <item>
+              <widget class="QPushButton" name="pushButtonCS">
+               <property name="toolTip">
+                <string>Cumshot statistic</string>
+               </property>
+               <property name="whatsThis">
+                <string>Cumshot statistic</string>
+               </property>
+               <property name="text">
+                <string>CumShots</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_17">
+               <item>
+                <widget class="QPushButton" name="pushButtonDarstellerW">
+                 <property name="whatsThis">
+                  <string>Female actors statistics </string>
+                 </property>
+                 <property name="text">
+                  <string>Actors female</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditAnzahlW">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>41</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Filter on quantity partners</string>
+                 </property>
+                 <property name="whatsThis">
+                  <string>Show female actors with more than ... partners</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>4</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QPushButton" name="pushButtonDarstellerM">
+                 <property name="whatsThis">
+                  <string>Male actors statistics </string>
+                 </property>
+                 <property name="text">
+                  <string>Actors male</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditAnzahlM">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>41</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Filter on quantity partners</string>
+                 </property>
+                 <property name="whatsThis">
+                  <string>Show male actors with more than ... partners</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>4</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonAnzahlClips">
+               <property name="toolTip">
+                <string>Show quantity of movies</string>
+               </property>
+               <property name="text">
+                <string>Quantity of movies</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonClipsJahr">
+               <property name="whatsThis">
+                <string>Show quantity of movies per year</string>
+               </property>
+               <property name="text">
+                <string>Movies / year</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_6">
+        <attribute name="title">
+         <string>Tools</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_16">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_15">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_14">
+             <item>
+              <layout class="QGridLayout" name="gridLayout_14">
+               <item row="0" column="2">
+                <widget class="QCheckBox" name="checkBoxPictures">
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked: Backup of the picture directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Pictures</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QPushButton" name="pushButtonBackup">
+                 <property name="toolTip">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Database will be unloaded and saved in the working directory. This files can be saved on e. g. external devices. That is also helpful for moving on a new computer. With the reload button the database can be reloaded&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Backup</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QPushButton" name="pushButtonRestore">
+                 <property name="toolTip">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Restore database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Restore</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="pushButtonWartung">
+                 <property name="text">
+                  <string>Maintenance</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QPushButton" name="pushButtonDateikatalog">
+                 <property name="toolTip">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Scan a file directory for video files. Filenames are entered in the database and can be searched (Tab &amp;quot;Search files&amp;quot;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>File catalogue</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QLabel" name="label_12">
+                 <property name="text">
+                  <string>Maintenance of the database: especially free memory and analyze</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QCheckBox" name="checkBoxDatabase">
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked: Backup of the database entries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Database</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Restore database</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QLabel" name="label_13">
+                 <property name="text">
+                  <string>Collect video files from a directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>Backup of the database into the working directory</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_Dateikatalog">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_15">
+              <item row="0" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_16">
+                  <item>
+                   <widget class="QLabel" name="label_14">
+                    <property name="text">
+                     <string>Devicename:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboBoxDevice">
+                    <property name="toolTip">
+                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Select a device name. Device names must be unambiguous .&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonVerwalten">
+                    <property name="toolTip">
+                     <string/>
+                    </property>
+                    <property name="text">
+                     <string>Maintain device names</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonStart">
+                    <property name="text">
+                     <string>Start</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>278</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="Line" name="line">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#800080;&quot;&gt;This table will show possible duplicates:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTableWidget" name="tableWidgetDubletten">
+                  <property name="sortingEnabled">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_18">
+                  <item>
+                   <widget class="QPushButton" name="pushButtonDeleteDuplicates">
+                    <property name="toolTip">
+                     <string>All checked files and entries in database will be deleted, Ctrl+L</string>
+                    </property>
+                    <property name="text">
+                     <string>Delete duplicates</string>
+                    </property>
+                    <property name="shortcut">
+                     <string>Ctrl+L</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonDeselect">
+                    <property name="toolTip">
+                     <string>Deselect all marked lines, Ctrl+A</string>
+                    </property>
+                    <property name="text">
+                     <string>Deselect all</string>
+                    </property>
+                    <property name="shortcut">
+                     <string>Ctrl+A</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::PreventContextMenu</enum>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNeueingabe"/>
+   <addaction name="actionSuchfeld"/>
+   <addaction name="separator"/>
+   <addaction name="actionDarsteller"/>
+   <addaction name="actionCd"/>
+   <addaction name="actionTitel"/>
+   <addaction name="actionOriginal"/>
+   <addaction name="separator"/>
+   <addaction name="actionVid"/>
+   <addaction name="actionCheckBoxDVDCover"/>
+   <addaction name="separator"/>
+   <addaction name="actionSuche"/>
+   <addaction name="actionDrucken"/>
+   <addaction name="separator"/>
+   <addaction name="actionFirst"/>
+   <addaction name="actionPrev"/>
+   <addaction name="actionNext"/>
+   <addaction name="actionLast"/>
+   <addaction name="separator"/>
+   <addaction name="actionSuchbegriffe"/>
+   <addaction name="actionLand"/>
+   <addaction name="separator"/>
+   <addaction name="actionAnzahlBilder"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="separator"/>
+   <addaction name="actionOnHelp"/>
+  </widget>
+  <action name="actionDarsteller">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/darsteller.gif</normaloff>pypordb/darsteller.gif</iconset>
+   </property>
+   <property name="text">
+    <string>Actor</string>
+   </property>
+   <property name="toolTip">
+    <string>Search for actor, Ctrl+D</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionCd">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/cd.gif</normaloff>pypordb/cd.gif</iconset>
+   </property>
+   <property name="text">
+    <string>cd</string>
+   </property>
+   <property name="toolTip">
+    <string>Search for storage medium, Ctrl+M</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionTitel">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/titel.gif</normaloff>pypordb/titel.gif</iconset>
+   </property>
+   <property name="text">
+    <string>title</string>
+   </property>
+   <property name="toolTip">
+    <string>Search for title, Ctrl+T</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionOriginal">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/original.gif</normaloff>pypordb/original.gif</iconset>
+   </property>
+   <property name="text">
+    <string>original</string>
+   </property>
+   <property name="toolTip">
+    <string>Search for original, Ctrl+O</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionVid">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/video.png</normaloff>pypordb/video.png</iconset>
+   </property>
+   <property name="text">
+    <string>vid</string>
+   </property>
+   <property name="toolTip">
+    <string>Filter on movies available</string>
+   </property>
+  </action>
+  <action name="actionCheckBoxDVDCover">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/dvd_unmount.png</normaloff>pypordb/dvd_unmount.png</iconset>
+   </property>
+   <property name="text">
+    <string>checkBoxDVDCover</string>
+   </property>
+   <property name="toolTip">
+    <string>Show only DVD covers</string>
+   </property>
+  </action>
+  <action name="actionSuche">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+   </property>
+   <property name="text">
+    <string>search</string>
+   </property>
+   <property name="toolTip">
+    <string>Extended search, Ctrl+F</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionDrucken">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/printer1.png</normaloff>pypordb/printer1.png</iconset>
+   </property>
+   <property name="text">
+    <string>print</string>
+   </property>
+   <property name="toolTip">
+    <string>Print, Ctrl+P</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionSuchfeld">
+   <property name="text">
+    <string>search field</string>
+   </property>
+  </action>
+  <action name="actionSuchbegriffe">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/kdict.svg</normaloff>pypordb/kdict.svg</iconset>
+   </property>
+   <property name="text">
+    <string>search terms</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit search terms, Ctrl+S</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionLand">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/land.png</normaloff>pypordb/land.png</iconset>
+   </property>
+   <property name="text">
+    <string>country</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit table of countries, Alt+L</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+L</string>
+   </property>
+  </action>
+  <action name="actionFirst">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/go-first.svg</normaloff>pypordb/go-first.svg</iconset>
+   </property>
+   <property name="text">
+    <string>first</string>
+   </property>
+   <property name="toolTip">
+    <string>go to first page, F6</string>
+   </property>
+   <property name="shortcut">
+    <string>F6</string>
+   </property>
+  </action>
+  <action name="actionPrev">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/go-previous.svg</normaloff>pypordb/go-previous.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Prev</string>
+   </property>
+   <property name="toolTip">
+    <string>1 page back, F7</string>
+   </property>
+   <property name="shortcut">
+    <string>F7</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/go-next.svg</normaloff>pypordb/go-next.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Next</string>
+   </property>
+   <property name="toolTip">
+    <string>Next page, F8</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
+  </action>
+  <action name="actionLast">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/go-last.svg</normaloff>pypordb/go-last.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Last</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to last page, F9</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
+  <action name="actionAnzahlBilder">
+   <property name="text">
+    <string>quantityofImages</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/undo.gif</normaloff>pypordb/undo.gif</iconset>
+   </property>
+   <property name="text">
+    <string>undo</string>
+   </property>
+   <property name="toolTip">
+    <string>recover, Ctrl+W</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionDarstellerUebernehmen">
+   <property name="text">
+    <string>Adopt actor</string>
+   </property>
+   <property name="toolTip">
+    <string>Adopt actor</string>
+   </property>
+  </action>
+  <action name="actionAnzeigenOriginal">
+   <property name="text">
+    <string>Show all scenes of the movie</string>
+   </property>
+   <property name="toolTip">
+    <string>Show all scenes of the movie</string>
+   </property>
+  </action>
+  <action name="actionSortieren_nach_Darsteller">
+   <property name="text">
+    <string>Sort on actors</string>
+   </property>
+   <property name="toolTip">
+    <string>Sort on actors</string>
+   </property>
+  </action>
+  <action name="actionSortieren_nach_CD">
+   <property name="text">
+    <string>Sort on CD</string>
+   </property>
+   <property name="toolTip">
+    <string>Sort on CD</string>
+   </property>
+  </action>
+  <action name="actionSortieren_nach_Titel">
+   <property name="text">
+    <string>Sort on title</string>
+   </property>
+   <property name="toolTip">
+    <string>Sort on title</string>
+   </property>
+  </action>
+  <action name="actionOriginal_umbenennen">
+   <property name="text">
+    <string>Rename original title</string>
+   </property>
+   <property name="toolTip">
+    <string>Rename original title</string>
+   </property>
+  </action>
+  <action name="actionOriginal_weitere">
+   <property name="text">
+    <string>Add more titles</string>
+   </property>
+   <property name="toolTip">
+    <string>Add more titles</string>
+   </property>
+  </action>
+  <action name="actionSortieren_nach_Original">
+   <property name="text">
+    <string>Sort on original title</string>
+   </property>
+   <property name="toolTip">
+    <string>Sort on original title</string>
+   </property>
+  </action>
+  <action name="actionCovergross">
+   <property name="text">
+    <string>Show cover fullscale</string>
+   </property>
+   <property name="toolTip">
+    <string>Show cover fullscale</string>
+   </property>
+  </action>
+  <action name="actionBildLoeschen">
+   <property name="text">
+    <string>Delete image file(s)</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete image file(s)</string>
+   </property>
+  </action>
+  <action name="actionAnzeigenPaar">
+   <property name="text">
+    <string>Show pairing</string>
+   </property>
+   <property name="toolTip">
+    <string>Show pairing</string>
+   </property>
+  </action>
+  <action name="actionBildanzeigegross">
+   <property name="text">
+    <string>Show image fullscale</string>
+   </property>
+   <property name="toolTip">
+    <string>Show image fullscale</string>
+   </property>
+  </action>
+  <action name="actionFilm_zeigen">
+   <property name="text">
+    <string>Show movie</string>
+   </property>
+   <property name="toolTip">
+    <string>Show movie</string>
+   </property>
+  </action>
+  <action name="actionCSZeigen">
+   <property name="text">
+    <string>show</string>
+   </property>
+   <property name="toolTip">
+    <string>show</string>
+   </property>
+  </action>
+  <action name="actionNeueingabe">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/document-new.png</normaloff>pypordb/document-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>new</string>
+   </property>
+   <property name="toolTip">
+    <string>Add new movie, F5</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionOnHelp">
+   <property name="icon">
+    <iconset>
+     <normaloff>pypordb/dialog-information.png</normaloff>pypordb/dialog-information.png</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="toolTip">
+    <string>Help, F1</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionOriginalIntoClipboard">
+   <property name="text">
+    <string>Put original title into clipboard</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Put original title into clipboard of the PorDB&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionRedoImageChange">
+   <property name="text">
+    <string>Redo image change</string>
+   </property>
+   <property name="toolTip">
+    <string>Redo image change</string>
+   </property>
+  </action>
+  <action name="actionGetUrl">
+   <property name="text">
+    <string>Put actors URL into clipboard</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get URL form database and put it into clipboard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionGoToUrl">
+   <property name="text">
+    <string>Go to website of this actor</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Go to website of this actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionAnzeigenTitle">
+   <property name="text">
+    <string>Show all scenes with similar title</string>
+   </property>
+   <property name="toolTip">
+    <string>Show all scenes with similar title</string>
+   </property>
+  </action>
+  <action name="actionShowDetails">
+   <property name="text">
+    <string>Show actors details</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show actors details&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

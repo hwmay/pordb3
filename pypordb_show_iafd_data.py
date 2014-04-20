@@ -26,9 +26,9 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 		self.complete_size = QtCore.QSize(self.imagesize, self.imagesize)
 		
 		settings = QtCore.QSettings()
-		window_size = settings.value("ShowIafdData/Size", QtCore.QVariant(QtCore.QSize(600, 500))).toSize()
+		window_size = settings.value("ShowIafdData/Size", QtCore.QSize(600, 500))
 		self.resize(window_size)
-		window_position = settings.value("ShowIafdData/Position", QtCore.QVariant(QtCore.QPoint(0, 0))).toPoint()
+		window_position = settings.value("ShowIafdData/Position", QtCore.QPoint(0, 0))
 		self.move(window_position)
 		
 		self.graphicsView.setAlignment(QtCore.Qt.AlignLeft)
@@ -51,7 +51,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 		# set alternate titles
 		for i, wert in enumerate(self.video[1]):
 			alt_title = wert
-			textitem = QtGui.QGraphicsTextItem(alt_title.decode("utf-8"))
+			textitem = QtGui.QGraphicsTextItem(alt_title)
 			textitem.setPos(self.x_pos, self.y_pos)
 			self.scene.addItem(textitem)
 			self.y_pos += 30
@@ -86,7 +86,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 						pixmapitem.setPos(0, 20)
 						itemgroup = self.scene.createItemGroup([textitem, pixmapitem])
 						itemgroup.setPos(self.x_pos, self.y_pos)
-						itemgroup.setData(1, QtCore.QVariant(wert2))
+						itemgroup.setData(1, wert2)
 						itemgroup.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
 						self.x_pos += self.imagesize + 20
 						image_shown = True
@@ -101,14 +101,14 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 		scene_to_add = None
 		actor_to_add = []
 		for i in self.scene.selectedItems():
-			if i.data(0).toString():
+			if i.data(0):
 				if scene_to_add:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select only one scene"))
 					return
 				else:
-					scene_to_add = str(i.data(0).toString())
-			if i.data(1).toString():
-				actor_to_add.append(str(i.data(1).toString()))
+					scene_to_add = str(i.data(0))
+			if i.data(1):
+				actor_to_add.append(str(i.data(1)))
 				
 		if not scene_to_add:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("No scene selected"))
@@ -120,7 +120,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 		eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.verzeichnis +os.sep +scene_to_add, titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1])
 		if eingabedialog.exec_():
 			for i in list(self.scene.items()):
-				if i.data(0).toString():
+				if i.data(0):
 					self.scene.removeItem(i)
 			self.populate_from_working_directory(close = 1)
 		
@@ -162,7 +162,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 				self.textitem_scene = QtGui.QGraphicsTextItem(datei)
 				itemgroup = self.scene.createItemGroup([self.textitem_scene, self.pixmapitem_scene])
 				itemgroup.setPos(self.x_pos, self.y_pos)
-				itemgroup.setData(0, QtCore.QVariant(i))
+				itemgroup.setData(0, i)
 				itemgroup.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
 				self.x_pos += self.imagesize + 20
 			self.x_pos = self.left_margin
@@ -183,9 +183,9 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 					bilddatei = self.verzeichnis_thumbs +os.sep +"darsteller_" +"m" +os.sep +actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") +".jpg"
 		if not bilddatei or not os.path.exists(bilddatei):
 			bilddatei = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
-		return bilddatei.decode("utf-8")
+		return bilddatei
 	
 	def closeEvent(self, event):
 		settings = QtCore.QSettings()
-		settings.setValue("ShowIafdData/Size", QtCore.QVariant(self.size()))
-		settings.setValue("ShowIafdData/Position", QtCore.QVariant(self.pos()))
+		settings.setValue("ShowIafdData/Size", self.size())
+		settings.setValue("ShowIafdData/Position", self.pos())

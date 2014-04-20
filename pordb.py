@@ -2534,7 +2534,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				for i in dateiliste:
 					if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
 						j += 1
-						self.file = QtCore.QString(self.verzeichnis +os.sep +i)
+						self.file = self.verzeichnis +os.sep +i
 				if j != 1:
 					self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
 					if self.file:

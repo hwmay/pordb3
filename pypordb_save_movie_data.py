@@ -13,7 +13,6 @@ class SaveMovieData(QtGui.QDialog):
 		self.app = app
 		self.url = url
 		self.text = text
-		self.coding = "utf-8"
 		
 	def get_data(self):
 		# get movie title
@@ -23,7 +22,7 @@ class SaveMovieData(QtGui.QDialog):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be a movie site of the IAFD"))
 			return
 		ende = self.text.find("</h2>", anfang)
-		movie = str(self.text[anfang + 4:ende].decode(self.coding).strip())
+		movie = str(self.text[anfang + 4:ende].strip())
 		
 		# get alternative titles
 		alternatives = []
@@ -50,10 +49,10 @@ class SaveMovieData(QtGui.QDialog):
 			ende_scene = self.text.find(". ", anfang_scene + 1)
 			if anfang_scene < 0:
 				break
-			scene = self.text[anfang_scene : ende_scene].decode(self.coding).strip()
+			scene = self.text[anfang_scene : ende_scene].strip()
 			anfang = self.text.find(". ", anfang_scene + 1)
 			ende = self.text.find("</li>", anfang)
-			darsteller = self.text[anfang + 2:ende].decode(self.coding).strip()
+			darsteller = self.text[anfang + 2:ende].strip()
 			scenes.append((scene, darsteller))
 			
 		return movie, alternatives, scenes

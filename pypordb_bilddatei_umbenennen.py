@@ -13,9 +13,9 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 		self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
 		
 		settings = QtCore.QSettings()
-		window_size = settings.value("Bilddatei_Umbenennen/Size", QtCore.QVariant(QtCore.QSize(600, 500))).toSize()
+		window_size = settings.value("Bilddatei_Umbenennen/Size", QtCore.QSize(600, 500))
 		self.resize(window_size)
-		window_position = settings.value("Bilddatei_Umbenennen/Position", QtCore.QVariant(QtCore.QPoint(0, 0))).toPoint()
+		window_position = settings.value("Bilddatei_Umbenennen/Position", QtCore.QPoint(0, 0))
 		self.move(window_position)
 		
 		self.datei = str(datei).replace("''", "'")
@@ -55,5 +55,5 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 		
 	def closeEvent(self, event):
 		settings = QtCore.QSettings()
-		settings.setValue("Bilddatei_Umbenennen/Size", QtCore.QVariant(self.size()))
-		settings.setValue("Bilddatei_Umbenennen/Position", QtCore.QVariant(self.pos()))
+		settings.setValue("Bilddatei_Umbenennen/Size", self.size())
+		settings.setValue("Bilddatei_Umbenennen/Position", self.pos())

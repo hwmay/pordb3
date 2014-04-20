@@ -1618,7 +1618,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				nr_a = int(a[5].split()[-2])
 				return nr_a
 			except:
-				pass
+				return 0
 
 		# end of vergleich
 				

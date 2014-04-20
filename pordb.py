@@ -335,7 +335,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = "SELECT * from information_schema.columns where table_name = 'pordb_vid'"
 		lese_func = DBLesen(self, zu_lesen)
 		felder = DBLesen.get_data(lese_func)
-		felder.sort(key = lambda x:x[4])
+		felder.sort(key = lambda x: x[4])
 		self.fieldnames_vid = []
 		for i in felder:
 			x = i[3]
@@ -344,7 +344,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = "SELECT * from information_schema.columns where table_name = 'pordb_mpg_katalog'"
 		lese_func = DBLesen(self, zu_lesen)
 		felder = DBLesen.get_data(lese_func)
-		felder.sort(key = lambda x:x[4])
+		felder.sort(key = lambda x: x[4])
 		self.fieldnames_mpg = []
 		for i in felder:
 			x = i[3]
@@ -1613,38 +1613,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		QtGui.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2014 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
 		
 	def ausgabe(self, ein, zu_lesen):
-		def vergleich(a, b):
+		def vergleich(a):
 			try:
-				original_a = a[5].strip()
+				nr_a = int(a[5].split()[-2])
+				return nr_a
 			except:
-				original_a = " "
-			try:
-				original_b = b[5].strip()
-			except:
-				original_b = " "
-			if not original_a.strip() and not original_b.strip():
-				return 0
-			original_a_list = original_a[0:len(original_a)].split()
-			original_b_list = original_b[0:len(original_b)].split()
-			if len(original_a_list) == len(original_b_list):
-				ungleich = 0
-				for i in range (len(original_a_list) - 1):
-					if original_a_list[i] != original_b_list[i]:
-						ungleich = 1
-				if not ungleich:
-					try:
-						nr_a = int(original_a_list[len(original_a_list) - 1])
-						nr_b = int(original_b_list[len(original_b_list) - 1])
-					except:
-						return 0
-					if nr_a < nr_b:
-						return -1
-					else:
-						return 1
-				else:
-					return 0
-			else:
-				return 0
+				pass
+
 		# end of vergleich
 				
 		lese_func = DBLesen(self, zu_lesen)
@@ -1685,8 +1660,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						if os.path.exists(dateiname):
 							zw_res.append(i)
 				self.aktuelles_res = zw_res
-		#if "order by original" in zu_lesen:
-			#self.aktuelles_res.sort(vergleich)
+		if "order by original" in zu_lesen:
+			self.aktuelles_res.sort(key = vergleich)
 			
 		# Delete duplicates which are created through table suchbegriffe
 		liste_neu = []

@@ -2384,13 +2384,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			# Darsteller Tattoos
 			anfang = seite.find('Tattoos</b></td><td>')
 			ende = seite.find('</td>', anfang+20)
-			tattoos = seite[anfang+20:ende]#.decode("iso-8859-1")
+			tattoos = seite[anfang+20:ende]
 			if tattoos == "None" or tattoos == "none":
 				tats = "-"
 			elif tattoos == "No data" or tattoos == "No Data":
 				tats = ""
 			else:
-				tats = tattoos.replace("'", "''")
+				tats = tattoos.replace("'", "''").replace('\\', "")
 			if tats:
 				zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					

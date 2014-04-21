@@ -579,6 +579,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += ", '1'"
 			elif self.comboBoxDefinition.currentIndex() == 3:
 				zu_erfassen_zw += ", '2'"
+			elif self.comboBoxDefinition.currentIndex() == 4:
+				zu_erfassen_zw += ", '9'"
 			zu_erfassen_zw += ")"
 			
 		zu_erfassen.append(zu_erfassen_zw)

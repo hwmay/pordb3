@@ -2769,7 +2769,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					nationality = ""
 				if res2[0][12]: 
 					active = str(res2[0][12])
-					if res2[0][13] > 0:
+					if res2[0][13] and res2[0][13] > 0:
 						active += "-" + str(res2[0][13])
 				else:
 					active = ""

@@ -389,7 +389,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 							return
 			zu_erfassen.append("delete from pordb_partner where cd = " +str(cd) + " and bild = '" +bild.replace("'", "''") +"'")
 			cs = ""
-			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild +"', gesehen = '" +gesehen +"', original = '" +original 
+			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild.replace("'", "''") +"', gesehen = '" +gesehen +"', original = '" +original 
 			if self.spinBoxF.value() > 0:
 				cs = str(self.spinBoxF.value())
 				zu_erfassen_zw += "', csf = '" +cs 
@@ -465,7 +465,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += "', hd = '2'"
 			elif self.comboBoxDefinition.currentIndex() == 4:
 				zu_erfassen_zw += "', hd = '9'"
-			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild +"'"
+			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild.replace("'", "''") +"'"
 			if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
 				if os.path.exists(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()):
 					# Bild war Thumbnail im CD Verzeichnis -> dieses löschen und neues im Cover Verzeichnis anlegen
@@ -611,7 +611,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						res2 = DBLesen.get_data(self.lese_func)
 						geschlecht2 = res2[0][0]
 						if geschlecht != geschlecht2:
-							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild) +"')")
+							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
 							zu_lesen = "select darsteller from pordb_partner where darsteller = '" +i.replace("'", "''") +"' and partner = '" +j.replace("'", "''") +"'"
 							self.lese_func = DBLesen(self, zu_lesen)
 							res3 = DBLesen.get_data(self.lese_func)

@@ -64,6 +64,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		window_position = settings.value("Neueingabe/Position", QtCore.QPoint(0, 0))
 		self.move(window_position)
 		
+		# set default position for cropping images
+		self.positionX = 0
+		self.positionY = 0
+		
 		zu_lesen = "SELECT * FROM pordb_vid_neu"
 		self.lese_func = DBLesen(self, zu_lesen)
 		self.res_vid_neu = DBLesen.get_data(self.lese_func)
@@ -271,8 +275,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.verzeichnis = os.path.dirname(str(self.file))
 		
 	def onBildbeschneiden(self):
-		bilddialog = Bildbeschneiden(self.bilddatei)
+		bilddialog = Bildbeschneiden(self.bilddatei, self.positionX, self.positionY)
 		bilddialog.exec_()
+		self.positionX = bilddialog.positionX
+		self.positionY = bilddialog.positionY
 		self.bilddarstellen()
 		
 	def bilddarstellen(self):

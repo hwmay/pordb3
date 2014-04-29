@@ -1,2 +1,2 @@
-pordbversion = "1.0.1"
-whatsnew = "Some small bugfixes"
+pordbversion = "1.1.0"
+whatsnew = "Convenience function: when cropping an image, the position before cropping is kept"

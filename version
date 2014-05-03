@@ -1,2 +1,2 @@
-pordbversion = "1.1.0"
-whatsnew = "Convenience function: when cropping an image, the position before cropping is kept"
+pordbversion = "1.1.1"
+whatsnew = "Bugfix when adding more original titles with non ASCII characters"

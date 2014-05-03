@@ -654,7 +654,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				curr_key = DBLesen.get_data(self.lese_func)
 			for i in self.original_weitere:
 				if i:
-					zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +i.replace("'", "''").title() +"', " +str(curr_key[0][0]) +")")
+					zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +i.decode().replace("'", "''").title() +"', " +str(curr_key[0][0]) +")")
 					
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)

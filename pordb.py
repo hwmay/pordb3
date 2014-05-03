@@ -46,7 +46,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 file_version = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
@@ -1615,8 +1615,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def ausgabe(self, ein, zu_lesen):
 		def vergleich(a):
 			try:
-				nr_a = int(a[5].split()[-2])
-				return nr_a
+				return int(a[5].split()[-2])
 			except:
 				return 0
 
@@ -1842,7 +1841,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = "SELECT * FROM pordb_suche order by nr"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
-		#vergleich = e + (200 - len(e)) * " " # Laenge des Vergleichsfeld auf 200 setzen
 		zu_erfassen = []
 		for i in res:
 			if i[1].strip() == e.strip():
@@ -3112,17 +3110,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of onDarstellerFilme
 	
 	def onPartnerSortieren(self):
-		def vergleich(a, b):
+		def vergleich(a):
 			wert1 = a[a.rfind("(") + 1 : a.rfind(")")]
-			wert2 = b[b.rfind("(") + 1 : b.rfind(")")]
-			return int(wert1) - int(wert2)
+			return int(wert1)
 				
 		text = self.pushButtonSortPartner.text()
 		if text == self.trUtf8("Quantity"):
 			items = []
 			for i in range(self.listWidgetDarsteller.count()):
 				items.append(str(self.listWidgetDarsteller.item(i).text()).strip())
-			items.sort(vergleich)
+			items.sort(key = vergleich)
 			items.reverse()
 			self.listWidgetDarsteller.clear()
 			self.listWidgetDarsteller.addItems(items)
@@ -3134,29 +3131,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of onPartnerSortieren
 		
 	def onFilmeSortieren(self):
-		def vergleich(a, b):
-			if a[len(a) - 1] == ")":
-				if len (b) and b[len(b) - 1] == ")": #beide Filme haben Jahr: direkter Vergleich
-					wert1 = a[len(a) - 5 : len(a) - 1]
-					wert2 = b[len(b) - 5 : len(b) - 1]
-					if wert1 < wert2:
-						return -1
-					else:
-						return 0
-				else:			# anderenfalls: a gewinnt
-					return 1
-			else:
-				if len (b) and b[len(b) - 1] == ")": # hat nur b das Jahr: b gewinnt
-					return -1
-				else:			# haben beide kein Jahr: egal
-					return 0
+		def vergleich(a):
+			try:
+				return a.split()[-1]
+			except:
+				return 0
 				
 		text = self.pushButtonSort.text()
 		if text == self.trUtf8("Year"):
 			items = []
 			for i in range(self.listWidgetFilme.count()):
 				items.append(str(self.listWidgetFilme.item(i).text()).strip())
-			items.sort(vergleich)
+			items.sort(key = vergleich)
 			self.listWidgetFilme.clear()
 			self.listWidgetFilme.addItems(items)
 			self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Title", None, QtGui.QApplication.UnicodeUTF8))

@@ -1,2 +1,2 @@
-pordbversion = "1.1.2"
-whatsnew = "Bugfix when fetching actors image from IAFD with spaces in url"
+pordbversion = "1.1.3"
+whatsnew = "Bugfix when sorting partners and films"

@@ -45,7 +45,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
 		ende = self.darstellerseite.find('"></div>', anfang)
-		self.bild = (self.darstellerseite[anfang+20:ende]) 
+		self.bild = (self.darstellerseite[anfang+20:ende]).replace(" ", "%20")
 		url =  'http://www.iafd.com/graphics/headshots/' + self.bild
 		self.verz = os.path.expanduser("~") +os.sep +"tmp"
 		urllib.request._urlopener=urllib.request.URLopener()

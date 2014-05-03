@@ -1,2 +1,2 @@
-pordbversion = "1.1.1"
-whatsnew = "Bugfix when adding more original titles with non ASCII characters"
+pordbversion = "1.1.2"
+whatsnew = "Bugfix when fetching actors image from IAFD with spaces in url"

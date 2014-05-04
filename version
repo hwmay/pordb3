@@ -1,2 +1,2 @@
-pordbversion = "1.1.3"
-whatsnew = "Bugfix when sorting partners and films"
+pordbversion = "1.1.4"
+whatsnew = "Bugfix when sorting a search result by original title\nBugfix for adding more original titles"

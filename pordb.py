@@ -46,7 +46,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "1.1.3"
+__version__ = "1.1.4"
 file_version = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
@@ -712,7 +712,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		historiedialog = Historie()
 		historiedialog.exec_()
 		zu_lesen = str(historiedialog.zu_lesen)
-		print (type(zu_lesen))
 		if zu_lesen and not "pordb_history" in zu_lesen:
 			self.start_bilder = 0
 			self.letzter_select_komplett = zu_lesen
@@ -1613,14 +1612,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		QtGui.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2014 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
 		
 	def ausgabe(self, ein, zu_lesen):
-		def vergleich(a):
-			try:
-				return int(a[5].split()[-2])
-			except:
-				return 0
-
-		# end of vergleich
-				
 		lese_func = DBLesen(self, zu_lesen)
 		self.aktuelles_res = DBLesen.get_data(lese_func)
 		zw_res = []
@@ -1660,7 +1651,28 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							zw_res.append(i)
 				self.aktuelles_res = zw_res
 		if "order by original" in zu_lesen:
-			self.aktuelles_res.sort(key = vergleich)
+			original_liste = []
+			for i in self.aktuelles_res:
+				teile = i[5].split()
+				original = ""
+				zaehler = -1
+				folge = 0
+				for j in teile:
+					zaehler += 1
+					if zaehler > 0:
+						try:
+							folge = int(j.strip(":"))
+							break
+						except:
+							original += " " + j
+					else:
+						original += " " + j
+				original_liste.append([original, folge, i])
+				
+			original_liste.sort()
+			self.aktuelles_res = []
+			for i in original_liste:
+				self.aktuelles_res.append(i[2])
 			
 		# Delete duplicates which are created through table suchbegriffe
 		liste_neu = []

@@ -1654,7 +1654,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			original_liste = []
 			for i in self.aktuelles_res:
 				teile = i[5].split()
-				original = ""
+				original = []
 				zaehler = -1
 				folge = 0
 				for j in teile:
@@ -1664,10 +1664,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							folge = int(j.strip(":"))
 							break
 						except:
-							original += " " + j
+							original.append(j)
 					else:
-						original += " " + j
-				original_liste.append([original, folge, i])
+						original.append(j)
+				original_liste.append([" ".join(original), folge, i])
 				
 			original_liste.sort()
 			self.aktuelles_res = []

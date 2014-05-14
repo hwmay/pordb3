@@ -389,6 +389,11 @@
            </item>
            <item>
             <property name="text">
+             <string>UltraHD</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Unknown</string>
             </property>
            </item>

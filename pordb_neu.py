@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sat Sep 14 23:20:32 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Wed May 14 22:42:35 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -184,6 +184,7 @@ class Ui_Dialog(object):
         self.comboBoxDefinition.setObjectName(_fromUtf8("comboBoxDefinition"))
         self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.comboBoxDefinition.setItemText(0, _fromUtf8(""))
+        self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.comboBoxDefinition.addItem(_fromUtf8(""))
@@ -390,7 +391,8 @@ class Ui_Dialog(object):
         self.comboBoxDefinition.setItemText(1, _translate("Dialog", "SD", None))
         self.comboBoxDefinition.setItemText(2, _translate("Dialog", "HD 720p", None))
         self.comboBoxDefinition.setItemText(3, _translate("Dialog", "HD 1080p", None))
-        self.comboBoxDefinition.setItemText(4, _translate("Dialog", "Unknown", None))
+        self.comboBoxDefinition.setItemText(4, _translate("Dialog", "UltraHD", None))
+        self.comboBoxDefinition.setItemText(5, _translate("Dialog", "Unknown", None))
         self.label.setText(_translate("Dialog", "Facial", None))
         self.label_5.setText(_translate("Dialog", "Handjob", None))
         self.label_7.setText(_translate("Dialog", "Tits", None))

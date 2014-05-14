@@ -173,8 +173,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.comboBoxDefinition.setCurrentIndex(2)
 			elif self.high_definition == "2":
 				self.comboBoxDefinition.setCurrentIndex(3)
-			elif self.high_definition == "9":
+			elif self.high_definition == "3":
 				self.comboBoxDefinition.setCurrentIndex(4)
+			elif self.high_definition == "9":
+				self.comboBoxDefinition.setCurrentIndex(5)
 			else:
 				self.comboBoxDefinition.setCurrentIndex(0)
 		else:
@@ -470,6 +472,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			elif self.comboBoxDefinition.currentIndex() == 3:
 				zu_erfassen_zw += "', hd = '2'"
 			elif self.comboBoxDefinition.currentIndex() == 4:
+				zu_erfassen_zw += "', hd = '3'"
+			elif self.comboBoxDefinition.currentIndex() == 5:
 				zu_erfassen_zw += "', hd = '9'"
 			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild.replace("'", "''") +"'"
 			if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
@@ -586,6 +590,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			elif self.comboBoxDefinition.currentIndex() == 3:
 				zu_erfassen_zw += ", '2'"
 			elif self.comboBoxDefinition.currentIndex() == 4:
+				zu_erfassen_zw += ", '3'"
+			elif self.comboBoxDefinition.currentIndex() == 5:
 				zu_erfassen_zw += ", '9'"
 			zu_erfassen_zw += ")"
 			

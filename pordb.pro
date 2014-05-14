@@ -70,4 +70,5 @@ FORMS 		+= pordb_show_iafd_data.ui
 FORMS 		+= pordb_show_two_images.ui
 FORMS 		+= pordb_actor_details.ui
 FORMS 		+= pordb_update_version.ui
+FORMS 		+= pordb_mass_change.ui
 TRANSLATIONS	+= pordb_de.ts

@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -2463,6 +2463,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show actors details&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionMassChange">
+   <property name="text">
+    <string>Make a mass change</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Make a mass change&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
  </widget>

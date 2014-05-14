@@ -37,6 +37,7 @@ from pypordb_save_movie_data import SaveMovieData
 from pypordb_show_iafd_data import ShowIafdData
 from pypordb_devices import Devices
 from pypordb_update_version import UpdateVersion
+from pypordb_mass_change import MassChange
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(500, 400)
@@ -92,6 +93,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionDarstellerUebernehmen, QtCore.SIGNAL("triggered()"), self.onDarstellerUebernehmen)
 		self.connect(self.actionAnzeigenOriginal, QtCore.SIGNAL("triggered()"), self.onAnzeigenOriginal)
 		self.connect(self.actionAnzeigenTitle, QtCore.SIGNAL("triggered()"), self.onAnzeigenTitle)
+		self.connect(self.actionMassChange, QtCore.SIGNAL("triggered()"), self.onMassChange)
 		self.connect(self.actionSortieren_nach_Darsteller, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Darsteller)
 		self.connect(self.actionSortieren_nach_CD, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_CD)
 		self.connect(self.actionSortieren_nach_Titel, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Titel)
@@ -775,6 +777,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			menu.addAction(self.actionSortieren_nach_Original)
 			menu.addAction(self.actionSortieren_nach_Titel)
 			menu.addAction(self.actionOriginal_umbenennen)
+			menu.addAction(self.actionMassChange)
 			menu.addAction(self.actionOriginal_weitere)
 			dateiliste = os.listdir(self.verzeichnis_trash)
 			for i in dateiliste:
@@ -956,6 +959,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.partner = 0
 				self.ausgabe(zu_lesen, zu_lesen)
 				app.restoreOverrideCursor()
+				
+		self.suchfeld.setFocus()
+		
+	def onMassChange(self):
+		masschangedialog = MassChange()
+		masschangedialog.exec_()
+		resolution = masschangedialog.resolution
+		vorhanden = masschangedialog.vorhanden
+		print ("MACHEN", vorhanden, resolution)
 				
 		self.suchfeld.setFocus()
 		
@@ -1824,6 +1836,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				text += " HD 720p"
 			elif i[20] == '2':
 				text += " HD 1080p"
+			elif i[20] == '3':
+				text += " UltraHD"
 			elif i[20] == '9':
 				text += self.trUtf8(" unknown")
 			zu_lesen = "SELECT * from pordb_original where foreign_key_pordb_vid = " +str(i[8])

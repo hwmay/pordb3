@@ -10,6 +10,9 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
 		self.buttonBox.accepted.connect(self.accept)
 		self.buttonBox.rejected.connect(self.close)
 		
+		self.vorhanden = False
+		self.resolution = False
+		
 	def accept(self):
 		if not self.radioButtonVorhandenJa.isChecked() and not self.radioButtonVorhandenNein.isChecked():
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is available"))
@@ -26,9 +29,7 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
 		else:
 			self.vorhanden = False
 			
-		if self.comboBoxResolution.currentIndex() == 0:
-			self.resolution = False
-		elif self.comboBoxResolution.currentIndex() == 1:
+		if self.comboBoxResolution.currentIndex() == 1:
 			self.resolution = "0"
 		elif self.comboBoxResolution.currentIndex() == 2:
 			self.resolution = "1"

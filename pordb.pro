@@ -46,6 +46,7 @@ SOURCES		+= pypordb_show_iafd_data.py
 SOURCES		+= pypordb_show_two_images.py
 SOURCES		+= pypordb_actor_details.py
 SOURCES		+= pypordb_update_version.py
+SOURCES		+= pypordb_mass_change.py
 FORMS 		+= pordb_bilddatei_umbenennen.ui
 FORMS 		+= pordb_bildgross.ui
 FORMS 		+= pordb_bildschneiden.ui

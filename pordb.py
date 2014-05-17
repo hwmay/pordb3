@@ -965,10 +965,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onMassChange(self):
 		masschangedialog = MassChange()
 		masschangedialog.exec_()
-		if masschangedialog.resolution == False:
-			resolution = "null"
-		else:
+		if masschangedialog.resolution:
 			resolution = "'" + str(masschangedialog.resolution) + "'"
+		else:
+			resolution = "null"
 		vorhanden = masschangedialog.vorhanden
 		if vorhanden:
 			vorhanden = "x"

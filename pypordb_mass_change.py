@@ -23,7 +23,7 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
 		else:
 			self.vorhanden = False
 			
-		self.resolution = self.comboBoxResolution.currentIndex()
+		self.resolution = self.comboBoxResolution.currentIndex() - 1
 			
 		self.close()
 		

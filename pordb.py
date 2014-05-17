@@ -967,10 +967,24 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		masschangedialog.exec_()
 		resolution = masschangedialog.resolution
 		vorhanden = masschangedialog.vorhanden
-		print ("MACHEN", vorhanden, resolution)
-				
+		if vorhanden:
+			vorhanden = "x"
+		else:
+			vorhanden = " "
+		items = self.tableWidgetBilder.selectedItems()
+		zu_erfassen = []
+		for i in items:
+			column = self.tableWidgetBilder.column(i)
+			row = self.tableWidgetBilder.row(i)
+			index = int(row * self.columns + column + self.start_bilder)
+			zu_erfassen.append("update pordb_vid set vorhanden = '" +vorhanden +"', hd = '" + str(resolution) +"' where cd = " +str(self.aktuelles_res[index][2]) +" and bild = '" +self.aktuelles_res[index][3] +"'")
+		if zu_erfassen:
+			update_func = DBUpdate(self, zu_erfassen)
+			DBUpdate.update_data(update_func)
+			self.ausgabe("", self.letzter_select_komplett)
+		self.bilder_aktuell()
 		self.suchfeld.setFocus()
-		
+				
 	def onOriginal_weitere(self):
 		item = self.tableWidgetBilder.currentItem()
 		if not item:

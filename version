@@ -1,2 +1,2 @@
-pordbversion = "1.1.4"
-whatsnew = "Bugfix when sorting a search result by original title\nBugfix for adding more original titles"
+pordbversion = "1.2.0"
+whatsnew = "Some optimization\New function: mass change"

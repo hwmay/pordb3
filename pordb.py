@@ -47,7 +47,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "1.1.4"
+__version__ = "1.2.0"
 file_version = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
@@ -965,7 +965,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onMassChange(self):
 		masschangedialog = MassChange()
 		masschangedialog.exec_()
-		resolution = masschangedialog.resolution
+		if masschangedialog.resolution == False:
+			resolution = "null"
+		else:
+			resolution = "'" + str(masschangedialog.resolution) + "'"
 		vorhanden = masschangedialog.vorhanden
 		if vorhanden:
 			vorhanden = "x"
@@ -977,7 +980,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			column = self.tableWidgetBilder.column(i)
 			row = self.tableWidgetBilder.row(i)
 			index = int(row * self.columns + column + self.start_bilder)
-			zu_erfassen.append("update pordb_vid set vorhanden = '" +vorhanden +"', hd = '" + str(resolution) +"' where cd = " +str(self.aktuelles_res[index][2]) +" and bild = '" +self.aktuelles_res[index][3] +"'")
+			zu_erfassen.append("update pordb_vid set vorhanden = '" +vorhanden +"', hd = " + resolution +" where cd = " +str(self.aktuelles_res[index][2]) +" and bild = '" +self.aktuelles_res[index][3] +"'")
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)

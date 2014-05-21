@@ -1613,13 +1613,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		ein3 = str(self.suchfeld.currentText()).replace("'", "''").replace("#","").lower().strip()
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		if ein[0] == "=":
-			zu_lesen = "SELECT * from pordb_original where (lower(original) like '" +ein3[1:] +"%' or original like '" +ein2[1:] +"%')"
+			zu_lesen = "SELECT * from pordb_original where (lower(original) like '" +ein3[1:] +" %' or original like '" +ein2[1:] +" %')"
 		else:
 			zu_lesen = "SELECT * from pordb_original where (lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%')"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		if ein[0] == "=":
-			zu_lesen = "SELECT * from pordb_vid where (lower(original) = '" +ein3[1:] +"' or original like '" +ein2[1:] +"%')"
+			zu_lesen = "SELECT * from pordb_vid where (lower(original) = '" +ein3[1:] +"' or original like '" +ein2[1:] +" %')"
 		else:
 			zu_lesen = "SELECT * from pordb_vid where (lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%')"
 		original_erweiterung = ""

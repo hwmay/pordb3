@@ -1,2 +1,2 @@
-pordbversion = "1.2.0"
-whatsnew = "Some optimization\New function: mass change"
+pordbversion = "1.2.1"
+whatsnew = "Some bugfixes"

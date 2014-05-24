@@ -373,7 +373,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select a resolution"))
 			return
 		if self.radioButtonVorhandenNein.isChecked() and self.comboBoxDefinition.currentIndex() != 0:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Video is not in stock: resolution is set to unknown"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Video is not in stock: resolution deleted"))
 			self.comboBoxDefinition.setCurrentIndex(0)
 		zu_erfassen = []
 		if self.korrektur and not self.undo:

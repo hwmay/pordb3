@@ -299,67 +299,67 @@
 <context>
     <name>DarstellerdatenAnzeigen</name>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="126"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="127"/>
         <source>nicht vorhanden</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="294"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="295"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="71"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="72"/>
         <source>This site seams not to be an actor site of the IAFD</source>
         <translation>Diese Seite scheint keine Darstellerseite der IAFD zu sein</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="151"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="152"/>
         <source>not available</source>
         <translation>nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="327"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="328"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="328"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="329"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="211"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="212"/>
         <source>Actor </source>
         <translation>Darsteller </translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="294"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="295"/>
         <source>Too many characters in tattos (</source>
         <translation>Zu viele Zeichen in Tattoos (</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="213"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="214"/>
         <source>Should the actor be created?</source>
         <translation>Soll der Darsteller angelegt werden?</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="196"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="197"/>
         <source>Invalid gender</source>
         <translation>Geschlecht ungültig</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="211"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="212"/>
         <source> not yet in database</source>
         <translation> noch nicht in der Datenbank</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="329"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="330"/>
         <source>: There is another actor in the database with this name.</source>
         <translation>: es gibt bereits einen Darsteller mit diesem Namen in der Datenbank.</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="331"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="332"/>
         <source>Do you want to add/change the actor anyway?</source>
         <translation>Willst Du den Darsteller trotzdem hinzufügen/ändern?</translation>
     </message>
@@ -3222,22 +3222,22 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
 <context>
     <name>MassChange</name>
     <message>
-        <location filename="pypordb_mass_change.py" line="21"/>
+        <location filename="pypordb_mass_change.py" line="24"/>
         <source>Error </source>
         <translation>Fehler </translation>
     </message>
     <message>
-        <location filename="pypordb_mass_change.py" line="15"/>
+        <location filename="pypordb_mass_change.py" line="18"/>
         <source>Please mark whether movie is available</source>
         <translation>Bitte markieren, ob Film vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_mass_change.py" line="18"/>
+        <location filename="pypordb_mass_change.py" line="21"/>
         <source>Video is not in stock: resolution is set to unknown</source>
         <translation>Video ist nicht vorhanden: Auflösung wurde auf unbekannt gesetzt</translation>
     </message>
     <message>
-        <location filename="pypordb_mass_change.py" line="21"/>
+        <location filename="pypordb_mass_change.py" line="24"/>
         <source>Please select a resolution</source>
         <translation>Bitte eine Auflösung wählen</translation>
     </message>
@@ -4048,7 +4048,7 @@ in stock</source>
     <message>
         <location filename="pypordb_neu.py" line="376"/>
         <source>Video is not in stock: resolution is set to unknown</source>
-        <translation>Video ist nicht vorhanden: Auflösung wurde auf unbekannt gesetzt</translation>
+        <translation type="obsolete">Video ist nicht vorhanden: Auflösung wurde auf unbekannt gesetzt</translation>
     </message>
     <message>
         <location filename="pypordb_neu.py" line="488"/>
@@ -4134,6 +4134,11 @@ in stock</source>
         <location filename="pypordb_neu.py" line="307"/>
         <source>No, add new actor</source>
         <translation>Nein, neuen Darsteller hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="pypordb_neu.py" line="376"/>
+        <source>Video is not in stock: resolution deleted</source>
+        <translation>Video ist nicht vorhanden: Auflösung wurde gelöscht</translation>
     </message>
 </context>
 <context>

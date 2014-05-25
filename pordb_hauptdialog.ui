@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1206,7 +1206,7 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                 <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
                </property>
                <property name="shortcut">
                 <string>Return</string>
@@ -1469,7 +1469,7 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                 <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
                </property>
                <property name="shortcut">
                 <string>Ctrl+Shift+F</string>

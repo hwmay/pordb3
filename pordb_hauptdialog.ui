@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -400,7 +400,7 @@ Ctrl+B</string>
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                    <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -438,7 +438,7 @@ Ctrl+B</string>
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>pypordb/umbenennen.gif</normaloff>pypordb/umbenennen.gif</iconset>
+                    <normaloff>pypordb/umbenennen.png</normaloff>pypordb/umbenennen.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -2043,7 +2043,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionDarsteller">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/darsteller.gif</normaloff>pypordb/darsteller.gif</iconset>
+     <normaloff>pypordb/darsteller.svg</normaloff>pypordb/darsteller.svg</iconset>
    </property>
    <property name="text">
     <string>Actor</string>
@@ -2058,7 +2058,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionCd">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/cd.gif</normaloff>pypordb/cd.gif</iconset>
+     <normaloff>pypordb/cd.png</normaloff>pypordb/cd.png</iconset>
    </property>
    <property name="text">
     <string>cd</string>
@@ -2133,7 +2133,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionSuche">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+     <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
    </property>
    <property name="text">
     <string>search</string>
@@ -2263,7 +2263,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionUndo">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/undo.gif</normaloff>pypordb/undo.gif</iconset>
+     <normaloff>pypordb/undo.svg</normaloff>pypordb/undo.svg</iconset>
    </property>
    <property name="text">
     <string>undo</string>

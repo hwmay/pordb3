@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon May 26 02:28:51 2014
+# Created: Mon May 26 23:10:13 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -940,7 +940,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1064,6 +1064,7 @@ class Ui_MainWindow(object):
         self.pushButtonUebernehmen.setShortcut(_translate("MainWindow", "Ctrl+PgUp", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "mpg_katalog", None))
         self.labelMpgGefunden.setText(_translate("MainWindow", "0 found", None))
+        self.pushButtonSearchMpg.setToolTip(_translate("MainWindow", "<html><head/><body><p>Search in results</p></body></html>", None))
         self.pushButtonSearchMpg.setWhatsThis(_translate("MainWindow", "Search in results", None))
         self.tableWidget.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Search result from file catalog</p></body></html>", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "Vid", None))

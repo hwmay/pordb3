@@ -9,7 +9,7 @@ from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 
 class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
-	def __init__(self, app, url, darstellerseite, verzeichnis_thumbs):
+	def __init__(self, app, url, darstellerseite, verzeichnis_thumbs, name = None):
 		QtGui.QDialog.__init__(self)
 		self.setupUi(self)
 		
@@ -20,6 +20,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.app = app
 		self.url = url
 		self.verzeichnis_thumbs = verzeichnis_thumbs
+		if name:
+			self.name = name
 		
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		
@@ -28,14 +30,15 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
 		
 		# Darsteller Name
-		anfang = self.darstellerseite.find("personal biography")
-		if anfang < 0:
-			self.app.restoreOverrideCursor()
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
-			return
-		anfang = self.darstellerseite.find('<h1>', anfang)
-		ende = self.darstellerseite.find('</h1>', anfang)
-		self.name = self.darstellerseite[anfang+4:ende].strip()
+		if not name:
+			anfang = self.darstellerseite.find("personal biography")
+			if anfang < 0:
+				self.app.restoreOverrideCursor()
+				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
+				return
+			anfang = self.darstellerseite.find('<h1>', anfang)
+			ende = self.darstellerseite.find('</h1>', anfang)
+			self.name = self.darstellerseite[anfang+4:ende].strip()
 		self.labelName.setText(self.name)
 		self.lineEditName.setText(self.name)
 			

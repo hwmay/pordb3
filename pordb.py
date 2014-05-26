@@ -2330,7 +2330,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Site of actor could not be found"))
 				return
 			else:
-				bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs)
+				bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs, name = res[0][0])
 				app.restoreOverrideCursor()
 				bilddialog.exec_()
 		else:

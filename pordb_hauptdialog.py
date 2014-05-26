@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon May 26 01:37:06 2014
+# Created: Mon May 26 02:02:32 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -168,7 +168,7 @@ class Ui_MainWindow(object):
         self.bildAnzeige.setMaximumSize(QtCore.QSize(24, 24))
         self.bildAnzeige.setText(_fromUtf8(""))
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/bild.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/bild.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.bildAnzeige.setIcon(icon3)
         self.bildAnzeige.setIconSize(QtCore.QSize(20, 20))
         self.bildAnzeige.setObjectName(_fromUtf8("bildAnzeige"))
@@ -798,12 +798,12 @@ class Ui_MainWindow(object):
         self.actionCd.setObjectName(_fromUtf8("actionCd"))
         self.actionTitel = QtGui.QAction(MainWindow)
         icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/titel.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon15.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/titel.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionTitel.setIcon(icon15)
         self.actionTitel.setObjectName(_fromUtf8("actionTitel"))
         self.actionOriginal = QtGui.QAction(MainWindow)
         icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/original.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/original.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionOriginal.setIcon(icon16)
         self.actionOriginal.setObjectName(_fromUtf8("actionOriginal"))
         self.actionVid = QtGui.QAction(MainWindow)
@@ -942,7 +942,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>3</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -328,7 +328,7 @@ Ctrl+B</string>
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>pypordb/bild.gif</normaloff>pypordb/bild.gif</iconset>
+                    <normaloff>pypordb/bild.png</normaloff>pypordb/bild.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -2073,7 +2073,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionTitel">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/titel.gif</normaloff>pypordb/titel.gif</iconset>
+     <normaloff>pypordb/titel.png</normaloff>pypordb/titel.png</iconset>
    </property>
    <property name="text">
     <string>title</string>
@@ -2088,7 +2088,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionOriginal">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/original.gif</normaloff>pypordb/original.gif</iconset>
+     <normaloff>pypordb/original.png</normaloff>pypordb/original.png</iconset>
    </property>
    <property name="text">
     <string>original</string>

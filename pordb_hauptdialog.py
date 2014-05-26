@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon May 26 02:02:32 2014
+# Created: Mon May 26 02:18:43 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -494,9 +494,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_21.addWidget(self.lineEditSearchMpg)
         self.pushButtonSearchMpg = QtGui.QPushButton(self.groupBox_2)
         self.pushButtonSearchMpg.setText(_fromUtf8(""))
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButtonSearchMpg.setIcon(icon8)
+        self.pushButtonSearchMpg.setIcon(icon4)
         self.pushButtonSearchMpg.setObjectName(_fromUtf8("pushButtonSearchMpg"))
         self.horizontalLayout_21.addWidget(self.pushButtonSearchMpg)
         self.labelMpgFound = QtGui.QLabel(self.groupBox_2)
@@ -529,6 +527,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_22.addWidget(self.lineEditSearchVid)
         self.pushButtonSearchVid = QtGui.QPushButton(self.groupBox_3)
         self.pushButtonSearchVid.setText(_fromUtf8(""))
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonSearchVid.setIcon(icon8)
         self.pushButtonSearchVid.setObjectName(_fromUtf8("pushButtonSearchVid"))
         self.horizontalLayout_22.addWidget(self.pushButtonSearchVid)
@@ -942,7 +942,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

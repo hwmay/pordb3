@@ -1349,7 +1349,7 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                    <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
                   </property>
                  </widget>
                 </item>

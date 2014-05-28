@@ -22,12 +22,15 @@ class ShowTwoImages(QtGui.QDialog, pordb_show_two_images):
 		image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 		self.labelBild1.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.labelBilddatei1.setText(self.bilddatei1)
+		self.labelSize1.setText(str(QtGui.QPixmap(self.bilddatei1).width()) +"x" +str(QtGui.QPixmap(self.bilddatei1).height()))
 		
 		self.bildQImage = QtGui.QImage(self.bilddatei2)
 		self.labelBild2.setAlignment(QtCore.Qt.AlignTop)
 		image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 		self.labelBild2.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.labelBilddatei2.setText(self.bilddatei2)
+		self.labelSize2.setText(str(QtGui.QPixmap(self.bilddatei2).width()) +"x" +str(QtGui.QPixmap(self.bilddatei2).height()))
+		
 		self.radioButtonBild1.setChecked(True)
 		
 	def accept(self):

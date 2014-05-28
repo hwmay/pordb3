@@ -84,6 +84,13 @@
               </widget>
              </item>
              <item>
+              <widget class="QLabel" name="labelSize1">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -153,6 +160,13 @@
               <widget class="QRadioButton" name="radioButtonBild2">
                <property name="text">
                 <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelSize2">
+               <property name="text">
+                <string>TextLabel</string>
                </property>
               </widget>
              </item>

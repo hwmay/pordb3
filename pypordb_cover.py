@@ -27,12 +27,15 @@ class Cover(QtGui.QDialog, pordb_cover):
 		image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 		self.labelBild1.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.labelBilddatei1.setText(cover[0])
+		self.labelSize1.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
 		
 		self.bildQImage = QtGui.QImage(cover[1])
 		self.labelBild2.setAlignment(QtCore.Qt.AlignTop)
 		image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 		self.labelBild2.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.labelBilddatei2.setText(cover[1])
+		self.labelSize2.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
+		
 		self.radioButtonBild1.setChecked(True)
 		self.lineEditDateiname.setFocus()
 		
@@ -68,9 +71,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 			self.cover.reverse()
 			
 		bild1 = QtGui.QPixmap(self.cover[0])
-		sizebild1 = bild1.size()
 		bild2 = QtGui.QPixmap(self.cover[1])
-		sizebild2 = bild2.size()
 		w = bild1.width() + bild2.width()
 		h = max(bild1.height(), bild2.height())
 		bild = QtGui.QPixmap(w, h)

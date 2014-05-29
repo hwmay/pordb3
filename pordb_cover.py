@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_cover.ui'
 #
-# Created: Sat Apr 19 22:56:04 2014
+# Created: Thu May 29 02:28:56 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -74,6 +74,9 @@ class Ui_Dialog(object):
         self.radioButtonBild1.setText(_fromUtf8(""))
         self.radioButtonBild1.setObjectName(_fromUtf8("radioButtonBild1"))
         self.horizontalLayout_2.addWidget(self.radioButtonBild1)
+        self.labelSize1 = QtGui.QLabel(Dialog)
+        self.labelSize1.setObjectName(_fromUtf8("labelSize1"))
+        self.horizontalLayout_2.addWidget(self.labelSize1)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.verticalLayout_3.addLayout(self.horizontalLayout_2)
@@ -113,6 +116,9 @@ class Ui_Dialog(object):
         self.radioButtonBild2.setText(_fromUtf8(""))
         self.radioButtonBild2.setObjectName(_fromUtf8("radioButtonBild2"))
         self.horizontalLayout_3.addWidget(self.radioButtonBild2)
+        self.labelSize2 = QtGui.QLabel(Dialog)
+        self.labelSize2.setObjectName(_fromUtf8("labelSize2"))
+        self.horizontalLayout_3.addWidget(self.labelSize2)
         spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem1)
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
@@ -153,7 +159,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(_translate("Dialog", "Create cover", None))
         self.groupBox.setTitle(_translate("Dialog", "Image1", None))
+        self.labelSize1.setText(_translate("Dialog", "TextLabel", None))
         self.groupBox_2.setTitle(_translate("Dialog", "Image2", None))
+        self.labelSize2.setText(_translate("Dialog", "TextLabel", None))
         self.label.setWhatsThis(_translate("Dialog", "Please mark the frontpage. This will be inserted on the left site of the new cover.", None))
         self.label.setText(_translate("Dialog", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

@@ -47,7 +47,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "1.2.2"
+__version__ = "1.2.1"
 file_version = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
@@ -419,6 +419,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					dialog = UpdateVersion(version, whatsnew)
 					if dialog.exec_():
 						desktop_directory = str(os.path.expanduser("~") +os.sep +".local/share/applications")
+						desktop_datei = desktop_directory + os.sep + "PorDB.desktop"
 						if os.path.exists(desktop_directory):
 							messageBox = QtGui.QMessageBox()
 							messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
@@ -428,7 +429,27 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							messageBox.setText(self.trUtf8("Should I create a menu entry?"))
 							message = messageBox.exec_()
 							if message == 0:
-								print ("MENU######")
+								try:
+									datei = open(desktop_datei. "w")
+									datei.write("[Desktop Entry]" + "\n")
+									datei.write("Comment=PorDB" + "\n")
+									os.getcwd()
+									datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
+									datei.write("Icon=" + os.getcwd() + "pypordb/8027068_splash.png" + "\n")
+									datei.write("Name=PorDB" + "\n")
+									datei.write("NoDisplay=false" + "\n")
+									datei.write("Path[$e]=$HOME/python/pordb3" + "\n")
+									datei.write("StartupNotify=true" + "\n")
+									datei.write("Terminal=0" + "\n")
+									datei.write("TerminalOptions=" + "\n")
+									datei.write("Type=Application" + "\n")
+									datei.write("Categories=AudioVideo;Database;" + "\n")
+									datei.write("X-KDE-SubstituteUID=false" + "\n")
+									datei.write("X-KDE-Username=" + "\n")
+									datei.close()
+									message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under databases"))
+								except:
+									message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
 						python = sys.executable
 						os.execl(python, python, * sys.argv)
 		

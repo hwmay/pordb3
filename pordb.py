@@ -435,7 +435,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 									datei.write("Comment=PorDB" + "\n")
 									os.getcwd()
 									datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
-									datei.write("Icon=" + os.getcwd() + "pypordb/8027068_splash.png" + "\n")
+									datei.write("Icon=" + os.getcwd() + os.sep + "pypordb/8027068_splash.png" + "\n")
 									datei.write("Name=PorDB" + "\n")
 									datei.write("NoDisplay=false" + "\n")
 									datei.write("Path[$e]=$HOME/python/pordb3" + "\n")

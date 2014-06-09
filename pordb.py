@@ -430,7 +430,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							message = messageBox.exec_()
 							if message == 0:
 								try:
-									datei = open(desktop_datei. "w")
+									datei = open(desktop_datei, "w")
 									datei.write("[Desktop Entry]" + "\n")
 									datei.write("Comment=PorDB" + "\n")
 									os.getcwd()

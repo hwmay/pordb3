@@ -418,6 +418,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					whatsnew = str(seite)[begin + 17 : begin + 17 + str(seite)[begin + 17 :].find("&")]
 					dialog = UpdateVersion(version, whatsnew)
 					if dialog.exec_():
+						desktop_directory = str(os.path.expanduser("~") +os.sep +".local/share/applications")
+						if os.path.exists(desktop_directory):
+							messageBox = QtGui.QMessageBox()
+							messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
+							messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
+							messageBox.setWindowTitle(self.trUtf8("Menu entry"))
+							messageBox.setIcon(QtGui.QMessageBox.Question)
+							messageBox.setText(self.trUtf8("Should I create a menu entry?"))
+							message = messageBox.exec_()
+							if message == 0:
+								print ("MENU######")
 						python = sys.executable
 						os.execl(python, python, * sys.argv)
 		

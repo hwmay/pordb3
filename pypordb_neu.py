@@ -193,6 +193,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 					self.lineEditNeuOriginal.setText(self.original)
 				else:
 					self.lineEditNeuOriginal.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
+			else:
+				self.radioButtonCoverJa.setChecked(False)
+				self.radioButtonCoverNein.setChecked(True)
 			anfang = os.path.basename(str(self.bilddatei)).rfind('.')
 			self.lineEditNeuTitel.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
 			dateiliste = os.listdir(self.verzeichnis)

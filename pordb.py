@@ -448,7 +448,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 								datei.write("X-KDE-SubstituteUID=false" + "\n")
 								datei.write("X-KDE-Username=" + "\n")
 								datei.close()
-								message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under AudioVideo or entertainment"))
+								message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under development -> databases"))
 							except:
 								message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
 						python = sys.executable

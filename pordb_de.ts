@@ -3940,7 +3940,12 @@ in stock</source>
     <message>
         <location filename="pordb.py" line="451"/>
         <source>Menu entry added under AudioVideo or entertainment</source>
-        <translation>Menüeintrag hinzugefügt unter AudioVideo oder Unterhaltung</translation>
+        <translation type="obsolete">Menüeintrag hinzugefügt unter AudioVideo oder Unterhaltung</translation>
+    </message>
+    <message>
+        <location filename="pordb.py" line="451"/>
+        <source>Menu entry added under development -&gt; databases</source>
+        <translation>Menüeintrag erstellt unter Entwicklung -&gt; Datenbanken</translation>
     </message>
 </context>
 <context>

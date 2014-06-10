@@ -3930,12 +3930,17 @@ in stock</source>
     <message>
         <location filename="pordb.py" line="451"/>
         <source>Menu entry added under databases</source>
-        <translation>Menüeintrag erstellt unter Datenbanken</translation>
+        <translation type="obsolete">Menüeintrag erstellt unter Datenbanken</translation>
     </message>
     <message>
         <location filename="pordb.py" line="453"/>
         <source>Adding of menu entry failed</source>
         <translation>Erstellen Menüeintrag gescheitert</translation>
+    </message>
+    <message>
+        <location filename="pordb.py" line="451"/>
+        <source>Menu entry added under AudioVideo or entertainment</source>
+        <translation>Menüeintrag hinzugefügt unter AudioVideo oder Unterhaltung</translation>
     </message>
 </context>
 <context>

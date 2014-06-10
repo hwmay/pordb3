@@ -421,7 +421,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						desktop_directory = str(os.path.expanduser("~") +os.sep +".local/share/applications")
 						desktop_datei = desktop_directory + os.sep + "PorDB.desktop"
 						if not os.path.exists(desktop_directory):
-							os.mkdirs(desktop_directory)
+							os.makedirs(desktop_directory)
 						messageBox = QtGui.QMessageBox()
 						messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
 						messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)

@@ -444,7 +444,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 								datei.write("Terminal=0" + "\n")
 								datei.write("TerminalOptions=" + "\n")
 								datei.write("Type=Application" + "\n")
-								datei.write("Categories=AudioVideo;Database;" + "\n")
+								datei.write("Categories=AudioVideo" + "\n")
 								datei.write("X-KDE-SubstituteUID=false" + "\n")
 								datei.write("X-KDE-Username=" + "\n")
 								datei.close()

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de_DE" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>Bildbeschneiden</name>
     <message>
@@ -3944,7 +3945,12 @@ in stock</source>
     <message>
         <location filename="pordb.py" line="451"/>
         <source>Menu entry added under development -&gt; databases</source>
-        <translation>Menüeintrag erstellt unter Entwicklung -&gt; Datenbanken</translation>
+        <translation type="obsolete">Menüeintrag erstellt unter Entwicklung -&gt; Datenbanken</translation>
+    </message>
+    <message>
+        <location filename="pordb.py" line="451"/>
+        <source>Menu entry added under graphics</source>
+        <translation>Menüeintrag erstellt unter Grafiken</translation>
     </message>
 </context>
 <context>

@@ -128,18 +128,10 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 		self.x_pos = self.left_margin
 		self.y_pos = 0
 		# get imagefiles from working directory
-		dateiliste = os.listdir(self.verzeichnis)
+		dateiliste = [f for f in os.listdir(self.verzeichnis) if f.lower().endswith(".jpeg") or f.lower().endswith(".jpg") or f.lower().endswith(".png")]
 		zeile = -1
-		dateiliste_bereinigt = dateiliste[:]
-		for i in dateiliste:
-			zeile += 1
-			if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
-				pass
-			else:
-				del dateiliste_bereinigt[zeile]
-				zeile -= 1
-		if dateiliste_bereinigt:
-			dateiliste_bereinigt.sort()
+		if dateiliste:
+			dateiliste.sort()
 			textitem = QtGui.QGraphicsTextItem(self.trUtf8("Clips to add:"))
 			self.font.setPointSize(16)
 			self.font.setWeight(75)
@@ -149,7 +141,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 			self.scene.addItem(textitem)
 			self.y_pos += 30
 			max_height = 0
-			for i in dateiliste_bereinigt:
+			for i in dateiliste:
 				bilddatei = self.verzeichnis + os.sep + i
 				pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
 				if pixmap.height() > max_height:

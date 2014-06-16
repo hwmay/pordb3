@@ -422,35 +422,34 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						desktop_datei = desktop_directory + os.sep + "PorDB.desktop"
 						if not os.path.exists(desktop_directory):
 							os.makedirs(desktop_directory)
-						if not os.path.exists(desktop_datei):
-							messageBox = QtGui.QMessageBox()
-							messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-							messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-							messageBox.setWindowTitle(self.trUtf8("Menu entry"))
-							messageBox.setIcon(QtGui.QMessageBox.Question)
-							messageBox.setText(self.trUtf8("Should I create a menu entry?"))
-							message = messageBox.exec_()
-							if message == 0:
-								try:
-									datei = open(desktop_datei, "w")
-									datei.write("[Desktop Entry]" + "\n")
-									datei.write("Comment=PorDB" + "\n")
-									datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
-									datei.write("Icon=" + os.getcwd() + os.sep + "pypordb/8027068_splash.png" + "\n")
-									datei.write("Name=PorDB" + "\n")
-									datei.write("NoDisplay=false" + "\n")
-									datei.write("Path[$e]=" + os.getcwd() + "\n")
-									datei.write("StartupNotify=true" + "\n")
-									datei.write("Terminal=0" + "\n")
-									datei.write("TerminalOptions=" + "\n")
-									datei.write("Type=Application" + "\n")
-									datei.write("Categories=Graphics;" + "\n")
-									datei.write("X-KDE-SubstituteUID=false" + "\n")
-									datei.write("X-KDE-Username=" + "\n")
-									datei.close()
-									message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under graphics"))
-								except:
-									message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
+						messageBox = QtGui.QMessageBox()
+						messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
+						messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
+						messageBox.setWindowTitle(self.trUtf8("Menu entry"))
+						messageBox.setIcon(QtGui.QMessageBox.Question)
+						messageBox.setText(self.trUtf8("Should I create a menu entry?"))
+						message = messageBox.exec_()
+						if message == 0:
+							try:
+								datei = open(desktop_datei, "w")
+								datei.write("[Desktop Entry]" + "\n")
+								datei.write("Comment=PorDB" + "\n")
+								datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
+								datei.write("Icon=" + os.getcwd() + os.sep + "pypordb/8027068_splash.png" + "\n")
+								datei.write("Name=PorDB" + "\n")
+								datei.write("NoDisplay=false" + "\n")
+								datei.write("Path[$e]=" + os.getcwd() + "\n")
+								datei.write("StartupNotify=true" + "\n")
+								datei.write("Terminal=0" + "\n")
+								datei.write("TerminalOptions=" + "\n")
+								datei.write("Type=Application" + "\n")
+								datei.write("Categories=Graphics;" + "\n")
+								datei.write("X-KDE-SubstituteUID=false" + "\n")
+								datei.write("X-KDE-Username=" + "\n")
+								datei.close()
+								message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under graphics"))
+							except:
+								message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
 								
 						python = sys.executable
 						os.execl(python, python, * sys.argv)

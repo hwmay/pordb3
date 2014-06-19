@@ -3933,7 +3933,7 @@ in stock</source>
         <translation type="obsolete">Menüeintrag erstellt unter Datenbanken</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="453"/>
+        <location filename="pordb.py" line="452"/>
         <source>Adding of menu entry failed</source>
         <translation>Erstellen Menüeintrag gescheitert</translation>
     </message>
@@ -3948,7 +3948,7 @@ in stock</source>
         <translation type="obsolete">Menüeintrag erstellt unter Entwicklung -&gt; Datenbanken</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="451"/>
+        <location filename="pordb.py" line="450"/>
         <source>Menu entry added under graphics</source>
         <translation>Menüeintrag erstellt unter Grafiken</translation>
     </message>
@@ -3956,42 +3956,42 @@ in stock</source>
 <context>
     <name>Neueingabe</name>
     <message>
-        <location filename="pypordb_neu.py" line="218"/>
+        <location filename="pypordb_neu.py" line="221"/>
         <source>Characters: </source>
         <translation>Zeichen:</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="269"/>
+        <location filename="pypordb_neu.py" line="272"/>
         <source>Image files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="698"/>
+        <location filename="pypordb_neu.py" line="701"/>
         <source>Image files (*.jpg *.jpeg *.png);;all files (*.*)</source>
         <translation>Bilddateien (*.jpg *.jpeg *.png);;all files (*.*)</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="701"/>
+        <location filename="pypordb_neu.py" line="704"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="325"/>
+        <location filename="pypordb_neu.py" line="328"/>
         <source>You have entered some actors twice, please correct</source>
         <translation>Es wurden doppelte Darsteller eingegeben, bitte korrigieren</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="677"/>
+        <location filename="pypordb_neu.py" line="680"/>
         <source>Yes, image exists</source>
         <translation>Ja, Bild vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="678"/>
+        <location filename="pypordb_neu.py" line="681"/>
         <source>Yes, no image</source>
         <translation>Ja, kein Bild vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="679"/>
+        <location filename="pypordb_neu.py" line="682"/>
         <source>No, correct entry</source>
         <translation>Nein, Eingabe korrigieren</translation>
     </message>
@@ -4001,37 +4001,37 @@ in stock</source>
         <translation type="obsolete">Darsteller </translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="680"/>
+        <location filename="pypordb_neu.py" line="683"/>
         <source> does not exist</source>
         <translation> nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="682"/>
+        <location filename="pypordb_neu.py" line="685"/>
         <source>Do you want to add this actor?</source>
         <translation>Soll der Darsteller neu aufgenommen werden?</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="698"/>
+        <location filename="pypordb_neu.py" line="701"/>
         <source>Image of the actor </source>
         <translation>Bild des Darstellers </translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="706"/>
+        <location filename="pypordb_neu.py" line="709"/>
         <source>Caution! </source>
         <translation>Achtung!</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="706"/>
+        <location filename="pypordb_neu.py" line="709"/>
         <source>Image of the actor is very big</source>
         <translation>Bild des Darstellers ist sehr groß</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="340"/>
+        <location filename="pypordb_neu.py" line="343"/>
         <source>CD is not a number</source>
         <translation>CD ist keine Zahl</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="345"/>
+        <location filename="pypordb_neu.py" line="348"/>
         <source>Please mark whether movie is available</source>
         <translation>Bitte markieren, ob Film vorhanden</translation>
     </message>
@@ -4041,17 +4041,17 @@ in stock</source>
         <translation type="obsolete">Bitte markieren, ob nur als Bild vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="367"/>
+        <location filename="pypordb_neu.py" line="370"/>
         <source>Error, original title is longer than 256 characters.</source>
         <translation>Fehler, Originaltitel hat mehr als 256 Zeichen.</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="370"/>
+        <location filename="pypordb_neu.py" line="373"/>
         <source>Please check if image file is a cover</source>
         <translation>Bitte markieren, ob es sich hierbei um ein Cover handelt</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="524"/>
+        <location filename="pypordb_neu.py" line="527"/>
         <source>Error saving image file</source>
         <translation>Fehler beim Speichern der Bilddatei</translation>
     </message>
@@ -4061,7 +4061,7 @@ in stock</source>
         <translation type="obsolete">Du willst ein Cover erfassen, dann muss auch ein Originaltitel eingegeben werden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="513"/>
+        <location filename="pypordb_neu.py" line="516"/>
         <source>Error on renaming image file</source>
         <translation>Fehler beim Umbenennen der Bilddatei</translation>
     </message>
@@ -4076,12 +4076,12 @@ in stock</source>
         <translation type="obsolete">Es müssen 1 oder 2 Bilddateien vorhanden sein</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="363"/>
+        <location filename="pypordb_neu.py" line="366"/>
         <source>Error: original title has invalid characters</source>
         <translation>Fehler: Originaltitel enthält ungültige Zeichen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="373"/>
+        <location filename="pypordb_neu.py" line="376"/>
         <source>Please select a resolution</source>
         <translation>Bitte eine Auflösung wählen</translation>
     </message>
@@ -4091,7 +4091,7 @@ in stock</source>
         <translation type="obsolete">Video ist nicht vorhanden: Auflösung wurde auf unbekannt gesetzt</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="488"/>
+        <location filename="pypordb_neu.py" line="491"/>
         <source>When adding a cover you must also enter a movie title</source>
         <translation>Du willst ein Cover erfassen, dann muss auch ein Originaltitel eingegeben werden</translation>
     </message>
@@ -4101,12 +4101,12 @@ in stock</source>
         <translation type="obsolete">: bitte auswählen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="698"/>
+        <location filename="pypordb_neu.py" line="701"/>
         <source>please select one</source>
         <translation>bitte auswählen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="353"/>
+        <location filename="pypordb_neu.py" line="356"/>
         <source>Please mark whether movie has been watched</source>
         <translation>Bitte markieren ob das Video gesehen wurde</translation>
     </message>
@@ -4116,17 +4116,17 @@ in stock</source>
         <translation type="obsolete">Video kann nicht den Status &quot;nicht vorhanden&quot; haben und gleichzeitig den Status &quot;gesehen&quot;</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="701"/>
+        <location filename="pypordb_neu.py" line="704"/>
         <source>Selected image is the one which should be added to the database. Please select another one.</source>
         <translation>Ausgewähltes Bild soll in der Datenbank gespeichert werden. Bitte ein anderes auswählen.</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="305"/>
+        <location filename="pypordb_neu.py" line="308"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="311"/>
+        <location filename="pypordb_neu.py" line="314"/>
         <source>, but I have found </source>
         <translation>, aber ich habe </translation>
     </message>
@@ -4146,12 +4146,12 @@ in stock</source>
         <translation type="obsolete">Darsteller </translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="310"/>
+        <location filename="pypordb_neu.py" line="313"/>
         <source>Do you want to take this actor instead?</source>
         <translation>Willst Du stattdessen diesen Darsteller nehmen?</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="308"/>
+        <location filename="pypordb_neu.py" line="311"/>
         <source> as alias.</source>
         <translation> als Alias gefunden.</translation>
     </message>
@@ -4166,17 +4166,17 @@ in stock</source>
         <translation type="obsolete">Nein, Darsteller hinzufügen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="311"/>
+        <location filename="pypordb_neu.py" line="314"/>
         <source> as alias. If you want to take this actor, click on yes, else change your entry or add a new actor to the database.</source>
         <translation> als Alias gefunden. Wenn Du diesen Darsteller nehmen willst, klicke auf Ja, andernfalls ändere Deine Eingabe oder füge den Darsteller zur Datenbank hinzu.</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="307"/>
+        <location filename="pypordb_neu.py" line="310"/>
         <source>No, add new actor</source>
         <translation>Nein, neuen Darsteller hinzufügen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="376"/>
+        <location filename="pypordb_neu.py" line="379"/>
         <source>Video is not in stock: resolution deleted</source>
         <translation>Video ist nicht vorhanden: Auflösung wurde gelöscht</translation>
     </message>
@@ -4248,7 +4248,7 @@ in stock</source>
 <context>
     <name>SaveMovieData</name>
     <message>
-        <location filename="pypordb_save_movie_data.py" line="45"/>
+        <location filename="pypordb_save_movie_data.py" line="68"/>
         <source>Error </source>
         <translation>Fehler </translation>
     </message>
@@ -4262,11 +4262,16 @@ in stock</source>
         <source>Seams there are no scenes on the IAFD</source>
         <translation>Anscheinend sind keine Scenen in der IAFD</translation>
     </message>
+    <message>
+        <location filename="pypordb_save_movie_data.py" line="68"/>
+        <source>Seams there are no scenes/actors on the IAFD</source>
+        <translation>Anscheinend sind keine Scenen/Darsteller in der IAFD</translation>
+    </message>
 </context>
 <context>
     <name>ShowIafdData</name>
     <message>
-        <location filename="pypordb_show_iafd_data.py" line="143"/>
+        <location filename="pypordb_show_iafd_data.py" line="135"/>
         <source>Clips to add:</source>
         <translation>Clips hinzufügen:</translation>
     </message>

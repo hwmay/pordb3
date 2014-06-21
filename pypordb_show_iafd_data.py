@@ -71,7 +71,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 						textitem.setPos(self.x_pos, self.y_pos)
 						self.scene.addItem(textitem)
 						self.y_pos += 30
-					else:
+					elif wert2:
 						zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +wert2.replace("'", "''").title() +"'"
 						lese_func = DBLesen(self, zu_lesen)
 						res = DBLesen.get_data(lese_func)

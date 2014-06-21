@@ -37,7 +37,6 @@ class SaveMovieData(QtGui.QDialog):
 		anfang = self.text.find("Scene Breakdowns")
 		if anfang < 0:
 			scenes = self.get_actors()
-			print (scenes)
 		else:
 			anfang_scene = self.text.find("Scene ", anfang + 1)
 			if anfang_scene < 0:

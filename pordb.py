@@ -913,8 +913,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			original = ""
 		if original:
-			if original[-1] == ")":
-				original = original[0:len(original)-7]
 			original = "=" + original
 			self.suchfeld.insertItem(0, original)
 			self.suchfeld.setCurrentIndex(0)

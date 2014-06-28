@@ -740,6 +740,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 			self.bilder_aktuell()
 			app.restoreOverrideCursor()
+		self.suchfeld.setFocus()
 			
 	def onDirectoryRefresh(self):
 		self.bilder_aktuell()

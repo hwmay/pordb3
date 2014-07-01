@@ -1,2 +1,2 @@
-pordbversion = "1.3.2"
-whatsnew = "New function: Better support for adding scenes via IAFD webpage"
+pordbversion = "1.3.3"
+whatsnew = "Some small bugfixes"

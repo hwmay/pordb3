@@ -361,10 +361,13 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			gesehen = "x"
 			
 		try:
-			original = str(self.lineEditNeuOriginal.text()).replace("'", "''").title()
+			original = str(self.lineEditNeuOriginal.text()).replace("'", "''").title().split()
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error: original title has invalid characters"))
 			return
+		
+		# get rid of double spaces
+		original = " ".join(original)
 
 		if len(original) > 256:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error, original title is longer than 256 characters."))

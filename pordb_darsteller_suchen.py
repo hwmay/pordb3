@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_darsteller_suchen.ui'
 #
-# Created: Mon Nov 18 23:39:00 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Fri Jul 11 17:38:34 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -159,8 +159,18 @@ class Ui_DarstellerSuche(object):
 
         self.retranslateUi(DarstellerSuche)
         QtCore.QMetaObject.connectSlotsByName(DarstellerSuche)
-        DarstellerSuche.setTabOrder(self.lineEditDarstellerSuche, self.comboBoxDarstellerSucheNation)
-        DarstellerSuche.setTabOrder(self.comboBoxDarstellerSucheNation, self.pushButtonSuchen)
+        DarstellerSuche.setTabOrder(self.lineEditDarstellerSuche, self.comboBoxDarstellerSucheGeschlecht)
+        DarstellerSuche.setTabOrder(self.comboBoxDarstellerSucheGeschlecht, self.lineEditActor1)
+        DarstellerSuche.setTabOrder(self.lineEditActor1, self.lineEditActor2)
+        DarstellerSuche.setTabOrder(self.lineEditActor2, self.lineEditActor3)
+        DarstellerSuche.setTabOrder(self.lineEditActor3, self.dateEditDarstellerSucheAb)
+        DarstellerSuche.setTabOrder(self.dateEditDarstellerSucheAb, self.dateEditDarstellerSucheBis)
+        DarstellerSuche.setTabOrder(self.dateEditDarstellerSucheBis, self.comboBoxDarstellerSucheHaar)
+        DarstellerSuche.setTabOrder(self.comboBoxDarstellerSucheHaar, self.comboBoxDarstellerSucheNation)
+        DarstellerSuche.setTabOrder(self.comboBoxDarstellerSucheNation, self.comboBoxDarstellerSucheTattoo)
+        DarstellerSuche.setTabOrder(self.comboBoxDarstellerSucheTattoo, self.lineEditDarstellerSucheTattoo)
+        DarstellerSuche.setTabOrder(self.lineEditDarstellerSucheTattoo, self.comboBoxDarstellerSucheEthnic)
+        DarstellerSuche.setTabOrder(self.comboBoxDarstellerSucheEthnic, self.pushButtonSuchen)
         DarstellerSuche.setTabOrder(self.pushButtonSuchen, self.pushButtonRefresh)
         DarstellerSuche.setTabOrder(self.pushButtonRefresh, self.pushButtonCancel)
 

@@ -361,7 +361,17 @@
  </widget>
  <tabstops>
   <tabstop>lineEditDarstellerSuche</tabstop>
+  <tabstop>comboBoxDarstellerSucheGeschlecht</tabstop>
+  <tabstop>lineEditActor1</tabstop>
+  <tabstop>lineEditActor2</tabstop>
+  <tabstop>lineEditActor3</tabstop>
+  <tabstop>dateEditDarstellerSucheAb</tabstop>
+  <tabstop>dateEditDarstellerSucheBis</tabstop>
+  <tabstop>comboBoxDarstellerSucheHaar</tabstop>
   <tabstop>comboBoxDarstellerSucheNation</tabstop>
+  <tabstop>comboBoxDarstellerSucheTattoo</tabstop>
+  <tabstop>lineEditDarstellerSucheTattoo</tabstop>
+  <tabstop>comboBoxDarstellerSucheEthnic</tabstop>
   <tabstop>pushButtonSuchen</tabstop>
   <tabstop>pushButtonRefresh</tabstop>
   <tabstop>pushButtonCancel</tabstop>

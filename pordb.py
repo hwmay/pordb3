@@ -7,7 +7,6 @@ import time
 import datetime
 import platform
 import urllib.request, urllib.error, urllib.parse
-#import gobject # verhindert Absturz bei Anzeige von Webseiten mit Flash
 import psycopg2
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtWebKit import QWebPage
@@ -869,8 +868,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		selected = self.listWidgetFilme.selectedItems()
 		if selected:
 			original = "=" + str(selected[0].text()).strip()
-			if original[-1] == ")":
-				original = original[0:len(original)-7]
 			self.suchfeld.insertItem(0, original)
 			self.suchfeld.setCurrentIndex(0)
 			self.tabWidget.setCurrentIndex(0)

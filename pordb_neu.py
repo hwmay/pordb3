@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Wed May 14 22:42:35 2014
+# Created: Sat Jul 19 22:59:48 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -67,6 +67,7 @@ class Ui_Dialog(object):
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
         self.lineEditNeuBild = QtGui.QLineEdit(Dialog)
+        self.lineEditNeuBild.setReadOnly(True)
         self.lineEditNeuBild.setObjectName(_fromUtf8("lineEditNeuBild"))
         self.gridLayout.addWidget(self.lineEditNeuBild, 3, 1, 1, 1)
         self.labelBild = QtGui.QLabel(Dialog)

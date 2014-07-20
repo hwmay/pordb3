@@ -35,7 +35,7 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		self.tableWidgetBookmarks.resizeRowsToContents()
 		
 	def accept(self):
-		zu_erfassen = "insert into pordb_bookmarks (url) values ('" +self.url +"')"
+		zu_erfassen = "insert into pordb_bookmarks (url) values ('" +self.url.replace("'", "''") +"')"
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		

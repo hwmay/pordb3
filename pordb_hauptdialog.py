@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon May 26 23:10:13 2014
+# Created: Sun Jul 20 22:19:15 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -596,6 +596,9 @@ class Ui_MainWindow(object):
         self.lineEditURL = QtGui.QLineEdit(self.tab_4)
         self.lineEditURL.setObjectName(_fromUtf8("lineEditURL"))
         self.horizontalLayout_14.addWidget(self.lineEditURL)
+        self.pushButtonClearURL = QtGui.QPushButton(self.tab_4)
+        self.pushButtonClearURL.setObjectName(_fromUtf8("pushButtonClearURL"))
+        self.horizontalLayout_14.addWidget(self.pushButtonClearURL)
         self.pushButtonUrl = QtGui.QPushButton(self.tab_4)
         self.pushButtonUrl.setText(_fromUtf8(""))
         icon11 = QtGui.QIcon()
@@ -940,7 +943,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1089,6 +1092,9 @@ class Ui_MainWindow(object):
 "This is very useful for adding new scenes from the selected movie.", None))
         self.pushButtonMovie.setText(_translate("MainWindow", "Enter clips for shown video", None))
         self.lineEditURL.setWhatsThis(_translate("MainWindow", "Adress bar", None))
+        self.pushButtonClearURL.setToolTip(_translate("MainWindow", "<html><head/><body><p>Clear the address bar, CTRL+L</p></body></html>", None))
+        self.pushButtonClearURL.setText(_translate("MainWindow", "Clear", None))
+        self.pushButtonClearURL.setShortcut(_translate("MainWindow", "Ctrl+L", None))
         self.pushButtonUrl.setToolTip(_translate("MainWindow", "Bookmarks", None))
         self.pushButtonUrl.setWhatsThis(_translate("MainWindow", "Maintenance of bookmarks", None))
         self.webView.setWhatsThis(_translate("MainWindow", "Web content, controls:\n"

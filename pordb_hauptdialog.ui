@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1518,6 +1518,19 @@ This is very useful for adding new scenes from the selected movie.</string>
               <widget class="QLineEdit" name="lineEditURL">
                <property name="whatsThis">
                 <string>Adress bar</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonClearURL">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear the address bar, CTRL+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Clear</string>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+L</string>
                </property>
               </widget>
              </item>

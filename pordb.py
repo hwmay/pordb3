@@ -158,6 +158,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonIAFD, QtCore.SIGNAL("clicked()"), self.onIAFDSeite)
 		self.connect(self.pushButtonAbholen, QtCore.SIGNAL("clicked()"), self.onDarstellerdatenAbholen)
 		self.connect(self.pushButtonMovie, QtCore.SIGNAL("clicked()"), self.onMovieData)
+		self.connect(self.pushButtonClearURL, QtCore.SIGNAL("clicked()"), self.onClearURL)
 		self.connect(self.pushButtonUrl, QtCore.SIGNAL("clicked()"), self.onUrlVerwalten)
 		self.connect(self.pushButtonSearchWebsite, QtCore.SIGNAL("clicked()"), self.onSearchWebsite)
 		self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
@@ -3464,6 +3465,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.insertItem(0, self.lineEditSuchen.text())
 		self.suchfeld.setCurrentIndex(0)
 		self.suchfeld.setFocus()
+		
+	def onClearURL(self):
+		self.lineEditURL.clear()
+		self.lineEditURL.setFocus()
 		
 	def onLoadStarted(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

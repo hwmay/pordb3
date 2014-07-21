@@ -1,2 +1,2 @@
-pordbversion = "1.3.3"
-whatsnew = "Some small bugfixes"
+pordbversion = "1.3.4"
+whatsnew = "Some small bugfixes\nButton added for clearing addressbar in webview"

@@ -3104,25 +3104,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if os.path.exists(datei_alt) and os.path.exists(datei_neu) and datei_alt != datei_neu:
 					dialog = ShowTwoImages(datei_alt, datei_neu)
 					app.restoreOverrideCursor()
-					if dialog.exec_():
-						datei = dialog.datei()
-						if datei == 1:
-							try:
-								os.remove(datei_neu)
-								os.rename(datei_alt, datei_neu)
-							except:
-								message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
-						elif datei == 2:
-							try:
-								os.remove(datei_alt)
-							except:
-								message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
-						else:
-							message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Renaming canceled"))
-							self.suchfeld.setCurrentIndex(-1)
-							self.suchfeld.setFocus()
-							return
+					dialog.exec_()
+					datei = dialog.datei()
+					if datei == 1:
+						try:
+							os.remove(datei_neu)
+							os.rename(datei_alt, datei_neu)
+						except:
+							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+					elif datei == 2:
+						try:
+							os.remove(datei_alt)
+						except:
+							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
 					else:
+						message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Renaming canceled"))
+						self.suchfeld.setCurrentIndex(-1)
+						self.suchfeld.setFocus()
 						return
 				else:
 					try:

@@ -38,7 +38,7 @@ class ShowTwoImages(QtGui.QDialog, pordb_show_two_images):
 			self.wanted_file = 1
 		else:
 			self.wanted_file = 2
-		
+			
 		self.close()
 		
 	def datei(self):

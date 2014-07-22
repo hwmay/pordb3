@@ -1,2 +1,2 @@
-pordbversion = "1.3.4"
-whatsnew = "Some small bugfixes\nButton added for clearing addressbar in webview"
+pordbversion = "1.3.5"
+whatsnew = "Bugfixing when restoring state of the main window"

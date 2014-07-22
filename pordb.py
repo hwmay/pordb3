@@ -207,8 +207,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.resize(window_size)
 			window_position = settings.value("MeinDialog/Position", QtCore.QPoint(0, 0))
 			self.move(window_position)
-			self.restoreState(settings.value("MeinDialog/State"))
-			self.splitter.restoreState(settings.value("splitter"))
+			try:
+				self.restoreState(settings.value("MeinDialog/State"))
+			except:
+				pass
+			try:
+				self.splitter.restoreState(settings.value("splitter"))
+			except:
+				pass
 			
 		# Populate statusbar
 		self.anzahl = QtGui.QLabel()

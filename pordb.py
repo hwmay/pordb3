@@ -1194,16 +1194,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					painter.drawText(x + 300, y, "- " +str(seite) +" -")
 					y += 15
 					darsteller = str(self.labelDarsteller.text()).strip()
-					zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" + darsteller.replace("'", "''") + "'" 
-					lese_func = DBLesen(self, zu_lesen)
-					res = DBLesen.get_data(lese_func)
-					if res[0][0] == "w":
-						verzeichnis = self.verzeichnis_thumbs + os.sep + "darsteller_m"
-					else:
-						verzeichnis = self.verzeichnis_thumbs + os.sep + "darsteller_w"
+					verzeichnis_m = self.verzeichnis_thumbs + os.sep + "darsteller_m"
+					verzeichnis_w = self.verzeichnis_thumbs + os.sep + "darsteller_w"
 					randunten = 50
-					for i in self.paarung:
-						filename = verzeichnis + os.sep + i.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+					for i in self.aktuelles_res:
+						if i[-1] == ")":
+							anfang = i.rfind("(")
+						else:
+							anfang = len(i)
+						name = i[0 : anfang]
+						filename = verzeichnis_w + os.sep + name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+						if not os.path.exists(filename):
+							filename = verzeichnis_m + os.sep + name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+						if not os.path.exists(filename):
+							filename = self.verzeichnis_thumbs + os.sep + "nichtvorhanden" + os.sep + "nicht_vorhanden.jpg"
 						bild = QtGui.QPixmap(filename).scaled(size, QtCore.Qt.KeepAspectRatio)
 						if y + bild.height() + randunten > self.printer.pageRect().height():
 							y = 0
@@ -1218,8 +1222,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					app.restoreOverrideCursor()
 					return
 				else:
-					#lese_func = DBLesen(self, self.letzter_select)
-					#res = DBLesen.get_data(lese_func)
 					res = self.aktuelles_res
 					if self.actionCheckBoxDVDCover.isChecked():
 						zw_res = []
@@ -1264,7 +1266,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							painter.drawText(x, y, "Nation: n.a." )
 						y += 15
 						if i[6]:
-							for j in range(len(i[6]) / 90 + 1):
+							for j in range(round(len(i[6]) / 90 + 1), 0):
 								if j == 0:
 									painter.drawText(x, y, "Tattoo: " + i[6][0 : 90])
 								else:

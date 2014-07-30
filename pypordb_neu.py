@@ -656,12 +656,12 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if self.original_weitere:
 			zu_erfassen = []
 			if self.korrektur:
-				zu_lesen = "select primkey from pordb_vid where cd = " +str(self.cd_alt) + " and bild = '" +str(bild) +"'"
+				zu_lesen = "select primkey from pordb_vid where cd = " +str(self.cd_alt) + " and bild = '" +str(bild).replace("'", "''") +"'"
 				self.lese_func = DBLesen(self, zu_lesen)
 				curr_key = DBLesen.get_data(self.lese_func)
 				zu_erfassen.append("delete from pordb_original where foreign_key_pordb_vid = " +str(curr_key[0][0]))
 			else:
-				zu_lesen = "select primkey from pordb_vid where cd = " +str(cd) + " and bild = '" +bild +"'"
+				zu_lesen = "select primkey from pordb_vid where cd = " +str(cd) + " and bild = '" +bild.replace("'", "''") +"'"
 				self.lese_func = DBLesen(self, zu_lesen)
 				curr_key = DBLesen.get_data(self.lese_func)
 			for i in self.original_weitere:

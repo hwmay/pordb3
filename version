@@ -1,2 +1,2 @@
-pordbversion = "1.3.6"
-whatsnew = "Bugfixing when printing actors"
+pordbversion = "1.3.7"
+whatsnew = "Bugfixing when adding videos with apostroph in original title"

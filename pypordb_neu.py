@@ -11,6 +11,7 @@ from pypordb_darsteller_korrigieren import DarstellerKorrigieren
 from pypordb_cover import Cover
 from pypordb_original import OriginalErfassen
 import os
+import datetime
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(300, 300)
@@ -49,6 +50,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.connect(self.pushButtonNeuDelete, QtCore.SIGNAL("clicked()"), self.onDelete)
 		self.connect(self.pushButtonOriginal, QtCore.SIGNAL("clicked()"), self.onOriginal)
 		self.connect(self.pushButtonOriginalAlt, QtCore.SIGNAL("clicked()"), self.onOriginalAlt)
+		self.connect(self.pushButtonAddYear, QtCore.SIGNAL("clicked()"), self.onAddYear)
 		self.connect(self.listWidgetW, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
 		self.connect(self.listWidgetM, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
 		self.connect(self.pushButtonNeuDarstelleruebernehmen, QtCore.SIGNAL("clicked()"), self.onDarstelleruebernehmen)
@@ -63,6 +65,13 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.resize(window_size)
 		window_position = settings.value("Neueingabe/Position", QtCore.QPoint(0, 0))
 		self.move(window_position)
+		
+		# populate combox for years
+		today = datetime.date.today()
+		self.comboBoxYear.clear()
+		for i in range(today.year + 2, 1960, -1):
+			self.comboBoxYear.addItem(str(i))
+		self.comboBoxYear.setCurrentIndex(2)
 		
 		# set default position for cropping images
 		self.positionX = 0
@@ -251,6 +260,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if self.res_vid_neu[0][3]:
 			self.lineEditNeuOriginal.setText(self.res_vid_neu[0][3])
 		self.pushButtonNeuOK.setFocus()
+		
+	def onAddYear(self):
+		year = self.comboBoxYear.currentText()
+		self.lineEditNeuOriginal.setText(self.lineEditNeuOriginal.text() + " (" + str(year) + ")")
 	
 	def onDarstelleruebernehmen(self):
 		selected = self.listWidgetW.selectedItems()

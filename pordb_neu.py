@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sat Jul 19 22:59:48 2014
+# Created: Mon Aug  4 20:54:47 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -49,7 +49,7 @@ class Ui_Dialog(object):
         self.labelTitel.setMinimumSize(QtCore.QSize(86, 18))
         self.labelTitel.setText(_fromUtf8(""))
         self.labelTitel.setObjectName(_fromUtf8("labelTitel"))
-        self.gridLayout.addWidget(self.labelTitel, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.labelTitel, 0, 5, 1, 1)
         self.label_2 = QtGui.QLabel(Dialog)
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
@@ -79,7 +79,7 @@ class Ui_Dialog(object):
         self.labelBild.setMinimumSize(QtCore.QSize(86, 18))
         self.labelBild.setText(_fromUtf8(""))
         self.labelBild.setObjectName(_fromUtf8("labelBild"))
-        self.gridLayout.addWidget(self.labelBild, 3, 3, 1, 1)
+        self.gridLayout.addWidget(self.labelBild, 3, 5, 1, 1)
         self.label_6 = QtGui.QLabel(Dialog)
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.gridLayout.addWidget(self.label_6, 4, 0, 1, 1)
@@ -100,7 +100,17 @@ class Ui_Dialog(object):
         icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/go-next.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonOriginal.setIcon(icon2)
         self.pushButtonOriginal.setObjectName(_fromUtf8("pushButtonOriginal"))
-        self.gridLayout.addWidget(self.pushButtonOriginal, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.pushButtonOriginal, 4, 5, 1, 1)
+        self.pushButtonAddYear = QtGui.QPushButton(Dialog)
+        self.pushButtonAddYear.setText(_fromUtf8(""))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/x-office-calendar-symbolic.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonAddYear.setIcon(icon3)
+        self.pushButtonAddYear.setObjectName(_fromUtf8("pushButtonAddYear"))
+        self.gridLayout.addWidget(self.pushButtonAddYear, 4, 3, 1, 1)
+        self.comboBoxYear = QtGui.QComboBox(Dialog)
+        self.comboBoxYear.setObjectName(_fromUtf8("comboBoxYear"))
+        self.gridLayout.addWidget(self.comboBoxYear, 4, 4, 1, 1)
         self.gridLayout_3.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.horizontalLayout_10 = QtGui.QHBoxLayout()
         self.horizontalLayout_10.setObjectName(_fromUtf8("horizontalLayout_10"))
@@ -287,9 +297,9 @@ class Ui_Dialog(object):
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.pushButtonNeuDarstelleruebernehmen = QtGui.QPushButton(Dialog)
         self.pushButtonNeuDarstelleruebernehmen.setText(_fromUtf8(""))
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/go-up.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButtonNeuDarstelleruebernehmen.setIcon(icon3)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/go-up.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonNeuDarstelleruebernehmen.setIcon(icon4)
         self.pushButtonNeuDarstelleruebernehmen.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonNeuDarstelleruebernehmen.setCheckable(False)
         self.pushButtonNeuDarstelleruebernehmen.setObjectName(_fromUtf8("pushButtonNeuDarstelleruebernehmen"))
@@ -369,6 +379,9 @@ class Ui_Dialog(object):
         self.pushButtonOriginalAlt.setShortcut(_translate("Dialog", "Ctrl+Y", None))
         self.pushButtonOriginal.setToolTip(_translate("Dialog", "Enter more movie titles", None))
         self.pushButtonOriginal.setWhatsThis(_translate("Dialog", "Enter more movie titles", None))
+        self.pushButtonAddYear.setToolTip(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the right and add it to the original title, ALT+Q</p></body></html>", None))
+        self.pushButtonAddYear.setWhatsThis(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the right and add it to the original title<br/></p></body></html>", None))
+        self.pushButtonAddYear.setShortcut(_translate("Dialog", "Alt+Q", None))
         self.groupBox_4.setTitle(_translate("Dialog", "present", None))
         self.radioButtonVorhandenJa.setWhatsThis(_translate("Dialog", "Mark here when video is present.", None))
         self.radioButtonVorhandenJa.setText(_translate("Dialog", "yes", None))

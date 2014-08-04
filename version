@@ -1,2 +1,2 @@
-pordbversion = "1.3.7"
-whatsnew = "Bugfixing when adding videos with apostroph in original title"
+pordbversion = "1.3.8"
+whatsnew = "Version 1.3.8: New function: Add year to original title\nVersion 1.3.7: Bugfixing when adding videos with apostroph in original title"

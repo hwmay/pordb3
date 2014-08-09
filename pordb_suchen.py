@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_suchen.ui'
 #
-# Created: Mon Nov 18 23:36:38 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Sat Aug  9 15:34:21 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -26,17 +26,17 @@ except AttributeError:
 class Ui_ErweiterteSuche(object):
     def setupUi(self, ErweiterteSuche):
         ErweiterteSuche.setObjectName(_fromUtf8("ErweiterteSuche"))
-        ErweiterteSuche.resize(832, 291)
+        ErweiterteSuche.resize(832, 273)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         ErweiterteSuche.setWindowIcon(icon)
-        self.verticalLayout = QtGui.QVBoxLayout(ErweiterteSuche)
+        self.gridLayout_2 = QtGui.QGridLayout(ErweiterteSuche)
+        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
+        self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.groupBox = QtGui.QGroupBox(ErweiterteSuche)
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
-        self.horizontalLayout = QtGui.QHBoxLayout(self.groupBox)
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.gridLayout = QtGui.QGridLayout()
+        self.gridLayout = QtGui.QGridLayout(self.groupBox)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setObjectName(_fromUtf8("label"))
@@ -70,9 +70,16 @@ class Ui_ErweiterteSuche(object):
         self.checkBoxVid.setText(_fromUtf8(""))
         self.checkBoxVid.setObjectName(_fromUtf8("checkBoxVid"))
         self.gridLayout.addWidget(self.checkBoxVid, 4, 1, 1, 1)
+        self.label_7 = QtGui.QLabel(self.groupBox)
+        self.label_7.setObjectName(_fromUtf8("label_7"))
+        self.gridLayout.addWidget(self.label_7, 5, 0, 1, 1)
+        self.checkBoxWatched = QtGui.QCheckBox(self.groupBox)
+        self.checkBoxWatched.setText(_fromUtf8(""))
+        self.checkBoxWatched.setObjectName(_fromUtf8("checkBoxWatched"))
+        self.gridLayout.addWidget(self.checkBoxWatched, 5, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.groupBox)
         self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_6, 6, 0, 1, 1)
         self.comboBoxCS = QtGui.QComboBox(self.groupBox)
         self.comboBoxCS.setMaximumSize(QtCore.QSize(723, 16777215))
         self.comboBoxCS.setObjectName(_fromUtf8("comboBoxCS"))
@@ -89,23 +96,23 @@ class Ui_ErweiterteSuche(object):
         self.comboBoxCS.addItem(_fromUtf8(""))
         self.comboBoxCS.addItem(_fromUtf8(""))
         self.comboBoxCS.addItem(_fromUtf8(""))
-        self.gridLayout.addWidget(self.comboBoxCS, 5, 1, 1, 1)
-        self.horizontalLayout.addLayout(self.gridLayout)
+        self.gridLayout.addWidget(self.comboBoxCS, 6, 1, 1, 1)
         self.verticalLayout.addWidget(self.groupBox)
-        self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonSuchen = QtGui.QPushButton(ErweiterteSuche)
         self.pushButtonSuchen.setToolTip(_fromUtf8(""))
         self.pushButtonSuchen.setObjectName(_fromUtf8("pushButtonSuchen"))
-        self.hboxlayout.addWidget(self.pushButtonSuchen)
+        self.horizontalLayout.addWidget(self.pushButtonSuchen)
         self.pushButtonRefresh = QtGui.QPushButton(ErweiterteSuche)
         self.pushButtonRefresh.setToolTip(_fromUtf8(""))
         self.pushButtonRefresh.setObjectName(_fromUtf8("pushButtonRefresh"))
-        self.hboxlayout.addWidget(self.pushButtonRefresh)
+        self.horizontalLayout.addWidget(self.pushButtonRefresh)
         self.pushButtonCancel = QtGui.QPushButton(ErweiterteSuche)
         self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
-        self.hboxlayout.addWidget(self.pushButtonCancel)
-        self.verticalLayout.addLayout(self.hboxlayout)
+        self.horizontalLayout.addWidget(self.pushButtonCancel)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
         self.retranslateUi(ErweiterteSuche)
         QtCore.QMetaObject.connectSlotsByName(ErweiterteSuche)
@@ -133,6 +140,7 @@ class Ui_ErweiterteSuche(object):
         self.lineEditOriginal.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Search for original title</p></body></html>", None))
         self.label_5.setText(_translate("ErweiterteSuche", "Video present", None))
         self.checkBoxVid.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Filter search results only for videos which are present</p></body></html>", None))
+        self.label_7.setText(_translate("ErweiterteSuche", "Video watched", None))
         self.label_6.setText(_translate("ErweiterteSuche", "CS", None))
         self.comboBoxCS.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Filter search results with cumshots</p></body></html>", None))
         self.comboBoxCS.setItemText(1, _translate("ErweiterteSuche", "f Facial", None))

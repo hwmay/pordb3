@@ -18,5 +18,6 @@ class Suchen(QtGui.QDialog, pordb_suchen):
 		self.lineEditTitel.setText("")
 		self.lineEditOriginal.setText("")
 		self.checkBoxVid.setChecked(False)
+		self.checkBoxWatched.setChecked(False)
 		self.comboBoxCS.setCurrentIndex(-1)
 		self.lineEditDarsteller.setFocus()

@@ -271,6 +271,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.bilddarsteller = ""
 		self.tabWidget.setCurrentIndex(0)
 		self.video = False
+		self.watched = False
 		self.bilddarsteller = None
 		self.columns = 3.0
 		self.tableWidgetBilder.setColumnCount(self.columns)
@@ -1957,6 +1958,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		suche.lineEditTitel.setText(self.suche_titel)
 		suche.lineEditOriginal.setText(self.suche_original)
 		suche.checkBoxVid.setChecked(self.video)
+		suche.checkBoxWatched.setChecked(self.watched)
 		try:
 			suche.comboBoxCS.setCurrentIndex(suche.comboBoxCS.findText(self.suche_cs))
 		except:
@@ -1967,6 +1969,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.suche_titel = suche.lineEditTitel.text()
 			self.suche_original = suche.lineEditOriginal.text()
 			self.video = suche.checkBoxVid.isChecked()
+			self.watched = suche.checkBoxWatched.isChecked()
 			self.suche_cs = suche.comboBoxCS.currentText()
 			# select-Anweisung aufbauen
 			zu_lesen = "SELECT * from pordb_vid where "
@@ -2012,6 +2015,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			# Vid Button gesetzt
 			if argument == 1 and self.video:
 				zu_lesen += " and (vorhanden != ' ')"
+				
+			# Watched Button gesetzt
+			if argument == 1 and self.watched:
+				zu_lesen += " and (gesehen = 'x')"
 			
 			zu_lesen += " order by cd, titel"
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

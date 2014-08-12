@@ -290,6 +290,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.url = ""
 		self.searchResultsMpg = None
 		self.searchResultsVid = None
+		self.context_actor_image = False
 		
 		self.pushButtonIAFDBackground.setEnabled(False)
 		
@@ -791,6 +792,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		menu = QtGui.QMenu(self.listWidgetDarsteller)
 		menu.addAction(self.actionAnzeigenPaar)
 		menu.addAction(self.actionBildanzeigegross)
+		self.context_actor_image = False
 		menu.exec_(self.listWidgetDarsteller.mapToGlobal(event))
 			
 	def onContextCS(self, event):
@@ -851,6 +853,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onBildgross(self, event):
 		menu = QtGui.QMenu(self.labelBildanzeige)
 		menu.addAction(self.actionBildanzeigegross)
+		self.context_actor_image = True
 		menu.addAction(self.actionShowDetails)
 		menu.addAction(self.actionGetUrl)
 		menu.addAction(self.actionGoToUrl)
@@ -1489,12 +1492,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.onDarstellerUebernehmen()
 			ein = self.eingabe_auswerten().lstrip("=")
 		else:
-			selected = self.listWidgetDarsteller.selectedItems()
-			if selected:
-				ein = str(selected[0].text()).strip()
-				ein = ein.split("(")[0]
-			else:
+			if self.context_actor_image:
 				ein = str(self.labelDarsteller.text()).strip().title()
+			else:
+				selected = self.listWidgetDarsteller.selectedItems()
+				if selected:
+					ein = str(selected[0].text()).strip()
+					ein = ein.split("(")[0]
+				else:
+					ein = str(self.labelDarsteller.text()).strip().title()
 		
 		self.listWidgetDarsteller.clearSelection()
 		if ein:

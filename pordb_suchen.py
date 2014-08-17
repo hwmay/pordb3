@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_suchen.ui'
 #
-# Created: Sat Aug  9 15:34:21 2014
+# Created: Sun Aug 17 09:53:04 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -120,7 +120,8 @@ class Ui_ErweiterteSuche(object):
         ErweiterteSuche.setTabOrder(self.lineEditCD, self.lineEditTitel)
         ErweiterteSuche.setTabOrder(self.lineEditTitel, self.lineEditOriginal)
         ErweiterteSuche.setTabOrder(self.lineEditOriginal, self.checkBoxVid)
-        ErweiterteSuche.setTabOrder(self.checkBoxVid, self.comboBoxCS)
+        ErweiterteSuche.setTabOrder(self.checkBoxVid, self.checkBoxWatched)
+        ErweiterteSuche.setTabOrder(self.checkBoxWatched, self.comboBoxCS)
         ErweiterteSuche.setTabOrder(self.comboBoxCS, self.pushButtonSuchen)
         ErweiterteSuche.setTabOrder(self.pushButtonSuchen, self.pushButtonRefresh)
         ErweiterteSuche.setTabOrder(self.pushButtonRefresh, self.pushButtonCancel)

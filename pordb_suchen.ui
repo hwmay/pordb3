@@ -258,6 +258,7 @@
   <tabstop>lineEditTitel</tabstop>
   <tabstop>lineEditOriginal</tabstop>
   <tabstop>checkBoxVid</tabstop>
+  <tabstop>checkBoxWatched</tabstop>
   <tabstop>comboBoxCS</tabstop>
   <tabstop>pushButtonSuchen</tabstop>
   <tabstop>pushButtonRefresh</tabstop>

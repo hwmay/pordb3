@@ -2740,7 +2740,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if res:
 					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 					for i in res:
-						zu_lesen += " or darsteller like '%" +i[0].strip().replace("'", "''") +"%'"
+						zu_lesen += " or darsteller = '" +i[0].strip().replace("'", "''") +"'"
 					zu_lesen += ")"
 				else:
 					zu_lesen += "darsteller like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"

@@ -394,8 +394,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			splash.showMessage("Ready", color = QtGui.QColor("green"))
 			app.processEvents()
 			splash.finish(self)
-			
-		self.suchfeld.setCurrentIndex(-1)
 		
 		# Get version file from github
 		version = None
@@ -461,7 +459,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 								
 						python = sys.executable
 						os.execl(python, python, * sys.argv)
-		
+			
 	def setFocus(self, i):
 		self.suchfeld.setFocus()
 	
@@ -2311,7 +2309,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			lese_func = DBLesen(self, zu_lesen)
 			res1 = DBLesen.get_data(lese_func)
 			if res1:
-				ein = res1[0][1].strip()
+				ein = "=" + res1[0][1].strip()
 				res = self.darsteller_lesen(ein)
 			else:
 				self.labelText.setText("<font color=red>" +self.trUtf8("Actor not available") +"</font>")

@@ -340,7 +340,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if initial_run:
 			splash.showMessage("Getting search items", color = QtGui.QColor("red"))
 			app.processEvents()
-		self.suchbegriffe_lesen()
+			self.suchbegriffe_lesen()
 		
 		zu_lesen = "SELECT * from information_schema.columns where table_name = 'pordb_vid'"
 		lese_func = DBLesen(self, zu_lesen)
@@ -367,7 +367,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if initial_run:
 			splash.showMessage("Getting device names", color = QtGui.QColor("red"))
 			app.processEvents()
-		self.device_fuellen()
+			self.device_fuellen()
 		
 		if initial_run: 
 			splash.showMessage("Loading IAFD", color = QtGui.QColor("red"))

@@ -3806,7 +3806,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				return
 			self.cur = self.conn.cursor()
 			for i in res:
-				datei = open(self.verzeichnis +os.sep +i[2] +".txt", "w")
+				datei = open(self.verzeichnis_original +os.sep +i[2] +".txt", "w")
 				try:
 					self.cur.copy_to(datei, i[2], sep='|')
 				except Exception as e:
@@ -3816,11 +3816,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				
 		# Backup picture directory
 		if self.checkBoxPictures.isChecked():
-			tar = tarfile.open(self.verzeichnis +os.sep +"archive.tar.gz", "w:gz")
+			tar = tarfile.open(self.verzeichnis_original +os.sep +"archive.tar.gz", "w:gz")
 			tar.add(self.verzeichnis_thumbs)
 			tar.close()
 			
-			datei = open(self.verzeichnis +os.sep +"archive.tar.gz", "rb")
+			datei = open(self.verzeichnis_original +os.sep +"archive.tar.gz", "rb")
 			partnum = 0
 			while True:
 				chunk = datei.read(100000000)
@@ -3833,12 +3833,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				fileobj.close()
 			
 			datei.close()
-			os.remove(self.verzeichnis +os.sep +"archive.tar.gz")
+			os.remove(self.verzeichnis_original +os.sep +"archive.tar.gz")
 		
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
 		message = QtGui.QMessageBox(self)
-		message.setText(self.trUtf8("Backup in directory ") +self.verzeichnis + self.trUtf8(" created"))
+		message.setText(self.trUtf8("Backup in directory ") +self.verzeichnis_original + self.trUtf8(" created"))
 		message.exec_()
 		
 	def onRestore(self):

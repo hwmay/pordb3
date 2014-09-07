@@ -263,7 +263,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		
 	def onAddYear(self):
 		year = self.comboBoxYear.currentText()
-		self.lineEditNeuOriginal.setText(self.lineEditNeuOriginal.text() + " (" + str(year) + ")")
+		self.lineEditNeuOriginal.setText(self.lineEditNeuOriginal.text().strip() + " (" + str(year) + ")")
+		self.pushButtonNeuOK.setFocus()
 	
 	def onDarstelleruebernehmen(self):
 		selected = self.listWidgetW.selectedItems()

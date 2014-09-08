@@ -2342,6 +2342,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		DBUpdate.update_data(update_func)
 		
 		filename = self.verzeichnis_thumbs + os.sep + "darsteller_" +str(self.comboBoxGeschlecht.currentText()) + os.sep + name.strip().lower().replace(" ", "_") + ".jpg"
+		if not os.path.exists(filename):
+			filename = self.verzeichnis_thumbs + os.sep + "darsteller_" +str(self.comboBoxGeschlecht.currentText()) + os.sep + name.strip().lower().replace(" ", "_") + ".png"
+			extension = ".png"
+		else:
+			extension = ".jpg"
 		if os.path.exists(filename):
 			pass
 		else:
@@ -2349,9 +2354,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				sex_alt = "m"
 			else:
 				sex_alt = "w"
-			newfilename = self.verzeichnis_thumbs + os.sep + "darsteller_" +sex_alt + os.sep + name.strip().lower().replace(" ", "_") + ".jpg"
-			if os.path.exists(newfilename):
-				os.rename(newfilename, filename)
+			oldfilename = self.verzeichnis_thumbs + os.sep + "darsteller_" +sex_alt + os.sep + name.strip().lower().replace(" ", "_") + extension
+			if os.path.exists(oldfilename):
+				os.rename(oldfilename, filename)
 		
 		self.onbildAnzeige()
 		self.labelFehler.clear()
@@ -3168,15 +3173,24 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" +name.replace("'", "''")  +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
-			extension = os.path.splitext(str(self.file))[-1].lower()
-			if extension == '.jpeg':
-				extension = '.jpg'
-			try:
-				sex = res[0][0]
-				newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + extension
-				os.rename(self.file, newfilename)
-			except:
-				pass
+			extension_new = os.path.splitext(str(self.file))[-1].lower()
+			if extension_new == '.jpeg':
+				extension_new = '.jpg'
+			sex = res[0][0]
+			if sex:
+				oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".jpg"
+				extension_old = None
+				if not os.path.isfile(oldfilename):
+					oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".png"
+					if os.path.isfile(oldfilename):
+						extension_old = ".png"
+				else:
+					extension_old = ".jpg"
+				if extension_new != extension_old and os.path.isfile(oldfilename):
+					os.remove(oldfilename)
+				if extension_old and extension_old != extension_new:
+					oldfilename = os.path.splitext(oldfilename)[0] + extension_new 
+				os.rename(self.file, oldfilename)
 			self.onbildAnzeige()
 	# end of onDarstellerBild
 		

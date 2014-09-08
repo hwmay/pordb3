@@ -51,7 +51,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		ende = self.darstellerseite.find('"></div>', anfang)
 		self.bild = (self.darstellerseite[anfang+20:ende]).replace(" ", "%20")
 		url =  'http://www.iafd.com/graphics/headshots/' + self.bild
-		self.verz = os.path.expanduser("~") +os.sep +"tmp"
+		self.verz = self.verzeichnis_thumbs
 		urllib.request._urlopener=urllib.request.URLopener()
 		urllib.request.URLopener.version="Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461)"
 		urllib.request.FancyURLopener.prompt_user_passwd = lambda self, host, realm: (None, None)

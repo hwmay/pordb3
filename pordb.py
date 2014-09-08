@@ -3188,8 +3188,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					extension_old = ".jpg"
 				if extension_new != extension_old and os.path.isfile(oldfilename):
 					os.remove(oldfilename)
-				if extension_old and extension_old != extension_new:
-					oldfilename = os.path.splitext(oldfilename)[0] + extension_new 
+				oldfilename = os.path.splitext(oldfilename)[0] + extension_new 
 				os.rename(self.file, oldfilename)
 			self.onbildAnzeige()
 	# end of onDarstellerBild

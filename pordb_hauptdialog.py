@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Jul 20 22:19:15 2014
+# Created: Thu Sep 18 21:02:20 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -943,7 +943,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1192,8 +1192,8 @@ class Ui_MainWindow(object):
         self.actionDrucken.setShortcut(_translate("MainWindow", "Ctrl+P", None))
         self.actionSuchfeld.setText(_translate("MainWindow", "search field", None))
         self.actionSuchbegriffe.setText(_translate("MainWindow", "search terms", None))
-        self.actionSuchbegriffe.setToolTip(_translate("MainWindow", "Edit search terms, Ctrl+S", None))
-        self.actionSuchbegriffe.setShortcut(_translate("MainWindow", "Ctrl+S", None))
+        self.actionSuchbegriffe.setToolTip(_translate("MainWindow", "Edit search terms, Ctrl+shift+S", None))
+        self.actionSuchbegriffe.setShortcut(_translate("MainWindow", "Ctrl+Shift+S", None))
         self.actionLand.setText(_translate("MainWindow", "country", None))
         self.actionLand.setToolTip(_translate("MainWindow", "Edit table of countries, Alt+L", None))
         self.actionLand.setShortcut(_translate("MainWindow", "Alt+L", None))

@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>3</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -2190,10 +2190,10 @@ p, li { white-space: pre-wrap; }
     <string>search terms</string>
    </property>
    <property name="toolTip">
-    <string>Edit search terms, Ctrl+S</string>
+    <string>Edit search terms, Ctrl+shift+S</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionLand">

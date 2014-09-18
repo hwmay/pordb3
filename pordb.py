@@ -487,9 +487,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		dateiliste_bereinigt.sort()
 		if self.bilderliste != dateiliste_bereinigt:
 			for i in dateiliste_bereinigt:
+				bild = QtGui.QPixmap(self.verzeichnis +os.sep +i)
+				text = i + "\n" + str(QtGui.QPixmap(bild).width()) +"x" +str(QtGui.QPixmap(bild).height())
 				bild = QtGui.QPixmap(self.verzeichnis +os.sep +i).scaled(size, QtCore.Qt.KeepAspectRatio)
 				bild = QtGui.QIcon(bild)
-				newitem = QtGui.QTableWidgetItem(bild, i)
+				newitem = QtGui.QTableWidgetItem(bild, text)
 				zeile += 1
 				self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
 			self.tableWidgetBilderAktuell.resizeColumnsToContents()
@@ -706,7 +708,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		items = self.tableWidgetBilderAktuell.selectedItems()
 		dateien = []
 		for i in items:
-			dateien.append(self.verzeichnis +os.sep +i.text())
+			dateien.append(self.verzeichnis +os.sep +i.text().split("\n")[0])
 		self.onNeueingabe(dateien=dateien)
 		self.bilder_aktuell()
 				
@@ -2578,18 +2580,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, "", undo, original_cover=trash_cover, high_definition = definition)
 		else:
 			if not cover_anlegen:
-				if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
+				if len(self.tableWidgetBilderAktuell.selectedItems()) == 1 or len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
 					items = self.tableWidgetBilderAktuell.selectedItems()
 					dateien = []
 					for i in items:
-						dateien.append(str(self.verzeichnis +os.sep +i.text()))
-				elif len(self.tableWidgetBilderAktuell.selectedItems()) == 1:
-					items = self.tableWidgetBilderAktuell.selectedItems()
-					dateien = []
-					for i in items:
-						dateien.append(str(self.verzeichnis +os.sep +i.text()))
+						dateien.append(str(self.verzeichnis +os.sep +i.text().split("\n")[0]))
 			if dateien:
-				if type(dateien) == str or type(dateien) == str:
+				if type(dateien) == str:
 					self.file = dateien
 				else:
 					self.file = dateien[0]

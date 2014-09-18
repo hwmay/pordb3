@@ -1155,7 +1155,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onBildLoeschen(self):
 		items = self.tableWidgetBilderAktuell.selectedItems()
 		for i in items:
-			text = str(i.text())
+			text = str(i.text().split("\n")[0])
 			bilddatei = self.verzeichnis +os.sep +text 
 			try:
 				os.remove(bilddatei)

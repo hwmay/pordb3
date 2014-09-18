@@ -605,7 +605,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		bild = self.aktuelles_res[index][3]
 		dateien = []
 		for i in items:
-			dateien.append(str(self.verzeichnis +os.sep +i.text()))
+			dateien.append(str(self.verzeichnis +os.sep +i.text().split("\n")[0]))
 		if len(dateien) > 2:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 or 2 pictures"))
 			return	

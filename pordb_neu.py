@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Mon Aug  4 20:54:47 2014
+# Created: Sun Sep 28 00:01:23 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -418,7 +418,7 @@ class Ui_Dialog(object):
         self.label_14.setText(_translate("Dialog", "Ass", None))
         self.label_15.setText(_translate("Dialog", "Others", None))
         self.label_16.setText(_translate("Dialog", "None", None))
-        self.pushButtonNeuDarstelleruebernehmen.setToolTip(_translate("Dialog", "Adopt actor", None))
+        self.pushButtonNeuDarstelleruebernehmen.setToolTip(_translate("Dialog", "<html><head/><body><p>Adopt actor</p></body></html>", None))
         self.pushButtonNeuDarstelleruebernehmen.setWhatsThis(_translate("Dialog", "Copy the marked actors to the actors field", None))
         self.listWidgetW.setWhatsThis(_translate("Dialog", "Last used female actors. Adopt marked actors with a doubleclick or click on the button above.", None))
         self.listWidgetM.setWhatsThis(_translate("Dialog", "Last used male actors. Adopt marked actors with a doubleclick or click on the button above.", None))

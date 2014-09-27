@@ -605,7 +605,7 @@
        <item>
         <widget class="QPushButton" name="pushButtonNeuDarstelleruebernehmen">
          <property name="toolTip">
-          <string>Adopt actor</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="whatsThis">
           <string>Copy the marked actors to the actors field</string>

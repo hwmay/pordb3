@@ -967,7 +967,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pordb_neu.py" line="421"/>
         <source>Adopt actor</source>
-        <translation>Darsteller übernehmen</translation>
+        <translation type="obsolete">Darsteller übernehmen</translation>
     </message>
     <message>
         <location filename="pordb_neu.py" line="422"/>
@@ -1587,6 +1587,41 @@ p, li { white-space: pre-wrap; }
         <location filename="pordb_neu.py" line="383"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select year from the combo box on the right and add it to the original title&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rechts das Jahr auswählen und zum Originaltitel hinzufügen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.py" line="421"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor (Ctrl+up)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Darsteller übernehmen (Strg+hoch)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.py" line="423"/>
+        <source>Ctrl+Up</source>
+        <translation type="obsolete">Strg+hoch</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.ui" line="627"/>
+        <source>Ctrl+PgUp</source>
+        <translation type="obsolete">Ctrl+Seite aufwärts</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.ui" line="608"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor (Ctrl+PageUp)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Darsteller übernehmen (Strg+Seite aufwärts)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.py" line="421"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Darsteller übernehmen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.py" line="421"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor (Ctrl+U)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Darsteller übernehmen (Strg+U)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.py" line="423"/>
+        <source>Ctrl+U</source>
+        <translation type="obsolete">Strg+U</translation>
     </message>
 </context>
 <context>

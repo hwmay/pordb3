@@ -14,6 +14,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.setupUi(self)
 		
 		self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onUebernehmen)
+		self.connect(self.pushButtonRemoveBrackets, QtCore.SIGNAL("clicked()"), self.onRemoveBrackets)
 		self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.onClose)
 		
 		self.darstellerseite = str(darstellerseite)
@@ -195,6 +196,21 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		
 		self.app.restoreOverrideCursor()
 		
+	def keyPressEvent(self, event):
+		try:
+			if event.modifiers() & QtCore.Qt.ControlModifier:
+				if event.key() == QtCore.Qt.Key_L:
+					self.onRemoveBrackets()
+					self.update()
+			elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
+				self.onUebernehmen()
+			elif event.key() == QtCore.Qt.Key_Escape:
+				self.close()
+			else:
+				self.keyPressEvent(self)
+		except:
+			pass
+		
 	def onUebernehmen(self):
 		if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
@@ -261,7 +277,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +str(self.lineEditGeschlecht.text()) +os.sep +name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
 					os.rename(self.verz +os.sep +self.bild, newfilename)
 			else:
-				self.close()
+				self.onClose()
 		# Darsteller existiert bereits
 		else:
 			if self.checkBoxBild.isChecked():
@@ -316,10 +332,22 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			DBUpdate.update_data(update_func)
 		self.close()
 	# end of onUebernehmen
+	
+	def onRemoveBrackets(self):
+		pseudos = str(self.lineEditPseudo.text()).title().split(", ")
+		pseudos_neu = []
+		for i in pseudos:
+			klammer_auf = i.find("(")
+			klammer_zu = i.find(")")
+			if klammer_auf > -1:
+				pseudos_neu.append(i[0:klammer_auf] + i[klammer_zu + 1 :])
+			else:
+				pseudos_neu.append(i)
+		self.lineEditPseudo.setText(", ".join(pseudos_neu))
 		
 	def pseudo_uebernehmen(self, name, zu_erfassen):
 		pseudos = str(self.lineEditPseudo.text()).title().split(", ")
-		pseudos = (set(pseudos))
+		pseudos = set(pseudos)
 		for i in pseudos:
 			if i and i != name.title().strip():
 				res = []

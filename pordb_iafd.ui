@@ -238,6 +238,16 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButtonRemoveBrackets">
+       <property name="text">
+        <string>Delete comments in brackets, Ctrl+L</string>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+D</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButtonUebernehmen">
        <property name="text">
         <string>Adopt marked data</string>

@@ -299,67 +299,67 @@
 <context>
     <name>DarstellerdatenAnzeigen</name>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="130"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="131"/>
         <source>nicht vorhanden</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="298"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="299"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="75"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="76"/>
         <source>This site seams not to be an actor site of the IAFD</source>
         <translation>Diese Seite scheint keine Darstellerseite der IAFD zu sein</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="155"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="156"/>
         <source>not available</source>
         <translation>nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="331"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="341"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="332"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="342"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="215"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="216"/>
         <source>Actor </source>
         <translation>Darsteller </translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="298"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="299"/>
         <source>Too many characters in tattos (</source>
         <translation>Zu viele Zeichen in Tattoos (</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="217"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="218"/>
         <source>Should the actor be created?</source>
         <translation>Soll der Darsteller angelegt werden?</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="200"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="201"/>
         <source>Invalid gender</source>
         <translation>Geschlecht ungültig</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="215"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="216"/>
         <source> not yet in database</source>
         <translation> noch nicht in der Datenbank</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="333"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="343"/>
         <source>: There is another actor in the database with this name.</source>
         <translation>: es gibt bereits einen Darsteller mit diesem Namen in der Datenbank.</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="335"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="345"/>
         <source>Do you want to add/change the actor anyway?</source>
         <translation>Willst Du den Darsteller trotzdem hinzufügen/ändern?</translation>
     </message>
@@ -468,64 +468,84 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DatenausderIAFD</name>
     <message>
-        <location filename="pordb_iafd.py" line="150"/>
+        <location filename="pordb_iafd.py" line="167"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="146"/>
+        <location filename="pordb_iafd.py" line="163"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="152"/>
+        <location filename="pordb_iafd.py" line="169"/>
         <source>Ethnic:</source>
         <translation>Ethnic:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="154"/>
+        <location filename="pordb_iafd.py" line="171"/>
         <source>Tattoos:</source>
         <translation>Tattoos:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="143"/>
+        <location filename="pordb_iafd.py" line="160"/>
         <source>Data from the IAFD</source>
         <translation>Daten aus der IAFD</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="147"/>
+        <location filename="pordb_iafd.py" line="164"/>
         <source>Gender:</source>
         <translation>Geschlecht:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="148"/>
+        <location filename="pordb_iafd.py" line="165"/>
         <source>Alias:</source>
         <translation>Alias:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="149"/>
+        <location filename="pordb_iafd.py" line="166"/>
         <source>Born:</source>
         <translation>Geboren:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="151"/>
+        <location filename="pordb_iafd.py" line="168"/>
         <source>Country:</source>
         <translation>Land:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="153"/>
+        <location filename="pordb_iafd.py" line="170"/>
         <source>Hair color:</source>
         <translation>Haarfarbe:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="155"/>
+        <location filename="pordb_iafd.py" line="174"/>
         <source>Adopt marked data</source>
         <translation>Markierte Daten übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="156"/>
+        <location filename="pordb_iafd.py" line="175"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="173"/>
+        <source>Delete comments in brackets, Ctrl+D</source>
+        <translation type="obsolete">Kommentare in Klammern löschen, Strg+D</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="173"/>
+        <source>Ctrl+D</source>
+        <translation>Strg+D</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="172"/>
+        <source>Delete comments in brackets, Ctrl+L</source>
+        <translation>Kommentare in Klammern löschen, Strg+L</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="174"/>
+        <source>Ctrl+L</source>
+        <translation type="obsolete">Strg+L</translation>
     </message>
 </context>
 <context>

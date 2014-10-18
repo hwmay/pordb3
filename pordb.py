@@ -3390,6 +3390,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.tableWidget.scrollToTop()
 		zeilen = len(rows)
 		self.labelMpgGefunden.setText(str(zeilen) +self.trUtf8(" found"))
+		self.labelMpgFound.clear()
 			
 		self.tableWidget1.clearContents()
 		if ein:
@@ -3434,20 +3435,21 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zeilen = len(res)
 			self.labelVidGefunden.setText(str(zeilen) +self.trUtf8(" found"))
 		else:
-			self.labelVidGefunden.setText("")
+			self.labelVidGefunden.clear()
+			self.tableWidget1.setColumnCount(0)
+			self.tableWidget1.setRowCount(0)
+		self.labelVidFound.clear()
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
 	# end of onSuchen
 	
 	def onSearchMpg(self):
 		if self.searchResultsMpg:
-			anzahl = 0
 			anzahl = self.searchResults(self.lineEditSearchMpg, self.tableWidget, self.searchResultsMpg, (2,))
 			self.labelMpgFound.setText(self.trUtf8("found: ") + str(anzahl))
 		
 	def onSearchVid(self):
 		if self.searchResultsVid:
-			anzahl = 0
 			anzahl = self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
 			self.labelVidFound.setText(self.trUtf8("found: ") + str(anzahl))
 		
@@ -3458,8 +3460,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		item_scroll = None
 		row_scroll = 0
 		selected_items = []
+		zaehler = 0
 		for j in column:
-			zaehler = 0
 			row_zaehler = 0
 			for i in range(len(rows)):
 				row_zaehler += 1

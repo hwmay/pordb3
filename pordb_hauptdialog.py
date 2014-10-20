@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Oct 20 23:10:56 2014
+# Created: Tue Oct 21 00:13:01 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1026,6 +1026,7 @@ class Ui_MainWindow(object):
         self.pushButtonPartnerZeigen.setToolTip(_translate("MainWindow", "Show partners", None))
         self.pushButtonPartnerZeigen.setWhatsThis(_translate("MainWindow", "Show actors in first tab", None))
         self.pushButtonPartnerZeigen.setText(_translate("MainWindow", "Show actors", None))
+        self.pushButtonPseudo.setToolTip(_translate("MainWindow", "<html><head/><body><p>Maintain aliases</p></body></html>", None))
         self.pushButtonPseudo.setWhatsThis(_translate("MainWindow", "Add alias", None))
         self.pushButtonPseudo.setText(_translate("MainWindow", "Alias", None))
         self.label_16.setText(_translate("MainWindow", "Cumshots:", None))

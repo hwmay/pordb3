@@ -771,6 +771,9 @@ p, li { white-space: pre-wrap; }
                         </item>
                         <item>
                          <widget class="QPushButton" name="pushButtonPseudo">
+                          <property name="toolTip">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maintain aliases&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
                           <property name="whatsThis">
                            <string>Add alias</string>
                           </property>

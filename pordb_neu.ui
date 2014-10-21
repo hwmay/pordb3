@@ -20,60 +20,10 @@
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_1">
-       <property name="text">
-        <string>Title</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="lineEditNeuTitel">
        <property name="whatsThis">
         <string>Enter file name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="5">
-      <widget class="QLabel" name="labelTitel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>86</horstretch>
-         <verstretch>18</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>86</width>
-         <height>18</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Actor</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEditNeuDarsteller">
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="whatsThis">
-        <string>Enter the list of actors, separated by comma</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>CD</string>
        </property>
       </widget>
      </item>
@@ -84,25 +34,8 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Image</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEditNeuBild">
-       <property name="whatsThis">
-        <string>Enter file name of image file</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="5">
-      <widget class="QLabel" name="labelBild">
+     <item row="0" column="6">
+      <widget class="QLabel" name="labelTitel">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>86</horstretch>
@@ -124,13 +57,6 @@
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Original</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="lineEditNeuOriginal">
-       <property name="whatsThis">
-        <string>Enter original title of the movie. For adding more titles, please press the button on the right side.</string>
        </property>
       </widget>
      </item>
@@ -158,7 +84,50 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="5">
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Image</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="lineEditNeuBild">
+       <property name="whatsThis">
+        <string>Enter file name of image file</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="lineEditNeuOriginal">
+       <property name="whatsThis">
+        <string>Enter original title of the movie. For adding more titles, please press the button on the right side.</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="6">
+      <widget class="QLabel" name="labelBild">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>86</horstretch>
+         <verstretch>18</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>86</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="6">
       <widget class="QPushButton" name="pushButtonOriginal">
        <property name="toolTip">
         <string>Enter more movie titles</string>
@@ -175,7 +144,31 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_1">
+       <property name="text">
+        <string>Title</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Actor</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEditNeuDarsteller">
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="whatsThis">
+        <string>Enter the list of actors, separated by comma</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="4">
       <widget class="QPushButton" name="pushButtonAddYear">
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select year from the combo box on the right and add it to the original title, ALT+Q&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -195,7 +188,14 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="4">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>CD</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
       <widget class="QComboBox" name="comboBoxYear"/>
      </item>
     </layout>
@@ -786,6 +786,45 @@ First click with the left mouse button in the left top corner, then click with t
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEditNeuTitel</tabstop>
+  <tabstop>lineEditNeuDarsteller</tabstop>
+  <tabstop>lineEditNeuCD</tabstop>
+  <tabstop>lineEditNeuBild</tabstop>
+  <tabstop>lineEditNeuOriginal</tabstop>
+  <tabstop>pushButtonOriginalAlt</tabstop>
+  <tabstop>comboBoxYear</tabstop>
+  <tabstop>pushButtonAddYear</tabstop>
+  <tabstop>pushButtonOriginal</tabstop>
+  <tabstop>radioButtonVorhandenJa</tabstop>
+  <tabstop>radioButtonVorhandenNein</tabstop>
+  <tabstop>radioButtonGesehenJa</tabstop>
+  <tabstop>radioButtonGesehenNein</tabstop>
+  <tabstop>radioButtonCoverJa</tabstop>
+  <tabstop>radioButtonCoverNein</tabstop>
+  <tabstop>checkBoxUninteressant</tabstop>
+  <tabstop>comboBoxDefinition</tabstop>
+  <tabstop>spinBoxF</tabstop>
+  <tabstop>spinBoxH</tabstop>
+  <tabstop>spinBoxT</tabstop>
+  <tabstop>spinBoxC</tabstop>
+  <tabstop>spinBoxX</tabstop>
+  <tabstop>spinBoxO</tabstop>
+  <tabstop>spinBoxV</tabstop>
+  <tabstop>spinBoxB</tabstop>
+  <tabstop>spinBoxA</tabstop>
+  <tabstop>spinBoxS</tabstop>
+  <tabstop>spinBoxK</tabstop>
+  <tabstop>pushButtonNeuDarstelleruebernehmen</tabstop>
+  <tabstop>listWidgetW</tabstop>
+  <tabstop>listWidgetM</tabstop>
+  <tabstop>pushButtonBildbeschneiden</tabstop>
+  <tabstop>pushButtonBildloeschen</tabstop>
+  <tabstop>pushButtonVerz</tabstop>
+  <tabstop>pushButtonNeuOK</tabstop>
+  <tabstop>pushButtonNeuCancel</tabstop>
+  <tabstop>pushButtonNeuDelete</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

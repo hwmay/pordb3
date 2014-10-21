@@ -69,9 +69,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		# populate combox for years
 		today = datetime.date.today()
 		self.comboBoxYear.clear()
-		for i in range(today.year + 2, 1960, -1):
+		for i in range(today.year + 1, 1899, -1):
 			self.comboBoxYear.addItem(str(i))
-		self.comboBoxYear.setCurrentIndex(2)
+		self.comboBoxYear.setCurrentIndex(1)
 		
 		# set default position for cropping images
 		self.positionX = 0

@@ -46,7 +46,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "1.4.2"
+__version__ = "1.4.3"
 file_version = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.

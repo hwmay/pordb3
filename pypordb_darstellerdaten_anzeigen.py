@@ -7,6 +7,7 @@ from PyQt4 import QtGui, QtCore
 from pordb_iafd import Ui_DatenausderIAFD as pordb_iafd
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
+from pypordb_checkpseudos import CheckPseudos
 
 class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 	def __init__(self, app, url, darstellerseite, verzeichnis_thumbs, name = None):
@@ -319,7 +320,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxPseudo.isChecked():
-				zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
+				#zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
 				action = self.pseudo_uebernehmen(res[0][0], zu_erfassen)
 				if not action: 
 					return
@@ -362,11 +363,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					messageBox.setIcon(QtGui.QMessageBox.Question)
 					messageBox.setText(self.trUtf8("Do you want to add/change the actor anyway?"))
 					message = messageBox.exec_()
-					if message == 0:
-						zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
-					else:
+					if message != 0:
 						return False
-				else:
+				checkpseudo = CheckPseudos(i.strip().title().replace("'", "''"), name.strip().title().replace("'", "''"))
+				check = CheckPseudos.check(checkpseudo)
+				if check:
 					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
 		return True
 					

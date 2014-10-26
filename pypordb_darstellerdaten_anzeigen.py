@@ -205,7 +205,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
 				self.onUebernehmen()
 			elif event.key() == QtCore.Qt.Key_Escape:
-				self.close()
+				self.onClose()
 			else:
 				self.keyPressEvent(self)
 		except:
@@ -330,7 +330,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-		self.close()
+		self.onClose()
 	# end of onUebernehmen
 	
 	def onRemoveBrackets(self):

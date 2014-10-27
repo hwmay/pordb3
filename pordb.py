@@ -1703,8 +1703,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				suchbegriff = i.lower().strip()
 				if suchbegriff and suchbegriff in zu_lesen[0:ende]:
 					if ende > 0:
-						zu_lesen2 = zu_lesen[0:ende - 2]
-						zu_lesen3 = zu_lesen[ende - 2 :]
+						zu_lesen2 = zu_lesen[0:ende - 3]
+						zu_lesen3 = zu_lesen[ende - 3 :]
 					else:
 						zu_lesen2 = zu_lesen
 						zu_lesen3 = ""

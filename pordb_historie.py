@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_historie.ui'
 #
-# Created: Sun Jul 28 23:31:03 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Mon Nov  3 00:02:55 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -52,18 +52,37 @@ class Ui_Dialog(object):
         self.lineEditSearch.setObjectName(_fromUtf8("lineEditSearch"))
         self.horizontalLayout.addWidget(self.lineEditSearch)
         self.pushButtonSearch = QtGui.QPushButton(Dialog)
+        self.pushButtonSearch.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonSearch.setIcon(icon1)
         self.pushButtonSearch.setAutoDefault(False)
         self.pushButtonSearch.setObjectName(_fromUtf8("pushButtonSearch"))
         self.horizontalLayout.addWidget(self.pushButtonSearch)
         spacerItem = QtGui.QSpacerItem(668, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.pushButtonGo = QtGui.QPushButton(Dialog)
+        self.pushButtonGo.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/application-x-executable.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonGo.setIcon(icon2)
         self.pushButtonGo.setObjectName(_fromUtf8("pushButtonGo"))
         self.horizontalLayout.addWidget(self.pushButtonGo)
         self.pushButtonAbbrechen = QtGui.QPushButton(Dialog)
+        self.pushButtonAbbrechen.setText(_fromUtf8(""))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonAbbrechen.setIcon(icon3)
         self.pushButtonAbbrechen.setAutoDefault(False)
         self.pushButtonAbbrechen.setObjectName(_fromUtf8("pushButtonAbbrechen"))
         self.horizontalLayout.addWidget(self.pushButtonAbbrechen)
+        self.pushButtonClear = QtGui.QPushButton(Dialog)
+        self.pushButtonClear.setText(_fromUtf8(""))
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/user-trash.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonClear.setIcon(icon4)
+        self.pushButtonClear.setObjectName(_fromUtf8("pushButtonClear"))
+        self.horizontalLayout.addWidget(self.pushButtonClear)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
@@ -81,9 +100,9 @@ class Ui_Dialog(object):
         item = self.tableWidgetHistory.horizontalHeaderItem(2)
         item.setText(_translate("Dialog", "Timestamp", None))
         self.pushButtonSearch.setToolTip(_translate("Dialog", "Search in history, Ctrl+S", None))
-        self.pushButtonSearch.setText(_translate("Dialog", "Search", None))
         self.pushButtonSearch.setShortcut(_translate("Dialog", "Ctrl+S", None))
         self.pushButtonGo.setToolTip(_translate("Dialog", "Execute marked line", None))
-        self.pushButtonGo.setText(_translate("Dialog", "Execute", None))
-        self.pushButtonAbbrechen.setText(_translate("Dialog", "Cancel", None))
+        self.pushButtonAbbrechen.setToolTip(_translate("Dialog", "<html><head/><body><p>Cancel</p></body></html>", None))
+        self.pushButtonClear.setToolTip(_translate("Dialog", "<html><head/><body><p>Clear history: delete all entries except for the last 50 entries, ctrl+delete</p></body></html>", None))
+        self.pushButtonClear.setShortcut(_translate("Dialog", "Ctrl+Del", None))
 

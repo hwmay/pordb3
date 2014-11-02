@@ -3,6 +3,7 @@
 from PyQt4 import QtGui, QtCore
 from pordb_historie import Ui_Dialog as pordb_historie
 from pypordb_dblesen import DBLesen
+from pypordb_dbupdate import DBUpdate
 
 class Historie(QtGui.QDialog, pordb_historie):
 	def __init__(self, parent=None):
@@ -12,6 +13,7 @@ class Historie(QtGui.QDialog, pordb_historie):
 		self.connect(self.pushButtonSearch, QtCore.SIGNAL("clicked()"), self.onSearch)
 		self.connect(self.pushButtonGo, QtCore.SIGNAL("clicked()"), self.onGo)
 		self.connect(self.pushButtonAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
+		self.connect(self.pushButtonClear, QtCore.SIGNAL("clicked()"), self.onClear)
 		
 		self.row = 0
 		self.column = 0
@@ -68,3 +70,12 @@ class Historie(QtGui.QDialog, pordb_historie):
 				break
 		
 		self.close()
+		
+	def onClear(self):
+		zu_lesen = "SELECT * from pordb_history order by time DESC LIMIT 50"
+		lese_func = DBLesen(self, zu_lesen)
+		res = DBLesen.get_data(lese_func)
+		if res:
+			zu_erfassen = "delete from pordb_history where time < '" +str(res[-1][-1]) +"'"
+			update_func = DBUpdate(self, zu_erfassen)
+			DBUpdate.update_data(update_func)

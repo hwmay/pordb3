@@ -299,67 +299,67 @@
 <context>
     <name>DarstellerdatenAnzeigen</name>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="131"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="132"/>
         <source>nicht vorhanden</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="314"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="315"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="76"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="77"/>
         <source>This site seams not to be an actor site of the IAFD</source>
         <translation>Diese Seite scheint keine Darstellerseite der IAFD zu sein</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="156"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="157"/>
         <source>not available</source>
         <translation>nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="359"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="360"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="360"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="361"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="231"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="232"/>
         <source>Actor </source>
         <translation>Darsteller </translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="314"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="315"/>
         <source>Too many characters in tattos (</source>
         <translation>Zu viele Zeichen in Tattoos (</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="233"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="234"/>
         <source>Should the actor be created?</source>
         <translation>Soll der Darsteller angelegt werden?</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="216"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="217"/>
         <source>Invalid gender</source>
         <translation>Geschlecht ungültig</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="231"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="232"/>
         <source> not yet in database</source>
         <translation> noch nicht in der Datenbank</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="361"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="362"/>
         <source>: There is another actor in the database with this name.</source>
         <translation>: es gibt bereits einen Darsteller mit diesem Namen in der Datenbank.</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="363"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="364"/>
         <source>Do you want to add/change the actor anyway?</source>
         <translation>Willst Du den Darsteller trotzdem hinzufügen/ändern?</translation>
     </message>
@@ -634,52 +634,52 @@ p, li { white-space: pre-wrap; }
         <translation>Historie</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="82"/>
+        <location filename="pordb_historie.py" line="101"/>
         <source>Timestamp</source>
         <translation>Timestamp</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="371"/>
+        <location filename="pordb_neu.py" line="420"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="375"/>
+        <location filename="pordb_neu.py" line="405"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="395"/>
+        <location filename="pordb_neu.py" line="431"/>
         <source>Cover</source>
         <translation>Cover</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="410"/>
+        <location filename="pordb_neu.py" line="446"/>
         <source>Facial</source>
         <translation>Facial</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="411"/>
+        <location filename="pordb_neu.py" line="447"/>
         <source>Handjob</source>
         <translation>Handjob</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="413"/>
+        <location filename="pordb_neu.py" line="449"/>
         <source>Cmp</source>
         <translation>Cmp</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="414"/>
+        <location filename="pordb_neu.py" line="450"/>
         <source>Analcmp</source>
         <translation>Analcmp</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="415"/>
+        <location filename="pordb_neu.py" line="451"/>
         <source>Oralcmp</source>
         <translation>Oralcmp</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="441"/>
+        <location filename="pordb_neu.py" line="477"/>
         <source>Enter, Return</source>
         <translation>Enter, Return</translation>
     </message>
@@ -729,12 +729,12 @@ p, li { white-space: pre-wrap; }
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="432"/>
+        <location filename="pordb_neu.py" line="468"/>
         <source>Crop image</source>
         <translation>Bild beschneiden</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="425"/>
+        <location filename="pordb_neu.py" line="461"/>
         <source>Image</source>
         <translation>Bild</translation>
     </message>
@@ -860,62 +860,62 @@ p, li { white-space: pre-wrap; }
         <translation>Umbenennen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="74"/>
+        <location filename="pordb_historie.py" line="93"/>
         <source>History</source>
         <translation>Historie</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="78"/>
+        <location filename="pordb_historie.py" line="97"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="80"/>
+        <location filename="pordb_historie.py" line="99"/>
         <source>Command</source>
         <translation>Befehl</translation>
     </message>
     <message>
         <location filename="pordb_historie.py" line="87"/>
         <source>Execute</source>
-        <translation>Ausführen</translation>
+        <translation type="obsolete">Ausführen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="366"/>
+        <location filename="pordb_neu.py" line="402"/>
         <source>New / Change / Delete</source>
         <translation>Neueingabe / Korrektur / Löschen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="368"/>
+        <location filename="pordb_neu.py" line="403"/>
         <source>Enter file name</source>
         <translation>Dateinamen eingeben</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="369"/>
+        <location filename="pordb_neu.py" line="415"/>
         <source>Actor</source>
         <translation>Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="370"/>
+        <location filename="pordb_neu.py" line="416"/>
         <source>Enter the list of actors, separated by comma</source>
         <translation>Hier die Liste der Darsteller, durch Komma getrennt, erfassen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="372"/>
+        <location filename="pordb_neu.py" line="404"/>
         <source>Enter directory</source>
         <translation>Hier den Speicherort erfassen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="374"/>
+        <location filename="pordb_neu.py" line="410"/>
         <source>Enter file name of image file</source>
         <translation>Hier den Dateinamen des zugehörigen Bildes erfassen, wird automatisch vom Programm vorgegeben</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="376"/>
+        <location filename="pordb_neu.py" line="411"/>
         <source>Enter original title of the movie. For adding more titles, please press the button on the right side.</source>
         <translation>Hier den Originaltitel des Films erfassen. Um weitere Originaltitel zu erfassen, rechts auf den Knopf drücken.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="378"/>
+        <location filename="pordb_neu.py" line="407"/>
         <source>Reuse last entered original title</source>
         <translation>Original von eben wiederverwenden</translation>
     </message>
@@ -925,17 +925,17 @@ p, li { white-space: pre-wrap; }
         <translation>Weitere Originaltitel erfassen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="385"/>
+        <location filename="pordb_neu.py" line="421"/>
         <source>present</source>
         <translation>vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="397"/>
+        <location filename="pordb_neu.py" line="433"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="399"/>
+        <location filename="pordb_neu.py" line="435"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
@@ -945,37 +945,37 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">nur Bild</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="401"/>
+        <location filename="pordb_neu.py" line="437"/>
         <source>Check this box, if you did not like the movie</source>
         <translation>Hier kann markiert werden, wenn ein Clip, den man gesehen hat, nicht interessant war</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="402"/>
+        <location filename="pordb_neu.py" line="438"/>
         <source>Not interesting</source>
         <translation>Uninteressant</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="412"/>
+        <location filename="pordb_neu.py" line="448"/>
         <source>Tits</source>
         <translation>Titten</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="416"/>
+        <location filename="pordb_neu.py" line="452"/>
         <source>Cunt</source>
         <translation>Fotze</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="417"/>
+        <location filename="pordb_neu.py" line="453"/>
         <source>Belly</source>
         <translation>Bauch</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="418"/>
+        <location filename="pordb_neu.py" line="454"/>
         <source>Ass</source>
         <translation>Arsch</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="419"/>
+        <location filename="pordb_neu.py" line="455"/>
         <source>Others</source>
         <translation>Sonst</translation>
     </message>
@@ -990,7 +990,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Darsteller übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="422"/>
+        <location filename="pordb_neu.py" line="458"/>
         <source>Copy the marked actors to the actors field</source>
         <translation>Übernahme der markierten Darsteller in das Dastellerfeld</translation>
     </message>
@@ -1005,12 +1005,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Liste der zuletzt verwendeten männlichen Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="426"/>
+        <location filename="pordb_neu.py" line="462"/>
         <source>Preview</source>
         <translation>Vorschaubild</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="427"/>
+        <location filename="pordb_neu.py" line="463"/>
         <source>Crop image.
 
 How does cropping work?
@@ -1023,32 +1023,32 @@ Wie funktioniert das Zuschneiden?
 Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der rechten Maustaste in die rechte untere des auszuwählenden Bereichs.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="434"/>
+        <location filename="pordb_neu.py" line="470"/>
         <source>Delete image file in working directory</source>
         <translation>Löscht das Bild im Arbeitsverzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="435"/>
+        <location filename="pordb_neu.py" line="471"/>
         <source>Delete image file</source>
         <translation>Bild löschen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="437"/>
+        <location filename="pordb_neu.py" line="473"/>
         <source>Change the working directory</source>
         <translation>Hierüber kann das aktuelle Arbeitsverzeichnis gewechselt werden</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="438"/>
+        <location filename="pordb_neu.py" line="474"/>
         <source>Change directory</source>
         <translation>Verzeichnis wechseln</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="445"/>
+        <location filename="pordb_neu.py" line="481"/>
         <source>Entry in database will be deleted, inclusive image file</source>
         <translation>Der Datensatz wird komplett aus der Datenbank gelöscht, inklusive Bilder</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="446"/>
+        <location filename="pordb_neu.py" line="482"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -1188,12 +1188,12 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">Tiel in Clipboard</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="400"/>
+        <location filename="pordb_neu.py" line="436"/>
         <source>Title in clipboard:</source>
         <translation>Titel in Clipboard:</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="420"/>
+        <location filename="pordb_neu.py" line="456"/>
         <source>None</source>
         <translation>Keinen</translation>
     </message>
@@ -1208,12 +1208,12 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Den zuletzt benutzten Originaltitel wiederverwenden, Strg+A&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="377"/>
+        <location filename="pordb_neu.py" line="406"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reuse last entered original title, Ctrl+Y&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Originaltitel von eben wiederverwenden, Strg+Y&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="379"/>
+        <location filename="pordb_neu.py" line="408"/>
         <source>Ctrl+Y</source>
         <translation>Strg+Y</translation>
     </message>
@@ -1248,27 +1248,27 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">&gt;1080p</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="404"/>
+        <location filename="pordb_neu.py" line="440"/>
         <source>Resolution:</source>
         <translation>Auflösung:</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="405"/>
+        <location filename="pordb_neu.py" line="441"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="406"/>
+        <location filename="pordb_neu.py" line="442"/>
         <source>HD 720p</source>
         <translation>HD 720p</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="407"/>
+        <location filename="pordb_neu.py" line="443"/>
         <source>HD 1080p</source>
         <translation>HD 1080p</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="409"/>
+        <location filename="pordb_neu.py" line="445"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
@@ -1313,22 +1313,22 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Eintrag in der Datenbank löschen, Strg+Entf&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="419"/>
+        <location filename="pordb_historie.py" line="107"/>
         <source>Ctrl+Del</source>
-        <translation type="obsolete">Strg+Entf</translation>
+        <translation>Strg+Entf</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="433"/>
+        <location filename="pordb_neu.py" line="469"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete image file from working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bilddatei im Arbeitsverzeichnis löschen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="436"/>
+        <location filename="pordb_neu.py" line="472"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Arbeitsverzeichnis wechseln&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="444"/>
+        <location filename="pordb_neu.py" line="480"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete from database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Eintrag in der Datenbank löschen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1348,22 +1348,22 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">Hier markieren, ob das in die Datenbank zu erfassende Bild ein Video Cover ist oder nicht.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="423"/>
+        <location filename="pordb_neu.py" line="459"/>
         <source>Last used female actors. Adopt marked actors with a doubleclick or click on the button above.</source>
         <translation>Liste der zuletzt verwendeten weiblichen Darsteller. Übernahme der markierten Darsteller in das Eingabefeld Darsteller durch Doppelklick oder mit Klick auf den Button über dieser Liste.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="424"/>
+        <location filename="pordb_neu.py" line="460"/>
         <source>Last used male actors. Adopt marked actors with a doubleclick or click on the button above.</source>
         <translation>Liste der zuletzt verwendeten männlichen Darsteller. Übernahme der markierten Darsteller in das Eingabefeld Darsteller durch Doppelklick oder mit Klick auf den Button über dieser Liste.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="386"/>
+        <location filename="pordb_neu.py" line="422"/>
         <source>Mark here when video is present.</source>
         <translation>Hier markieren wenn Video vorhanden.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="388"/>
+        <location filename="pordb_neu.py" line="424"/>
         <source>Mark here when video is NOT present.</source>
         <translation>Hier markieren wenn NICHT Video vorhanden.</translation>
     </message>
@@ -1378,32 +1378,32 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">Hier markieren wenn Video gesehen.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="398"/>
+        <location filename="pordb_neu.py" line="434"/>
         <source>Mark here when the image to be added in database is NOT a video cover.</source>
         <translation>Hier markieren, wenn das in der Datenbank zu erfassende Bild KEIN Video Cover ist.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="396"/>
+        <location filename="pordb_neu.py" line="432"/>
         <source>Mark here when the image to be added in database is a video cover.</source>
         <translation>Hier markieren, wenn das in der Datenbank zu erfassende Bild ein Video Cover ist.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="390"/>
+        <location filename="pordb_neu.py" line="426"/>
         <source>watched</source>
         <translation>gesehen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="75"/>
+        <location filename="pordb_historie.py" line="94"/>
         <source>Here you see your last search command. You can repeat one search by marking the line and click on execute.</source>
         <translation>Hier siehst Du Deine letzten Suchkommandos. Du kannst eine Suche wiederholen, indem Du eine Zeile markierst und auf ausführen klickst.</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="83"/>
+        <location filename="pordb_historie.py" line="102"/>
         <source>Search in history, Ctrl+S</source>
         <translation>In Historie suchen, Strg+S</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="86"/>
+        <location filename="pordb_historie.py" line="104"/>
         <source>Execute marked line</source>
         <translation>Markierte Zeile ausführen</translation>
     </message>
@@ -1418,17 +1418,17 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Partner</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="391"/>
+        <location filename="pordb_neu.py" line="427"/>
         <source>Mark here when this video has been watched.</source>
         <translation>Hier markieren, wenn das Video gesehen wurde.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="393"/>
+        <location filename="pordb_neu.py" line="429"/>
         <source>Mark here when this video has NOT yet watched.</source>
         <translation>Hier markieren, wenn das Video noch NICHT gesehen wurde.</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="403"/>
+        <location filename="pordb_neu.py" line="439"/>
         <source>Please select the resolution of the clip.</source>
         <translation>Bitte die Auflösung des Videos auswählen.</translation>
     </message>
@@ -1549,7 +1549,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Neue Version der PorDB3 verfügbar&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="408"/>
+        <location filename="pordb_neu.py" line="444"/>
         <source>UltraHD</source>
         <translation>UltraHD</translation>
     </message>
@@ -1589,7 +1589,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Jahr hinzufügen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="382"/>
+        <location filename="pordb_neu.py" line="417"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select year from the combo box on the right and add it to the original title, ALT+Q&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rechts das Jahr auswählen und zum Originaltitel hinzufügen, ALT+Q&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1599,12 +1599,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="384"/>
+        <location filename="pordb_neu.py" line="419"/>
         <source>Alt+Q</source>
         <translation>Alt+Q</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="383"/>
+        <location filename="pordb_neu.py" line="418"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select year from the combo box on the right and add it to the original title&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rechts das Jahr auswählen und zum Originaltitel hinzufügen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1629,7 +1629,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Darsteller übernehmen (Strg+Seite aufwärts)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="421"/>
+        <location filename="pordb_neu.py" line="457"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Darsteller übernehmen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1642,6 +1642,16 @@ p, li { white-space: pre-wrap; }
         <location filename="pordb_neu.py" line="423"/>
         <source>Ctrl+U</source>
         <translation type="obsolete">Strg+U</translation>
+    </message>
+    <message>
+        <location filename="pordb_historie.py" line="105"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abbrechen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_historie.py" line="106"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear history: delete all entries except for the last 50 entries, ctrl+delete&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Historie löschen: alle Einträge löschen mit Ausnahme der letzten 50, Strg+Entf&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -4322,32 +4332,32 @@ in stock</source>
 <context>
     <name>Pseudo</name>
     <message>
-        <location filename="pordb_pseudo.py" line="68"/>
+        <location filename="pordb_pseudo.py" line="83"/>
         <source>Edit aliases</source>
         <translation>Pseudonyme bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="70"/>
+        <location filename="pordb_pseudo.py" line="86"/>
         <source>Alias</source>
         <translation>Alias</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="71"/>
+        <location filename="pordb_pseudo.py" line="87"/>
         <source>Enter aliases comma separated</source>
         <translation>Hier die Pseudonyme - Komma separiert - eintragen</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="72"/>
+        <location filename="pordb_pseudo.py" line="88"/>
         <source>Adopt</source>
         <translation>Übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="73"/>
+        <location filename="pordb_pseudo.py" line="89"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="74"/>
+        <location filename="pordb_pseudo.py" line="90"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>

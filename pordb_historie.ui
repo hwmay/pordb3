@@ -63,7 +63,11 @@
           <string>Search in history, Ctrl+S</string>
          </property>
          <property name="text">
-          <string>Search</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
          </property>
          <property name="shortcut">
           <string>Ctrl+S</string>
@@ -92,17 +96,45 @@
           <string>Execute marked line</string>
          </property>
          <property name="text">
-          <string>Execute</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/application-x-executable.svg</normaloff>pypordb/application-x-executable.svg</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonAbbrechen">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
-          <string>Cancel</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonClear">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear history: delete all entries except for the last 50 entries, ctrl+delete&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+Del</string>
          </property>
         </widget>
        </item>

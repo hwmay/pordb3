@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_suchbegriffe.ui'
 #
-# Created: Thu Oct  3 22:17:46 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Tue Nov  4 21:09:48 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -53,9 +53,17 @@ class Ui_Suchbegriffedialog(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonLandSpeichern = QtGui.QPushButton(Suchbegriffedialog)
+        self.pushButtonLandSpeichern.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/media-floppy.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonLandSpeichern.setIcon(icon1)
         self.pushButtonLandSpeichern.setObjectName(_fromUtf8("pushButtonLandSpeichern"))
         self.horizontalLayout.addWidget(self.pushButtonLandSpeichern)
         self.pushButtonLandAbbrechen = QtGui.QPushButton(Suchbegriffedialog)
+        self.pushButtonLandAbbrechen.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonLandAbbrechen.setIcon(icon2)
         self.pushButtonLandAbbrechen.setObjectName(_fromUtf8("pushButtonLandAbbrechen"))
         self.horizontalLayout.addWidget(self.pushButtonLandAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -71,6 +79,6 @@ class Ui_Suchbegriffedialog(object):
         item.setText(_translate("Suchbegriffedialog", "search item", None))
         item = self.tableWidgetSuche.horizontalHeaderItem(1)
         item.setText(_translate("Suchbegriffedialog", "Alternative", None))
-        self.pushButtonLandSpeichern.setText(_translate("Suchbegriffedialog", "Save", None))
-        self.pushButtonLandAbbrechen.setText(_translate("Suchbegriffedialog", "Cancel", None))
+        self.pushButtonLandSpeichern.setToolTip(_translate("Suchbegriffedialog", "<html><head/><body><p>Save</p></body></html>", None))
+        self.pushButtonLandAbbrechen.setToolTip(_translate("Suchbegriffedialog", "<html><head/><body><p>Cancel</p></body></html>", None))
 

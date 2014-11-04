@@ -4457,34 +4457,44 @@ in stock</source>
 <context>
     <name>Suchbegriffedialog</name>
     <message>
-        <location filename="pordb_suchbegriffe.py" line="73"/>
+        <location filename="pordb_suchbegriffe.py" line="81"/>
         <source>Alternative</source>
         <translation>Alternative</translation>
     </message>
     <message>
-        <location filename="pordb_suchbegriffe.py" line="68"/>
+        <location filename="pordb_suchbegriffe.py" line="76"/>
         <source>Edit search items</source>
         <translation>Suchbegriffe bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_suchbegriffe.py" line="71"/>
+        <location filename="pordb_suchbegriffe.py" line="79"/>
         <source>search item</source>
         <translation>Suchbegriff</translation>
     </message>
     <message>
         <location filename="pordb_suchbegriffe.py" line="74"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation type="obsolete">Speichern</translation>
     </message>
     <message>
         <location filename="pordb_suchbegriffe.py" line="75"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="obsolete">Abbrechen</translation>
     </message>
     <message>
-        <location filename="pordb_suchbegriffe.py" line="69"/>
+        <location filename="pordb_suchbegriffe.py" line="77"/>
         <source>Here you can enter synomyms for searching, e. g. &quot;18&quot; and &quot;eighteen&quot;. When you enter &quot;18&quot;, search will not only look for &quot;18&quot;, but also for &quot;eighteen&quot;. Be very careful with this function for avoiding long searchs with a lot of results.</source>
         <translation>Hier kann man Synonyme zur Suche erfassen, z. B. &quot;18&quot; und &quot;achtzehn&quot;. Wenn man dann nach &quot;18&quot; sucht, wird ebenfalls nach &quot;achtzehn&quot; gesucht. Bitte sehr vorsichtig mit dieser Funktion sein, um lange Suchen mit vielen Suchresultaten zu vermeiden.</translation>
+    </message>
+    <message>
+        <location filename="pordb_suchbegriffe.py" line="82"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speichern&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_suchbegriffe.py" line="83"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abbrechen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

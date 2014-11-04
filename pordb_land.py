@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_land.ui'
 #
-# Created: Thu Oct  3 22:27:04 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Tue Nov  4 21:15:55 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -57,9 +57,17 @@ class Ui_Landdialog(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonLandSpeichern = QtGui.QPushButton(Landdialog)
+        self.pushButtonLandSpeichern.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/media-floppy.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonLandSpeichern.setIcon(icon1)
         self.pushButtonLandSpeichern.setObjectName(_fromUtf8("pushButtonLandSpeichern"))
         self.horizontalLayout.addWidget(self.pushButtonLandSpeichern)
         self.pushButtonLandAbbrechen = QtGui.QPushButton(Landdialog)
+        self.pushButtonLandAbbrechen.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonLandAbbrechen.setIcon(icon2)
         self.pushButtonLandAbbrechen.setObjectName(_fromUtf8("pushButtonLandAbbrechen"))
         self.horizontalLayout.addWidget(self.pushButtonLandAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -79,6 +87,6 @@ class Ui_Landdialog(object):
         item.setText(_translate("Landdialog", "active", None))
         item = self.tableWidgetLaender.horizontalHeaderItem(3)
         item.setText(_translate("Landdialog", "Nationality", None))
-        self.pushButtonLandSpeichern.setText(_translate("Landdialog", "Save", None))
-        self.pushButtonLandAbbrechen.setText(_translate("Landdialog", "Cancel", None))
+        self.pushButtonLandSpeichern.setToolTip(_translate("Landdialog", "<html><head/><body><p>Save</p></body></html>", None))
+        self.pushButtonLandAbbrechen.setToolTip(_translate("Landdialog", "<html><head/><body><p>Cancel</p></body></html>", None))
 

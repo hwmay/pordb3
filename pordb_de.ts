@@ -1868,44 +1868,54 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Landdialog</name>
     <message>
-        <location filename="pordb_land.py" line="75"/>
+        <location filename="pordb_land.py" line="83"/>
         <source>ISO Code</source>
         <translation>ISO Code</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="72"/>
+        <location filename="pordb_land.py" line="80"/>
         <source>Edit table of countries</source>
         <translation>Ländertabelle bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="77"/>
+        <location filename="pordb_land.py" line="85"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="79"/>
+        <location filename="pordb_land.py" line="87"/>
         <source>active</source>
         <translation>aktiv</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="81"/>
+        <location filename="pordb_land.py" line="89"/>
         <source>Nationality</source>
         <translation>Nationalität</translation>
     </message>
     <message>
         <location filename="pordb_land.py" line="82"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation type="obsolete">Speichern</translation>
     </message>
     <message>
         <location filename="pordb_land.py" line="83"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="obsolete">Abbrechen</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="73"/>
+        <location filename="pordb_land.py" line="81"/>
         <source>Here you can enter countries with their ISO codes and the corresponding nationality. By setting an &quot;X&quot; in column &quot;active&quot;, this country will appear in the combo box on the actors tab and can be used for adding new actors.</source>
         <translation>Hier kann man Länder mit ihren ISO Codes und den zugehörigen Nationalitäten erfassen. Ist die Spalte &quot;aktiv&quot; mit &quot;X&quot; gefüllt, erscheint dieses Land in der Combo Box im Darsteller Tab und kann zum Erfassen neuer Darsteller genutzt werden.</translation>
+    </message>
+    <message>
+        <location filename="pordb_land.py" line="90"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speichern&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_land.py" line="91"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abbrechen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

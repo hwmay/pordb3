@@ -4332,34 +4332,39 @@ in stock</source>
 <context>
     <name>Pseudo</name>
     <message>
-        <location filename="pordb_pseudo.py" line="83"/>
+        <location filename="pordb_pseudo.py" line="95"/>
         <source>Edit aliases</source>
         <translation>Pseudonyme bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="86"/>
+        <location filename="pordb_pseudo.py" line="98"/>
         <source>Alias</source>
         <translation>Alias</translation>
     </message>
     <message>
-        <location filename="pordb_pseudo.py" line="87"/>
+        <location filename="pordb_pseudo.py" line="99"/>
         <source>Enter aliases comma separated</source>
         <translation>Hier die Pseudonyme - Komma separiert - eintragen</translation>
     </message>
     <message>
         <location filename="pordb_pseudo.py" line="88"/>
         <source>Adopt</source>
-        <translation>Übernehmen</translation>
+        <translation type="obsolete">Übernehmen</translation>
     </message>
     <message>
         <location filename="pordb_pseudo.py" line="89"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation type="obsolete">Speichern</translation>
     </message>
     <message>
         <location filename="pordb_pseudo.py" line="90"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="obsolete">Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="pordb_pseudo.py" line="100"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt the aliases&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Aliase übernehmen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

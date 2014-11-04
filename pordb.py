@@ -3278,7 +3278,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = "SELECT pseudo from pordb_pseudo where darsteller = '" +ein.lstrip('=').replace("'", "''") +"' order by pseudo"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
-		bilddialog = PseudonymeBearbeiten(ein, res)
+		pseudos = []
+		for i in res:
+			pseudos.append(i[0].strip())
+		bilddialog = PseudonymeBearbeiten(ein, pseudos)
 		bilddialog.exec_()
 		self.suchfeld.setFocus()
 	# end of onPseudo

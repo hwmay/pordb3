@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_pseudo.ui'
 #
-# Created: Sun Oct 26 22:36:22 2014
+# Created: Tue Nov  4 00:10:41 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,6 +59,10 @@ class Ui_Pseudo(object):
         self.lineEditPseudo.setObjectName(_fromUtf8("lineEditPseudo"))
         self.horizontalLayout.addWidget(self.lineEditPseudo)
         self.pushButtonPseudo = QtGui.QPushButton(Pseudo)
+        self.pushButtonPseudo.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("../pordb/pypordb/go-up.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonPseudo.setIcon(icon1)
         self.pushButtonPseudo.setObjectName(_fromUtf8("pushButtonPseudo"))
         self.horizontalLayout.addWidget(self.pushButtonPseudo)
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -67,9 +71,17 @@ class Ui_Pseudo(object):
         spacerItem = QtGui.QSpacerItem(478, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.pushButtonSpeichern = QtGui.QPushButton(Pseudo)
+        self.pushButtonSpeichern.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/media-floppy.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonSpeichern.setIcon(icon2)
         self.pushButtonSpeichern.setObjectName(_fromUtf8("pushButtonSpeichern"))
         self.horizontalLayout_2.addWidget(self.pushButtonSpeichern)
         self.pushButtonAbbrechen = QtGui.QPushButton(Pseudo)
+        self.pushButtonAbbrechen.setText(_fromUtf8(""))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonAbbrechen.setIcon(icon3)
         self.pushButtonAbbrechen.setObjectName(_fromUtf8("pushButtonAbbrechen"))
         self.horizontalLayout_2.addWidget(self.pushButtonAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -85,7 +97,5 @@ class Ui_Pseudo(object):
         item = self.tableWidgetPseudo.horizontalHeaderItem(0)
         item.setText(_translate("Pseudo", "Alias", None))
         self.lineEditPseudo.setWhatsThis(_translate("Pseudo", "Enter aliases comma separated", None))
-        self.pushButtonPseudo.setText(_translate("Pseudo", "Adopt", None))
-        self.pushButtonSpeichern.setText(_translate("Pseudo", "Save", None))
-        self.pushButtonAbbrechen.setText(_translate("Pseudo", "Cancel", None))
+        self.pushButtonPseudo.setToolTip(_translate("Pseudo", "<html><head/><body><p>Adopt the aliases</p></body></html>", None))
 

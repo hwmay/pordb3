@@ -34,25 +34,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="6">
-      <widget class="QLabel" name="labelTitel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>86</horstretch>
-         <verstretch>18</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>86</width>
-         <height>18</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_6">
        <property name="text">
@@ -105,25 +86,6 @@
       <widget class="QLineEdit" name="lineEditNeuOriginal">
        <property name="whatsThis">
         <string>Enter original title of the movie. For adding more titles, please press the button on the right side.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="6">
-      <widget class="QLabel" name="labelBild">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>86</horstretch>
-         <verstretch>18</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>86</width>
-         <height>18</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
        </property>
       </widget>
      </item>
@@ -656,18 +618,15 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_2">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="minimumSize">
           <size>
            <width>500</width>
            <height>200</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>541</width>
-           <height>491</height>
           </size>
          </property>
          <property name="title">
@@ -694,6 +653,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QPushButton" name="pushButtonBildbeschneiden">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Crop image&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>Crop image.
 
@@ -702,7 +664,11 @@ How does cropping work?
 First click with the left mouse button in the left top corner, then click with the right mouse button at the bottom right.</string>
            </property>
            <property name="text">
-            <string>Crop image</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/transform-crop.png</normaloff>pypordb/transform-crop.png</iconset>
            </property>
           </widget>
          </item>
@@ -715,34 +681,28 @@ First click with the left mouse button in the left top corner, then click with t
             <string>Delete image file in working directory</string>
            </property>
            <property name="text">
-            <string>Delete image file</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/user-trash.png</normaloff>pypordb/user-trash.png</iconset>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonVerz">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="whatsThis">
-            <string>Change the working directory</string>
-           </property>
-           <property name="text">
-            <string>Change directory</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QPushButton" name="pushButtonNeuOK">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>Save</string>
            </property>
            <property name="text">
-            <string>Save</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/media-floppy.png</normaloff>pypordb/media-floppy.png</iconset>
            </property>
            <property name="shortcut">
             <string>Enter, Return</string>
@@ -757,11 +717,18 @@ First click with the left mouse button in the left top corner, then click with t
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonNeuCancel">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>Cancel</string>
            </property>
            <property name="text">
-            <string>Cancel</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
            </property>
           </widget>
          </item>
@@ -774,7 +741,28 @@ First click with the left mouse button in the left top corner, then click with t
             <string>Entry in database will be deleted, inclusive image file</string>
            </property>
            <property name="text">
-            <string>Delete</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonVerz">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="whatsThis">
+            <string>Change the working directory</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/folder.svg</normaloff>pypordb/folder.svg</iconset>
            </property>
           </widget>
          </item>
@@ -819,11 +807,6 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>listWidgetW</tabstop>
   <tabstop>listWidgetM</tabstop>
   <tabstop>pushButtonBildbeschneiden</tabstop>
-  <tabstop>pushButtonBildloeschen</tabstop>
-  <tabstop>pushButtonVerz</tabstop>
-  <tabstop>pushButtonNeuOK</tabstop>
-  <tabstop>pushButtonNeuCancel</tabstop>
-  <tabstop>pushButtonNeuDelete</tabstop>
  </tabstops>
  <resources/>
  <connections/>

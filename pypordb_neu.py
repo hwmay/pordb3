@@ -218,16 +218,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						self.lineEditNeuTitel.setText(os.path.basename(i))
 						self.lineEditNeuDarsteller.setFocus()
 						break
-			if len((os.path.basename(str(self.bilddatei)))[0:anfang]) > 256:
-				self.labelTitel.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len((os.path.basename(str(self.bilddatei)))[0:anfang])) +"</font>")
-			else:
-				self.labelTitel.setText(self.trUtf8("Characters: ") +str(len((os.path.basename(str(self.bilddatei)))[0:anfang])))
 			self.lineEditNeuCD.setText(str(self.res_vid_neu[0][2]))
 			self.lineEditNeuBild.setText(os.path.basename(str(self.bilddatei)))
-			if len(os.path.basename(str(self.bilddatei))) > 256:
-				self.labelBild.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len(os.path.basename(str(self.bilddatei)))) +"</font>")
-			else:
-				self.labelBild.setText(self.trUtf8("Characters: ") +str(len(os.path.basename(str(self.bilddatei)))))
 			self.pushButtonBildloeschen.setEnabled(True)
 			self.pushButtonBildbeschneiden.setEnabled(True)
 			self.pushButtonNeuDelete.setEnabled(False)

@@ -47,9 +47,6 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 		zu_erfassen = "delete from pordb_pseudo where darsteller = '" +self.darsteller +"'"
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
-		
-#=================> Löschen von Pseudos funktioniert nicht
-		
 		for i in range(self.tableWidgetPseudo.rowCount()):
 			cell = []
 			position += 1

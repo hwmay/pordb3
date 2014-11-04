@@ -116,7 +116,7 @@
          <item>
           <widget class="QLineEdit" name="lineEditPseudo">
            <property name="whatsThis">
-            <string>Enter aliases comma separated</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter aliases comma separated here. When ready press the button on the right side, this will move your entries into the list above, then press the save button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -153,6 +153,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonSpeichern">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -164,6 +167,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonAbbrechen">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="text">
             <string/>
            </property>

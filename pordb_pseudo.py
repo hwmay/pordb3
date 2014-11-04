@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_pseudo.ui'
 #
-# Created: Tue Nov  4 00:10:41 2014
+# Created: Tue Nov  4 20:48:11 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -96,6 +96,8 @@ class Ui_Pseudo(object):
         self.tableWidgetPseudo.setSortingEnabled(True)
         item = self.tableWidgetPseudo.horizontalHeaderItem(0)
         item.setText(_translate("Pseudo", "Alias", None))
-        self.lineEditPseudo.setWhatsThis(_translate("Pseudo", "Enter aliases comma separated", None))
+        self.lineEditPseudo.setWhatsThis(_translate("Pseudo", "<html><head/><body><p>Enter aliases comma separated here. When ready press the button on the right side, this will move your entries into the list above, then press the save button.</p></body></html>", None))
         self.pushButtonPseudo.setToolTip(_translate("Pseudo", "<html><head/><body><p>Adopt the aliases</p></body></html>", None))
+        self.pushButtonSpeichern.setToolTip(_translate("Pseudo", "<html><head/><body><p>Save</p></body></html>", None))
+        self.pushButtonAbbrechen.setToolTip(_translate("Pseudo", "<html><head/><body><p>Cancel</p></body></html>", None))
 

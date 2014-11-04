@@ -313,7 +313,7 @@ class Dialog(QtGui.QDialog, Dialog):
     darsteller character varying(256),
     cd integer NOT NULL,
     bild character varying(256) NOT NULL,
-    nurbild character(1),
+    gesehen character(1),
     original character varying(256),
     cs character(1),
     vorhanden character(1),

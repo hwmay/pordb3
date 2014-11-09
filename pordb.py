@@ -1545,6 +1545,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.lineEditURL.setText(res[0][0])
 				self.GetWebsite()
 				self.tabWidget.setCurrentIndex(3)
+			else:
+				clipboard = QtGui.QApplication.clipboard()
+				clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
+				self.tabWidget.setCurrentIndex(3)
 		self.suchfeld.setFocus()
 		
 	def onLand(self):

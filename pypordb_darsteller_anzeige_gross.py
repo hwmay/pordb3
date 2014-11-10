@@ -21,11 +21,11 @@ class DarstellerAnzeigeGross(QtGui.QDialog, pordb_bildgross):
 	def showImage(self):
 		width = self.bildQImage.width()
 		height = self.bildQImage.height()
-		self.resize(QtCore.QSize(QtCore.QRect(0,0,width+30,height+30).size()).expandedTo(self.minimumSizeHint()))
-		self.labelBildgross.setBaseSize(QtCore.QSize(width, height))
-		self.labelBildgross.setAlignment(QtCore.Qt.AlignTop)
-		
+		#self.resize(QtCore.QSize(QtCore.QRect(0,0,width+30,height+30).size()).expandedTo(self.minimumSizeHint()))
+		#self.labelBildgross.setBaseSize(QtCore.QSize(width, height))
 		self.labelBildgross.setGeometry(QtCore.QRect(0,0,width,height))
+		#self.labelBildgross.setAlignment(QtCore.Qt.AlignCenter)
 		image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 		self.labelBildgross.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.sa.ensureVisible(0, 0)
+		self.showFullScreen()

@@ -8,6 +8,7 @@ from pordb_iafd import Ui_DatenausderIAFD as pordb_iafd
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 from pypordb_checkpseudos import CheckPseudos
+from pypordb_actordata import ActorData
 
 class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 	def __init__(self, app, url, darstellerseite, verzeichnis_thumbs, name = None):
@@ -31,27 +32,24 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r"}
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
 		
+		actordata = ActorData(self.darstellerseite)
+		
 		# Darsteller Name
 		if not name:
-			anfang = self.darstellerseite.find("personal biography")
-			if anfang < 0:
+			self.name = ActorData.actor_name(actordata)
+			if not self.name:
 				self.app.restoreOverrideCursor()
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 				return
-			anfang = self.darstellerseite.find('<h1>', anfang)
-			ende = self.darstellerseite.find('</h1>', anfang)
-			self.name = self.darstellerseite[anfang+4:ende].strip()
 		self.labelName.setText(self.name)
 		self.lineEditName.setText(self.name)
 			
 		# Darsteller Bild
-		anfang = self.darstellerseite.find('/graphics/headshots/')
-		if anfang < 0:
+		self.bild = ActorData.actor_image(actordata)
+		if not self.bild:
 			self.app.restoreOverrideCursor()
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
-		ende = self.darstellerseite.find('"></div>', anfang)
-		self.bild = (self.darstellerseite[anfang+20:ende]).replace(" ", "%20")
 		url =  'http://www.iafd.com/graphics/headshots/' + self.bild
 		self.verz = self.verzeichnis_thumbs
 		urllib.request._urlopener=urllib.request.URLopener()
@@ -67,29 +65,19 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.labelBild.setPixmap(bild)
 			
 		# Darsteller Geschlecht
-		anfang = self.darstellerseite.find('&amp;gender=')
-		ende = self.darstellerseite.find('"', anfang)
-		self.geschlecht = self.darstellerseite[anfang+12:ende]
-		if self.geschlecht == "f":
-			self.geschlecht = "w"
-		elif self.geschlecht != "m":
+		self.geschlecht = ActorData.actor_sex(actordata)
+		if not self.bild:
 			self.app.restoreOverrideCursor()
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
 		self.lineEditGeschlecht.setText(self.geschlecht)
 		
 		# Darsteller Pseudonyme
-		anfang = self.darstellerseite.find('AKA</b>')
-		anfang = self.darstellerseite.find('</td><td>', anfang)
-		ende = self.darstellerseite.find('</td>', anfang+1)
-		self.pseudonyme = self.darstellerseite[anfang+9:ende]
-		if self.pseudonyme != "No known aliases":
-			self.lineEditPseudo.setText(self.pseudonyme)
+		self.pseudonyme = ActorData.actor_alias(actordata)
+		self.lineEditPseudo.setText(self.pseudonyme)
 	
 		# Darsteller Land
-		anfang = self.darstellerseite.find('Nationality/Heritage</b></td><td>')
-		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.land = self.darstellerseite[anfang+33:ende]
+		self.land = ActorData.actor_country(actordata)
 		if self.land == "No data":
 			self.lineEditLand.setText("")
 			self.checkBoxLand.setCheckState(QtCore.Qt.Unchecked)
@@ -103,9 +91,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
 		
 		# Darsteller Ethnic
-		anfang = self.darstellerseite.find('Ethnicity</b></td><td>')
-		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.ethnic = self.darstellerseite[anfang+22:ende]
+		self.ethnic = ActorData.actor_ethnic(actordata)
 		if self.ethnic == "No data":
 			self.ethnic = ""
 			self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
@@ -117,13 +103,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.lineEditEthnic.setText(self.ethnic)
 		
 		# Darsteller Haarfarbe
-		anfang = self.darstellerseite.find('Hair Colors</b></td><td>')
-		offset = 24
-		if anfang < 0:
-			anfang = self.darstellerseite.find('Hair Color</b></td><td>')
-			offset = 23
-		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.haare = self.darstellerseite[anfang+offset:ende]
+		self.haare = ActorData.actor_hair(actordata)
 		if self.haare == "No data":
 			self.haare = ""
 			self.checkBoxHaare.setCheckState(QtCore.Qt.Unchecked)
@@ -135,9 +115,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.lineEditHaare.setText(self.haare)
 		
 		# Darsteller Tattoos
-		anfang = self.darstellerseite.find('Tattoos</b></td><td>')
-		ende = self.darstellerseite.find('</td>', anfang+20)
-		self.tattoos = self.darstellerseite[anfang+20:ende]
+		self.tattoos = ActorData.actor_tattoos(actordata)
 		if self.tattoos == "None" or self.tattoos == "none":
 			self.lineEditTattos.setText("-")
 			self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
@@ -149,10 +127,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
 			
 		# Darsteller Geboren
-		anfang = self.darstellerseite.find('<b>Birthday')
-		anfang = self.darstellerseite.find('">', anfang)
-		ende = self.darstellerseite.find('</a>', anfang)
-		self.geboren = self.darstellerseite[anfang+2:ende]
+		self.geboren = ActorData.actor_born(actordata)
 		monat = monate.get(self.geboren[0:self.geboren.find(" ")], self.trUtf8("not available"))
 		if monat != self.trUtf8("not available"):
 			tag = self.geboren[self.geboren.find(" ")+1:self.geboren.find(",")]
@@ -164,33 +139,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.labelGeboren.setText("-")
 		
 		# Darsteller Anzahl Filme
-		anfang = self.darstellerseite.find('moviecount">')
-		if anfang > 0:
-			ende = self.darstellerseite.find(' Title', anfang+1)
-			self.filme = self.darstellerseite[anfang+12:ende]
-		else:
-			self.filme = 0
+		self.filme = ActorData.actor_movies(actordata)
 		
 		# Darsteller aktiv von / bis
-		anfang = self.darstellerseite.find('Years Active</b></td><td>')
-		if anfang == -1:
-			anfang = self.darstellerseite.find('Years Active as Performer</b></td><td>') 
-			if anfang == -1:
-				anfang = self.darstellerseite.find('Year Active</b></td><td>') + 24
-			else:
-				anfang += 38
-		else:
-			anfang += 25
-		aktiv_von = self.darstellerseite[anfang:anfang + 4]
-		try:
-			self.aktiv_von_int = int(aktiv_von)
-		except:
-			self.aktiv_von_int = 0
-		aktiv_bis = self.darstellerseite[anfang + 5:anfang + 9]
-		try:
-			self.aktiv_bis_int = int(aktiv_bis)
-		except:
-			self.aktiv_bis_int = 0
+		self.aktiv_von, self.aktiv_bis = ActorData.actor_activ(actordata)
 		
 		self.checkBoxPseudo.setCheckState(QtCore.Qt.Checked)
 		self.checkBoxGeboren.setCheckState(QtCore.Qt.Checked)
@@ -264,7 +216,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen_zw += str(self.filme) 
 				zu_erfassen_zw += "', '" 
 				zu_erfassen_zw += str(self.url).replace("'", "''")
-				zu_erfassen_zw += "', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')"
+				zu_erfassen_zw += "', '" +str(self.aktiv_von) +"', '" +str(self.aktiv_bis) +"', '" +datum +"')"
 				zu_erfassen.append(zu_erfassen_zw)
 				action = None
 				if self.checkBoxPseudo.isChecked():
@@ -317,8 +269,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen.append("update pordb_darsteller set tattoo = '" +str(self.lineEditTattos.text()).replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set filme = '" +str(self.filme) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set url = '" +self.url.replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxPseudo.isChecked():
 				#zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
 				action = self.pseudo_uebernehmen(res[0][0], zu_erfassen)

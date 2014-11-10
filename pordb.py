@@ -37,6 +37,7 @@ from pypordb_show_iafd_data import ShowIafdData
 from pypordb_devices import Devices
 from pypordb_update_version import UpdateVersion
 from pypordb_mass_change import MassChange
+from pypordb_actordata import ActorData
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(500, 400)
@@ -2421,23 +2422,19 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				app.restoreOverrideCursor()
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Site of actor could not be found"))
 				return
+			
+			actordata = ActorData(seite)
 				
 			# Darsteller Geboren
-			anfang = seite.find('<b>Birthday')
-			anfang = seite.find('">', anfang)
-			ende = seite.find('</a>', anfang)
-			try:
-				geboren = seite[anfang+2:ende]#.decode("iso-8859-1")
-				monat = monate.get(geboren[0:geboren.find(" ")], self.trUtf8("not available"))
-			except:
-				monat = self.trUtf8("not available")
+			geboren = ActorData.actor_born(actordata)
+			monat = monate.get(geboren[0:geboren.find(" ")], self.trUtf8("not available"))
 			if monat != self.trUtf8("not available"):
 				tag = geboren[geboren.find(" ")+1:geboren.find(",")]
 				jahr = geboren[geboren.find(", ")+2:]
 				geboren = jahr +"-" + monat + "-" + tag
 			else:
 				geboren = 0
-				
+			
 			zu_erfassen = []
 			if geboren == 0:
 				if not res[0][9]:
@@ -2446,47 +2443,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_erfassen.append("update pordb_darsteller set geboren = '" +str(geboren) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			
 			# Darsteller Anzahl Filme
-			anfang = seite.find('moviecount">')
-			if anfang > 0:
-				ende = seite.find(' Title', anfang+1)
-				filme = seite[anfang+12:ende]#.decode("iso-8859-1")
-				try:
-					filme = int(filme)
-				except:
-					pass
-				if filme > 0:
-					zu_erfassen.append("update pordb_darsteller set filme = '" +str(filme) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			filme = ActorData.actor_movies(actordata)
+			if int(filme) > 0:
+				zu_erfassen.append("update pordb_darsteller set filme = '" +filme +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 				
 			# Darsteller aktiv von / bis
-			anfang = seite.find('Years Active</b></td><td>')
-			if anfang == -1:
-				anfang = seite.find('Years Active as Performer</b></td><td>') 
-				if anfang == -1:
-					anfang = seite.find('Year Active</b></td><td>') + 24
-				else:
-					anfang += 38
-			else:
-				anfang += 25
-			aktiv_von = seite[anfang:anfang + 4]#.decode("iso-8859-1")
-			try:
-				self.aktiv_von_int = int(aktiv_von)
-			except:
-				self.aktiv_von_int = 0
-			aktiv_bis = seite[anfang + 5:anfang + 9]#.decode("iso-8859-1")
-			try:
-				self.aktiv_bis_int = int(aktiv_bis)
-			except:
-				self.aktiv_bis_int = 0
+			aktiv_von, aktiv_bis = ActorData.actor_activ(actordata)
 
-			if self.aktiv_von_int != 0:
-				zu_erfassen.append("update pordb_darsteller set aktivvon = '" +aktiv_von +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			if self.aktiv_bis_int != 0:
-				zu_erfassen.append("update pordb_darsteller set aktivbis = '" +aktiv_bis +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			if aktiv_von != 0:
+				zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(aktiv_von) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			if aktiv_bis != 0:
+				zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(aktiv_bis) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 				
 			# Darsteller Tattoos
-			anfang = seite.find('Tattoos</b></td><td>')
-			ende = seite.find('</td>', anfang+20)
-			tattoos = seite[anfang+20:ende]
+			tattoos = ActorData.actor_tattoos(actordata)
 			if tattoos == "None" or tattoos == "none":
 				tats = "-"
 			elif tattoos == "No data" or tattoos == "No Data":

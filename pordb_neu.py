@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Tue Nov  4 21:49:15 2014
+# Created: Wed Nov 12 10:41:44 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -356,6 +356,8 @@ class Ui_Dialog(object):
         self.pushButtonVerz.setIcon(icon10)
         self.pushButtonVerz.setObjectName(_fromUtf8("pushButtonVerz"))
         self.horizontalLayout.addWidget(self.pushButtonVerz)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem2)
         self.gridLayout_2.addLayout(self.horizontalLayout, 1, 0, 1, 1)
         self.horizontalLayout_9.addLayout(self.gridLayout_2)
         self.gridLayout_3.addLayout(self.horizontalLayout_9, 3, 0, 1, 1)

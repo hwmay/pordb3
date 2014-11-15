@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Thu Nov 13 22:20:37 2014
+# Created: Sat Nov 15 23:33:13 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -236,17 +236,6 @@ class Ui_Dialog(object):
         self.gridLayout_2.addLayout(self.verticalLayout_3, 3, 0, 1, 1)
         self.formLayout_5 = QtGui.QFormLayout()
         self.formLayout_5.setObjectName(_fromUtf8("formLayout_5"))
-        self.groupBox_2 = QtGui.QGroupBox(Dialog)
-        self.groupBox_2.setMinimumSize(QtCore.QSize(500, 200))
-        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
-        self.formLayout = QtGui.QFormLayout(self.groupBox_2)
-        self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.ExpandingFieldsGrow)
-        self.formLayout.setObjectName(_fromUtf8("formLayout"))
-        self.labelNeuBildanzeige = QtGui.QLabel(self.groupBox_2)
-        self.labelNeuBildanzeige.setText(_fromUtf8(""))
-        self.labelNeuBildanzeige.setObjectName(_fromUtf8("labelNeuBildanzeige"))
-        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.labelNeuBildanzeige)
-        self.formLayout_5.setWidget(0, QtGui.QFormLayout.LabelRole, self.groupBox_2)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonBildbeschneiden = QtGui.QPushButton(Dialog)
@@ -296,6 +285,17 @@ class Ui_Dialog(object):
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.formLayout_5.setLayout(1, QtGui.QFormLayout.LabelRole, self.horizontalLayout)
+        self.groupBox_2 = QtGui.QGroupBox(Dialog)
+        self.groupBox_2.setMinimumSize(QtCore.QSize(500, 200))
+        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
+        self.formLayout = QtGui.QFormLayout(self.groupBox_2)
+        self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.ExpandingFieldsGrow)
+        self.formLayout.setObjectName(_fromUtf8("formLayout"))
+        self.labelNeuBildanzeige = QtGui.QLabel(self.groupBox_2)
+        self.labelNeuBildanzeige.setText(_fromUtf8(""))
+        self.labelNeuBildanzeige.setObjectName(_fromUtf8("labelNeuBildanzeige"))
+        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.labelNeuBildanzeige)
+        self.formLayout_5.setWidget(0, QtGui.QFormLayout.SpanningRole, self.groupBox_2)
         self.gridLayout_2.addLayout(self.formLayout_5, 3, 1, 1, 1)
         self.gridLayout = QtGui.QGridLayout()
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
@@ -434,8 +434,6 @@ class Ui_Dialog(object):
         self.pushButtonNeuDarstelleruebernehmen.setWhatsThis(_translate("Dialog", "Copy the marked actors to the actors field", None))
         self.listWidgetW.setWhatsThis(_translate("Dialog", "Last used female actors. Adopt marked actors with a doubleclick or click on the button above.", None))
         self.listWidgetM.setWhatsThis(_translate("Dialog", "Last used male actors. Adopt marked actors with a doubleclick or click on the button above.", None))
-        self.groupBox_2.setTitle(_translate("Dialog", "Image", None))
-        self.labelNeuBildanzeige.setWhatsThis(_translate("Dialog", "Preview", None))
         self.pushButtonBildbeschneiden.setToolTip(_translate("Dialog", "<html><head/><body><p>Crop image</p></body></html>", None))
         self.pushButtonBildbeschneiden.setWhatsThis(_translate("Dialog", "Crop image.\n"
 "\n"
@@ -453,6 +451,8 @@ class Ui_Dialog(object):
         self.pushButtonNeuDelete.setWhatsThis(_translate("Dialog", "Entry in database will be deleted, inclusive image file", None))
         self.pushButtonVerz.setToolTip(_translate("Dialog", "<html><head/><body><p>Change working directory</p></body></html>", None))
         self.pushButtonVerz.setWhatsThis(_translate("Dialog", "Change the working directory", None))
+        self.groupBox_2.setTitle(_translate("Dialog", "Image", None))
+        self.labelNeuBildanzeige.setWhatsThis(_translate("Dialog", "Preview", None))
         self.lineEditNeuTitel.setWhatsThis(_translate("Dialog", "Enter file name", None))
         self.lineEditNeuCD.setWhatsThis(_translate("Dialog", "Enter directory", None))
         self.label_6.setText(_translate("Dialog", "Original", None))

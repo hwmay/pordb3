@@ -170,6 +170,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.pushButtonBildbeschneiden.setEnabled(False)
 			if self.undo:
 				self.pushButtonNeuDelete.setEnabled(False)
+			self.pushButtonVerz.setEnabled(False)
 			if self.cover or self.original_cover:
 				self.radioButtonCoverJa.setChecked(True)
 				self.radioButtonCoverNein.setChecked(False)

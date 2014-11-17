@@ -292,6 +292,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.searchResultsMpg = None
 		self.searchResultsVid = None
 		self.context_actor_image = False
+		self.files_added = ""
 		
 		self.pushButtonIAFDBackground.setEnabled(False)
 		
@@ -3951,6 +3952,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 			
 	def onStartScan(self):
+		from pypordb_genericthread import GenericThread
+		
 		if not self.comboBoxDevice.currentText():
 			message = QtGui.QMessageBox(self)
 			message.setText(self.trUtf8("Select device"))
@@ -3959,30 +3962,39 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 		self.verzeichnis_tools = str(QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), "/"))
 		if self.verzeichnis_tools:
-			dateien = os.listdir(self.verzeichnis_tools)
+			self.dateien = os.listdir(self.verzeichnis_tools)
+			self.dateien.sort()
 		else:
 			return
-		for i in dateien:
+		
+		for i in self.dateien:
 			if len(i) > 256:
 				message = QtGui.QMessageBox(self)
 				message.setText(self.trUtf8("Error, filename ") +i +self.trUtf8(" to long"))
 				message.exec_()
 				return
-				
-		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		res_alle = []
+			
+		self.threadPool = []
+		
+		# generic thread using signal
+		self.threadPool.append(GenericThread(self.addFiles))
+		# signal for updating current file
+		self.disconnect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
+		self.connect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
+		# signal for finished
+		#self.disconnect( self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
+		self.connect(self, QtCore.SIGNAL("finished"), self.output_result)
+		# start thread
+		self.threadPool[len(self.threadPool)-1].start()
+		
+	# end of onStartScan
+	
+	def addFiles(self):
+		self.res_duplicates = []
 		zu_erfassen = []
 		
-		progressbar = QtGui.QProgressDialog(self)
-		progressbar.reset()
-		progressbar.minimum
-		progressbar.maximum
-		progressbar.setMinimum(0)
-		progressbar.setMaximum(len(dateien))
-		progress = 0
-		progressbar.show()
-		
-		for i in dateien:
+		for i in self.dateien:
+			self.emit(QtCore.SIGNAL("add(QString)"), i)
 			zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
@@ -3990,7 +4002,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			for j in res:
 				if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(self.verzeichnis_tools) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
 					in_datenbank = False
-			
+				
 			if in_datenbank:
 				for j in res:
 					# put only in duplicate list, when actual directory is another one than that in database
@@ -3998,24 +4010,26 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						a = list(j)
 						a.append(i)
 						a.append(int(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip())))
-						res_alle.append(a)
+						self.res_duplicates.append(a)
 				zu_erfassen.append("INSERT into pordb_mpg_katalog VALUES ('" +str(self.comboBoxDevice.currentText()) +"', '" +os.path.basename(self.verzeichnis_tools) +"', '" +i.replace("'", "''") +"', '" +" " +"', '" +str(os.path.getsize(self.verzeichnis_tools + os.sep + i)) +"')")
 					
-			progress += 1
-			progressbar.setValue(progress)
-						
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
+		self.files_added = str(len(zu_erfassen))
+		self.emit(QtCore.SIGNAL("finished"))
 		
+	# end of addFiles
+	
+	def output_result(self):
 		# jetzt die Dubletten in Tabelle ausgeben
 		self.row = 0
 		self.column = 0
 		self.tableWidgetDubletten.clear()
 		self.tableWidgetDubletten.setAlternatingRowColors(True)
 		self.tableWidgetDubletten.setColumnCount(7)
-		self.tableWidgetDubletten.setRowCount(len(res_alle))
+		self.tableWidgetDubletten.setRowCount(len(self.res_duplicates))
 		counter = 0
-		for j in res_alle:
+		for j in self.res_duplicates:
 			# Checkbox
 			newitem = QtGui.QTableWidgetItem()
 			newitem.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsUserCheckable)
@@ -4050,20 +4064,21 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.tableWidgetDubletten.resizeColumnsToContents()
 		self.tableWidgetDubletten.resizeRowsToContents()
 		
-		message = str(len(zu_erfassen)) + self.trUtf8(" File(s) collected")
-		if len(res_alle) > 0:
+		message = self.files_added + self.trUtf8(" File(s) collected")
+		if len(self.res_duplicates) > 0:
 			self.pushButtonDeleteDuplicates.setEnabled(True)
 			self.pushButtonDeselect.setEnabled(True)
 			if counter > 0:
 				message += ", " +str(counter) +self.trUtf8(" Duplicate(s) found") 
 			else:
-				message += ", " +str(len(res_alle)) +self.trUtf8(" Duplicate(s) found, but some of them only in relation to file size")
+				message += ", " +str(len(self.res_duplicates)) +self.trUtf8(" Duplicate(s) found, but some of them only in relation to file size")
 		
-		self.statusBar.showMessage(message)
-		
-		app.restoreOverrideCursor()
+		self.labelMessage.setText(message)
 		self.suchfeld.setFocus()
-	# end of onStartScan
+	# end of output_result
+		
+	def updateFileLabel(self, text):
+		self.labelCurrentFile.setText(text)
 		
 	def onDeleteDuplicates(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

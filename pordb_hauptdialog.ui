@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1788,9 +1788,9 @@ Stop: S</string>
         <attribute name="title">
          <string>Tools</string>
         </attribute>
-        <layout class="QGridLayout" name="gridLayout_16">
-         <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_15">
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0" colspan="2">
+          <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_14">
              <item>
@@ -1931,9 +1931,9 @@ p, li { white-space: pre-wrap; }
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QGridLayout" name="gridLayout_15">
-              <item row="0" column="0">
-               <layout class="QVBoxLayout" name="verticalLayout_13">
+             <layout class="QHBoxLayout" name="horizontalLayout_24">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_7">
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_16">
                   <item>
@@ -2036,6 +2036,36 @@ p, li { white-space: pre-wrap; }
                     </property>
                     <property name="shortcut">
                      <string>Ctrl+A</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_23">
+                  <item>
+                   <widget class="QLabel" name="labelCurrentFile">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelMessage">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
                     </property>
                    </widget>
                   </item>

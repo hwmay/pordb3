@@ -124,7 +124,7 @@
        <item>
         <widget class="QPushButton" name="pushButtonClear">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear history: delete all entries except for the last 50 entries, ctrl+delete&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear history: delete all entries except for the last 50 entries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
           <string/>
@@ -132,9 +132,6 @@
          <property name="icon">
           <iconset>
            <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
-         </property>
-         <property name="shortcut">
-          <string>Ctrl+Del</string>
          </property>
         </widget>
        </item>

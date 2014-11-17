@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_historie.ui'
 #
-# Created: Mon Nov  3 00:02:55 2014
+# Created: Tue Nov 18 00:37:18 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -103,6 +103,5 @@ class Ui_Dialog(object):
         self.pushButtonSearch.setShortcut(_translate("Dialog", "Ctrl+S", None))
         self.pushButtonGo.setToolTip(_translate("Dialog", "Execute marked line", None))
         self.pushButtonAbbrechen.setToolTip(_translate("Dialog", "<html><head/><body><p>Cancel</p></body></html>", None))
-        self.pushButtonClear.setToolTip(_translate("Dialog", "<html><head/><body><p>Clear history: delete all entries except for the last 50 entries, ctrl+delete</p></body></html>", None))
-        self.pushButtonClear.setShortcut(_translate("Dialog", "Ctrl+Del", None))
+        self.pushButtonClear.setToolTip(_translate("Dialog", "<html><head/><body><p>Clear history: delete all entries except for the last 50 entries</p></body></html>", None))
 

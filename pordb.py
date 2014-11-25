@@ -2320,7 +2320,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				ein = "=" + res1[0][1].strip()
 				res = self.darsteller_lesen(ein)
 			else:
-				self.labelText.setText("<font color=red>" +self.trUtf8("Actor not available") +"</font>")
+				self.labelFehler.setText("<font color=red>" +self.trUtf8("Actor not available") +"</font>")
 				self.labelDarsteller.clear()
 				self.labelAlter.clear()
 				self.pushButtonIAFDBackground.setEnabled(False)

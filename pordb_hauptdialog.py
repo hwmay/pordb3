@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Nov 17 20:18:55 2014
+# Created: Sun Nov 30 10:20:05 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -221,12 +221,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
         self.gridLayout_2 = QtGui.QGridLayout()
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.labelFehler = QtGui.QLabel(self.frame_2)
-        self.labelFehler.setMinimumSize(QtCore.QSize(391, 16))
-        self.labelFehler.setMaximumSize(QtCore.QSize(391, 16))
-        self.labelFehler.setText(_fromUtf8(""))
-        self.labelFehler.setObjectName(_fromUtf8("labelFehler"))
-        self.gridLayout_2.addWidget(self.labelFehler, 0, 0, 1, 1)
         self.label_9 = QtGui.QLabel(self.frame_2)
         self.label_9.setMaximumSize(QtCore.QSize(41, 16))
         self.label_9.setObjectName(_fromUtf8("label_9"))
@@ -248,6 +242,12 @@ class Ui_MainWindow(object):
         self.labelAlter.setText(_fromUtf8(""))
         self.labelAlter.setObjectName(_fromUtf8("labelAlter"))
         self.gridLayout_2.addWidget(self.labelAlter, 1, 2, 1, 1)
+        self.labelFehler = QtGui.QLabel(self.frame_2)
+        self.labelFehler.setMinimumSize(QtCore.QSize(391, 16))
+        self.labelFehler.setMaximumSize(QtCore.QSize(391, 16))
+        self.labelFehler.setText(_fromUtf8(""))
+        self.labelFehler.setObjectName(_fromUtf8("labelFehler"))
+        self.gridLayout_2.addWidget(self.labelFehler, 0, 0, 1, 1)
         self.verticalLayout_6.addLayout(self.gridLayout_2)
         self.verticalLayout_5 = QtGui.QVBoxLayout()
         self.verticalLayout_5.setObjectName(_fromUtf8("verticalLayout_5"))
@@ -974,7 +974,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(5)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

@@ -1989,7 +1989,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			# Darsteller
 			if self.suche_darsteller:
 				argument = 1
-				zu_lesen += "darsteller like '%" +str(self.suche_darsteller).title() +"%'"
+				zu_lesen += "darsteller like '%" +str(self.suche_darsteller).title().replace("'", "''") +"%'"
 		
 			# CD
 			if self.suche_cd:
@@ -2008,14 +2008,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "
 				argument = 1
-				zu_lesen += "titel like '%" +str(self.suche_titel) +"%'"
+				zu_lesen += "titel like '%" +str(self.suche_titel).replace("'", "''") +"%'"
 	
 			# Original 
 			if self.suche_original:
 				if argument == 1:
 					zu_lesen += " and "	
 				argument = 1
-				zu_lesen += "original like '%" +str(self.suche_original).title() +"%'"
+				zu_lesen += "original like '%" +str(self.suche_original).title().replace("'", "''") +"%'"
 				
 			# CS
 			if self.suche_cs:

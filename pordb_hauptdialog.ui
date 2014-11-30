@@ -139,8 +139,11 @@
        </layout>
       </widget>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1788,14 +1791,14 @@ Stop: S</string>
         <attribute name="title">
          <string>Tools</string>
         </attribute>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="0" column="0">
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_14">
              <item>
               <layout class="QGridLayout" name="gridLayout_14">
-               <item row="0" column="2">
+               <item row="2" column="2">
                 <widget class="QCheckBox" name="checkBoxPictures">
                  <property name="maximumSize">
                   <size>
@@ -1814,7 +1817,7 @@ Stop: S</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
+               <item row="2" column="0">
                 <widget class="QPushButton" name="pushButtonBackup">
                  <property name="toolTip">
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1828,7 +1831,7 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="3" column="0">
                 <widget class="QPushButton" name="pushButtonRestore">
                  <property name="toolTip">
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1842,14 +1845,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="4" column="0">
                 <widget class="QPushButton" name="pushButtonWartung">
                  <property name="text">
                   <string>Maintenance</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="5" column="0">
                 <widget class="QPushButton" name="pushButtonDateikatalog">
                  <property name="toolTip">
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1866,14 +1869,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="2" column="3">
+               <item row="4" column="3">
                 <widget class="QLabel" name="label_12">
                  <property name="text">
                   <string>Maintenance of the database: especially free memory and analyze</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
+               <item row="2" column="1">
                 <widget class="QCheckBox" name="checkBoxDatabase">
                  <property name="maximumSize">
                   <size>
@@ -1892,26 +1895,81 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="1" column="3">
+               <item row="3" column="3">
                 <widget class="QLabel" name="label_11">
                  <property name="text">
                   <string>Restore database</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="3">
+               <item row="5" column="3">
                 <widget class="QLabel" name="label_13">
                  <property name="text">
                   <string>Collect video files from a directory</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="3">
+               <item row="2" column="3">
                 <widget class="QLabel" name="label_10">
                  <property name="text">
                   <string>Backup of the database into the working directory</string>
                  </property>
                 </widget>
+               </item>
+               <item row="1" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_25">
+                 <item>
+                  <widget class="QPushButton" name="pushButtonCheckNewVersion">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check for new version, Alt+N&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Check for new version</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/check_new_version.svg</normaloff>pypordb/check_new_version.svg</iconset>
+                   </property>
+                   <property name="shortcut">
+                    <string>Alt+N</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonSuchbegriffe">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edit search terms. Be very careful with this function to avoid too much search results, Alt+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Edit search terms</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/kdict.svg</normaloff>pypordb/kdict.svg</iconset>
+                   </property>
+                   <property name="shortcut">
+                    <string>Alt+S</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonLand">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edit table of countries. Setting the active column will add the country to the combo box in the actor tab. Enter the nationality as named in the IAFD, so the correct country will be set when adding actors from the IAFD. Alt+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Edit table of countries</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/land.png</normaloff>pypordb/land.png</iconset>
+                   </property>
+                   <property name="shortcut">
+                    <string>Alt+L</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
@@ -2101,7 +2159,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::StrongFocus</enum>
    </property>
    <property name="contextMenuPolicy">
     <enum>Qt::PreventContextMenu</enum>
@@ -2139,9 +2197,6 @@ p, li { white-space: pre-wrap; }
    <addaction name="actionPrev"/>
    <addaction name="actionNext"/>
    <addaction name="actionLast"/>
-   <addaction name="separator"/>
-   <addaction name="actionSuchbegriffe"/>
-   <addaction name="actionLand"/>
    <addaction name="separator"/>
    <addaction name="actionAnzahlBilder"/>
    <addaction name="separator"/>
@@ -2272,36 +2327,6 @@ p, li { white-space: pre-wrap; }
   <action name="actionSuchfeld">
    <property name="text">
     <string>search field</string>
-   </property>
-  </action>
-  <action name="actionSuchbegriffe">
-   <property name="icon">
-    <iconset>
-     <normaloff>pypordb/kdict.svg</normaloff>pypordb/kdict.svg</iconset>
-   </property>
-   <property name="text">
-    <string>search terms</string>
-   </property>
-   <property name="toolTip">
-    <string>Edit search terms, Ctrl+shift+S</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+S</string>
-   </property>
-  </action>
-  <action name="actionLand">
-   <property name="icon">
-    <iconset>
-     <normaloff>pypordb/land.png</normaloff>pypordb/land.png</iconset>
-   </property>
-   <property name="text">
-    <string>country</string>
-   </property>
-   <property name="toolTip">
-    <string>Edit table of countries, Alt+L</string>
-   </property>
-   <property name="shortcut">
-    <string>Alt+L</string>
    </property>
   </action>
   <action name="actionFirst">
@@ -2590,6 +2615,86 @@ p, li { white-space: pre-wrap; }
    <header>QtWebKit/QWebView</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>pushButtonRefresh</tabstop>
+  <tabstop>pushButtonDir</tabstop>
+  <tabstop>tableWidgetBilderAktuell</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>tableWidgetBilder</tabstop>
+  <tabstop>bildAnzeige</tabstop>
+  <tabstop>comboBoxSex</tabstop>
+  <tabstop>pushButtonDarstellerSuchen</tabstop>
+  <tabstop>pushButtonUmbenennen</tabstop>
+  <tabstop>pushButtonDarstellerBild</tabstop>
+  <tabstop>comboBoxEthnicFilter</tabstop>
+  <tabstop>comboBoxCSFilter</tabstop>
+  <tabstop>pushButtonSortPartner</tabstop>
+  <tabstop>listWidgetDarsteller</tabstop>
+  <tabstop>pushButtonPartnerZeigen</tabstop>
+  <tabstop>pushButtonPseudo</tabstop>
+  <tabstop>listWidgetStatistik</tabstop>
+  <tabstop>pushButtonSort</tabstop>
+  <tabstop>listWidgetFilme</tabstop>
+  <tabstop>comboBoxGeschlecht</tabstop>
+  <tabstop>lineEditAnzahl</tabstop>
+  <tabstop>lineEditGeboren</tabstop>
+  <tabstop>comboBoxHaarfarbe</tabstop>
+  <tabstop>comboBoxNation</tabstop>
+  <tabstop>lineEditTattoo</tabstop>
+  <tabstop>comboBoxEthnic</tabstop>
+  <tabstop>pushButtonIAFDholen</tabstop>
+  <tabstop>pushButtonDarstellerLoeschen</tabstop>
+  <tabstop>pushButtonDarstellerspeichern</tabstop>
+  <tabstop>pushButtonIAFDBackground</tabstop>
+  <tabstop>pushButtonClear</tabstop>
+  <tabstop>lineEditSuchen</tabstop>
+  <tabstop>lineEditFilesizeFrom</tabstop>
+  <tabstop>lineEditFilesizeTo</tabstop>
+  <tabstop>comboBoxFilesizeUnit</tabstop>
+  <tabstop>pushButtonSuchen</tabstop>
+  <tabstop>pushButtonUebernehmen</tabstop>
+  <tabstop>lineEditSearchMpg</tabstop>
+  <tabstop>pushButtonSearchMpg</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>lineEditSearchVid</tabstop>
+  <tabstop>pushButtonSearchVid</tabstop>
+  <tabstop>tableWidget1</tabstop>
+  <tabstop>pushButtonBack</tabstop>
+  <tabstop>pushButtonForward</tabstop>
+  <tabstop>pushButtonIAFD</tabstop>
+  <tabstop>lineEditSearchWebsite</tabstop>
+  <tabstop>pushButtonSearchWebsite</tabstop>
+  <tabstop>pushButtonVideo</tabstop>
+  <tabstop>pushButtonAbholen</tabstop>
+  <tabstop>pushButtonMovie</tabstop>
+  <tabstop>lineEditURL</tabstop>
+  <tabstop>pushButtonClearURL</tabstop>
+  <tabstop>pushButtonUrl</tabstop>
+  <tabstop>webView</tabstop>
+  <tabstop>tableWidgetStatistik</tabstop>
+  <tabstop>pushButtonCS</tabstop>
+  <tabstop>pushButtonDarstellerW</tabstop>
+  <tabstop>lineEditAnzahlW</tabstop>
+  <tabstop>pushButtonDarstellerM</tabstop>
+  <tabstop>lineEditAnzahlM</tabstop>
+  <tabstop>pushButtonAnzahlClips</tabstop>
+  <tabstop>pushButtonClipsJahr</tabstop>
+  <tabstop>pushButtonCheckNewVersion</tabstop>
+  <tabstop>pushButtonSuchbegriffe</tabstop>
+  <tabstop>pushButtonLand</tabstop>
+  <tabstop>pushButtonBackup</tabstop>
+  <tabstop>checkBoxDatabase</tabstop>
+  <tabstop>checkBoxPictures</tabstop>
+  <tabstop>pushButtonRestore</tabstop>
+  <tabstop>pushButtonWartung</tabstop>
+  <tabstop>pushButtonDateikatalog</tabstop>
+  <tabstop>comboBoxDevice</tabstop>
+  <tabstop>pushButtonVerwalten</tabstop>
+  <tabstop>pushButtonStart</tabstop>
+  <tabstop>tableWidgetDubletten</tabstop>
+  <tabstop>pushButtonDeleteDuplicates</tabstop>
+  <tabstop>pushButtonDeselect</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

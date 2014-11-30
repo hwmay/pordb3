@@ -105,8 +105,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionCovergross, QtCore.SIGNAL("triggered()"), self.onCovergross)
 		self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContexttableWidgetBilderAktuell)
 		self.connect(self.actionBildLoeschen, QtCore.SIGNAL("triggered()"), self.onBildLoeschen)
-		self.connect(self.actionLand, QtCore.SIGNAL("triggered()"), self.onLand)
-		self.connect(self.actionSuchbegriffe, QtCore.SIGNAL("triggered()"), self.onSuchbegriffe)
 		self.connect(self.actionFirst, QtCore.SIGNAL("triggered()"), self.onPageFirst)
 		self.connect(self.actionPrev, QtCore.SIGNAL("triggered()"), self.onPageUp)
 		self.connect(self.actionNext, QtCore.SIGNAL("triggered()"), self.onPageDown)
@@ -173,6 +171,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonClipsJahr, QtCore.SIGNAL("clicked()"), self.onStatistikAnzahlClipsJahr)
 		
 		# Slots einrichten für Tools
+		self.connect(self.pushButtonCheckNewVersion, QtCore.SIGNAL("clicked()"), self.onCheckNewVersion)
+		self.connect(self.pushButtonSuchbegriffe, QtCore.SIGNAL("clicked()"), self.onSuchbegriffe)
+		self.connect(self.pushButtonLand, QtCore.SIGNAL("clicked()"), self.onLand)
 		self.connect(self.pushButtonBackup, QtCore.SIGNAL("clicked()"), self.onBackup)
 		self.connect(self.pushButtonRestore, QtCore.SIGNAL("clicked()"), self.onRestore)
 		self.connect(self.pushButtonWartung, QtCore.SIGNAL("clicked()"), self.onWartung)
@@ -398,69 +399,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			splash.finish(self)
 		
 		# Get version file from github
-		version = None
-		whatsnew = None
-		seite = None
 		if initial_run: 
-			zaehler = 0
-			while True:
-				zaehler += 1
-				try:
-					seite = urllib.request.urlopen(file_version).read()
-					if seite:
-						break
-					else:
-						pass
-				except:
-				    pass
-				if zaehler > 1:
-					break
-		
+			self.onCheckNewVersion()
 			initial_run = False
-			
-			if seite:
-				begin = str(seite).find("pordbversion")
-				version = str(seite)[begin + 21 : begin + 21 + str(seite)[begin + 21 :].find("&")]
-				if version != __version__:
-					begin = str(seite).find("whatsnew")
-					whatsnew = str(seite)[begin + 17 : begin + 17 + str(seite)[begin + 17 :].find("&")]
-					dialog = UpdateVersion(version, whatsnew)
-					if dialog.exec_():
-						desktop_directory = str(os.path.expanduser("~") +os.sep +".local/share/applications")
-						desktop_datei = desktop_directory + os.sep + "PorDB.desktop"
-						if not os.path.exists(desktop_directory):
-							os.makedirs(desktop_directory)
-						messageBox = QtGui.QMessageBox()
-						messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-						messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-						messageBox.setWindowTitle(self.trUtf8("Menu entry"))
-						messageBox.setIcon(QtGui.QMessageBox.Question)
-						messageBox.setText(self.trUtf8("Should I create a menu entry?"))
-						message = messageBox.exec_()
-						if message == 0:
-							try:
-								datei = open(desktop_datei, "w")
-								datei.write("[Desktop Entry]" + "\n")
-								datei.write("Comment=PorDB" + "\n")
-								datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
-								datei.write("Icon=" + os.getcwd() + os.sep + "pypordb/8027068_splash.png" + "\n")
-								datei.write("Name=PorDB" + "\n")
-								datei.write("NoDisplay=false" + "\n")
-								datei.write("Path[$e]=" + os.getcwd() + "\n")
-								datei.write("StartupNotify=true" + "\n")
-								datei.write("Terminal=0" + "\n")
-								datei.write("TerminalOptions=" + "\n")
-								datei.write("Type=Application" + "\n")
-								datei.write("Categories=Graphics;" + "\n")
-								datei.write("X-KDE-SubstituteUID=false" + "\n")
-								datei.write("X-KDE-Username=" + "\n")
-								datei.close()
-								message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under graphics"))
-							except:
-								message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
-								
-						python = sys.executable
-						os.execl(python, python, * sys.argv)
 			
 	def setFocus(self, i):
 		self.suchfeld.setFocus()
@@ -1551,17 +1492,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				clipboard = QtGui.QApplication.clipboard()
 				clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
 				self.tabWidget.setCurrentIndex(3)
-		self.suchfeld.setFocus()
-		
-	def onLand(self):
-		bilddialog = LandBearbeiten(self.comboBoxNation, self.nation_fuellen)
-		bilddialog.exec_()
-		self.suchfeld.setFocus()
-		
-	def onSuchbegriffe(self):
-		bilddialog = SuchbegriffeBearbeiten()
-		bilddialog.exec_()
-		self.suchbegriffe_lesen()
 		self.suchfeld.setFocus()
 		
 	def video_anzeigen(self, titel):
@@ -3778,6 +3708,83 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.tableWidgetStatistik.scrollToBottom()
 		
 		app.restoreOverrideCursor()
+		self.suchfeld.setFocus()
+		
+	def onCheckNewVersion(self, initial=True):
+		global initial_run
+		version = None
+		whatsnew = None
+		seite = None
+		zaehler = 0
+		while True:
+			zaehler += 1
+			try:
+				seite = urllib.request.urlopen(file_version).read()
+				if seite:
+					break
+				else:
+					pass
+			except:
+			    pass
+			if zaehler > 1:
+				break
+	
+		if seite:
+			begin = str(seite).find("pordbversion")
+			version = str(seite)[begin + 21 : begin + 21 + str(seite)[begin + 21 :].find("&")]
+			if version != __version__:
+				begin = str(seite).find("whatsnew")
+				whatsnew = str(seite)[begin + 17 : begin + 17 + str(seite)[begin + 17 :].find("&")]
+				dialog = UpdateVersion(version, whatsnew)
+				if dialog.exec_():
+					desktop_directory = str(os.path.expanduser("~") +os.sep +".local/share/applications")
+					desktop_datei = desktop_directory + os.sep + "PorDB.desktop"
+					if not os.path.exists(desktop_directory):
+						os.makedirs(desktop_directory)
+					messageBox = QtGui.QMessageBox()
+					messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
+					messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
+					messageBox.setWindowTitle(self.trUtf8("Menu entry"))
+					messageBox.setIcon(QtGui.QMessageBox.Question)
+					messageBox.setText(self.trUtf8("Should I create a menu entry?"))
+					message = messageBox.exec_()
+					if message == 0:
+						try:
+							datei = open(desktop_datei, "w")
+							datei.write("[Desktop Entry]" + "\n")
+							datei.write("Comment=PorDB" + "\n")
+							datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
+							datei.write("Icon=" + os.getcwd() + os.sep + "pypordb/8027068_splash.png" + "\n")
+							datei.write("Name=PorDB" + "\n")
+							datei.write("NoDisplay=false" + "\n")
+							datei.write("Path[$e]=" + os.getcwd() + "\n")
+							datei.write("StartupNotify=true" + "\n")
+							datei.write("Terminal=0" + "\n")
+							datei.write("TerminalOptions=" + "\n")
+							datei.write("Type=Application" + "\n")
+							datei.write("Categories=Graphics;" + "\n")
+							datei.write("X-KDE-SubstituteUID=false" + "\n")
+							datei.write("X-KDE-Username=" + "\n")
+							datei.close()
+							message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under graphics"))
+						except:
+							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
+							
+					python = sys.executable
+					os.execl(python, python, * sys.argv)
+			else:
+				if not initial_run:
+					message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("You have the latest version"))
+		
+	def onSuchbegriffe(self):
+		bilddialog = SuchbegriffeBearbeiten()
+		bilddialog.exec_()
+		self.suchbegriffe_lesen()
+		self.suchfeld.setFocus()
+		
+	def onLand(self):
+		bilddialog = LandBearbeiten(self.comboBoxNation, self.nation_fuellen)
+		bilddialog.exec_()
 		self.suchfeld.setFocus()
 		
 	def onBackup(self):

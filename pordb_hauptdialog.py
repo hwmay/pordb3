@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Nov 30 21:04:29 2014
+# Created: Mon Dec  1 00:15:02 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -977,9 +977,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionLast)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionAnzahlBilder)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionUndo)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)

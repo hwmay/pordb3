@@ -2199,9 +2199,7 @@ p, li { white-space: pre-wrap; }
    <addaction name="actionLast"/>
    <addaction name="separator"/>
    <addaction name="actionAnzahlBilder"/>
-   <addaction name="separator"/>
    <addaction name="actionUndo"/>
-   <addaction name="separator"/>
    <addaction name="actionOnHelp"/>
   </widget>
   <action name="actionDarsteller">

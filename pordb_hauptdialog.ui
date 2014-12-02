@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>5</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1190,6 +1190,10 @@ p, li { white-space: pre-wrap; }
                <property name="text">
                 <string>Clear search field</string>
                </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/clear.png</normaloff>pypordb/clear.png</iconset>
+               </property>
                <property name="shortcut">
                 <string>Ctrl+L</string>
                </property>
@@ -1829,6 +1833,10 @@ p, li { white-space: pre-wrap; }
                  <property name="text">
                   <string>Backup</string>
                  </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>pypordb/backup.png</normaloff>pypordb/backup.png</iconset>
+                 </property>
                 </widget>
                </item>
                <item row="3" column="0">
@@ -1843,12 +1851,23 @@ p, li { white-space: pre-wrap; }
                  <property name="text">
                   <string>Restore</string>
                  </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>pypordb/restore.png</normaloff>pypordb/restore.png</iconset>
+                 </property>
                 </widget>
                </item>
                <item row="4" column="0">
                 <widget class="QPushButton" name="pushButtonWartung">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maintenance of the database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                  <property name="text">
                   <string>Maintenance</string>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>pypordb/database.png</normaloff>pypordb/database.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -1864,15 +1883,12 @@ p, li { white-space: pre-wrap; }
                  <property name="text">
                   <string>File catalogue</string>
                  </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>pypordb/catalog.svg</normaloff>pypordb/catalog.svg</iconset>
+                 </property>
                  <property name="checkable">
                   <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="3">
-                <widget class="QLabel" name="label_12">
-                 <property name="text">
-                  <string>Maintenance of the database: especially free memory and analyze</string>
                  </property>
                 </widget>
                </item>
@@ -1892,27 +1908,6 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <property name="checked">
                   <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="3">
-                <widget class="QLabel" name="label_11">
-                 <property name="text">
-                  <string>Restore database</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="3">
-                <widget class="QLabel" name="label_13">
-                 <property name="text">
-                  <string>Collect video files from a directory</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="3">
-                <widget class="QLabel" name="label_10">
-                 <property name="text">
-                  <string>Backup of the database into the working directory</string>
                  </property>
                 </widget>
                </item>
@@ -2020,12 +2015,20 @@ p, li { white-space: pre-wrap; }
                     <property name="text">
                      <string>Maintain device names</string>
                     </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>pypordb/disk.svg</normaloff>pypordb/disk.svg</iconset>
+                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QPushButton" name="pushButtonStart">
                     <property name="text">
                      <string>Start</string>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>pypordb/run.png</normaloff>pypordb/run.png</iconset>
                     </property>
                    </widget>
                   </item>
@@ -2079,6 +2082,10 @@ p, li { white-space: pre-wrap; }
                     <property name="text">
                      <string>Delete duplicates</string>
                     </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
+                    </property>
                     <property name="shortcut">
                      <string>Ctrl+L</string>
                     </property>
@@ -2090,7 +2097,11 @@ p, li { white-space: pre-wrap; }
                      <string>Deselect all marked lines, Ctrl+A</string>
                     </property>
                     <property name="text">
-                     <string>Deselect all</string>
+                     <string>Unselect all</string>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>pypordb/unselect.svg</normaloff>pypordb/unselect.svg</iconset>
                     </property>
                     <property name="shortcut">
                      <string>Ctrl+A</string>

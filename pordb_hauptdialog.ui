@@ -351,7 +351,7 @@ Ctrl+B</string>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>72</width>
+                    <width>90</width>
                     <height>24</height>
                    </size>
                   </property>
@@ -370,10 +370,18 @@ Ctrl+B</string>
                    <property name="text">
                     <string>Male</string>
                    </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/male.png</normaloff>pypordb/male.png</iconset>
+                   </property>
                   </item>
                   <item>
                    <property name="text">
                     <string>Female</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/female.png</normaloff>pypordb/female.png</iconset>
                    </property>
                   </item>
                  </widget>
@@ -643,20 +651,36 @@ Ctrl+B</string>
                            <property name="text">
                             <string>w</string>
                            </property>
+                           <property name="icon">
+                            <iconset>
+                             <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
+                           </property>
                           </item>
                           <item>
                            <property name="text">
                             <string>a</string>
+                           </property>
+                           <property name="icon">
+                            <iconset>
+                             <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
                            </property>
                           </item>
                           <item>
                            <property name="text">
                             <string>s</string>
                            </property>
+                           <property name="icon">
+                            <iconset>
+                             <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+                           </property>
                           </item>
                           <item>
                            <property name="text">
                             <string>l</string>
+                           </property>
+                           <property name="icon">
+                            <iconset>
+                             <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
                            </property>
                           </item>
                          </widget>
@@ -762,13 +786,17 @@ p, li { white-space: pre-wrap; }
                         <item>
                          <widget class="QPushButton" name="pushButtonPartnerZeigen">
                           <property name="toolTip">
-                           <string>Show partners</string>
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show actors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                           </property>
                           <property name="whatsThis">
                            <string>Show actors in first tab</string>
                           </property>
                           <property name="text">
-                           <string>Show actors</string>
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset>
+                            <normaloff>pypordb/darsteller.svg</normaloff>pypordb/darsteller.svg</iconset>
                           </property>
                          </widget>
                         </item>
@@ -781,7 +809,11 @@ p, li { white-space: pre-wrap; }
                            <string>Add alias</string>
                           </property>
                           <property name="text">
-                           <string>Alias</string>
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset>
+                            <normaloff>pypordb/alias.png</normaloff>pypordb/alias.png</iconset>
                           </property>
                          </widget>
                         </item>
@@ -874,10 +906,18 @@ p, li { white-space: pre-wrap; }
                          <property name="text">
                           <string>w</string>
                          </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/female.png</normaloff>pypordb/female.png</iconset>
+                         </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>m</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/male.png</normaloff>pypordb/male.png</iconset>
                          </property>
                         </item>
                        </widget>
@@ -938,20 +978,36 @@ p, li { white-space: pre-wrap; }
                          <property name="text">
                           <string>bl</string>
                          </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/blond.png</normaloff>pypordb/blond.png</iconset>
+                         </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>br</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
                          </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>r</string>
                          </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/red.png</normaloff>pypordb/red.png</iconset>
+                         </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>s</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
                          </property>
                         </item>
                        </widget>
@@ -1030,28 +1086,44 @@ p, li { white-space: pre-wrap; }
                        <widget class="QComboBox" name="comboBoxEthnic">
                         <property name="maximumSize">
                          <size>
-                          <width>40</width>
-                          <height>26</height>
+                          <width>16777215</width>
+                          <height>16777215</height>
                          </size>
                         </property>
                         <item>
                          <property name="text">
                           <string>w</string>
                          </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
+                         </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>a</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
                          </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>s</string>
                          </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+                         </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>l</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
                          </property>
                         </item>
                        </widget>
@@ -1551,11 +1623,18 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonVideo">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Movies available in PorDB?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="whatsThis">
                 <string>Check which movies are in database.</string>
                </property>
                <property name="text">
-                <string>Movies available?</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/video.svg</normaloff>pypordb/video.svg</iconset>
                </property>
                <property name="shortcut">
                 <string>Ctrl+E</string>
@@ -1564,23 +1643,37 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonAbholen">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get actor data&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="whatsThis">
                 <string>Adopt actors data from the IAFD.</string>
                </property>
                <property name="text">
-                <string>Get actor data</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/user-identity.png</normaloff>pypordb/user-identity.png</iconset>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonMovie">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add clips for current video&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="whatsThis">
                 <string>Adopt movie data from the IAFD.
 
 This is very useful for adding new scenes from the selected movie.</string>
                </property>
                <property name="text">
-                <string>Enter clips for shown video</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/add.svg</normaloff>pypordb/add.svg</iconset>
                </property>
               </widget>
              </item>
@@ -1598,6 +1691,10 @@ This is very useful for adding new scenes from the selected movie.</string>
                </property>
                <property name="text">
                 <string>Clear</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/clear_l.png</normaloff>pypordb/clear_l.png</iconset>
                </property>
                <property name="shortcut">
                 <string>Ctrl+L</string>
@@ -2279,7 +2376,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/video.png</normaloff>pypordb/video.png</iconset>
+     <normaloff>pypordb/video.svg</normaloff>pypordb/video.svg</iconset>
    </property>
    <property name="text">
     <string>vid</string>

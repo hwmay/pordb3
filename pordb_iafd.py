@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_iafd.ui'
 #
-# Created: Sun Dec  7 14:38:39 2014
+# Created: Sun Dec  7 14:44:15 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -152,7 +152,7 @@ class Ui_DatenausderIAFD(object):
         self.pushButtonUebernehmen = QtGui.QPushButton(DatenausderIAFD)
         self.pushButtonUebernehmen.setText(_fromUtf8(""))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/ok.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-ok.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonUebernehmen.setIcon(icon2)
         self.pushButtonUebernehmen.setObjectName(_fromUtf8("pushButtonUebernehmen"))
         self.horizontalLayout_2.addWidget(self.pushButtonUebernehmen)

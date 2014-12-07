@@ -264,7 +264,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>pypordb/ok.gif</normaloff>pypordb/ok.gif</iconset>
+         <normaloff>pypordb/dialog-ok.svg</normaloff>pypordb/dialog-ok.svg</iconset>
        </property>
       </widget>
      </item>

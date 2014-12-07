@@ -319,12 +319,12 @@
         <translation>nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="312"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="311"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="313"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="312"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -354,12 +354,12 @@
         <translation> noch nicht in der Datenbank</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="314"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="313"/>
         <source>: There is another actor in the database with this name.</source>
         <translation>: es gibt bereits einen Darsteller mit diesem Namen in der Datenbank.</translation>
     </message>
     <message>
-        <location filename="pypordb_darstellerdaten_anzeigen.py" line="316"/>
+        <location filename="pypordb_darstellerdaten_anzeigen.py" line="315"/>
         <source>Do you want to add/change the actor anyway?</source>
         <translation>Willst Du den Darsteller trotzdem hinzufügen/ändern?</translation>
     </message>
@@ -468,64 +468,64 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DatenausderIAFD</name>
     <message>
-        <location filename="pordb_iafd.py" line="167"/>
+        <location filename="pordb_iafd.py" line="179"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="163"/>
+        <location filename="pordb_iafd.py" line="175"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="169"/>
+        <location filename="pordb_iafd.py" line="181"/>
         <source>Ethnic:</source>
         <translation>Ethnic:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="171"/>
+        <location filename="pordb_iafd.py" line="183"/>
         <source>Tattoos:</source>
         <translation>Tattoos:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="160"/>
+        <location filename="pordb_iafd.py" line="172"/>
         <source>Data from the IAFD</source>
         <translation>Daten aus der IAFD</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="164"/>
+        <location filename="pordb_iafd.py" line="176"/>
         <source>Gender:</source>
         <translation>Geschlecht:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="165"/>
+        <location filename="pordb_iafd.py" line="177"/>
         <source>Alias:</source>
         <translation>Alias:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="166"/>
+        <location filename="pordb_iafd.py" line="178"/>
         <source>Born:</source>
         <translation>Geboren:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="168"/>
+        <location filename="pordb_iafd.py" line="180"/>
         <source>Country:</source>
         <translation>Land:</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="170"/>
+        <location filename="pordb_iafd.py" line="182"/>
         <source>Hair color:</source>
         <translation>Haarfarbe:</translation>
     </message>
     <message>
         <location filename="pordb_iafd.py" line="174"/>
         <source>Adopt marked data</source>
-        <translation>Markierte Daten übernehmen</translation>
+        <translation type="obsolete">Markierte Daten übernehmen</translation>
     </message>
     <message>
         <location filename="pordb_iafd.py" line="175"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="obsolete">Abbrechen</translation>
     </message>
     <message>
         <location filename="pordb_iafd.py" line="173"/>
@@ -533,19 +533,34 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Kommentare in Klammern löschen, Strg+D</translation>
     </message>
     <message>
-        <location filename="pordb_iafd.py" line="173"/>
+        <location filename="pordb_iafd.py" line="185"/>
         <source>Ctrl+D</source>
         <translation>Strg+D</translation>
     </message>
     <message>
         <location filename="pordb_iafd.py" line="172"/>
         <source>Delete comments in brackets, Ctrl+L</source>
-        <translation>Kommentare in Klammern löschen, Strg+L</translation>
+        <translation type="obsolete">Kommentare in Klammern löschen, Strg+L</translation>
     </message>
     <message>
         <location filename="pordb_iafd.py" line="174"/>
         <source>Ctrl+L</source>
         <translation type="obsolete">Strg+L</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="186"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt marked data (enter)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Markierte Daten übernehmen (Enter)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="187"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel (escape)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abbrechen, Esc&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_iafd.py" line="184"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete comments in brackets in field Alias, Ctrl+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kommentare in Klammern im Feld Alias löschen, Strg+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

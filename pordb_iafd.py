@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_iafd.ui'
 #
-# Created: Sun Dec  7 14:44:15 2014
+# Created: Sun Dec  7 14:49:13 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -181,7 +181,7 @@ class Ui_DatenausderIAFD(object):
         self.label_4.setText(_translate("DatenausderIAFD", "Ethnic:", None))
         self.label_5.setText(_translate("DatenausderIAFD", "Hair color:", None))
         self.label_7.setText(_translate("DatenausderIAFD", "Tattoos:", None))
-        self.pushButtonRemoveBrackets.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Delete comments in brackets, Ctrl+L</p></body></html>", None))
+        self.pushButtonRemoveBrackets.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Delete comments in brackets in field Alias, Ctrl+L</p></body></html>", None))
         self.pushButtonRemoveBrackets.setShortcut(_translate("DatenausderIAFD", "Ctrl+D", None))
         self.pushButtonUebernehmen.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Adopt marked data (enter)</p></body></html>", None))
         self.pushButtonCancel.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Cancel (escape)</p></body></html>", None))

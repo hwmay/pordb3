@@ -35,8 +35,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>983</width>
-        <height>646</height>
+        <width>989</width>
+        <height>657</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -141,7 +141,11 @@
         <string>Starts searching</string>
        </property>
        <property name="text">
-        <string>Search</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
        </property>
        <property name="shortcut">
         <string>Ctrl+S</string>
@@ -151,13 +155,17 @@
      <item>
       <widget class="QPushButton" name="pushButtonAnzeigen">
        <property name="toolTip">
-        <string>Shows movies (Ctrl+D)</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show movies (Ctrl+D)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="whatsThis">
         <string>Shows avaible movies</string>
        </property>
        <property name="text">
-        <string>Show</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/video.svg</normaloff>pypordb/video.svg</iconset>
        </property>
        <property name="shortcut">
         <string>Ctrl+D</string>
@@ -170,7 +178,11 @@
         <string>Cancel (Esc)</string>
        </property>
        <property name="text">
-        <string>Cancel</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
        </property>
       </widget>
      </item>

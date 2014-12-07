@@ -584,7 +584,7 @@ p, li { white-space: pre-wrap; }
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="98"/>
+        <location filename="pordb_original.py" line="55"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -699,12 +699,12 @@ p, li { white-space: pre-wrap; }
         <translation>Enter, Return</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="92"/>
+        <location filename="pordb_suche_video.py" line="117"/>
         <source>Ctrl+S</source>
         <translation>Strg+S</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="96"/>
+        <location filename="pordb_suche_video.py" line="120"/>
         <source>Ctrl+D</source>
         <translation>Strg+D</translation>
     </message>
@@ -1083,67 +1083,67 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Weitere Originaltitel erfassen</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="82"/>
+        <location filename="pordb_suche_video.py" line="108"/>
         <source>Search in existing movies</source>
         <translation>Suche nach vorhandenen Videos</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="83"/>
+        <location filename="pordb_suche_video.py" line="109"/>
         <source>Enter text (Ctrl+V)</source>
         <translation>Hier den Text per Strg+V einfügen</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="85"/>
+        <location filename="pordb_suche_video.py" line="111"/>
         <source>Presentation of the existing movies</source>
         <translation>Hier wird angezeigt, welche der gesuchten Videos vorhanden sind</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="86"/>
+        <location filename="pordb_suche_video.py" line="112"/>
         <source>Insert text (Ctrl+v)</source>
         <translation>Hier per Paste (Strg+V) den Text einfügen</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="87"/>
+        <location filename="pordb_suche_video.py" line="113"/>
         <source>overall:</source>
         <translation>insgesamt:</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="88"/>
+        <location filename="pordb_suche_video.py" line="114"/>
         <source>available:</source>
         <translation>vorhanden:</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="89"/>
+        <location filename="pordb_suche_video.py" line="115"/>
         <source>Start search (Ctrl+S)</source>
         <translation>Suche starten (Strg+S)</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="90"/>
+        <location filename="pordb_suche_video.py" line="116"/>
         <source>Starts searching</source>
         <translation>Dieser Button startet die Suche</translation>
     </message>
     <message>
         <location filename="pordb_suche_video.py" line="91"/>
         <source>Search</source>
-        <translation>Suchen</translation>
+        <translation type="obsolete">Suchen</translation>
     </message>
     <message>
         <location filename="pordb_suche_video.py" line="93"/>
         <source>Shows movies (Ctrl+D)</source>
-        <translation>Im Hauptfenster die gefundenen Videos anzeigen (Strg+D)</translation>
+        <translation type="obsolete">Im Hauptfenster die gefundenen Videos anzeigen (Strg+D)</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="94"/>
+        <location filename="pordb_suche_video.py" line="119"/>
         <source>Shows avaible movies</source>
         <translation>Über diesen Button werden die vorhandenen Videos angezeigt</translation>
     </message>
     <message>
         <location filename="pordb_suche_video.py" line="95"/>
         <source>Show</source>
-        <translation>Anzeigen</translation>
+        <translation type="obsolete">Anzeigen</translation>
     </message>
     <message>
-        <location filename="pordb_suche_video.py" line="97"/>
+        <location filename="pordb_suche_video.py" line="121"/>
         <source>Cancel (Esc)</source>
         <translation>Abbrechen (Esc)</translation>
     </message>
@@ -1697,6 +1697,11 @@ p, li { white-space: pre-wrap; }
         <location filename="pordb_historie.py" line="106"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear history: delete all entries except for the last 50 entries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Historie löschen: alle Einträge löschen mit Ausnahme der letzten 50&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_suche_video.py" line="118"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show movies (Ctrl+D)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Videos anzeigen (Strg+D)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

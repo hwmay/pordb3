@@ -272,7 +272,6 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxPseudo.isChecked():
-				#zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
 				action = self.pseudo_uebernehmen(res[0][0], zu_erfassen)
 				if not action: 
 					return
@@ -319,8 +318,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 						return False
 				checkpseudo = CheckPseudos(i.strip().title().replace("'", "''"), name.strip().title().replace("'", "''"))
 				check = CheckPseudos.check(checkpseudo)
-				if check:
-					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
+				befehl = "insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')"
+				if check and befehl not in zu_erfassen:
+					zu_erfassen.append(befehl)
 		return True
 					
 	def onClose(self):

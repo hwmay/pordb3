@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_iafd.ui'
 #
-# Created: Sun Oct 12 22:33:26 2014
+# Created: Sun Dec  7 14:38:39 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -143,12 +143,24 @@ class Ui_DatenausderIAFD(object):
         spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
         self.pushButtonRemoveBrackets = QtGui.QPushButton(DatenausderIAFD)
+        self.pushButtonRemoveBrackets.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/bracket.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonRemoveBrackets.setIcon(icon1)
         self.pushButtonRemoveBrackets.setObjectName(_fromUtf8("pushButtonRemoveBrackets"))
         self.horizontalLayout_2.addWidget(self.pushButtonRemoveBrackets)
         self.pushButtonUebernehmen = QtGui.QPushButton(DatenausderIAFD)
+        self.pushButtonUebernehmen.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/ok.gif")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonUebernehmen.setIcon(icon2)
         self.pushButtonUebernehmen.setObjectName(_fromUtf8("pushButtonUebernehmen"))
         self.horizontalLayout_2.addWidget(self.pushButtonUebernehmen)
         self.pushButtonCancel = QtGui.QPushButton(DatenausderIAFD)
+        self.pushButtonCancel.setText(_fromUtf8(""))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonCancel.setIcon(icon3)
         self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
         self.horizontalLayout_2.addWidget(self.pushButtonCancel)
         self.gridLayout_2.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
@@ -169,8 +181,8 @@ class Ui_DatenausderIAFD(object):
         self.label_4.setText(_translate("DatenausderIAFD", "Ethnic:", None))
         self.label_5.setText(_translate("DatenausderIAFD", "Hair color:", None))
         self.label_7.setText(_translate("DatenausderIAFD", "Tattoos:", None))
-        self.pushButtonRemoveBrackets.setText(_translate("DatenausderIAFD", "Delete comments in brackets, Ctrl+L", None))
+        self.pushButtonRemoveBrackets.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Delete comments in brackets, Ctrl+L</p></body></html>", None))
         self.pushButtonRemoveBrackets.setShortcut(_translate("DatenausderIAFD", "Ctrl+D", None))
-        self.pushButtonUebernehmen.setText(_translate("DatenausderIAFD", "Adopt marked data", None))
-        self.pushButtonCancel.setText(_translate("DatenausderIAFD", "Cancel", None))
+        self.pushButtonUebernehmen.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Adopt marked data (enter)</p></body></html>", None))
+        self.pushButtonCancel.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Cancel (escape)</p></body></html>", None))
 

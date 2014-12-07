@@ -239,8 +239,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonRemoveBrackets">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete comments in brackets, Ctrl+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
-        <string>Delete comments in brackets, Ctrl+L</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/bracket.svg</normaloff>pypordb/bracket.svg</iconset>
        </property>
        <property name="shortcut">
         <string>Ctrl+D</string>
@@ -249,15 +256,29 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonUebernehmen">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt marked data (enter)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
-        <string>Adopt marked data</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/ok.gif</normaloff>pypordb/ok.gif</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonCancel">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel (escape)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
-        <string>Cancel</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
        </property>
       </widget>
      </item>

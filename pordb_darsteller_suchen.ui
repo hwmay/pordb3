@@ -328,8 +328,15 @@
       <layout class="QHBoxLayout">
        <item>
         <widget class="QPushButton" name="pushButtonSuchen">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search (enter)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
-          <string>Search</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
          </property>
          <property name="shortcut">
           <string>Enter</string>
@@ -338,8 +345,15 @@
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonRefresh">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear all search fields, alt+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
-          <string>Clear all search fields, alt+L</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/clear_l.png</normaloff>pypordb/clear_l.png</iconset>
          </property>
          <property name="shortcut">
           <string>Alt+L</string>
@@ -350,6 +364,10 @@
         <widget class="QPushButton" name="pushButtonCancel">
          <property name="text">
           <string>Cancel</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
          </property>
         </widget>
        </item>

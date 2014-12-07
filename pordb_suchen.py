@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_suchen.ui'
 #
-# Created: Sun Aug 17 09:53:04 2014
+# Created: Sun Dec  7 15:20:44 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -101,14 +101,24 @@ class Ui_ErweiterteSuche(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonSuchen = QtGui.QPushButton(ErweiterteSuche)
-        self.pushButtonSuchen.setToolTip(_fromUtf8(""))
+        self.pushButtonSuchen.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonSuchen.setIcon(icon1)
         self.pushButtonSuchen.setObjectName(_fromUtf8("pushButtonSuchen"))
         self.horizontalLayout.addWidget(self.pushButtonSuchen)
         self.pushButtonRefresh = QtGui.QPushButton(ErweiterteSuche)
-        self.pushButtonRefresh.setToolTip(_fromUtf8(""))
+        self.pushButtonRefresh.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/clear_l.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonRefresh.setIcon(icon2)
         self.pushButtonRefresh.setObjectName(_fromUtf8("pushButtonRefresh"))
         self.horizontalLayout.addWidget(self.pushButtonRefresh)
         self.pushButtonCancel = QtGui.QPushButton(ErweiterteSuche)
+        self.pushButtonCancel.setText(_fromUtf8(""))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonCancel.setIcon(icon3)
         self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
         self.horizontalLayout.addWidget(self.pushButtonCancel)
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -155,11 +165,12 @@ class Ui_ErweiterteSuche(object):
         self.comboBoxCS.setItemText(9, _translate("ErweiterteSuche", "a Ass", None))
         self.comboBoxCS.setItemText(10, _translate("ErweiterteSuche", "s Others", None))
         self.comboBoxCS.setItemText(11, _translate("ErweiterteSuche", "k No", None))
+        self.pushButtonSuchen.setToolTip(_translate("ErweiterteSuche", "<html><head/><body><p>Search (enter)</p></body></html>", None))
         self.pushButtonSuchen.setWhatsThis(_translate("ErweiterteSuche", "Start search", None))
-        self.pushButtonSuchen.setText(_translate("ErweiterteSuche", "Search", None))
         self.pushButtonSuchen.setShortcut(_translate("ErweiterteSuche", "Enter", None))
+        self.pushButtonRefresh.setToolTip(_translate("ErweiterteSuche", "<html><head/><body><p>Clear all search fields, alt+L</p></body></html>", None))
         self.pushButtonRefresh.setWhatsThis(_translate("ErweiterteSuche", "Clear all fields in search form", None))
-        self.pushButtonRefresh.setText(_translate("ErweiterteSuche", "Refresh", None))
+        self.pushButtonRefresh.setShortcut(_translate("ErweiterteSuche", "Alt+L", None))
+        self.pushButtonCancel.setToolTip(_translate("ErweiterteSuche", "<html><head/><body><p>Cancel (escape)</p></body></html>", None))
         self.pushButtonCancel.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Cancel search</p></body></html>", None))
-        self.pushButtonCancel.setText(_translate("ErweiterteSuche", "Cancel", None))
 

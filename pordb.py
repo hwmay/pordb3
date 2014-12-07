@@ -964,7 +964,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			column = self.tableWidgetBilder.column(i)
 			row = self.tableWidgetBilder.row(i)
 			index = int(row * self.columns + column + self.start_bilder)
-			zu_erfassen.append("update pordb_vid set vorhanden = '" +vorhanden +"', hd = " + resolution +" where cd = " +str(self.aktuelles_res[index][2]) +" and bild = '" +self.aktuelles_res[index][3] +"'")
+			zu_erfassen.append("update pordb_vid set vorhanden = '" +vorhanden +"', hd = " + resolution +" where cd = " +str(self.aktuelles_res[index][2]) +" and bild = '" +self.aktuelles_res[index][3].replace("'", "''") +"'")
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_darsteller_suchen.ui'
 #
-# Created: Fri Jul 11 17:38:34 2014
+# Created: Sun Dec  7 15:12:29 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -146,12 +146,23 @@ class Ui_DarstellerSuche(object):
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
         self.pushButtonSuchen = QtGui.QPushButton(DarstellerSuche)
+        self.pushButtonSuchen.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonSuchen.setIcon(icon1)
         self.pushButtonSuchen.setObjectName(_fromUtf8("pushButtonSuchen"))
         self.hboxlayout.addWidget(self.pushButtonSuchen)
         self.pushButtonRefresh = QtGui.QPushButton(DarstellerSuche)
+        self.pushButtonRefresh.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/clear_l.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonRefresh.setIcon(icon2)
         self.pushButtonRefresh.setObjectName(_fromUtf8("pushButtonRefresh"))
         self.hboxlayout.addWidget(self.pushButtonRefresh)
         self.pushButtonCancel = QtGui.QPushButton(DarstellerSuche)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonCancel.setIcon(icon3)
         self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
         self.hboxlayout.addWidget(self.pushButtonCancel)
         self.verticalLayout.addLayout(self.hboxlayout)
@@ -204,9 +215,9 @@ class Ui_DarstellerSuche(object):
         self.dateEditDarstellerSucheBis.setDisplayFormat(_translate("DarstellerSuche", "dd.MM.yyyy", None))
         self.label_10.setText(_translate("DarstellerSuche", "and", None))
         self.label_11.setText(_translate("DarstellerSuche", "and", None))
-        self.pushButtonSuchen.setText(_translate("DarstellerSuche", "Search", None))
+        self.pushButtonSuchen.setToolTip(_translate("DarstellerSuche", "<html><head/><body><p>Search (enter)</p></body></html>", None))
         self.pushButtonSuchen.setShortcut(_translate("DarstellerSuche", "Enter", None))
-        self.pushButtonRefresh.setText(_translate("DarstellerSuche", "Clear all search fields, alt+L", None))
+        self.pushButtonRefresh.setToolTip(_translate("DarstellerSuche", "<html><head/><body><p>Clear all search fields, alt+L</p></body></html>", None))
         self.pushButtonRefresh.setShortcut(_translate("DarstellerSuche", "Alt+L", None))
         self.pushButtonCancel.setText(_translate("DarstellerSuche", "Cancel", None))
 

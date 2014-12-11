@@ -632,7 +632,7 @@ Ctrl+B</string>
                          <widget class="QComboBox" name="comboBoxEthnicFilter">
                           <property name="maximumSize">
                            <size>
-                            <width>40</width>
+                            <width>50</width>
                             <height>26</height>
                            </size>
                           </property>
@@ -687,6 +687,12 @@ Ctrl+B</string>
                         </item>
                         <item>
                          <widget class="QComboBox" name="comboBoxCSFilter">
+                          <property name="minimumSize">
+                           <size>
+                            <width>140</width>
+                            <height>0</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>160</width>

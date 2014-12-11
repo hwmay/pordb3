@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Dec  7 00:04:38 2014
+# Created: Thu Dec 11 22:59:47 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -267,7 +267,7 @@ class Ui_MainWindow(object):
         self.labelText.setObjectName(_fromUtf8("labelText"))
         self.horizontalLayout_5.addWidget(self.labelText)
         self.comboBoxEthnicFilter = QtGui.QComboBox(self.frame_2)
-        self.comboBoxEthnicFilter.setMaximumSize(QtCore.QSize(40, 26))
+        self.comboBoxEthnicFilter.setMaximumSize(QtCore.QSize(50, 26))
         self.comboBoxEthnicFilter.setObjectName(_fromUtf8("comboBoxEthnicFilter"))
         self.comboBoxEthnicFilter.addItem(_fromUtf8(""))
         self.comboBoxEthnicFilter.setItemText(0, _fromUtf8(""))
@@ -285,6 +285,7 @@ class Ui_MainWindow(object):
         self.comboBoxEthnicFilter.addItem(icon12, _fromUtf8(""))
         self.horizontalLayout_5.addWidget(self.comboBoxEthnicFilter)
         self.comboBoxCSFilter = QtGui.QComboBox(self.frame_2)
+        self.comboBoxCSFilter.setMinimumSize(QtCore.QSize(140, 0))
         self.comboBoxCSFilter.setMaximumSize(QtCore.QSize(160, 29))
         self.comboBoxCSFilter.setObjectName(_fromUtf8("comboBoxCSFilter"))
         self.comboBoxCSFilter.addItem(_fromUtf8(""))

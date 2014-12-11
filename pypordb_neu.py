@@ -15,7 +15,7 @@ import datetime
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(300, 300)
-size_darsteller = QtCore.QSize(1280, 1024)
+size_darsteller = QtCore.QSize(1920, 1080)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):

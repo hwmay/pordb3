@@ -291,8 +291,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		for i in pseudos:
 			klammer_auf = i.find("(")
 			klammer_zu = i.find(")")
-			if klammer_auf > -1:
+			if klammer_auf > -1 and klammer_zu > -1:
 				pseudos_neu.append(i[0:klammer_auf] + i[klammer_zu + 1 :])
+			elif klammer_auf > -1 and klammer_zu == -1:
+				pseudos_neu.append(i[0:klammer_auf])
+			elif klammer_auf == -1 and klammer_zu > -1:
+				pseudos_neu.append(i[klammer_zu + 1 :])
 			else:
 				pseudos_neu.append(i)
 		self.lineEditPseudo.setText(", ".join(pseudos_neu))

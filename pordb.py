@@ -1621,6 +1621,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onHelp(self):
 		QtGui.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2014 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
+		self.suchfeld.setFocus()
 		
 	def ausgabe(self, ein, zu_lesen):
 		lese_func = DBLesen(self, zu_lesen)

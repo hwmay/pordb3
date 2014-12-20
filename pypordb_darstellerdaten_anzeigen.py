@@ -23,8 +23,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.app = app
 		self.url = url
 		self.verzeichnis_thumbs = verzeichnis_thumbs
+		self.name = None
 		if name:
-			self.name = name
+			self.name = name.strip()
 		
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		
@@ -35,13 +36,15 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		actordata = ActorData(self.darstellerseite)
 		
 		# Darsteller Name
-		if not name:
-			self.name = ActorData.actor_name(actordata)
-			if not self.name:
-				self.app.restoreOverrideCursor()
-				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
-				return
-		self.labelName.setText(self.name)
+		self.name_iafd = ActorData.actor_name(actordata)
+		if not self.name_iafd:
+			self.app.restoreOverrideCursor()
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
+			return
+		if self.name and self.name != self.name_iafd:
+			self.app.restoreOverrideCursor()
+			message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in PorDB differs from actors name in the IAFD.\nMaybe you should rename the actor in PorDB."))
+		self.labelName.setText(self.name_iafd)
 		self.lineEditName.setText(self.name)
 			
 		# Darsteller Bild

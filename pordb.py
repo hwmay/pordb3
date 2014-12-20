@@ -1666,20 +1666,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			original_liste = []
 			for i in self.aktuelles_res:
 				teile = i[5].split()
-				original = []
-				zaehler = -1
 				folge = 0
-				for j in teile:
-					zaehler += 1
-					if zaehler > 0:
-						try:
-							folge = int(j.strip(":"))
-							break
-						except:
-							original.append(j)
-					else:
-						original.append(j)
-				original_liste.append([" ".join(original), folge, i])
+				try:
+					folge = int(teile[-1])
+					original_liste.append([i[5], folge, i])
+				except:
+					try:
+						folge = int(teile[-2])
+						original_liste.append([i[5], folge, i])
+					except:
+						original_liste.append([i[5], folge, i])
 				
 			original_liste.sort()
 			self.aktuelles_res = []

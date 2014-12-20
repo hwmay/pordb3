@@ -30,7 +30,7 @@ class SaveMovieData(QtGui.QDialog):
 		if anfang > 0:
 			anfang = self.text.find("</dt><dd>", anfang)
 			ende = self.text.find("</dd></dl>", anfang)
-			alternatives = self.text[anfang + 9:ende].strip().replace("&amp;", "&").split("</dd><dd>")
+			alternatives = self.text[anfang + 9 : ende].strip().replace("&amp;", "&").split("</dd><dd>")
 		
 		# get actors and scenes
 		scenes = []
@@ -45,13 +45,17 @@ class SaveMovieData(QtGui.QDialog):
 				return
 			while True:
 				anfang_scene = self.text.find("Scene ", anfang + 1)
+				try:
+					zahl = int(self.text[anfang_scene + 6])
+				except:
+					break
 				ende_scene = self.text.find(". ", anfang_scene + 1)
 				if anfang_scene < 0:
 					break
 				scene = self.text[anfang_scene : ende_scene].strip()
 				anfang = self.text.find(". ", anfang_scene + 1)
 				ende = self.text.find("</li>", anfang)
-				darsteller = self.text[anfang + 2:ende].strip()
+				darsteller = self.text[anfang + 2 : ende].strip()
 				scenes.append((scene, darsteller))
 			
 		return movie, alternatives, scenes

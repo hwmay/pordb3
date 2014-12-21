@@ -3986,7 +3986,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.disconnect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
 		self.connect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
 		# signal for finished
-		#self.disconnect( self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
 		self.connect(self, QtCore.SIGNAL("finished"), self.output_result)
 		# start thread
 		self.threadPool[len(self.threadPool)-1].start()

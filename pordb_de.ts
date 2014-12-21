@@ -3889,37 +3889,37 @@ present</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>delete</source>
         <translation>löschen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>File in database</source>
         <translation>Datei in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>Device</source>
         <translation>Gerät</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>Directory</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>Size in database</source>
         <translation>Größe in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>new file</source>
         <translation>neue Datei</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4067"/>
+        <location filename="pordb.py" line="4066"/>
         <source>Size of new file</source>
         <translation>Größe der neuen Datei</translation>
     </message>
@@ -3989,17 +3989,17 @@ present</source>
         <translation type="obsolete">&apos; ist ungültig (Sonderzeichen)</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4076"/>
+        <location filename="pordb.py" line="4075"/>
         <source> Duplicate(s) found</source>
         <translation> Duplikat(e) gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4078"/>
+        <location filename="pordb.py" line="4077"/>
         <source> Duplicate(s) found, but some of them only in relation to file size</source>
         <translation> Duplikat(e) gefunden, aber einige davon nur in Bezug auf die Dateigröße</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4102"/>
+        <location filename="pordb.py" line="4101"/>
         <source> File(s) deleted</source>
         <translation> Datei(en) gelöscht</translation>
     </message>
@@ -4009,7 +4009,7 @@ present</source>
         <translation>Fehler, Dateiname </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="4071"/>
+        <location filename="pordb.py" line="4070"/>
         <source> File(s) collected</source>
         <translation> Datei(en) erfasst</translation>
     </message>
@@ -4117,7 +4117,8 @@ present</source>
         <location filename="pordb.py" line="1828"/>
         <source>
 in stock</source>
-        <translation>vorhanden</translation>
+        <translation>
+vorhanden</translation>
     </message>
     <message>
         <location filename="pordb.py" line="1838"/>

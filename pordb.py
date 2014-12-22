@@ -1669,14 +1669,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				folge = 0
 				try:
 					folge = int(teile[-1])
-					original_liste.append([i[5], folge, i])
+					original_liste.append([folge, i[5], i])
 				except:
 					try:
 						folge = int(teile[-2])
-						original_liste.append([i[5], folge, i])
+						original_liste.append([folge, i[5], i])
 					except:
-						original_liste.append([i[5], folge, i])
-				
+						original_liste.append([folge, i[5], i])
 			original_liste.sort()
 			self.aktuelles_res = []
 			for i in original_liste:

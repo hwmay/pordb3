@@ -44,6 +44,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		if self.name and self.name != self.name_iafd:
 			self.app.restoreOverrideCursor()
 			message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in PorDB differs from actors name in the IAFD.\nMaybe you should rename the actor in PorDB."))
+		self.name = self.name_iafd
 		self.labelName.setText(self.name_iafd)
 		self.lineEditName.setText(self.name)
 			

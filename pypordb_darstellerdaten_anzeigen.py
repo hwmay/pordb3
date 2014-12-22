@@ -41,7 +41,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.app.restoreOverrideCursor()
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
-		if self.name and self.name != self.name_iafd:
+		if self.name and self.name.lower() != self.name_iafd.lower():
 			self.app.restoreOverrideCursor()
 			message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in PorDB differs from actors name in the IAFD.\nMaybe you should rename the actor in PorDB."))
 		self.name = self.name_iafd

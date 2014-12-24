@@ -309,7 +309,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		pseudos = str(self.lineEditPseudo.text()).title().split(", ")
 		pseudos = set(pseudos)
 		for i in pseudos:
-			if i and i != name.title().strip():
+			if i and i.strip() != name.title().strip():
 				res = []
 				zu_lesen = "select darsteller from pordb_darsteller where darsteller = '" +i.strip().replace("'", "''").title() +"'"
 				self.lese_func = DBLesen(self, zu_lesen)

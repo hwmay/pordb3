@@ -125,6 +125,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.listWidgetDarsteller, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onbildAnzeige)
 		self.connect(self.actionAnzeigenPaar, QtCore.SIGNAL("triggered()"), self.onAnzeigenPaar)
 		self.connect(self.labelBildanzeige, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onBildgross)
+		self.labelBildanzeige.__class__.dragEnterEvent = self.tableWidgetBilderAktuelldragEnterEvent
+		self.labelBildanzeige.__class__.dropEvent = self.labelBildanzeigedropEvent
 		self.connect(self.actionGetUrl, QtCore.SIGNAL("triggered()"), self.onGetUrl)
 		self.connect(self.actionGoToUrl, QtCore.SIGNAL("triggered()"), self.onGoToUrl)
 		self.connect(self.actionShowDetails, QtCore.SIGNAL("triggered()"), self.onShowDetails)
@@ -135,7 +137,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionCSZeigen, QtCore.SIGNAL("triggered()"), self.onCSZeigen)
 		self.connect(self.pushButtonDarstellerSuchen, QtCore.SIGNAL("clicked()"), self.onDarstellerSuchen)
 		self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.onDarstellerUmbenennen)
-		self.connect(self.pushButtonDarstellerBild, QtCore.SIGNAL("clicked()"), self.onDarstellerBild)
 		self.connect(self.pushButtonSortPartner, QtCore.SIGNAL("clicked()"), self.onPartnerSortieren)
 		self.connect(self.pushButtonSort, QtCore.SIGNAL("clicked()"), self.onFilmeSortieren)
 		self.connect(self.pushButtonPartnerZeigen, QtCore.SIGNAL("clicked()"), self.onPartnerZeigen)
@@ -599,6 +600,44 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.bilder_aktuell()
 		self.suchfeld.setFocus()
 	# end of tableWidgetBilderdropEvent
+	
+	def labelBildanzeigedropEvent(self, event):
+		items = self.tableWidgetBilderAktuell.selectedItems()
+		dateien = []
+		for i in items:
+			dateien.append(str(self.verzeichnis +os.sep +i.text().split("\n")[0]))
+		if len(dateien) > 1:
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 picture"))
+			return	
+		else:
+			name = str(self.labelDarsteller.text()).strip().lstrip("=")
+			if not name:
+				return
+			bild = QtGui.QImage(dateien[0])
+			if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
+				message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
+			zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" +name.replace("'", "''")  +"'"
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			extension_new = os.path.splitext(str(dateien[0]))[-1].lower()
+			if extension_new == '.jpeg':
+				extension_new = '.jpg'
+			sex = res[0][0]
+			if sex:
+				oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".jpg"
+				extension_old = None
+				if not os.path.isfile(oldfilename):
+					oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".png"
+					if os.path.isfile(oldfilename):
+						extension_old = ".png"
+				else:
+					extension_old = ".jpg"
+				if extension_new != extension_old and os.path.isfile(oldfilename):
+					os.remove(oldfilename)
+				oldfilename = os.path.splitext(oldfilename)[0] + extension_new 
+				os.rename(dateien[0], oldfilename)
+			self.bilder_aktuell()
+			self.onbildAnzeige()
 				
 	def onPageFirst(self):
 		self.start_bilder = 0
@@ -3059,38 +3098,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 	# end of onDarstellerUmbenennen
 	
-	def onDarstellerBild(self):
-		name = str(self.labelDarsteller.text()).strip().lstrip("=")
-		if not name:
-			return
-		self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor: ") +name +self.trUtf8(", please select"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
-		if self.file:
-			bild = QtGui.QImage(self.file)
-			if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
-				message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
-			zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" +name.replace("'", "''")  +"'"
-			lese_func = DBLesen(self, zu_lesen)
-			res = DBLesen.get_data(lese_func)
-			extension_new = os.path.splitext(str(self.file))[-1].lower()
-			if extension_new == '.jpeg':
-				extension_new = '.jpg'
-			sex = res[0][0]
-			if sex:
-				oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".jpg"
-				extension_old = None
-				if not os.path.isfile(oldfilename):
-					oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".png"
-					if os.path.isfile(oldfilename):
-						extension_old = ".png"
-				else:
-					extension_old = ".jpg"
-				if extension_new != extension_old and os.path.isfile(oldfilename):
-					os.remove(oldfilename)
-				oldfilename = os.path.splitext(oldfilename)[0] + extension_new 
-				os.rename(self.file, oldfilename)
-			self.onbildAnzeige()
-	# end of onDarstellerBild
-		
 	def onDarstellerFilme(self, res):
 		ein = self.eingabe_auswerten()
 		if not ein:

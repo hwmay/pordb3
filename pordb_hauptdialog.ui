@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -459,38 +459,6 @@ Ctrl+B</string>
                   </property>
                   <property name="shortcut">
                    <string>Ctrl+U</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButtonDarstellerBild">
-                  <property name="minimumSize">
-                   <size>
-                    <width>24</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>24</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="toolTip">
-                   <string>Adopt new image of the actor, Ctrl+J</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>Replace existing image of the actor with a new one</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset>
-                    <normaloff>pypordb/user-identity.png</normaloff>pypordb/user-identity.png</iconset>
-                  </property>
-                  <property name="shortcut">
-                   <string>Ctrl+J</string>
                   </property>
                  </widget>
                 </item>
@@ -2737,7 +2705,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>comboBoxSex</tabstop>
   <tabstop>pushButtonDarstellerSuchen</tabstop>
   <tabstop>pushButtonUmbenennen</tabstop>
-  <tabstop>pushButtonDarstellerBild</tabstop>
   <tabstop>comboBoxEthnicFilter</tabstop>
   <tabstop>comboBoxCSFilter</tabstop>
   <tabstop>pushButtonSortPartner</tabstop>

@@ -264,8 +264,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		selected.extend(self.listWidgetM.selectedItems())
 		selected_str = []
 		for i in selected:
-			ein = str(i.text())
-			selected_str.append(ein)
+			selected_str.append(str(i.text()))
 		text = ", ".join(selected_str)
 		self.lineEditNeuDarsteller.setText(text)
 		self.lineEditNeuDarsteller.setFocus()

@@ -4,8 +4,6 @@ import os
 import urllib.request, urllib.parse, urllib.error
 import time
 from PyQt4 import QtGui, QtCore
-from pypordb_dblesen import DBLesen
-from pypordb_dbupdate import DBUpdate
 
 class SaveMovieData(QtGui.QDialog):
 	def __init__(self, app, url, text):

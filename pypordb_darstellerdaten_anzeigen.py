@@ -88,8 +88,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.checkBoxLand.setCheckState(QtCore.Qt.Unchecked)
 		else:
 			self.lineEditLand.setText(self.land)
-			zu_lesen = "select iso from pordb_iso_land where national = '" +self.land + "'"
-			self.lese_func = DBLesen(self, zu_lesen)
+			zu_lesen = "select iso from pordb_iso_land where national = %s"
+			self.lese_func = DBLesen(self, zu_lesen, self.land)
 			res = DBLesen.get_data(self.lese_func)
 			if len(res) > 0:
 				self.lineEditLand.setText(res[0][0])
@@ -173,11 +173,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
 			self.app.restoreOverrideCursor()
+		zu_lesen = "select * from pordb_darsteller where darsteller = %s"
 		if self.checkBoxName.isChecked():
-			zu_lesen = "select * from pordb_darsteller where darsteller = '" +str(self.lineEditName.text()).replace("'", "''").title() +"'"
+			wert = str(self.lineEditName.text()).replace("'", "''").title()
 		else:
-			zu_lesen = "select * from pordb_darsteller where darsteller = '" +self.name.strip().title().replace("'", "''") +"'"
-		self.lese_func = DBLesen(self, zu_lesen)
+			wert = self.name.strip().title().replace("'", "''")
+		self.lese_func = DBLesen(self, zu_lesen, wert)
 		res = DBLesen.get_data(self.lese_func)
 		zu_erfassen = []
 		
@@ -312,8 +313,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		for i in pseudos:
 			if i and i.strip() != name.title().strip():
 				res = []
-				zu_lesen = "select darsteller from pordb_darsteller where darsteller = '" +i.strip().replace("'", "''").title() +"'"
-				self.lese_func = DBLesen(self, zu_lesen)
+				zu_lesen = "select darsteller from pordb_darsteller where darsteller = %s"
+				self.lese_func = DBLesen(self, zu_lesen, i.strip().replace("'", "''").title())
 				res = DBLesen.get_data(self.lese_func)
 				if res:
 					messageBox = QtGui.QMessageBox()

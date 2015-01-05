@@ -7,9 +7,19 @@ import psycopg2.extensions
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 class DBLesen():
-	def __init__(self, fenster, zu_lesen):
+	def __init__(self, fenster, zu_lesen, werte = None):
 		self.fenster = fenster
 		self.zu_lesen = str(zu_lesen)
+		if werte:
+			if type(werte) == str:
+				self.werte = []
+				self.werte.append(werte)
+			elif type(werte) == tuple or type(werte) == list:
+				self.werte = werte
+		else:
+			self.werte = None
+		print (self.zu_lesen, type(self.zu_lesen))
+		print (self.werte, type(self.werte))
 		self.res = []
 		self.conn = None
 		self.cur = None
@@ -25,7 +35,10 @@ class DBLesen():
 			return 
 		self.cur = self.conn.cursor()
 		try:
-			self.cur.execute(self.zu_lesen)
+			if self.werte:
+				self.cur.execute(self.zu_lesen, self.werte)
+			else:
+				self.cur.execute(self.zu_lesen)
 		except Exception as e:
 			print(self.zu_lesen, type(self.zu_lesen))
 			print(e)

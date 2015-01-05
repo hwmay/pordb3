@@ -17,8 +17,8 @@ class NeueingabeDarsteller(QtGui.QDialog, pordb_darstellerneu):
 		
 		self.setWindowTitle(self.trUtf8("Actor ") +self.darsteller + self.trUtf8(" will be added"))
 		# Combobox für Nation füllen
-		zu_lesen = "select * from pordb_iso_land where aktiv = 'x' order by land"
-		lese_func = DBLesen(self, zu_lesen)
+		zu_lesen = "select * from pordb_iso_land where aktiv = %s order by land"
+		lese_func = DBLesen(self, zu_lesen, "x")
 		res = DBLesen.get_data(lese_func)
 		for i in res:
 			text = '%2s %-50s' % (i[0], i[1])

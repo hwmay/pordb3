@@ -20,8 +20,8 @@ class DarstellerSuchen(QtGui.QDialog, pordb_darsteller_suchen):
 		self.connect(self.pushButtonRefresh, QtCore.SIGNAL("clicked()"), self.onRefresh)
 		
 		# Combobox für Nation füllen
-		zu_lesen = "select * from pordb_iso_land where aktiv = 'x' order by land"
-		lese_func = DBLesen(self, zu_lesen)
+		zu_lesen = "select * from pordb_iso_land where aktiv = %s order by land"
+		lese_func = DBLesen(self, zu_lesen, "x")
 		res = DBLesen.get_data(lese_func)
 		self.comboBoxDarstellerSucheNation.addItem("")
 		for i in res:

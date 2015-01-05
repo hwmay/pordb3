@@ -281,6 +281,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.tableWidgetBilder.setIconSize(size)
 		self.letzter_select = ""
 		self.letzter_select_komplett = ""
+		self.letzter_select_komplett_werte = []
 		self.aktuelles_res = []
 		self.start_bilder = 0
 		self.nationen = []
@@ -707,7 +708,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.ausgabedarsteller()
 		else:
 			if len(self.aktuelles_res) > 0:
-				self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett)
+				self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett, self.letzter_select_komplett_werte)
 	
 	def onAnzahlSpalten(self):
 		if self.columns == float(self.spinBoxSpalten.value()):
@@ -721,7 +722,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.ausgabedarsteller()
 		else:
 			if len(self.aktuelles_res) > 0:
-				self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett)
+				self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett, self.letzter_select_komplett_werte)
 				
 	def onDirectoryChange(self):
 		datei = QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), self.verzeichnis)
@@ -742,7 +743,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if zu_lesen and not "pordb_history" in zu_lesen:
 			self.start_bilder = 0
 			self.letzter_select_komplett = zu_lesen
-			i = zu_lesen.find("order")
+			i = zu_lesen.find("ORDER")
 			if i > -1:
 				self.letzter_select = zu_lesen[: i]
 			else:
@@ -895,6 +896,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.letzter_select = zu_lesen
 				zu_lesen += " ORDER BY cd, bild, darsteller"
 				self.letzter_select_komplett = zu_lesen
+				self.letzter_select_komplett_werte = werte
 				self.partner = 0
 				self.ausgabe(ein, zu_lesen, werte)
 				app.restoreOverrideCursor()
@@ -984,10 +986,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
 				zu_lesen = "SELECT * FROM pordb_vid WHERE original = %s ORDER BY original, cd, bild, darsteller"
+				werte = []
+				werte.append(neuer_name.title().replace("'", "''"))
 				self.letzter_select_komplett = zu_lesen
+				self.letzter_select_komplett_werte = werte
 				self.start_bilder = 0
 				self.partner = 0
-				self.ausgabe(zu_lesen, zu_lesen, neuer_name.title().replace("'", "''"))
+				self.ausgabe(zu_lesen, zu_lesen, werte)
 				app.restoreOverrideCursor()
 				
 		self.suchfeld.setFocus()
@@ -1014,7 +1019,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-			self.ausgabe("", self.letzter_select_komplett)
+			self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
 		self.bilder_aktuell()
 		self.suchfeld.setFocus()
 				
@@ -1067,7 +1072,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-			self.ausgabe("", self.letzter_select_komplett)
+			self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
 						
 		self.suchfeld.setFocus()
 	# end of onOriginal_weitere
@@ -1550,6 +1555,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.partner = 0
 			self.ausgabe(zu_lesen, zu_lesen, werte)
 			self.letzter_select_komplett = zu_lesen
+			self.letzter_select_komplett_werte = werte
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
 		
@@ -1587,6 +1593,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " ORDER BY cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.letzter_select_komplett_werte = werte
 		self.partner = 0
 		self.ausgabe(ein, zu_lesen, werte)
 		app.restoreOverrideCursor()
@@ -1610,6 +1617,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " ORDER BY bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.letzter_select_komplett_werte = werte
 		self.partner = 0
 		self.ausgabe(str(ein), zu_lesen, werte)
 		app.restoreOverrideCursor()
@@ -1636,6 +1644,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " ORDER BY cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.letzter_select_komplett_werte = werte
 		self.partner = 0
 		self.ausgabe(ein, zu_lesen)
 		app.restoreOverrideCursor()
@@ -1686,6 +1695,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " ORDER BY original, cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.letzter_select_komplett_werte = werte
 		self.partner = 0
 		self.ausgabe(ein3, zu_lesen, werte)
 		app.restoreOverrideCursor()
@@ -2040,6 +2050,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen += " ORDER BY cd, titel"
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 			self.letzter_select_komplett = zu_lesen
+			self.letzter_select_komplett_werte = werte
 			self.letzter_select = zu_lesen
 			if argument != 0:
 				self.start_bilder = 0
@@ -2667,7 +2678,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.file = self.verzeichnis_cover +os.sep +self.aktuelles_res[index][3].strip()
 				cover = True
 			zu_lesen = "SELECT * FROM pordb_original WHERE foreign_key_pordb_vid = %s"
-			lese_func = DBLesen(self, zu_lesen, str(self.aktuelles_res[index][8]))
+			werte = []
+			werte.append(str(self.aktuelles_res[index][8]))
+			lese_func = DBLesen(self, zu_lesen, werte)
 			res2 = DBLesen.get_data(lese_func)
 			original_weitere = []
 			for i in res2:
@@ -2677,7 +2690,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			res_alt = self.aktuelles_res
 			if eingabedialog.exec_():
 				change_flag = True
-			self.ausgabe("", self.letzter_select_komplett)
+			self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
 			if change_flag:
 				self.statusBar.showMessage("upd:CD" +str(res_alt[index][2]) +" Title:" +res_alt[index][0].strip() +" Act:" +res_alt[index][1].strip())
 		self.suchfeld.setFocus()
@@ -2817,6 +2830,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen += " ORDER BY darsteller"
 			
 			self.letzter_select_komplett = zu_lesen
+			self.letzter_select_komplett_werte = werte
 			self.letzter_select = zu_lesen
 	
 			self.aktuelles_res = []

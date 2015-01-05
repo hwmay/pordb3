@@ -18,11 +18,12 @@ class Historie(QtGui.QDialog, pordb_historie):
 		self.row = 0
 		self.column = 0
 		self.zu_lesen = None
+		self.werte = None
 		self.tableWidgetHistory.setAlternatingRowColors(True)
 		self.tableWidgetHistory.clearContents()
 		self.lineEditSearch.setFocus()
 		
-		self.zu_lesen = "SELECT * from pordb_history order by time DESC"
+		self.zu_lesen = "SELECT * FROM pordb_history ORDER BY time DESC"
 		self.lese_func = DBLesen(self, self.zu_lesen)
 		self.res = DBLesen.get_data(self.lese_func)
 		res = DBLesen.get_data(self.lese_func)
@@ -66,13 +67,15 @@ class Historie(QtGui.QDialog, pordb_historie):
 	def onGo(self):
 		for i in range(len(self.res)):
 			if self.tableWidgetHistory.item(i, 0).checkState():
-				self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text().replace('"', "'"))
+				index = str(self.tableWidgetHistory.item(i, 1).text()).rfind("(")
+				self.werte = str(self.tableWidgetHistory.item(i, 1).text())[index :]
+				self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index - 1]
 				break
 		
 		self.close()
 		
 	def onClear(self):
-		zu_lesen = "SELECT * from pordb_history order by time DESC LIMIT 50"
+		zu_lesen = "SELECT * FROM pordb_history ORDER BY time DESC LIMIT 50"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		if res:

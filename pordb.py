@@ -740,15 +740,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		historiedialog = Historie()
 		historiedialog.exec_()
 		zu_lesen = str(historiedialog.zu_lesen)
+		werte = str(historiedialog.werte).replace("(", "").replace(")", "").split("; ")
 		if zu_lesen and not "pordb_history" in zu_lesen:
 			self.start_bilder = 0
 			self.letzter_select_komplett = zu_lesen
+			self.letzter_select_komplett_werte = werte
 			i = zu_lesen.find("ORDER")
 			if i > -1:
 				self.letzter_select = zu_lesen[: i]
 			else:
 				self.letzter_select = zu_lesen
-			self.ausgabe(zu_lesen, zu_lesen)
+			self.ausgabe(zu_lesen, zu_lesen, werte)
 		else:
 			self.suchfeld.setFocus()
 			
@@ -1770,7 +1772,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.aktuelles_res[:] = liste_neu
 		
 		self.ausgabe_in_table()
-		befehl = zu_lesen[:]
+		befehl = zu_lesen[:] + " (" +  ";".join(werte) + ")"
 		befehl = befehl.replace("'", "''")
 		if len(befehl) < 5001:
 			zu_erfassen = []

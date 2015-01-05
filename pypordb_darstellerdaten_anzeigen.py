@@ -173,11 +173,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
 			self.app.restoreOverrideCursor()
-		zu_lesen = "select * from pordb_darsteller where darsteller = %s"
+		zu_lesen = "SELECT * FROM pordb_darsteller WHERE darsteller = %s"
 		if self.checkBoxName.isChecked():
-			wert = str(self.lineEditName.text()).replace("'", "''").title()
+			wert = str(self.lineEditName.text()).title()
 		else:
-			wert = self.name.strip().title().replace("'", "''")
+			wert = self.name.strip().title()
 		self.lese_func = DBLesen(self, zu_lesen, wert)
 		res = DBLesen.get_data(self.lese_func)
 		zu_erfassen = []
@@ -314,7 +314,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			if i and i.strip() != name.title().strip():
 				res = []
 				zu_lesen = "select darsteller from pordb_darsteller where darsteller = %s"
-				self.lese_func = DBLesen(self, zu_lesen, i.strip().replace("'", "''").title())
+				self.lese_func = DBLesen(self, zu_lesen, i.strip().title())
 				res = DBLesen.get_data(self.lese_func)
 				if res:
 					messageBox = QtGui.QMessageBox()
@@ -326,7 +326,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					message = messageBox.exec_()
 					if message != 0:
 						return False
-				checkpseudo = CheckPseudos(i.strip().title().replace("'", "''"), name.strip().title().replace("'", "''"))
+				checkpseudo = CheckPseudos(i.strip().title(), name.strip().title())
 				check = CheckPseudos.check(checkpseudo)
 				befehl = "insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')"
 				if check and befehl not in zu_erfassen:

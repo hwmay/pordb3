@@ -22,9 +22,9 @@ class CheckPseudos():
 		self.cur = self.conn.cursor()
 		
 	def check(self):
-		zu_lesen = "select * from pordb_pseudo where pseudo = '" + self.pseudo + "' and darsteller = '" +self.darsteller + "'"
+		zu_lesen = "SELECT * FROM pordb_pseudo WHERE pseudo = %s AND darsteller = %s"
 		try:
-			self.cur.execute(zu_lesen)
+			self.cur.execute(zu_lesen, (self.pseudo, self.darsteller))
 		except Exception as e:
 			print(zu_lesen, type(zu_lesen))
 			print(e)

@@ -18,8 +18,6 @@ class DBLesen():
 				self.werte = werte
 		else:
 			self.werte = None
-		print (self.zu_lesen, type(self.zu_lesen))
-		print (self.werte, type(self.werte))
 		self.res = []
 		self.conn = None
 		self.cur = None

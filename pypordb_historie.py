@@ -67,7 +67,9 @@ class Historie(QtGui.QDialog, pordb_historie):
 	def onGo(self):
 		for i in range(len(self.res)):
 			if self.tableWidgetHistory.item(i, 0).checkState():
-				index = str(self.tableWidgetHistory.item(i, 1).text()).rfind("(")
+				text = str(self.tableWidgetHistory.item(i, 1).text())
+				index = text.find("ORDER BY")
+				index += text[index : ].find("(")
 				self.werte = str(self.tableWidgetHistory.item(i, 1).text())[index :]
 				self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index - 1]
 				break

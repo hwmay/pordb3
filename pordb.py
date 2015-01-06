@@ -740,7 +740,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		historiedialog = Historie()
 		historiedialog.exec_()
 		zu_lesen = str(historiedialog.zu_lesen)
-		werte = str(historiedialog.werte).replace("(", "").replace(")", "").split("; ")
+		werte = str(historiedialog.werte).lstrip("(").rstrip(")").split(";")
 		if zu_lesen and not "pordb_history" in zu_lesen:
 			self.start_bilder = 0
 			self.letzter_select_komplett = zu_lesen
@@ -1781,7 +1781,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		
-		if ein.lower().startswith("SELECT "):
+		if ein.startswith("SELECT "):
 			pass
 		else:
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)

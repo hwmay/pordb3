@@ -38,7 +38,7 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
 		for i in self.titel:
 			if i:
 				zu_lesen = "SELECT DISTINCT ON (original) * FROM pordb_vid WHERE original LIKE %s OR original LIKE %s"
-				lese_func = DBLesen(self, zu_lesen, (i.replace("'", "''").title() + "  % ", i.replace("'", "''").title() + " (%"))
+				lese_func = DBLesen(self, zu_lesen, (i.title() + "  % ", i.title() + " (%"))
 				res = DBLesen.get_data(lese_func)
 				if res:
 					vorhanden.append("x")
@@ -56,7 +56,7 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
 		if self.res_alle:
 			self.zu_lesen = "SELECT * FROM pordb_vid WHERE original = %s"
 			for i in self.res_alle:
-				self.werte.append(i[5].strip().replace("'", "''"))
+				self.werte.append(i[5].strip())
 				if i != self.res_alle[len(self.res_alle) -1]:
 					self.zu_lesen += " OR original = %s"
 			self.zu_lesen += " ORDER BY original"

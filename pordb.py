@@ -7,6 +7,7 @@ import time
 import datetime
 import platform
 import urllib.request, urllib.error, urllib.parse
+from operator import itemgetter, attrgetter
 import psycopg2
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtWebKit import QWebPage
@@ -1752,14 +1753,19 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				folge = 0
 				try:
 					folge = int(teile[-1])
-					original_liste.append([i[5], folge, i])
+					original_liste.append([" ".join(teile[0 : -1]), folge, i])
 				except:
 					try:
 						folge = int(teile[-2])
-						original_liste.append([i[5], folge, i])
+						original_liste.append([" ".join(teile[0 : -2]), folge, i])
 					except:
 						original_liste.append([i[5], folge, i])
-			original_liste.sort(key=lambda original: original[1])
+			#1. sort serial number
+			getcount = itemgetter(1)
+			original_liste = sorted(original_liste, key=getcount)
+			#2. sort original title
+			getcount = itemgetter(0)
+			original_liste = sorted(original_liste, key=getcount)
 			self.aktuelles_res = []
 			for i in original_liste:
 				self.aktuelles_res.append(i[2])

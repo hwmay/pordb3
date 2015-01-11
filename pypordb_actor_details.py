@@ -25,7 +25,7 @@ class ActorDetails(QtGui.QDialog, pordb_actor_details):
 		height = 600
 		
 		zu_lesen = "SELECT * FROM pordb_darsteller where darsteller = %s"
-		lese_func = DBLesen(self, zu_lesen, self.darsteller.replace("'", "''"))
+		lese_func = DBLesen(self, zu_lesen, self.darsteller)
 		res = DBLesen.get_data(lese_func)
 		
 		bildname = darsteller.lower().strip().replace(" ", "_").replace("'", "_apostroph_")

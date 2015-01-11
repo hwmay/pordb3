@@ -92,7 +92,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		darsteller_w = []
 		for i in res:
 			zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
-			self.lese_func = DBLesen(self, zu_lesen, tuple(i)[1].replace("'", "''").rstrip())
+			self.lese_func = DBLesen(self, zu_lesen, tuple(i)[1].rstrip())
 			res2 = DBLesen.get_data(self.lese_func)
 			try:
 				if res2 [0][0] == "w":
@@ -307,7 +307,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if fehler:
 				if fehler == 1:
 					zu_lesen = "SELECT darsteller FROM pordb_pseudo WHERE pseudo = %s"
-					self.lese_func = DBLesen(self, zu_lesen, darsteller[fehler_index].title().replace("'", "''").strip())
+					self.lese_func = DBLesen(self, zu_lesen, darsteller[fehler_index].title().strip())
 					res = DBLesen.get_data(self.lese_func)
 					if res:
 						messageBox = QtGui.QMessageBox()
@@ -616,7 +616,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if i == "" or i == "?" or i == "(Uninteressant)" or i == "(Komplett)" or i == "(Schlechte Qualitaet)":
 				continue
 			zu_lesen = "SELECT * FROM pordb_darsteller100 WHERE darsteller = %s"
-			self.lese_func = DBLesen(self, zu_lesen, i.replace("'", "''"))
+			self.lese_func = DBLesen(self, zu_lesen, i)
 			res1 = DBLesen.get_data(self.lese_func)
 			if len(res1) != 0:
 				zu_erfassen.append("delete from pordb_darsteller100 where nr = '" + str(res1[0][0]) +"'")
@@ -625,19 +625,19 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			partner_zaehler = 0
 			if i.strip() != "(Uninteressant)" and i.strip() != "Defekt":
 				zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
-				self.lese_func = DBLesen(self, zu_lesen, i.replace("'", "''"))
+				self.lese_func = DBLesen(self, zu_lesen, i)
 				res = DBLesen.get_data(self.lese_func)
 				geschlecht = res[0][0]
 				for j in darsteller:
 					if j.strip() != "(Uninteressant)" and j.strip() != "Defekt" and i != j:
 						zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
-						self.lese_func = DBLesen(self, zu_lesen, j.replace("'", "''"))
+						self.lese_func = DBLesen(self, zu_lesen, j)
 						res2 = DBLesen.get_data(self.lese_func)
 						geschlecht2 = res2[0][0]
 						if geschlecht != geschlecht2:
 							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
 							zu_lesen = "SELECT darsteller FROM pordb_partner WHERE darsteller = %s AND partner = %s"
-							self.lese_func = DBLesen(self, zu_lesen, (i.replace("'", "''"), j.replace("'", "''")))
+							self.lese_func = DBLesen(self, zu_lesen, (i, j))
 							res3 = DBLesen.get_data(self.lese_func)
 							if not res3:
 								partner_zaehler += 1
@@ -663,12 +663,12 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			zu_erfassen = []
 			if self.korrektur:
 				zu_lesen = "SELECT primkey FROM pordb_vid WHERE cd = %s AND bild = %s"
-				self.lese_func = DBLesen(self, zu_lesen, (str(self.cd_alt), str(bild).replace("'", "''")))
+				self.lese_func = DBLesen(self, zu_lesen, (str(self.cd_alt), str(bild)))
 				curr_key = DBLesen.get_data(self.lese_func)
 				zu_erfassen.append("delete from pordb_original where foreign_key_pordb_vid = " +str(curr_key[0][0]))
 			else:
 				zu_lesen = "SELECT primkey FROM pordb_vid WHERE cd = %s AND bild = %s"
-				self.lese_func = DBLesen(self, zu_lesen, (str(cd), bild.replace("'", "''")))
+				self.lese_func = DBLesen(self, zu_lesen, (str(cd), bild))
 				curr_key = DBLesen.get_data(self.lese_func)
 			for i in self.original_weitere:
 				if i:
@@ -740,7 +740,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			k += 1
 			if i and i != "Defekt":
 				zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
-				self.lese_func = DBLesen(self, zu_lesen, i.replace("'", "''").strip().title())
+				self.lese_func = DBLesen(self, zu_lesen, i.strip().title())
 				res = DBLesen.get_data(self.lese_func)
 				if not res:
 					fehler = 1
@@ -761,7 +761,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				if i == "Defekt":
 					defekt_schalter = True
 				zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
-				self.lese_func = DBLesen(self, zu_lesen, i.strip().replace("'", "''").replace("''''", "''").title()) # 2nd replace when coming from actor renaming function
+				self.lese_func = DBLesen(self, zu_lesen, i.strip().replace("''''", "''").title()) # 2nd replace when coming from actor renaming function
 				res = DBLesen.get_data(self.lese_func)
 				try:
 					sex = res[0][0]
@@ -792,7 +792,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl - 1 where darsteller = '" + i.replace("'", "''") + "'")
 		# Daten für undo sichern
 		zu_lesen = "SELECT * FROM pordb_vid WHERE cd = %s AND bild = %s"
-		self.lese_func = DBLesen(self, zu_lesen, (str(self.cd), self.bild.replace("'", "''")))
+		self.lese_func = DBLesen(self, zu_lesen, (str(self.cd), self.bild))
 		res = DBLesen.get_data(self.lese_func)
 
 		# Dateien in Trash Verzeichnis löschen
@@ -836,7 +836,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		for i in darsteller_liste:
 			if i:
 				zu_lesen = "SELECT DISTINCT ON (partner) partner FROM pordb_partner WHERE darsteller = %s"
-				self.lese_func = DBLesen(self, zu_lesen, i.replace("'", "''"))
+				self.lese_func = DBLesen(self, zu_lesen, i)
 				res1 = DBLesen.get_data(self.lese_func)
 				zu_erfassen.append("UPDATE pordb_darsteller set partner = " +str(len(res1)) +" where darsteller = '" + i.replace("'", "''") + "'")
 		if zu_erfassen:

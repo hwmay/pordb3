@@ -73,12 +73,12 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 						self.y_pos += 30
 					elif wert2:
 						zu_lesen = "SELECT * from pordb_darsteller where darsteller = %s"
-						lese_func = DBLesen(self, zu_lesen, wert2.replace("'", "''").title())
+						lese_func = DBLesen(self, zu_lesen, wert2.title())
 						res = DBLesen.get_data(lese_func)
 						if res:
 							bilddatei = self.getBilddatei(res[0][0], res[0][1])
 						else:
-							bilddatei = self.getBilddatei(wert2.replace("'", "''").title())
+							bilddatei = self.getBilddatei(wert2.replace("'", "_apostroph_").title())
 						pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
 						if pixmap.height() > max_height:
 							max_height = pixmap.height()

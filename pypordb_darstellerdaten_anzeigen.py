@@ -94,6 +94,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			if len(res) > 0:
 				self.lineEditLand.setText(res[0][0])
 				self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
+				
+		# Actor birthplace
+		self.birthplace = ActorData.actor_birthplace(actordata)
+		if self.birthplace == "No data":
+			self.birthplace = ""
+		self.labelBirthplace.setText(self.birthplace)
 		
 		# Darsteller Ethnic
 		self.ethnic = ActorData.actor_ethnic(actordata)

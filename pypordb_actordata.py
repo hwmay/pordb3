@@ -45,6 +45,13 @@ class ActorData():
 		ende = self.seite.find('</td></tr>', anfang)
 		return self.seite[anfang+33:ende]
 	
+	def actor_birthplace(self):
+		anfang = self.seite.find('Birthplace</b></td><td>')
+		if anfang < 0:
+			return False
+		ende = self.seite.find('</td></tr>', anfang)
+		return self.seite[anfang+23:ende].strip("&nbsp;")
+	
 	def actor_ethnic(self):
 		anfang = self.seite.find('Ethnicity</b></td><td>')
 		ende = self.seite.find('</td></tr>', anfang)

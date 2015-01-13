@@ -3362,8 +3362,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if ein:
 				zu_lesen += " AND "
 			zu_lesen += "groesse >= %s AND groesse < %s"
-			werte.append(str(groesse1))
-			werte.append(str(groesse2))
+			werte.append(groesse1)
+			werte.append(groesse2)
 		zu_lesen += " ORDER BY file"
 		if len(ein) < 3 and not filesizefrom:
 			self.lineEditSuchen.setFocus()

@@ -15,7 +15,7 @@ class Devices(QtGui.QDialog, pordb_devices):
 		
 		self.device_fuellen = device_fuellen
 		
-		zu_lesen = "select * from pordb_mpg_verzeichnisse order by dir"
+		zu_lesen = "SELECT * FROM pordb_mpg_verzeichnisse ORDER BY dir"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		row = 0
@@ -38,7 +38,7 @@ class Devices(QtGui.QDialog, pordb_devices):
 	def accept(self):
 		position = 0
 		zu_erfassen = []
-		zu_erfassen.append("delete from pordb_mpg_verzeichnisse")
+		zu_erfassen.append("DELETE FROM pordb_mpg_verzeichnisse")
 		for i in range(self.tableWidget.rowCount()):
 			cell = []
 			position += 1
@@ -51,7 +51,9 @@ class Devices(QtGui.QDialog, pordb_devices):
 					pass
 			try:
 				if cell[0]:
-					zu_erfassen.append("insert into pordb_mpg_verzeichnisse (dir) values ('" +cell[0] +"')")
+					werte = []
+					werte.append(cell[0])
+					zu_erfassen.append(["INSERT INTO pordb_mpg_verzeichnisse (dir) VALUES (%s)", werte])
 			except:
 				pass
 		

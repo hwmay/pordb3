@@ -13,12 +13,13 @@ class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
 		self.connect(self.pushButtonLandSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
 		self.connect(self.pushButtonLandAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
 		
-		zu_lesen = "select * from pordb_suchbegriffe order by suchbegriff"
+		zu_lesen = "SELECT * FROM pordb_suchbegriffe ORDER BY suchbegriff"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		row = 0
 		self.tableWidgetSuche.clear()
 		self.tableWidgetSuche.setRowCount(len(res) + 2)
+		self.tableWidgetSuche.setSortingEnabled(False)
 		for i in res:
 			column = 0
 			for j in i:
@@ -33,11 +34,12 @@ class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
 		self.tableWidgetSuche.setAlternatingRowColors(True)
 		self.tableWidgetSuche.resizeColumnsToContents()
 		self.tableWidgetSuche.resizeRowsToContents()
+		#self.tableWidgetSuche.setSortingEnabled(True)
 		
 	def onSpeichern(self):
 		position = 0
 		zu_erfassen = []
-		zu_erfassen.append("delete from pordb_suchbegriffe")
+		zu_erfassen.append("DELETE FROM pordb_suchbegriffe")
 		for i in range(self.tableWidgetSuche.rowCount()):
 			cell = []
 			position += 1
@@ -50,7 +52,10 @@ class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
 					pass
 			try:
 				if cell[0]:
-					zu_erfassen.append("insert into pordb_suchbegriffe (suchbegriff, alternative) values ('" +cell[0] +"', '" +cell[1] +"')")
+					werte = []
+					werte.append(cell[0])
+					werte.append(cell[1])
+					zu_erfassen.append(["INSERT INTO pordb_suchbegriffe (suchbegriff, alternative) VALUES (%s, %s)", werte])
 			except:
 				pass
 		

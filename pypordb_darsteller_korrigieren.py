@@ -31,13 +31,13 @@ class DarstellerKorrigieren(QtGui.QDialog, pordb_darsteller_korrigieren):
 		
 	def onSuchen(self):
 		suchbegriff = str(self.lineEditFilter.text())
-		zu_lesen = "select darsteller from pordb_darsteller where darsteller like '%" +suchbegriff  +"%'"
+		zu_lesen = "SELECT darsteller FROM pordb_darsteller WHERE darsteller LIKE '%" +suchbegriff  +"%'"
 		if self.comboBoxGeschlecht.currentText() == self.trUtf8("Male"):
-			zu_lesen += " and sex = 'm'"
+			zu_lesen += " AND sex = 'm'"
 		elif self.comboBoxGeschlecht.currentText() == self.trUtf8("Female"):
-			zu_lesen += " and sex = 'w'"
+			zu_lesen += " AND sex = 'w'"
 		self.comboBoxGeschlecht.setCurrentIndex(0)
-		zu_lesen += " order by darsteller"
+		zu_lesen += " ORDER BY darsteller"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		self.tableWidgetDarstellerGefunden.setColumnCount(1)

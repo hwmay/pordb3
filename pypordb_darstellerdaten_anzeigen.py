@@ -88,7 +88,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.checkBoxLand.setCheckState(QtCore.Qt.Unchecked)
 		else:
 			self.lineEditLand.setText(self.land)
-			zu_lesen = "select iso from pordb_iso_land where national = %s"
+			zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
 			self.lese_func = DBLesen(self, zu_lesen, self.land)
 			res = DBLesen.get_data(self.lese_func)
 			if len(res) > 0:
@@ -107,8 +107,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.ethnic = ""
 			self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
 		else:
-			ethnic = ethniticies.get(self.ethnic, self.trUtf8("nicht vorhanden"))
-			if ethnic != self.trUtf8("nicht vorhanden"):
+			ethnic = ethniticies.get(self.ethnic, self.trUtf8("not available"))
+			if ethnic != self.trUtf8("not available"):
 				self.ethnic = ethnic
 				self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
 		self.lineEditEthnic.setText(self.ethnic)
@@ -119,8 +119,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.haare = ""
 			self.checkBoxHaare.setCheckState(QtCore.Qt.Unchecked)
 		else:
-			haarfarbe = haarfarben.get(self.haare, self.trUtf8("nicht vorhanden"))
-			if haarfarbe != self.trUtf8("nicht vorhanden"):
+			haarfarbe = haarfarben.get(self.haare, self.trUtf8("not available"))
+			if haarfarbe != self.trUtf8("not available"):
 				self.haare = haarfarbe
 				self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
 		self.lineEditHaare.setText(self.haare)
@@ -204,32 +204,23 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					geboren = str(self.labelGeboren.text())
 				datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
 				name = str(self.lineEditName.text())
-				zu_erfassen_zw = "INSERT into pordb_darsteller VALUES ('" 
-				zu_erfassen_zw += name.title().replace("'", "''") 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.lineEditGeschlecht.text()) 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(0) 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += datum 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.lineEditHaare.text()).lower() 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.lineEditLand.text()).upper()[0:2] 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.lineEditTattos.text()).replace("'", "''") 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.lineEditEthnic.text()).lower()
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(0) 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += geboren 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.filme) 
-				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.url).replace("'", "''")
-				zu_erfassen_zw += "', '" +str(self.aktiv_von) +"', '" +str(self.aktiv_bis) +"', '" +datum +"')"
-				zu_erfassen.append(zu_erfassen_zw)
+				werte = []
+				werte.append(name.title())
+				werte.append(str(self.lineEditGeschlecht.text()))
+				werte.append(str(0))
+				werte.append(datum)
+				werte.append(str(self.lineEditHaare.text()).lower())
+				werte.append(str(self.lineEditLand.text()).upper()[0:2])
+				werte.append(str(self.lineEditTattos.text()))
+				werte.append(str(self.lineEditEthnic.text()).lower())
+				werte.append(str(0))
+				werte.append(geboren)
+				werte.append(str(self.filme))
+				werte.append(str(self.url))
+				werte.append(str(self.aktiv_von))
+				werte.append(str(self.aktiv_bis))
+				werte.append(datum)
+				zu_erfassen.append(["INSERT INTO pordb_darsteller VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", werte])
 				action = None
 				if self.checkBoxPseudo.isChecked():
 					action = self.pseudo_uebernehmen(name, zu_erfassen)
@@ -265,31 +256,63 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					if res[0][9] and res[0][9] != '0001-01-01':
 						pass
 					else:
-						zu_erfassen.append("update pordb_darsteller set geboren = '0001-01-01' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+						werte = []
+						werte.append(res[0][0])
+						zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = '0001-01-01' WHERE darsteller = %s", werte])
 				else:
-					zu_erfassen.append("update pordb_darsteller set geboren = '" +str(self.labelGeboren.text()) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+					werte = []
+					werte.append(str(self.labelGeboren.text()))
+					werte.append(res[0][0])
+					zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = %s WHERE darsteller = %s", werte])
 			if self.checkBoxLand.isChecked() and str(self.lineEditLand.text()):
-				zu_erfassen.append("update pordb_darsteller set nation = '" +str(self.lineEditLand.text()).upper() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(self.lineEditLand.text()).upper())
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET nation = %s WHERE darsteller = %s", werte])
 			if self.checkBoxEthnic.isChecked():
-				zu_erfassen.append("update pordb_darsteller set ethnic = '" +str(self.lineEditEthnic.text()).lower() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(self.lineEditEthnic.text()).lower())
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET ethnic = %s WHERE darsteller = %s", werte])
 			if self.checkBoxHaare.isChecked():
-				zu_erfassen.append("update pordb_darsteller set haarfarbe = '" +str(self.lineEditHaare.text()).lower() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(self.lineEditHaare.text()).lower())
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET haarfarbe = %s WHERE darsteller = %s", werte])
 			if self.checkBoxTattos.isChecked() and str(self.lineEditTattos.text()):
 				if len((self.lineEditTattos.text())) > 500:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
 					return
-				zu_erfassen.append("update pordb_darsteller set tattoo = '" +str(self.lineEditTattos.text()).replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set filme = '" +str(self.filme) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set url = '" +self.url.replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(self.lineEditTattos.text()))
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET tattoo = %s WHERE darsteller = %s", werte])
+			werte = []
+			werte.append(str(self.filme))
+			werte.append(res[0][0])
+			zu_erfassen.append(["UPDATE pordb_darsteller SET filme = %s WHERE darsteller = %s", werte])
+			werte = []
+			werte.append(self.url)
+			werte.append(res[0][0])
+			zu_erfassen.append(["UPDATE pordb_darsteller SET url = %s WHERE darsteller = %s", werte])
+			werte = []
+			werte.append(str(self.aktiv_von))
+			werte.append(res[0][0])
+			zu_erfassen.append(["UPDATE pordb_darsteller SET aktivvon = %s WHERE darsteller = %s", werte])
+			werte = []
+			werte.append(str(self.aktiv_bis))
+			werte.append(res[0][0])
+			zu_erfassen.append(["UPDATE pordb_darsteller SET aktivbis = %s WHERE darsteller = %s", werte])
 			if self.checkBoxPseudo.isChecked():
 				action = self.pseudo_uebernehmen(res[0][0], zu_erfassen)
 				if not action: 
 					return
 				
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			werte = []
+			werte.append(datum)
+			werte.append(res[0][0])
+			zu_erfassen.append(["UPDATE pordb_darsteller SET besuch = %s WHERE darsteller = %s", werte])
 				
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
@@ -319,7 +342,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		for i in pseudos:
 			if i and i.strip() != name.title().strip():
 				res = []
-				zu_lesen = "select darsteller from pordb_darsteller where darsteller = %s"
+				zu_lesen = "SELECT darsteller FROM pordb_darsteller WHERE darsteller = %s"
 				self.lese_func = DBLesen(self, zu_lesen, i.strip().title())
 				res = DBLesen.get_data(self.lese_func)
 				if res:
@@ -334,9 +357,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 						return False
 				checkpseudo = CheckPseudos(i.strip().title(), name.strip().title())
 				check = CheckPseudos.check(checkpseudo)
-				befehl = "insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')"
+				werte = []
+				werte.append(i.strip().title())
+				werte.append(name.strip().title())
+				befehl = "INSERT INTO pordb_pseudo (pseudo, darsteller) VALUES (%s, %s)"
 				if check and befehl not in zu_erfassen:
-					zu_erfassen.append(befehl)
+					zu_erfassen.append([befehl, werte])
 		return True
 					
 	def onClose(self):

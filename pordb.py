@@ -197,7 +197,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res:
-				zu_erfassen = "delete from pordb_history where time < '" +str(res[-1][-1]) +"'"
+				zu_erfassen = "DELETE FROM pordb_history WHERE time < '" +str(res[-1][-1]) +"'"
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
 			self.verzeichnis = str(os.path.expanduser("~") +os.sep +"mpg")

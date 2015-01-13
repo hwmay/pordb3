@@ -16,7 +16,7 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		
 		self.url = url
 		
-		zu_lesen = "select * from pordb_bookmarks order by z"
+		zu_lesen = "SELECT * FROM pordb_bookmarks ORDER BY z"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		row = 0
@@ -35,7 +35,10 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		self.tableWidgetBookmarks.resizeRowsToContents()
 		
 	def accept(self):
-		zu_erfassen = "insert into pordb_bookmarks (url) values ('" +self.url.replace("'", "''") +"')"
+		werte = []
+		zu_erfassen = []
+		werte.append(self.url)
+		zu_erfassen.append(["INSERT INTO pordb_bookmarks (url) VALUES (%s)", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		
@@ -52,7 +55,10 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		item = self.tableWidgetBookmarks.item(row, 1)
 		a = item.text()
 		try:
-			zu_erfassen = "delete from pordb_bookmarks where z = " +str(item.text())
+			werte = []
+			zu_erfassen = []
+			werte.append(str(item.text()))
+			zu_erfassen.append(["DELETE FROM pordb_bookmarks WHERE z = %s", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 			self.close()

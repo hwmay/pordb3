@@ -42,9 +42,11 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 				row += 1
 	
 	def onSpeichern(self):
-		zu_erfassen = ""
+		zu_erfassen = []
+		werte = []
 		position = 0
-		zu_erfassen = "delete from pordb_pseudo where darsteller = '" +self.darsteller +"'"
+		werte.append(self.darsteller)
+		zu_erfassen.append(["DELETE FROM pordb_pseudo WHERE darsteller = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		for i in range(self.tableWidgetPseudo.rowCount()):
@@ -59,7 +61,11 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 				checkpseudo = CheckPseudos(cell[0].title().replace("'", "''"), self.darsteller)
 				check = CheckPseudos.check(checkpseudo)
 				if check:
-					zu_erfassen = "insert into pordb_pseudo (pseudo, darsteller) values ('" +cell[0].title().replace("'", "''") +"', '" +self.darsteller +"')"
+					zu_erfassen = []
+					werte = []
+					werte.append(cell[0].title())
+					werte.append(self.darsteller)
+					zu_erfassen.append(["INSERT INTO pordb_pseudo (pseudo, darsteller) VALUES (%s, %s)", werte])
 					update_func = DBUpdate(self, zu_erfassen)
 					DBUpdate.update_data(update_func)
 		

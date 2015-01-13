@@ -81,7 +81,10 @@ class Historie(QtGui.QDialog, pordb_historie):
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		if res:
-			zu_erfassen = "delete from pordb_history where time < '" +str(res[-1][-1]) +"'"
+			werte = []
+			zu_erfassen = []
+			werte.append(str(res[-1][-1]))
+			zu_erfassen.append(["DELETE FROM pordb_history WHERE time < %s", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 			

@@ -15,7 +15,7 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
 		
 		self.nation_fuellen = nation_fuellen
 		
-		zu_lesen = "select * from pordb_iso_land order by land"
+		zu_lesen = "SELECT * FROM pordb_iso_land ORDER BY land"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		row = 0
@@ -39,7 +39,7 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
 	def onSpeichern(self):
 		position = 0
 		zu_erfassen = []
-		zu_erfassen.append("delete from pordb_iso_land")
+		zu_erfassen.append("DELETE FROM pordb_iso_land")
 		for i in range(self.tableWidgetLaender.rowCount()):
 			cell = []
 			position += 1
@@ -52,7 +52,12 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
 					pass
 			try:
 				if cell[0]:
-					zu_erfassen.append("insert into pordb_iso_land (iso, land, aktiv, national) values ('" +cell[0] +"', '" +cell[1] +"', '" +cell[2] +"', '" +cell[3] +"')")
+					werte = []
+					werte.append(cell[0])
+					werte.append(cell[1])
+					werte.append(cell[2])
+					werte.append(cell[3])
+					zu_erfassen.append(["INSERT INTO pordb_iso_land (iso, land, aktiv, national) VALUES (%s, %s, %s, %s)", werte])
 			except:
 				pass
 		

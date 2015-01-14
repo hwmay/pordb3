@@ -17,7 +17,7 @@ class NeueingabeDarsteller(QtGui.QDialog, pordb_darstellerneu):
 		
 		self.setWindowTitle(self.trUtf8("Actor ") +self.darsteller + self.trUtf8(" will be added"))
 		# Combobox für Nation füllen
-		zu_lesen = "select * from pordb_iso_land where aktiv = %s order by land"
+		zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"
 		lese_func = DBLesen(self, zu_lesen, "x")
 		res = DBLesen.get_data(lese_func)
 		for i in res:
@@ -30,7 +30,17 @@ class NeueingabeDarsteller(QtGui.QDialog, pordb_darstellerneu):
 			return
 		# insert/update-Anweisung aufbauen
 		datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-		zu_erfassen = str("INSERT into pordb_darsteller VALUES ('" +self.darsteller.replace("'", "''") +"', '" +str(self.comboBoxDarstellerneuGeschlecht.currentText()) + "', '" +str(0) +"', '" +datum +"', '" +str(self.comboBoxDarstellerneuHaarfarbe.currentText()) +"', '" +str(self.comboBoxDarstellerneuNation.currentText())[0:2] +"', '" +self.lineEditDarstellerneuTattoo.text().replace("'", "''") +"', '" +str(self.comboBoxDarstellerneuEthnic.currentText()) +"')")
+		werte = []
+		zu_erfassen = []
+		werte.append(self.darsteller)
+		werte.append(str(self.comboBoxDarstellerneuGeschlecht.currentText()))
+		werte.append("0")
+		werte.append(datum)
+		werte.append(str(self.comboBoxDarstellerneuHaarfarbe.currentText()))
+		werte.append(str(self.comboBoxDarstellerneuNation.currentText())[0:2])
+		werte.append(self.lineEditDarstellerneuTattoo.text())
+		werte.append(str(self.comboBoxDarstellerneuEthnic.currentText()))
+		zu_erfassen.append(["INSERT into pordb_darsteller VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		self.close()

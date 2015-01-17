@@ -393,7 +393,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if not darsteller_liste[0]:
 				darsteller_liste = []
 			for i in darsteller_liste:
-				zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl - 1 where darsteller = '" + i.replace("'", "''") + "'")
+				werte = []
+				werte.append(i)
+				zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl - 1 WHERE darsteller = %s", werte])
 			if not self.radioButtonCoverJa.isChecked():
 				bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +str(bild).rstrip()
 				if str(cd) != self.cd_alt:
@@ -407,87 +409,87 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						else:
 							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 							return
-			zu_erfassen.append("delete from pordb_partner where cd = " +str(cd) + " and bild = '" +bild.replace("'", "''") +"'")
-			cs = ""
-			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild.replace("'", "''") +"', gesehen = '" +gesehen +"', original = '" +original 
+			werte = []
+			werte.append(cd)
+			werte.append(bild)
+			zu_erfassen.append(["DELETE FROM pordb_partner WHERE cd = %s AND bild = %s", werte])
+			werte = []
+			werte.append(titel)
+			werte.append(", ".join(darsteller))
+			werte.append(cd)
+			werte.append(bild)
+			werte.append(gesehen)
+			werte.append(original)
+			zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s where cd = %s and bild = %s"
 			if self.spinBoxF.value() > 0:
-				cs = str(self.spinBoxF.value())
-				zu_erfassen_zw += "', csf = '" +cs 
+				werte.append(self.spinBoxF.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csf = '" +"0"
+				werte.append(0)
 			if self.spinBoxH.value() > 0:
-				cs = str(self.spinBoxH.value())
-				zu_erfassen_zw += "', csh = '" +cs 
+				werte.append(self.spinBoxH.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csh = '" +"0"
+				werte.append(0)
 			if self.spinBoxT.value() > 0:
-				cs = str(self.spinBoxT.value())
-				zu_erfassen_zw += "', cst = '" +cs 
+				werte.append(self.spinBoxT.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', cst = '" +"0"
+				werte.append(0)
 			if self.spinBoxC.value() > 0:
-				cs = str(self.spinBoxC.value())
-				zu_erfassen_zw += "', csc = '" +cs 
+				werte.append(self.spinBoxC.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csc = '" +"0"
+				werte.append(0)
 			if self.spinBoxX.value() > 0:
-				cs = str(self.spinBoxX.value())
-				zu_erfassen_zw += "', csx = '" +cs 
+				werte.append(self.spinBoxX.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csx = '" +"0"
+				werte.append(0)
 			if self.spinBoxO.value() > 0:
-				cs = str(self.spinBoxO.value())
-				zu_erfassen_zw += "', cso = '" +cs 
+				werte.append(self.spinBoxO.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', cso = '" +"0"
+				werte.append(0)
 			if self.spinBoxV.value() > 0:
-				cs = str(self.spinBoxV.value())
-				zu_erfassen_zw += "', csv = '" +cs 
+				werte.append(self.spinBoxV.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csv = '" +"0"
+				werte.append(0)
 			if self.spinBoxB.value() > 0:
-				cs = str(self.spinBoxB.value())
-				zu_erfassen_zw += "', csb = '" +cs 
+				werte.append(self.spinBoxB.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csb = '" +"0"
+				werte.append(0)
 			if self.spinBoxA.value() > 0:
-				cs = str(self.spinBoxA.value())
-				zu_erfassen_zw += "', csa = '" +cs 
+				werte.append(self.spinBoxA.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', csa = '" +"0"
+				werte.append(0)
 			if self.spinBoxS.value() > 0:
-				cs = str(self.spinBoxS.value())
-				zu_erfassen_zw += "', css = '" +cs 
+				werte.append(self.spinBoxS.value())
 				self.spinBoxK.setValue(0)
 			else:
-				zu_erfassen_zw += "', css = '" +"0"
+				werte.append(0)
 			if self.spinBoxK.value() > 0:
-				cs = str(self.spinBoxK.value())
-				zu_erfassen_zw += "', csk = '" +cs 
+				werte.append(self.spinBoxK.value())
 			else:
-				zu_erfassen_zw += "', csk = '" +"0"
+				werte.append(0)
 			if self.comboBoxDefinition.currentIndex() == 0:
-				zu_erfassen_zw += "', hd = null"
+				werte.append(None)
 			elif self.comboBoxDefinition.currentIndex() == 1:
-				zu_erfassen_zw += "', hd = '0'"
+				werte.append("0")
 			elif self.comboBoxDefinition.currentIndex() == 2:
-				zu_erfassen_zw += "', hd = '1'"
+				werte.append("1")
 			elif self.comboBoxDefinition.currentIndex() == 3:
-				zu_erfassen_zw += "', hd = '2'"
+				werte.append("2")
 			elif self.comboBoxDefinition.currentIndex() == 4:
-				zu_erfassen_zw += "', hd = '3'"
+				werte.append("3")
 			elif self.comboBoxDefinition.currentIndex() == 5:
-				zu_erfassen_zw += "', hd = '9'"
-			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild.replace("'", "''") +"'"
+				werte.append("9")
+			werte.append(vorhanden)
+			werte.append(self.cd_alt)
+			werte.append(bild)
 			if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
 				if os.path.exists(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()):
 					# Bild war Thumbnail im CD Verzeichnis -> dieses löschen und neues im Cover Verzeichnis anlegen
@@ -535,92 +537,121 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			else:
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 				return
-			cs = ""
-			zu_erfassen_zw = str("INSERT into pordb_vid VALUES ('" +titel.replace("'", "''") +"', '" +", ".join(darsteller).replace("'", "''") +"', " +str(cd) +", '" +bild.replace("'", "''") +"', '" +gesehen +"', '" +original +"', ' " +"', '" +vorhanden +"', DEFAULT") 
+			werte = []
+			werte.append("pordb_vid_primkey_seq")
+			zu_lesen = "SELECT nextval(%s)"
+			self.lese_func = DBLesen(self, zu_lesen, werte)
+			res = DBLesen.get_data(self.lese_func)
+			werte = []
+			werte.append(titel)
+			werte.append(", ".join(darsteller))
+			werte.append(cd)
+			werte.append(bild)
+			werte.append(gesehen)
+			werte.append(original)
+			werte.append("")
+			werte.append(vorhanden)
+			werte.append(res[0][0])
+			zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 			if self.spinBoxF.value() > 0:
-				cs = str(self.spinBoxF.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxF.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxH.value() > 0:
-				cs = str(self.spinBoxH.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxH.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxT.value() > 0:
-				cs = str(self.spinBoxT.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxT.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxC.value() > 0:
-				cs = str(self.spinBoxC.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxC.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxX.value() > 0:
-				cs = str(self.spinBoxX.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxX.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxO.value() > 0:
-				cs = str(self.spinBoxO.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxO.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxV.value() > 0:
-				cs = str(self.spinBoxV.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxV.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxB.value() > 0:
-				cs = str(self.spinBoxB.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxB.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxA.value() > 0:
-				cs = str(self.spinBoxA.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxA.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxS.value() > 0:
-				cs = str(self.spinBoxS.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxS.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
+			
 			if self.spinBoxK.value() > 0:
-				cs = str(self.spinBoxK.value())
-				zu_erfassen_zw += ", " +cs 
+				cs = self.spinBoxK.value()
 			else:
-				zu_erfassen_zw += ", 0"
+				cs = 0
+			werte.append(cs)
 				
 			if self.comboBoxDefinition.currentIndex() == 0:
-				zu_erfassen_zw += ", null"
+				werte.append(None)
 			elif self.comboBoxDefinition.currentIndex() == 1:
-				zu_erfassen_zw += ", '0'"
+				werte.append("0")
 			elif self.comboBoxDefinition.currentIndex() == 2:
-				zu_erfassen_zw += ", '1'"
+				werte.append("1")
 			elif self.comboBoxDefinition.currentIndex() == 3:
-				zu_erfassen_zw += ", '2'"
+				werte.append("2")
 			elif self.comboBoxDefinition.currentIndex() == 4:
-				zu_erfassen_zw += ", '3'"
+				werte.append("3")
 			elif self.comboBoxDefinition.currentIndex() == 5:
-				zu_erfassen_zw += ", '9'"
-			zu_erfassen_zw += ")"
+				werte.append("9")
 			
-		zu_erfassen.append(zu_erfassen_zw)
+		zu_erfassen.append([zu_erfassen_zw, werte])
 			
 		for i in darsteller:
 			if i.lstrip() == "" or i.lstrip() == "?":
 				continue
-			zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl + 1 where darsteller = '" + i.replace("'", "''") + "'")
+			werte = []
+			werte.append(i)
+			zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl + 1 WHERE darsteller = %s", werte])
 			if i == "" or i == "?" or i == "(Uninteressant)" or i == "(Komplett)" or i == "(Schlechte Qualitaet)":
 				continue
 			zu_lesen = "SELECT * FROM pordb_darsteller100 WHERE darsteller = %s"
 			self.lese_func = DBLesen(self, zu_lesen, i)
 			res1 = DBLesen.get_data(self.lese_func)
 			if len(res1) != 0:
-				zu_erfassen.append("delete from pordb_darsteller100 where nr = '" + str(res1[0][0]) +"'")
-			zu_erfassen.append("INSERT into pordb_darsteller100 (darsteller) VALUES ('" +i.replace("'", "''") +"')")
+				werte = []
+				werte.append(str(res1[0][0]))
+				zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE nr = %s", werte])
+			werte = []
+			werte.append(i)
+			zu_erfassen.append(["INSERT INTO pordb_darsteller100 (darsteller) VALUES (%s)", werte])
 			
 			partner_zaehler = 0
 			if i.strip() != "(Uninteressant)" and i.strip() != "Defekt":
@@ -635,7 +666,12 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						res2 = DBLesen.get_data(self.lese_func)
 						geschlecht2 = res2[0][0]
 						if geschlecht != geschlecht2:
-							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
+							werte = []
+							werte.append(i)
+							werte.append(j)
+							werte.append(cd)
+							werte.append(bild)
+							zu_erfassen.append(["INSERT INTO pordb_partner VALUES (%s, %s, %s, %s)", werte])
 							zu_lesen = "SELECT darsteller FROM pordb_partner WHERE darsteller = %s AND partner = %s"
 							self.lese_func = DBLesen(self, zu_lesen, (i, j))
 							res3 = DBLesen.get_data(self.lese_func)
@@ -643,7 +679,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 								partner_zaehler += 1
 							
 			if partner_zaehler > 0:
-				zu_erfassen.append("UPDATE pordb_darsteller set partner = partner + " +str(partner_zaehler) +" where darsteller = '" + i.replace("'", "''") + "'")
+				werte = []
+				werte.append(partner_zaehler)
+				werte.append(i)
+				zu_erfassen.append(["UPDATE pordb_darsteller SET partner = partner + %s WHERE darsteller = %s", werte])
 				
 		zu_lesen = "SELECT * FROM pordb_darsteller100"
 		self.lese_func = DBLesen(self, zu_lesen)
@@ -652,9 +691,16 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if anzahl_loeschen > 0:
 			res1.sort()
 			for zaehler in range(anzahl_loeschen):
-				zu_erfassen.append("delete from pordb_darsteller100 where nr = '" + str(res1[zaehler][0]) +"'")
+				werte = []
+				werte.append(str(res1[zaehler][0]))
+				zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE nr = %s", werte])
 		if not self.korrektur and original:
-			zu_erfassen.append("UPDATE pordb_vid_neu SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", original = '" +original +"'")
+			werte = []
+			werte.append(titel)
+			werte.append(", ".join(darsteller))
+			werte.append(cd)
+			werte.append(original)
+			zu_erfassen.append(["UPDATE pordb_vid_neu SET titel = %s, darsteller = %s, cd = %s, original = %s", werte])
 		
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
@@ -665,7 +711,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_lesen = "SELECT primkey FROM pordb_vid WHERE cd = %s AND bild = %s"
 				self.lese_func = DBLesen(self, zu_lesen, (str(self.cd_alt), str(bild)))
 				curr_key = DBLesen.get_data(self.lese_func)
-				zu_erfassen.append("delete from pordb_original where foreign_key_pordb_vid = " +str(curr_key[0][0]))
+				werte = []
+				werte.append(str(curr_key[0][0]))
+				zu_erfassen.append(["DELETE FROM pordb_original WHERE foreign_key_pordb_vid = %s", werte])
 			else:
 				zu_lesen = "SELECT primkey FROM pordb_vid WHERE cd = %s AND bild = %s"
 				self.lese_func = DBLesen(self, zu_lesen, (str(cd), bild))
@@ -673,9 +721,15 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			for i in self.original_weitere:
 				if i:
 					if type(i) == str:
-						zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +i.replace("'", "''").title() +"', " +str(curr_key[0][0]) +")")
+						werte = []
+						werte.append(i.title())
+						werte.append(str(curr_key[0][0]))
+						zu_erfassen.append(["INSERT INTO pordb_original (original, foreign_key_pordb_vid) VALUES (%s, %s)", werte])
 					else:
-						zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +i.decode().replace("'", "''").title() +"', " +str(curr_key[0][0]) +")")
+						werte = []
+						werte.append(i.decode().title())
+						werte.append(str(curr_key[0][0]))
+						zu_erfassen.append(["INSERT INTO pordb_original (original, foreign_key_pordb_vid) VALUES (%s, %s)", werte])
 					
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
@@ -789,7 +843,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		zu_erfassen = []
 		for i in darsteller_liste:
 			if i:
-				zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl - 1 where darsteller = '" + i.replace("'", "''") + "'")
+				werte = []
+				werte.append(i)
+				zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl - 1 WHERE darsteller = %s", werte])
 		# Daten für undo sichern
 		zu_lesen = "SELECT * FROM pordb_vid WHERE cd = %s AND bild = %s"
 		self.lese_func = DBLesen(self, zu_lesen, (str(self.cd), self.bild))
@@ -826,8 +882,14 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			textdatei.write("COVER" +"\n")
 		textdatei.close()
 
-		zu_erfassen.append("DELETE FROM pordb_vid where cd = " +str(self.cd) + " and bild = '" +self.bild.strip().replace("'", "''") +"'")
-		zu_erfassen.append("delete from pordb_partner where cd = " +str(self.cd) + " and bild = '" +self.bild.strip().replace("'", "''") +"'")
+		werte = []
+		werte.append(str(self.cd))
+		werte.append(self.bild.strip())
+		zu_erfassen.append(["DELETE FROM pordb_vid WHERE cd = %s AND bild = %s", werte])
+		werte = []
+		werte.append(str(self.cd))
+		werte.append(self.bild.strip())
+		zu_erfassen.append(["DELETE FROM pordb_partner WHERE cd = %s AND bild = %s", werte])
 		
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
@@ -838,7 +900,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_lesen = "SELECT DISTINCT ON (partner) partner FROM pordb_partner WHERE darsteller = %s"
 				self.lese_func = DBLesen(self, zu_lesen, i)
 				res1 = DBLesen.get_data(self.lese_func)
-				zu_erfassen.append("UPDATE pordb_darsteller set partner = " +str(len(res1)) +" where darsteller = '" + i.replace("'", "''") + "'")
+				werte = []
+				werte.append(len(res1))
+				werte.append(i)
+				zu_erfassen.append(["UPDATE pordb_darsteller SET partner = %s WHERE darsteller = %s", werte])
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)

@@ -410,7 +410,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 							return
 			werte = []
-			werte.append(cd)
+			werte.append(self.cd_alt)
 			werte.append(bild)
 			zu_erfassen.append(["DELETE FROM pordb_partner WHERE cd = %s AND bild = %s", werte])
 			werte = []

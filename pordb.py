@@ -702,7 +702,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onAnzahlZeilen(self):
 		if self.columns == float(self.spinBoxZeilen.value()):
 			return
-		zu_erfassen = "update pordb_vid_neu set anzahl_bilder = '" +str(int(self.spinBoxZeilen.value())) +"'"
+		werte = []
+		werte.append(str(int(self.spinBoxZeilen.value())))
+		zu_erfassen = []
+		zu_erfassen.append(["UPDATE pordb_vid_neu SET anzahl_bilder = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		self.rows = float(self.spinBoxZeilen.value())
@@ -717,7 +720,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onAnzahlSpalten(self):
 		if self.columns == float(self.spinBoxSpalten.value()):
 			return
-		zu_erfassen = "update pordb_vid_neu set anzahl_spalten = '" +str(int(self.spinBoxSpalten.value())) +"'"
+		werte = []
+		werte.append(str(int(self.spinBoxSpalten.value())))
+		zu_erfassen = []
+		zu_erfassen.append(["UPDATE pordb_vid_neu SET anzahl_spalten = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		self.columns = float(self.spinBoxSpalten.value())
@@ -759,7 +765,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.suchfeld.setFocus()
 			
 	def onVidNeuAktualisieren(self):
-		zu_erfassen = "UPDATE pordb_vid_neu SET cd = " +str(self.spinBoxAktuell.value())
+		werte = []
+		werte.append(str(self.spinBoxAktuell.value()))
+		zu_erfassen = []
+		zu_erfassen.append(["UPDATE pordb_vid_neu SET cd = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 			
@@ -988,7 +997,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			neuer_name = str(umbenennen.lineEditNeuerName.text())
 			if neuer_name:
 				app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-				zu_erfassen = "update pordb_vid set original = '" +neuer_name.title().replace("'", "''") +"' where original = '" +original.replace("'", "''") +"'"
+				werte = []
+				werte.append(neuer_name.title())
+				werte.append(original)
+				zu_erfassen = []
+				zu_erfassen.append(["UPDATE pordb_vid SET original = %s WHERE original = %s", werte])
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
 				zu_lesen = "SELECT * FROM pordb_vid WHERE original = %s ORDER BY original, cd, bild, darsteller"
@@ -1021,7 +1034,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			column = self.tableWidgetBilder.column(i)
 			row = self.tableWidgetBilder.row(i)
 			index = int(row * self.columns + column + self.start_bilder)
-			zu_erfassen.append("update pordb_vid set vorhanden = '" +vorhanden +"', hd = " + resolution +" where cd = " +str(self.aktuelles_res[index][2]) +" and bild = '" +self.aktuelles_res[index][3].replace("'", "''") +"'")
+			werte = []
+			werte.append(vorhanden)
+			werte.append(resolution)
+			werte.append(str(self.aktuelles_res[index][2]))
+			werte.append(self.aktuelles_res[index][3])
+			zu_erfassen.append(["UPDATE pordb_vid SET vorhanden = %s, hd = %s WHERE cd = %s AND bild = %s", werte])
 		if zu_erfassen:
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
@@ -1133,7 +1151,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			original = ""
 		if item:
-			zu_erfassen = "UPDATE pordb_vid_neu SET original = '" +original.replace("'", "''") +"'"
+			werte = []
+			werte.append(original)
+			zu_erfassen = []
+			zu_erfassen.append(["UPDATE pordb_vid_neu SET original = %s", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 			self.statusBar.showMessage('"' +original +'"' +self.trUtf8(" transferred into clipboard"))
@@ -2195,7 +2216,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.listWidgetDarsteller.addItems(self.paarung)
 		self.labelText.setText(self.trUtf8("Partner: ") +str(len(self.paarung)))
 		if not ethnic and not cs:
-			zu_erfassen = "update pordb_darsteller set partner = " +str(len(self.paarung)) +" where darsteller = '" +gesucht.replace("'", "''") +"'"
+			werte = []
+			werte.append(len(self.paarung))
+			werte.append(gesucht)
+			zu_erfassen = []
+			zu_erfassen.append(["UPDATE pordb_darsteller SET partner = %s where darsteller = %s", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 	# end of onpaareSuchen
@@ -2394,7 +2419,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			geboren = "0001-01-01"
 		datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-		zu_erfassen = str("update pordb_darsteller set anzahl = " +str(ein) +", haarfarbe = '" +str(self.comboBoxHaarfarbe.currentText()) +"', sex = '" +str(self.comboBoxGeschlecht.currentText()) +"', nation = '" +str(self.comboBoxNation.currentText())[0:2] +"', tattoo = '" +self.lineEditTattoo.text().replace("'", "''") +"', geboren = '" +geboren +"', ethnic = '" +str(self.comboBoxEthnic.currentText()) +"' where darsteller = '" +name +"'")
+		werte = []
+		werte.append(str(ein))
+		werte.append(str(self.comboBoxHaarfarbe.currentText()))
+		werte.append(str(self.comboBoxGeschlecht.currentText()))
+		werte.append(str(self.comboBoxNation.currentText())[0:2])
+		werte.append(self.lineEditTattoo.text())
+		werte.append(geboren)
+		werte.append(str(self.comboBoxEthnic.currentText()))
+		werte.append(name)
+		zu_erfassen = []
+		zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = %s, haarfarbe = %s, sex = %s, nation = %s, tattoo = %s, geboren = %s, ethnic = %s WHERE darsteller = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		
@@ -2488,22 +2523,36 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_erfassen = []
 			if geboren == 0:
 				if not res[0][9]:
-					zu_erfassen.append("update pordb_darsteller set geboren = '0001-01-01' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+					werte = []
+					werte.append(res[0][0])
+					zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = '0001-01-01' WHERE darsteller = %s", werte])
 			else:
-				zu_erfassen.append("update pordb_darsteller set geboren = '" +str(geboren) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(geboren))
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = %s WHERE darsteller = %s", werte])
 			
 			# Darsteller Anzahl Filme
 			filme = ActorData.actor_movies(actordata)
 			if int(filme) > 0:
-				zu_erfassen.append("update pordb_darsteller set filme = '" +filme +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(filme)
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET filme = %s WHERE darsteller = %s", werte])
 				
 			# Darsteller aktiv von / bis
 			aktiv_von, aktiv_bis = ActorData.actor_activ(actordata)
 
 			if aktiv_von != 0:
-				zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(aktiv_von) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(aktiv_von))
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET aktivvon = %s WHERE darsteller = %s", werte])
 			if aktiv_bis != 0:
-				zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(aktiv_bis) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(str(aktiv_bis))
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET aktivbis = %s WHERE darsteller = %s", werte])
 				
 			# Darsteller Tattoos
 			tattoos = ActorData.actor_tattoos(actordata)
@@ -2514,10 +2563,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			else:
 				tats = tattoos.replace("'", "''").replace('\\', "")
 			if tats:
-				zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				werte = []
+				werte.append(tats)
+				werte.append(res[0][0])
+				zu_erfassen.append(["UPDATE pordb_darsteller SET tattoo = %s WHERE darsteller = %s", werte])
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			werte = []
+			werte.append(datum)
+			werte.append(res[0][0])
+			zu_erfassen.append(["UPDATE pordb_darsteller SET besuch = %s WHERE darsteller = %s", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 				
@@ -3133,13 +3188,19 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				lese_func = DBLesen(self, zu_lesen, neuer_name)
 				res3 = DBLesen.get_data(lese_func)
 				if res3:
-					zu_erfassen.append("update pordb_darsteller set anzahl = anzahl + " +str(len(res2)) +" where darsteller = '" +neuer_name.replace("'", "''") +"'")
+					werte = []
+					werte.append(len(res2))
+					werte.append(neuer_name)
+					zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl + %s WHERE darsteller = %s", werte])
 				else:
 					zu_erfassen.append("insert into pordb_darsteller values ('" +neuer_name.title().replace("'", "''").lstrip("=") +"', '" +res[0][1] +"', " +str(res[0][2]) +", '" +str(res[0][3]) +"', '" +res[0][4] +"', '" +res[0][5] +"', '" +res[0][6].replace("'", "''") +"', '" +res[0][7] +"', '" +str(res[0][8]) +"', '" +str(geboren) +"', '" +str(res[0][10]) +"', '" 
 					+url.replace("'", "''") +"', '" +str(aktivvon) +"', '" +str(aktivbis) +"', '" +str(besucht) +"')")
 
 				
-				zu_erfassen.append("update pordb_pseudo set darsteller = '" +neuer_name.title().replace("'", "''").lstrip("=") +"' where darsteller = '" +eingabe +"'")
+				werte = []
+				werte.append(neuer_name.title().lstrip("="))
+				werte.append(eingabe)
+				zu_erfassen.append(["UPDATE pordb_pseudo SET darsteller = %s WHERE darsteller = %s", werte])
 				werte = []
 				werte.append(eingabe)
 				zu_erfassen.append(["DELETE FROM pordb_darsteller WHERE darsteller = %s", werte])
@@ -3158,7 +3219,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							res2[l][2][k] = eingabe.title().lstrip("=").replace("''", "'")
 					darsteller_liste = sortier.darsteller_sortieren(res2[l][2])
 					darsteller_liste2 = [neuer_name.title().replace("'", "''") if x==eingabe.title().lstrip("=").replace("''", "'") else x for x in darsteller_liste]
-					zu_erfassen.append("update pordb_vid set darsteller = '" +", ".join(darsteller_liste2) +"' where cd = " +str(i[0]) +" and bild = '" +i[1].replace("'", "''") +"'")
+					werte = []
+					werte.append(", ".join(darsteller_liste2))
+					werte.append(i[0])
+					werte.append(i[1])
+					zu_erfassen.append(["UPDATE pordb_vid SET darsteller = %s WHERE cd = %s AND bild = %s", werte])
 
 				self.statusBar.showMessage(str(len(res2)) + self.trUtf8(" lines changed"))
 				
@@ -3698,7 +3763,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Quantity is not a number"))
 			return
-		zu_erfassen = "update pordb_vid_neu set partnerw = " +str(anzahl) 
+		werte = []
+		werte.append(anzahl)
+		zu_erfassen = []
+		zu_erfassen.append(["UPDATE pordb_vid_neu SET partnerw = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		self.onStatistikDarsteller("w", anzahl)
@@ -3709,7 +3777,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Quantity is not a number"))
 			return
-		zu_erfassen = "update pordb_vid_neu set partnerm = " +str(anzahl) 
+		werte = []
+		werte.append(anzahl)
+		zu_erfassen = []
+		zu_erfassen.append(["UPDATE pordb_vid_neu SET partnerm = %s", werte])
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		self.onStatistikDarsteller("m", anzahl)

@@ -1094,7 +1094,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 				for j in original_weitere:
 					if j:
-						zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +j.decode().replace("'", "''") +"', " +str(i[0]) +")")
+						werte = []
+						werte.append(j.decode())
+						werte.append(str(i[0]))
+						zu_erfassen.append(["INSERT INTO pordb_original (original, foreign_key_pordb_vid) VALUES (%s, %s)", werte])
 						
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
@@ -1811,7 +1814,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			werte = []
 			werte.append(befehl)
 			zu_erfassen.append(["DELETE FROM pordb_history WHERE sql = %s", werte])
-			zu_erfassen.append("INSERT INTO pordb_history VALUES ('" +befehl +"', DEFAULT)")
+			werte = []
+			werte.append(befehl)
+			werte.append(datetime.datetime.now().isoformat(' '))
+			zu_erfassen.append(["INSERT INTO pordb_history VALUES (%s, %s)", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		
@@ -1986,7 +1992,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				werte.append(e)
 				zu_erfassen.append(["DELETE FROM pordb_suche WHERE suche = %s", werte])
 				break
-		zu_erfassen.append("INSERT into pordb_suche (suche) VALUES ('" +e.replace("'", "''") +"')")
+		werte = []
+		werte.append(e)
+		zu_erfassen.append(["INSERT into pordb_suche (suche) VALUES (%s)", werte])
 		if len(res) >= 20:
 			werte = []
 			werte.append(str(res[0][0]))
@@ -3193,9 +3201,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					werte.append(neuer_name)
 					zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl + %s WHERE darsteller = %s", werte])
 				else:
-					zu_erfassen.append("insert into pordb_darsteller values ('" +neuer_name.title().replace("'", "''").lstrip("=") +"', '" +res[0][1] +"', " +str(res[0][2]) +", '" +str(res[0][3]) +"', '" +res[0][4] +"', '" +res[0][5] +"', '" +res[0][6].replace("'", "''") +"', '" +res[0][7] +"', '" +str(res[0][8]) +"', '" +str(geboren) +"', '" +str(res[0][10]) +"', '" 
-					+url.replace("'", "''") +"', '" +str(aktivvon) +"', '" +str(aktivbis) +"', '" +str(besucht) +"')")
-
+					werte = []
+					werte.append(neuer_name.title().lstrip("="))
+					werte.append(res[0][1])
+					werte.append(res[0][2])
+					werte.append(str(res[0][3]))
+					werte.append(res[0][4])
+					werte.append(res[0][5])
+					werte.append(res[0][6])
+					werte.append(res[0][7])
+					werte.append(res[0][8])
+					werte.append(str(geboren))
+					werte.append(res[0][10])
+					werte.append(url)
+					werte.append(aktivvon)
+					werte.append(aktivbis)
+					werte.append(str(besucht))
+					zu_erfassen.append(["INSERT INTO pordb_darsteller VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", werte])
 				
 				werte = []
 				werte.append(neuer_name.title().lstrip("="))
@@ -3231,19 +3253,29 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				lese_func = DBLesen(self, zu_lesen, eingabe)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
-					zu_erfassen.append("insert into pordb_partner values ('" +neuer_name.title().replace("'", "''") +"', '" +str(i[1]).replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]).replace("'", "''") +"')")
+					werte = []
+					werte.append(neuer_name.title())
+					werte.append(str(i[1]))
+					werte.append(i[2])
+					werte.append(str(i[3]))
+					zu_erfassen.append(["INSERT INTO pordb_partner VALUES (%s, %s, %s,%s)", werte])
 					werte = []
 					werte.append(eingabe)
 					zu_erfassen.append(["DELETE FROM pordb_partner WHERE darsteller = %s", werte])
 					
-				zu_lesen = "SELECT * FROM pordb_partner where partner = %s"
+				zu_lesen = "SELECT * FROM pordb_partner WHERE partner = %s"
 				lese_func = DBLesen(self, zu_lesen, eingabe)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
-					zu_erfassen.append("insert into pordb_partner values ('" +str(i[0]).replace("'", "''") +"', '" +neuer_name.title().replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]).replace("'", "''") +"')")
+					werte = []
+					werte.append(str(i[0]))
+					werte.append(neuer_name.title())
+					werte.append(i[2])
+					werte.append(str(i[3]))
+					zu_erfassen.append(["INSERT INTO pordb_partner VALUES (%s, %s, %s, %s)", werte])
 					werte = []
 					werte.append(eingabe)
-					zu_erfassen.append(["DELETE FROM pordb_partner where partner = %s", werte])
+					zu_erfassen.append(["DELETE FROM pordb_partner WHERE partner = %s", werte])
 					
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
@@ -4239,7 +4271,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						a.append(i)
 						a.append(int(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip())))
 						self.res_duplicates.append(a)
-				zu_erfassen.append("INSERT into pordb_mpg_katalog VALUES ('" +str(self.comboBoxDevice.currentText()) +"', '" +os.path.basename(self.verzeichnis_tools) +"', '" +i.replace("'", "''") +"', '" +" " +"', '" +str(os.path.getsize(self.verzeichnis_tools + os.sep + i)) +"')")
+				werte = []
+				werte.append(str(self.comboBoxDevice.currentText()))
+				werte.append(os.path.basename(self.verzeichnis_tools))
+				werte.append(i)
+				werte.append(None)
+				werte.append(os.path.getsize(self.verzeichnis_tools + os.sep + i))
+				zu_erfassen.append(["INSERT INTO pordb_mpg_katalog VALUES (%s, %s, %s, %s, %s)", werte])
 					
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)

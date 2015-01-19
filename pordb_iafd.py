@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_iafd.ui'
 #
-# Created: Sun Jan 11 23:43:58 2015
+# Created: Tue Jan 20 00:38:06 2015
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -195,6 +195,24 @@ class Ui_DatenausderIAFD(object):
 
         self.retranslateUi(DatenausderIAFD)
         QtCore.QMetaObject.connectSlotsByName(DatenausderIAFD)
+        DatenausderIAFD.setTabOrder(self.checkBoxBild, self.checkBoxName)
+        DatenausderIAFD.setTabOrder(self.checkBoxName, self.lineEditName)
+        DatenausderIAFD.setTabOrder(self.lineEditName, self.checkBoxGeschlecht)
+        DatenausderIAFD.setTabOrder(self.checkBoxGeschlecht, self.lineEditGeschlecht)
+        DatenausderIAFD.setTabOrder(self.lineEditGeschlecht, self.checkBoxPseudo)
+        DatenausderIAFD.setTabOrder(self.checkBoxPseudo, self.lineEditPseudo)
+        DatenausderIAFD.setTabOrder(self.lineEditPseudo, self.checkBoxGeboren)
+        DatenausderIAFD.setTabOrder(self.checkBoxGeboren, self.checkBoxLand)
+        DatenausderIAFD.setTabOrder(self.checkBoxLand, self.lineEditLand)
+        DatenausderIAFD.setTabOrder(self.lineEditLand, self.checkBoxEthnic)
+        DatenausderIAFD.setTabOrder(self.checkBoxEthnic, self.lineEditEthnic)
+        DatenausderIAFD.setTabOrder(self.lineEditEthnic, self.checkBoxHaare)
+        DatenausderIAFD.setTabOrder(self.checkBoxHaare, self.lineEditHaare)
+        DatenausderIAFD.setTabOrder(self.lineEditHaare, self.checkBoxTattos)
+        DatenausderIAFD.setTabOrder(self.checkBoxTattos, self.lineEditTattos)
+        DatenausderIAFD.setTabOrder(self.lineEditTattos, self.pushButtonRemoveBrackets)
+        DatenausderIAFD.setTabOrder(self.pushButtonRemoveBrackets, self.pushButtonUebernehmen)
+        DatenausderIAFD.setTabOrder(self.pushButtonUebernehmen, self.pushButtonCancel)
 
     def retranslateUi(self, DatenausderIAFD):
         DatenausderIAFD.setWindowTitle(_translate("DatenausderIAFD", "Data from the IAFD", None))

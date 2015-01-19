@@ -324,6 +324,27 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>checkBoxBild</tabstop>
+  <tabstop>checkBoxName</tabstop>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>checkBoxGeschlecht</tabstop>
+  <tabstop>lineEditGeschlecht</tabstop>
+  <tabstop>checkBoxPseudo</tabstop>
+  <tabstop>lineEditPseudo</tabstop>
+  <tabstop>checkBoxGeboren</tabstop>
+  <tabstop>checkBoxLand</tabstop>
+  <tabstop>lineEditLand</tabstop>
+  <tabstop>checkBoxEthnic</tabstop>
+  <tabstop>lineEditEthnic</tabstop>
+  <tabstop>checkBoxHaare</tabstop>
+  <tabstop>lineEditHaare</tabstop>
+  <tabstop>checkBoxTattos</tabstop>
+  <tabstop>lineEditTattos</tabstop>
+  <tabstop>pushButtonRemoveBrackets</tabstop>
+  <tabstop>pushButtonUebernehmen</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

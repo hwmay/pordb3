@@ -197,7 +197,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res:
-				zu_erfassen = "DELETE FROM pordb_history WHERE time < '" +str(res[-1][-1]) +"'"
+				werte = []
+				werte.append(str(res[-1][-1]))
+				zu_erfassen = []
+				zu_erfassen.append(["DELETE FROM pordb_history WHERE time < %s", werte])
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
 			self.verzeichnis = str(os.path.expanduser("~") +os.sep +"mpg")
@@ -1067,7 +1070,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if original_weitere:
 			zu_erfassen = []
 			for i in res_primkey:
-				zu_erfassen.append("delete from pordb_original where foreign_key_pordb_vid = " +str(i[0]))
+				werte = []
+				werte.append(str(i[0]))
+				zu_erfassen.append(["DELETE FROM pordb_original WHERE foreign_key_pordb_vid = %s", werte])
 			
 				for j in original_weitere:
 					if j:

@@ -1787,8 +1787,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		befehl = befehl.replace("'", "''")
 		if len(befehl) < 5001:
 			zu_erfassen = []
-			zu_erfassen.append("DELETE from pordb_history where sql = '" +befehl +"'")
-			zu_erfassen.append("INSERT into pordb_history values ('" +befehl +"', DEFAULT)")
+			werte = []
+			werte.append(befehl)
+			zu_erfassen.append(["DELETE FROM pordb_history WHERE sql = %s", werte])
+			zu_erfassen.append("INSERT INTO pordb_history VALUES ('" +befehl +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		
@@ -1959,11 +1961,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_erfassen = []
 		for i in res:
 			if i[1].strip() == e.strip():
-				zu_erfassen.append("delete from pordb_suche where suche = '" +e.replace("'", "''") +"'")
+				werte = []
+				werte.append(e)
+				zu_erfassen.append(["DELETE FROM pordb_suche WHERE suche = %s", werte])
 				break
 		zu_erfassen.append("INSERT into pordb_suche (suche) VALUES ('" +e.replace("'", "''") +"')")
 		if len(res) >= 20:
-			zu_erfassen.append("delete from pordb_suche where nr = '" + str(res[0][0]) +"'")
+			werte = []
+			werte.append(str(res[0][0]))
+			zu_erfassen.append(["DELETE FROM pordb_suche WHERE nr = %s", werte])
 			
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
@@ -2535,10 +2541,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if message == 0:
 			zu_erfassen = []
 			# delete-Anweisung aufbauen
-			zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +name.replace("'", "''") +"'")
-			zu_erfassen.append("delete from pordb_darsteller where darsteller = '" +name.replace("'", "''") +"'")
-			zu_erfassen.append("delete from pordb_partner where darsteller = '" +name.replace("'", "''") +"'")
-			zu_erfassen.append("delete from pordb_partner where partner = '" +name.replace("'", "''") +"'")
+			werte = []
+			werte.append(name)
+			zu_erfassen.append(["DELETE FROM pordb_pseudo WHERE darsteller = %s", werte])
+			zu_erfassen.append(["DELETE FROM pordb_darsteller WHERE darsteller = %s", werte])
+			zu_erfassen.append(["DELETE FROM pordb_partner WHERE darsteller = %s", werte])
+			zu_erfassen.append(["DELETE FROM pordb_partner WHERE partner = %s", werte])
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 			bildname = name.strip().lower().replace(" ", "_").replace("'", "_apostroph_")
@@ -3132,7 +3140,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 
 				
 				zu_erfassen.append("update pordb_pseudo set darsteller = '" +neuer_name.title().replace("'", "''").lstrip("=") +"' where darsteller = '" +eingabe +"'")
-				zu_erfassen.append("delete from pordb_darsteller where darsteller = '" +eingabe +"'")
+				werte = []
+				werte.append(eingabe)
+				zu_erfassen.append(["DELETE FROM pordb_darsteller WHERE darsteller = %s", werte])
 				l = -1
 				bildname = eingabe.lower().replace(" ", "_").replace("''", "_apostroph_")
 				datei_alt = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +os.sep +bildname +".jpg"
@@ -3157,14 +3167,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				res = DBLesen.get_data(lese_func)
 				for i in res:
 					zu_erfassen.append("insert into pordb_partner values ('" +neuer_name.title().replace("'", "''") +"', '" +str(i[1]).replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]).replace("'", "''") +"')")
-					zu_erfassen.append("delete from pordb_partner where darsteller = '" +eingabe +"'")
+					werte = []
+					werte.append(eingabe)
+					zu_erfassen.append(["DELETE FROM pordb_partner WHERE darsteller = %s", werte])
 					
 				zu_lesen = "SELECT * FROM pordb_partner where partner = %s"
 				lese_func = DBLesen(self, zu_lesen, eingabe)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
 					zu_erfassen.append("insert into pordb_partner values ('" +str(i[0]).replace("'", "''") +"', '" +neuer_name.title().replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]).replace("'", "''") +"')")
-					zu_erfassen.append("delete from pordb_partner where partner = '" +eingabe +"'")
+					werte = []
+					werte.append(eingabe)
+					zu_erfassen.append(["DELETE FROM pordb_partner where partner = %s", werte])
 					
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
@@ -4000,7 +4014,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				tabelle = i.rstrip(".txt")
 				datei = open(self.verzeichnis +os.sep +i, "r")
 				try:
-					delete = "truncate " +tabelle +" CASCADE"
+					werte = []
+					werte.append(tabelle)
+					delete = []
+					delete.append(["TRUNCATE %s CASCADE", werte])
 					self.cur.execute(delete)
 					self.cur.copy_from(datei, tabelle, sep='|')
 					dateien_gefunden = True
@@ -4226,7 +4243,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		counter = 0
 		for i in range(self.tableWidgetDubletten.rowCount()):
 			if self.tableWidgetDubletten.item(i, 0).checkState():
-				zu_erfassen.append("delete from pordb_mpg_katalog where device = '" +str(self.comboBoxDevice.currentText()).strip() +"' and dir = '" +os.path.basename(self.verzeichnis_tools) +"' and file = '" +str(self.tableWidgetDubletten.item(i, 5).text()).strip() +"'")
+				werte = []
+				werte.append(str(self.comboBoxDevice.currentText()).strip())
+				werte.append(os.path.basename(self.verzeichnis_tools))
+				werte.append(str(self.tableWidgetDubletten.item(i, 5).text()).strip())
+				zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s AND dir = %s AND file = %s", werte])
 				try:
 					os.remove(self.verzeichnis_tools +os.sep +str(self.tableWidgetDubletten.item(i, 5).text()).strip())
 					counter += 1

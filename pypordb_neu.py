@@ -367,7 +367,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			gesehen = "x"
 			
 		try:
-			original = str(self.lineEditNeuOriginal.text()).replace("'", "''").title().split()
+			original = str(self.lineEditNeuOriginal.text()).title().split()
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error: original title has invalid characters"))
 			return
@@ -771,7 +771,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
 							message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
 						zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
-						self.lese_func = DBLesen(self, zu_lesen, darsteller[fehler_index].replace("'", "''").strip())
+						self.lese_func = DBLesen(self, zu_lesen, darsteller[fehler_index].strip())
 						res = DBLesen.get_data(self.lese_func)
 						extension = os.path.splitext(str(self.file))[-1].lower()
 						if extension == '.jpeg':

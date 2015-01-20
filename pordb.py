@@ -2113,10 +2113,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             return
         res = self.darsteller_lesen(ein)
         if not res: 
-            self.clear_actor_tab(True)
+            self.clear_actor_tab(False)
             return
         elif len(res) > 1:
-            self.clear_actor_tab(False)
+            self.clear_actor_tab(True)
             return            
         self.pushButtonIAFDholen.setEnabled(True)
         self.pushButtonDarstellerLoeschen.setEnabled(True)
@@ -2160,7 +2160,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             bild = QtGui.QPixmap(self.bilddarsteller).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
             self.labelBildanzeige.setPixmap(bild)
             
-    def clear_actor_tab(self, unique):
+    def clear_actor_tab(self, actor_found):
         self.labelDarsteller.clear()
         self.labelAlter.clear()
         self.pushButtonIAFDBackground.setEnabled(False)
@@ -2174,15 +2174,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.lineEditAnzahl.clear()
         self.lineEditGeboren.clear()
         self.lineEditTattoo.clear()
-        if unique == True:
+        if actor_found == True:
+            self.labelFehler.clear()
+            self.pushButtonPartnerZeigen.setEnabled(True)
+        else:
             self.labelText.clear()
             self.listWidgetDarsteller.clear()
-        else:
-            self.labelFehler.clear()
+            self.pushButtonPartnerZeigen.setEnabled(False)
         self.pushButtonIAFDholen.setEnabled(False)
         self.pushButtonDarstellerLoeschen.setEnabled(False)
         self.pushButtonDarstellerspeichern.setEnabled(False)
-        self.pushButtonPartnerZeigen.setEnabled(False)
         self.pushButtonPseudo.setEnabled(False)
             
     def onTabwechsel(self, tab):

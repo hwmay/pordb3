@@ -275,7 +275,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.sucheD_ab = ""
         self.sucheD_bis = ""
         
-        self.bilddarsteller = ""
         self.tabWidget.setCurrentIndex(0)
         self.video = False
         self.watched = False
@@ -2114,11 +2113,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             return
         res = self.darsteller_lesen(ein)
         if not res: 
-            self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
-            self.bildSetzen()
+            self.clear_actor_tab(True)
             return
+        elif len(res) > 1:
+            self.clear_actor_tab(False)
+            return            
+        self.pushButtonIAFDholen.setEnabled(True)
+        self.pushButtonDarstellerLoeschen.setEnabled(True)
+        self.pushButtonDarstellerspeichern.setEnabled(True)
+        self.pushButtonPartnerZeigen.setEnabled(True)
+        self.pushButtonPseudo.setEnabled(True)       
         for i in res:
-            if i[1] == 'm' or i[1] == 'w': # not from pseudo_table
+            if i[1] == "m" or i[1] == "w": # not from pseudo_table
                 name = i[0]
                 bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
                 self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".jpg"
@@ -2153,6 +2159,31 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             # Multiplikation mit 0.05, da es eine Wechselwirkung mit dem Parent Frame gibt
             bild = QtGui.QPixmap(self.bilddarsteller).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
             self.labelBildanzeige.setPixmap(bild)
+            
+    def clear_actor_tab(self, unique):
+        self.labelDarsteller.clear()
+        self.labelAlter.clear()
+        self.pushButtonIAFDBackground.setEnabled(False)
+        self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
+        self.bildSetzen()
+        self.listWidgetStatistik.clear()
+        self.listWidgetFilme.clear()
+        self.labelFilme.clear()
+        self.labelAlter.clear()
+        self.labelAktiv.clear()
+        self.lineEditAnzahl.clear()
+        self.lineEditGeboren.clear()
+        self.lineEditTattoo.clear()
+        if unique == True:
+            self.labelText.clear()
+            self.listWidgetDarsteller.clear()
+        else:
+            self.labelFehler.clear()
+        self.pushButtonIAFDholen.setEnabled(False)
+        self.pushButtonDarstellerLoeschen.setEnabled(False)
+        self.pushButtonDarstellerspeichern.setEnabled(False)
+        self.pushButtonPartnerZeigen.setEnabled(False)
+        self.pushButtonPseudo.setEnabled(False)
             
     def onTabwechsel(self, tab):
         if tab == 4 or tab == 5:
@@ -2313,7 +2344,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 self.listWidgetDarsteller.addItem(i[0])
             self.labelText.setText("<font color=red>" +self.trUtf8("Please select:") +"</font>")
             self.suchfeld.setCurrentIndex(-1)
-            return
         elif len(res) == 1:
             self.labelDarsteller.setText(res[0][0])
             if res[0][1] == "w":
@@ -2404,9 +2434,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 res = self.darsteller_lesen(ein)
             else:
                 self.labelFehler.setText("<font color=red>" +self.trUtf8("Actor not available") +"</font>")
-                self.labelDarsteller.clear()
-                self.labelAlter.clear()
-                self.pushButtonIAFDBackground.setEnabled(False)
         self.suchfeld.setFocus()
         return res
     # end of darsteller_lesen

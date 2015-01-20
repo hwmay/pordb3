@@ -1994,7 +1994,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 break
         werte = []
         werte.append(e)
-        zu_erfassen.append(["INSERT into pordb_suche (suche) VALUES (%s)", werte])
+        zu_erfassen.append(["INSERT INTO pordb_suche (suche) VALUES (%s)", werte])
         if len(res) >= 20:
             werte = []
             werte.append(str(res[0][0]))
@@ -2228,7 +2228,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte.append(len(self.paarung))
             werte.append(gesucht)
             zu_erfassen = []
-            zu_erfassen.append(["UPDATE pordb_darsteller SET partner = %s where darsteller = %s", werte])
+            zu_erfassen.append(["UPDATE pordb_darsteller SET partner = %s WHERE darsteller = %s", werte])
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
     # end of onpaareSuchen

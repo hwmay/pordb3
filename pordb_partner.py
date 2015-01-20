@@ -11,7 +11,7 @@ ausschluss = ("(Schlechte Qualitaet)", "(Uninteressant)", "(Komplett)", "?", "un
 cnx = PgSQL.connect(database=dbname)
 cur = cnx.cursor()
 
-zu_lesen = "select * from darsteller where darsteller not in " +str(ausschluss) +" order by darsteller"
+zu_lesen = "SELECT * FROM darsteller WHERE darsteller NOT IN " +str(ausschluss) +" ORDER BY darsteller"
 try:
     cur.execute(zu_lesen)
 except PgSQL.Error as msg:
@@ -26,7 +26,7 @@ except Exception as msg:
 #for i in res:
 for i in [["Jayna Oso", "w"]]:
     print(i[0], i[1])
-    zu_lesen = "SELECT darsteller, cd, bild, cs FROM vid where darsteller like '"+i[0].strip() +"  ' or darsteller like '" +i[0].strip() +",%' or darsteller like '%, " +i[0].strip() +",%' or darsteller like '%, " +i[0].strip() + "  %' order by cd, bild, darsteller"
+    zu_lesen = "SELECT darsteller, cd, bild, cs FROM vid WHERE darsteller LIKE '"+i[0].strip() +"  ' OR darsteller LIKE '" +i[0].strip() +",%' OR darsteller LIKE '%, " +i[0].strip() +",%' OR darsteller LIKE '%, " +i[0].strip() + "  %' ORDER BY cd, bild, darsteller"
     ergebnis = []
     try:
         cur.execute(zu_lesen)
@@ -46,7 +46,7 @@ for i in [["Jayna Oso", "w"]]:
         for k in darsteller_liste:
             if k.strip() != i[0].strip() and k.strip() not in ausschluss:
                 paar = []
-                zu_lesen = "SELECT * FROM darsteller where darsteller = '" +k.strip().replace("'", "''") +"'"
+                zu_lesen = "SELECT * FROM darsteller WHERE darsteller = '" +k.strip().replace("'", "''") +"'"
                 try:
                     cur.execute(zu_lesen)
                 except PgSQL.Error as msg:
@@ -69,7 +69,7 @@ for i in [["Jayna Oso", "w"]]:
                 except Exception as msg:
                     print("5", msg)
     for j in paarung:
-        zu_erfassen = "insert into partner values ('" +i[0] +"', '" +j[0] +"', " +str(j[1]) +", '" +j[2] +"', '" +j[3] +"')"
+        zu_erfassen = "INSERT INTO partner VALUES ('" +i[0] +"', '" +j[0] +"', " +str(j[1]) +", '" +j[2] +"', '" +j[3] +"')"
         print(zu_erfassen)
         try:
             cur.execute(zu_erfassen)

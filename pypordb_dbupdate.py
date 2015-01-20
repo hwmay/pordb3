@@ -22,7 +22,6 @@ class DBUpdate():
         
     def update_data(self):
         update_db = []
-        #print ("######### 1", self.update, type(self.update))
         if type(self.update) == str:
             update_db.append([self.update, None])
         elif type(self.update) == bytes:
@@ -30,7 +29,6 @@ class DBUpdate():
         else:
             for i in self.update:
                 werte = None
-                #print ("######### 2", i, type(i))
                 if type(i) == str:
                     befehl = i
                 elif type(i) == bytes:
@@ -39,7 +37,6 @@ class DBUpdate():
                     befehl = i[0]
                     werte = i[1]
                 update_db.append([befehl, werte])
-        #print (update_db)
         for i in update_db:
             try:
                 self.cur.execute(i[0], i[1])

@@ -24,7 +24,7 @@ class ActorDetails(QtGui.QDialog, pordb_actor_details):
         width = 400
         height = 600
         
-        zu_lesen = "SELECT * FROM pordb_darsteller where darsteller = %s"
+        zu_lesen = "SELECT * FROM pordb_darsteller WHERE darsteller = %s"
         lese_func = DBLesen(self, zu_lesen, self.darsteller)
         res = DBLesen.get_data(lese_func)
         

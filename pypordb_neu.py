@@ -420,7 +420,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(bild)
             werte.append(gesehen)
             werte.append(original)
-            zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s where cd = %s and bild = %s"
+            zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s WHERE cd = %s AND bild = %s"
             if self.spinBoxF.value() > 0:
                 werte.append(self.spinBoxF.value())
                 self.spinBoxK.setValue(0)

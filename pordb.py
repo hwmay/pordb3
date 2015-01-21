@@ -1018,10 +1018,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def onMassChange(self):
         masschangedialog = MassChange()
         masschangedialog.exec_()
-        if masschangedialog.resolution:
-            resolution = "'" + str(masschangedialog.resolution) + "'"
-        else:
-            resolution = "null"
         vorhanden = masschangedialog.vorhanden
         if vorhanden:
             vorhanden = "x"
@@ -1035,7 +1031,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             index = int(row * self.columns + column + self.start_bilder)
             werte = []
             werte.append(vorhanden)
-            werte.append(resolution)
+            if masschangedialog.resolution:
+                werte.append(masschangedialog.resolution)
+            else:
+                werte.append(None)            
             werte.append(str(self.aktuelles_res[index][2]))
             werte.append(self.aktuelles_res[index][3])
             zu_erfassen.append(["UPDATE pordb_vid SET vorhanden = %s, hd = %s WHERE cd = %s AND bild = %s", werte])

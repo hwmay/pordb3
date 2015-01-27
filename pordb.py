@@ -4053,6 +4053,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             else:
                 if not initial_run:
                     message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("You have the latest version"))
+                    self.suchfeld.setFocus()
         
     def onSuchbegriffe(self):
         bilddialog = SuchbegriffeBearbeiten()

@@ -4144,19 +4144,24 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if i.startswith("pordb_") and i.endswith(".txt"):
                 tabelle = i.rstrip(".txt")
                 datei = open(self.verzeichnis +os.sep +i, "r")
+                delete = "truncate " +tabelle +" CASCADE"                
                 try:
-                    werte = []
-                    werte.append(tabelle)
-                    delete = []
-                    delete.append(["TRUNCATE %s CASCADE", werte])
                     self.cur.execute(delete)
+                except Exception as e:
+                    app.restoreOverrideCursor()
+                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Truncate for table " +i +" failed: " +str(e)))
+                    datei.close()
+                    return
+                try:
                     self.cur.copy_from(datei, tabelle, sep='|')
                     dateien_gefunden = True
                 except Exception as e:
                     app.restoreOverrideCursor()
                     message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Copy from file " +i +" failed: " +str(e)))
+                    datei.close()
                     return
                 datei.close()
+                
         self.conn.commit()
         
         if dateien_gefunden:

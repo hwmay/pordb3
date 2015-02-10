@@ -299,6 +299,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.searchResultsVid = None
         self.context_actor_image = False
         self.files_added = ""
+        self.last_search_entry_for_original = ""
         
         self.pushButtonIAFDBackground.setEnabled(False)
         
@@ -1689,6 +1690,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             return
         if not ein or ein == "=":
             return
+        self.last_search_entry_for_original = ein
         ein2 = str(self.suchfeld.currentText()).replace("#","").title().strip()
         ein3 = str(self.suchfeld.currentText()).replace("#","").lower().strip()
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -1735,6 +1737,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
         
     def ausgabe(self, ein, zu_lesen, werte = None):
+        if ein == "":
+            ein = self.last_search_entry_for_original
         lese_func = DBLesen(self, zu_lesen, werte)
         self.aktuelles_res = DBLesen.get_data(lese_func)
         zw_res = []
@@ -1803,6 +1807,26 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if not i in liste_neu:
                 liste_neu.append(i)
         self.aktuelles_res[:] = liste_neu
+        if "SELECT * FROM pordb_vid WHERE (LOWER(original)" in zu_lesen:
+            liste_neu = []
+            for i in self.aktuelles_res:
+                index1 = i[5].rfind("(") + 1
+                index2 = i[5].rfind(")")
+                jahr = -1
+                if index1 > 0:
+                    suchtext = i[5][: index1].lower().strip()
+                else:
+                    suchtext = i[5].lower().strip()
+                if index1 > 0:
+                    if len(i[5][index1 : index2]) == 4:
+                        try:
+                            jahr = int(i[5][index1 : index2])
+                            suchtext = i[5][: index1 - 1].lower().strip()
+                        except:
+                            pass
+                if jahr < 0 or ein.lower().strip().lstrip("=") == suchtext:
+                    liste_neu.append(i)
+            self.aktuelles_res[:] = liste_neu            
         
         self.ausgabe_in_table()
         befehl = zu_lesen[:] + " (" +  ";".join(werte) + ")"

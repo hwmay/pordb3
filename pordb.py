@@ -1807,7 +1807,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if not i in liste_neu:
                 liste_neu.append(i)
         self.aktuelles_res[:] = liste_neu
-        if "SELECT * FROM pordb_vid WHERE (LOWER(original)" in zu_lesen:
+        if ein != "":
+            index1 = ein.rfind("(") + 1
+            index2 = ein.rfind(")")
+            ignore_year = False
+            if index1 > 0:
+                if len(ein[index1 : index2]) == 4:
+                    try:
+                        jahr = int(ein[index1 : index2])
+                        ignore_year = True
+                    except:
+                        pass
+        if ignore_year == False and "SELECT * FROM pordb_vid WHERE (LOWER(original)" in zu_lesen:
             liste_neu = []
             for i in self.aktuelles_res:
                 index1 = i[5].rfind("(") + 1

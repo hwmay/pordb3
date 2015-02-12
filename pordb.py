@@ -1807,10 +1807,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if not i in liste_neu:
                 liste_neu.append(i)
         self.aktuelles_res[:] = liste_neu
+        
+        # Ignore the year in the original title
+        ignore_year = False
         if ein != "":
             index1 = ein.rfind("(") + 1
             index2 = ein.rfind(")")
-            ignore_year = False
             if index1 > 0:
                 if len(ein[index1 : index2]) == 4:
                     try:

@@ -48,7 +48,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "1.9.1"
+__version__ = "1.9.2"
 file_version = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
@@ -299,7 +299,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.searchResultsVid = None
         self.context_actor_image = False
         self.files_added = ""
-        self.last_search_entry_for_original = ""
         
         self.pushButtonIAFDBackground.setEnabled(False)
         
@@ -1690,7 +1689,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             return
         if not ein or ein == "=":
             return
-        self.last_search_entry_for_original = ein
         ein2 = str(self.suchfeld.currentText()).replace("#","").title().strip()
         ein3 = str(self.suchfeld.currentText()).replace("#","").lower().strip()
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -1737,8 +1735,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
         
     def ausgabe(self, ein, zu_lesen, werte = None):
-        if ein == "":
-            ein = self.last_search_entry_for_original
         lese_func = DBLesen(self, zu_lesen, werte)
         self.aktuelles_res = DBLesen.get_data(lese_func)
         zw_res = []
@@ -1809,7 +1805,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.aktuelles_res[:] = liste_neu
         
         # Ignore the year in the original title
-        ignore_year = False
+        ignore_year = True
         if ein != "":
             index1 = ein.rfind("(") + 1
             index2 = ein.rfind(")")
@@ -1817,9 +1813,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 if len(ein[index1 : index2]) == 4:
                     try:
                         jahr = int(ein[index1 : index2])
-                        ignore_year = True
                     except:
-                        pass
+                        ignore_year = True
         if ignore_year == False and "SELECT * FROM pordb_vid WHERE (LOWER(original)" in zu_lesen:
             liste_neu = []
             for i in self.aktuelles_res:

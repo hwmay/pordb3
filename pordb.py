@@ -1838,7 +1838,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         self.ausgabe_in_table()
         befehl = zu_lesen[:] + " (" +  ";".join(werte) + ")"
-        befehl = befehl.replace("'", "''")
         if len(befehl) < 5001:
             zu_erfassen = []
             werte = []

@@ -149,6 +149,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onDateinamenUebernehmen)
         self.connect(self.pushButtonSearchMpg, QtCore.SIGNAL("clicked()"), self.onSearchMpg)
         self.connect(self.pushButtonSearchVid, QtCore.SIGNAL("clicked()"), self.onSearchVid)
+        self.connect(self.pushButtonDelete, QtCore.SIGNAL("clicked()"), self.onDeleteMpgKatalog)
         
         # Slots einrichten für Web
         self.connect(self.webView, QtCore.SIGNAL("loadStarted()"), self.onLoadStarted)
@@ -3663,6 +3664,34 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if self.searchResultsVid:
             anzahl = self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
             self.labelVidFound.setText(self.trUtf8("found: ") + str(anzahl))
+            
+    def onDeleteMpgKatalog(self):
+        items = self.tableWidget.selectedIndexes()
+        zu_erfassen = []
+        gesamttabelle = []
+        werte = []
+        for element in items:
+            # the first 3 elements build the table key
+            if element.column() > 2:
+                break
+            gesamttabelle.append(self.tableWidget.item(element.row(), element.column()).text())
+        anzahl_werte = int(len(gesamttabelle) / 3)
+        laufindex1 = -1
+        laufindex2 = 0
+        for i in range(anzahl_werte):
+            werte.extend([["", "", ""]])
+        for i, wert in enumerate(gesamttabelle):
+            if i > 0 and i % anzahl_werte == 0:
+                laufindex1 = -1
+                laufindex2 += 1            
+            laufindex1 += 1
+            werte[laufindex1][laufindex2] = wert
+        for i in werte:
+            zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and dir = %s and file = %s", i])
+        if zu_erfassen:
+            update_func = DBUpdate(self, zu_erfassen)
+            DBUpdate.update_data(update_func)
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Information "), str(anzahl_werte) + self.trUtf8("lines deleted"))
         
     def searchResults(self, lineEdit, tableWidget, rows, column):
         tableWidget.clearSelection()

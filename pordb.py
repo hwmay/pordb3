@@ -3691,7 +3691,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if zu_erfassen:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Information "), str(anzahl_werte) + self.trUtf8("lines deleted"))
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Information "), str(anzahl_werte) + self.trUtf8(" line(s) deleted"))
+        app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.onSuchen()
+        app.restoreOverrideCursor()
         
     def searchResults(self, lineEdit, tableWidget, rows, column):
         tableWidget.clearSelection()

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de_DE" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>Bildbeschneiden</name>
     <message>
@@ -54,12 +55,12 @@
 <context>
     <name>Cover</name>
     <message>
-        <location filename="pypordb_cover.py" line="94"/>
+        <location filename="pypordb_cover.py" line="97"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_cover.py" line="67"/>
+        <location filename="pypordb_cover.py" line="70"/>
         <source>Please mark front side</source>
         <translation>Bitte die Vorderseite markieren</translation>
     </message>
@@ -69,12 +70,12 @@
         <translation type="obsolete">Da stimmt etwas nicht mit dem Dateinamen</translation>
     </message>
     <message>
-        <location filename="pypordb_cover.py" line="91"/>
+        <location filename="pypordb_cover.py" line="94"/>
         <source>Please enter a file name</source>
         <translation>Bitte einen Dateinamen eingeben</translation>
     </message>
     <message>
-        <location filename="pypordb_cover.py" line="94"/>
+        <location filename="pypordb_cover.py" line="97"/>
         <source>Error: Original has a character /</source>
         <translation>Fehler: Original enthält /</translation>
     </message>
@@ -620,7 +621,7 @@ p, li { white-space: pre-wrap; }
         <translation>Return</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="174"/>
+        <location filename="pordb_cover.py" line="173"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
@@ -690,7 +691,7 @@ p, li { white-space: pre-wrap; }
         <translation>Historie</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="101"/>
+        <location filename="pordb_historie.py" line="104"/>
         <source>Timestamp</source>
         <translation>Timestamp</translation>
     </message>
@@ -820,22 +821,22 @@ p, li { white-space: pre-wrap; }
         <translation>Seite aus Bookmarks löschen</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="171"/>
+        <location filename="pordb_cover.py" line="170"/>
         <source>Image1</source>
         <translation>Bild1</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="173"/>
+        <location filename="pordb_cover.py" line="172"/>
         <source>Image2</source>
         <translation>Bild2</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="175"/>
+        <location filename="pordb_cover.py" line="174"/>
         <source>Please mark the frontpage. This will be inserted on the left site of the new cover.</source>
         <translation>Da das Cover aus 2 Bilddateien besteht, ist hier zu markieren, welche Bilddatei die Vorderseite darstellt. Diese wird im fertigen Cover links ausgewiesen, die Hinterseite rechts.</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="176"/>
+        <location filename="pordb_cover.py" line="175"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -846,22 +847,22 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bitte die Vorderseite markieren&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="180"/>
+        <location filename="pordb_cover.py" line="179"/>
         <source>Filename:</source>
         <translation>Dateiname:</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="181"/>
+        <location filename="pordb_cover.py" line="180"/>
         <source>Filename of the new cover</source>
         <translation>Dateiname des neuen Covers</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="182"/>
+        <location filename="pordb_cover.py" line="181"/>
         <source>Last used original title will be entered</source>
         <translation>Der zuletzt eingegebene Originaltitel wird eingesetzt</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="183"/>
+        <location filename="pordb_cover.py" line="182"/>
         <source>Create cover</source>
         <translation>Cover erstellen</translation>
     </message>
@@ -916,17 +917,17 @@ p, li { white-space: pre-wrap; }
         <translation>Umbenennen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="93"/>
+        <location filename="pordb_historie.py" line="96"/>
         <source>History</source>
         <translation>Historie</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="97"/>
+        <location filename="pordb_historie.py" line="100"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="99"/>
+        <location filename="pordb_historie.py" line="102"/>
         <source>Command</source>
         <translation>Befehl</translation>
     </message>
@@ -1449,17 +1450,17 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>gesehen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="94"/>
+        <location filename="pordb_historie.py" line="97"/>
         <source>Here you see your last search command. You can repeat one search by marking the line and click on execute.</source>
         <translation>Hier siehst Du Deine letzten Suchkommandos. Du kannst eine Suche wiederholen, indem Du eine Zeile markierst und auf ausführen klickst.</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="102"/>
+        <location filename="pordb_historie.py" line="105"/>
         <source>Search in history, Ctrl+S</source>
         <translation>In Historie suchen, Strg+S</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="104"/>
+        <location filename="pordb_historie.py" line="108"/>
         <source>Execute marked line</source>
         <translation>Markierte Zeile ausführen</translation>
     </message>
@@ -1735,7 +1736,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Strg+L</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="106"/>
+        <location filename="pordb_historie.py" line="110"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear history: delete all entries except for the last 50 entries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Historie löschen: alle Einträge löschen mit Ausnahme der letzten 50&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1743,6 +1744,11 @@ p, li { white-space: pre-wrap; }
         <location filename="pordb_suche_video.py" line="118"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show movies (Ctrl+D)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Videos anzeigen (Strg+D)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="pordb_historie.py" line="107"/>
+        <source>Lines: </source>
+        <translation>Zeilen: </translation>
     </message>
 </context>
 <context>
@@ -4322,7 +4328,7 @@ vorhanden</translation>
     <message>
         <location filename="pordb.py" line="3694"/>
         <source> line(s) deleted</source>
-        <translation type="unfinished"> Zeile(n) gelöscht</translation>
+        <translation> Zeile(n) gelöscht</translation>
     </message>
 </context>
 <context>

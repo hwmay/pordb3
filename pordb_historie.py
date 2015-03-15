@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_historie.ui'
 #
-# Created: Tue Nov 18 00:37:18 2014
+# Created: Sun Mar 15 21:57:40 2015
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,6 +59,13 @@ class Ui_Dialog(object):
         self.pushButtonSearch.setAutoDefault(False)
         self.pushButtonSearch.setObjectName(_fromUtf8("pushButtonSearch"))
         self.horizontalLayout.addWidget(self.pushButtonSearch)
+        self.label_1 = QtGui.QLabel(Dialog)
+        self.label_1.setObjectName(_fromUtf8("label_1"))
+        self.horizontalLayout.addWidget(self.label_1)
+        self.labelLines = QtGui.QLabel(Dialog)
+        self.labelLines.setText(_fromUtf8(""))
+        self.labelLines.setObjectName(_fromUtf8("labelLines"))
+        self.horizontalLayout.addWidget(self.labelLines)
         spacerItem = QtGui.QSpacerItem(668, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.pushButtonGo = QtGui.QPushButton(Dialog)
@@ -101,6 +108,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "Timestamp", None))
         self.pushButtonSearch.setToolTip(_translate("Dialog", "Search in history, Ctrl+S", None))
         self.pushButtonSearch.setShortcut(_translate("Dialog", "Ctrl+S", None))
+        self.label_1.setText(_translate("Dialog", "Lines: ", None))
         self.pushButtonGo.setToolTip(_translate("Dialog", "Execute marked line", None))
         self.pushButtonAbbrechen.setToolTip(_translate("Dialog", "<html><head/><body><p>Cancel</p></body></html>", None))
         self.pushButtonClear.setToolTip(_translate("Dialog", "<html><head/><body><p>Clear history: delete all entries except for the last 50 entries</p></body></html>", None))

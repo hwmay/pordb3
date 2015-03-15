@@ -46,6 +46,8 @@ class Historie(QtGui.QDialog, pordb_historie):
             self.row += 1
         self.tableWidgetHistory.resizeColumnsToContents()
         
+        self.labelLines.setText(str(len(self.res)))
+        
     def onSearch(self):
         self.tableWidgetHistory.clearSelection()
         self.tableWidgetHistory.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)

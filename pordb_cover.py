@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_cover.ui'
 #
-# Created: Thu May 29 02:28:56 2014
+# Created: Sun Mar 15 21:00:50 2015
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,14 +26,12 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(638, 532)
+        Dialog.resize(638, 548)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.gridLayout = QtGui.QGridLayout(Dialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.verticalLayout_6 = QtGui.QVBoxLayout()
-        self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
         self.verticalLayout_5 = QtGui.QVBoxLayout()
         self.verticalLayout_5.setObjectName(_fromUtf8("verticalLayout_5"))
         self.horizontalLayout_4 = QtGui.QHBoxLayout()
@@ -127,7 +125,7 @@ class Ui_Dialog(object):
         self.label = QtGui.QLabel(Dialog)
         self.label.setObjectName(_fromUtf8("label"))
         self.verticalLayout_5.addWidget(self.label)
-        self.verticalLayout_6.addLayout(self.verticalLayout_5)
+        self.gridLayout.addLayout(self.verticalLayout_5, 0, 0, 1, 1)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.label_2 = QtGui.QLabel(Dialog)
@@ -150,8 +148,19 @@ class Ui_Dialog(object):
         self.pushButtonCancel = QtGui.QPushButton(Dialog)
         self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
         self.horizontalLayout.addWidget(self.pushButtonCancel)
-        self.verticalLayout_6.addLayout(self.horizontalLayout)
-        self.gridLayout.addLayout(self.verticalLayout_6, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout, 1, 0, 1, 1)
+        self.horizontalLayout_5 = QtGui.QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(_fromUtf8("horizontalLayout_5"))
+        self.label_3 = QtGui.QLabel(Dialog)
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.horizontalLayout_5.addWidget(self.label_3)
+        self.labelOriginal = QtGui.QLabel(Dialog)
+        self.labelOriginal.setText(_fromUtf8(""))
+        self.labelOriginal.setObjectName(_fromUtf8("labelOriginal"))
+        self.horizontalLayout_5.addWidget(self.labelOriginal)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem2)
+        self.gridLayout.addLayout(self.horizontalLayout_5, 2, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -172,4 +181,5 @@ class Ui_Dialog(object):
         self.pushButtonCoverOriginalAlt.setWhatsThis(_translate("Dialog", "Last used original title will be entered", None))
         self.pushButtonCover.setText(_translate("Dialog", "Create cover", None))
         self.pushButtonCancel.setText(_translate("Dialog", "Cancel", None))
+        self.label_3.setText(_translate("Dialog", "Title in clipboard:", None))
 

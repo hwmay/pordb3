@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS version="2.0" language="de_DE" sourcelanguage="">
 <context>
     <name>Bildbeschneiden</name>
     <message>
@@ -621,7 +620,7 @@ p, li { white-space: pre-wrap; }
         <translation>Return</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="164"/>
+        <location filename="pordb_cover.py" line="174"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
@@ -821,22 +820,22 @@ p, li { white-space: pre-wrap; }
         <translation>Seite aus Bookmarks löschen</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="161"/>
+        <location filename="pordb_cover.py" line="171"/>
         <source>Image1</source>
         <translation>Bild1</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="163"/>
+        <location filename="pordb_cover.py" line="173"/>
         <source>Image2</source>
         <translation>Bild2</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="165"/>
+        <location filename="pordb_cover.py" line="175"/>
         <source>Please mark the frontpage. This will be inserted on the left site of the new cover.</source>
         <translation>Da das Cover aus 2 Bilddateien besteht, ist hier zu markieren, welche Bilddatei die Vorderseite darstellt. Diese wird im fertigen Cover links ausgewiesen, die Hinterseite rechts.</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="166"/>
+        <location filename="pordb_cover.py" line="176"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -847,22 +846,22 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bitte die Vorderseite markieren&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="170"/>
+        <location filename="pordb_cover.py" line="180"/>
         <source>Filename:</source>
         <translation>Dateiname:</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="171"/>
+        <location filename="pordb_cover.py" line="181"/>
         <source>Filename of the new cover</source>
         <translation>Dateiname des neuen Covers</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="172"/>
+        <location filename="pordb_cover.py" line="182"/>
         <source>Last used original title will be entered</source>
         <translation>Der zuletzt eingegebene Originaltitel wird eingesetzt</translation>
     </message>
     <message>
-        <location filename="pordb_cover.py" line="173"/>
+        <location filename="pordb_cover.py" line="183"/>
         <source>Create cover</source>
         <translation>Cover erstellen</translation>
     </message>

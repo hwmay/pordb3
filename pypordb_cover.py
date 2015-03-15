@@ -36,6 +36,12 @@ class Cover(QtGui.QDialog, pordb_cover):
         self.labelBilddatei2.setText(cover[1])
         self.labelSize2.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
         
+        zu_lesen = "SELECT * FROM pordb_vid_neu"
+        self.lese_func = DBLesen(self, zu_lesen)
+        self.res_vid_neu = DBLesen.get_data(self.lese_func)
+        if self.res_vid_neu[0][3]:
+            self.labelOriginal.setText(self.res_vid_neu[0][3])        
+        
         self.radioButtonBild1.setChecked(True)
         self.lineEditDateiname.setFocus()
         
@@ -55,11 +61,8 @@ class Cover(QtGui.QDialog, pordb_cover):
             pass
     
     def onCoverOriginalAlt(self):
-        zu_lesen = "SELECT * FROM pordb_vid_neu"
-        lese_func = DBLesen(self, zu_lesen)
-        res = DBLesen.get_data(lese_func)
-        if res[0][3]:
-            self.lineEditDateiname.setText(res[0][3])
+        if self.res_vid_neu[0][3]:
+            self.lineEditDateiname.setText(self.res_vid_neu[0][3])
         self.pushButtonCover.setFocus()
         
     def accept(self):

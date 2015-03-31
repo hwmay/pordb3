@@ -11,6 +11,7 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
         self.buttonBox.rejected.connect(self.close)
         
         self.vorhanden = False
+        self.watched = False
         self.resolution = False
         
     def accept(self):

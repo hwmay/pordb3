@@ -17,6 +17,9 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
         if not self.radioButtonVorhandenJa.isChecked() and not self.radioButtonVorhandenNein.isChecked():
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is available"))
             return
+        if not self.radioButtonWatchedJa.isChecked() and not self.radioButtonWatchedNein.isChecked():
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie has been watched"))
+            return
         if self.radioButtonVorhandenNein.isChecked() and self.comboBoxResolution.currentIndex() != 0:
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Video is not in stock: resolution is set to unknown"))
             self.comboBoxResolution.setCurrentIndex(0)
@@ -28,6 +31,11 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
             self.vorhanden = True
         else:
             self.vorhanden = False
+        
+        if self.radioButtonWatchedJa.isChecked():
+            self.watched = True
+        else:
+            self.watched = False            
             
         if self.comboBoxResolution.currentIndex() == 1:
             self.resolution = "0"

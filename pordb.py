@@ -1024,6 +1024,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             vorhanden = "x"
         else:
             vorhanden = " "
+        watched = masschangedialog.watched
+        if watched:
+            watched = "x"
+        else:
+            watched = " "
         items = self.tableWidgetBilder.selectedItems()
         zu_erfassen = []
         for i in items:
@@ -1032,13 +1037,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             index = int(row * self.columns + column + self.start_bilder)
             werte = []
             werte.append(vorhanden)
+            werte.append(watched)
             if masschangedialog.resolution:
                 werte.append(masschangedialog.resolution)
             else:
                 werte.append(None)            
             werte.append(str(self.aktuelles_res[index][2]))
             werte.append(self.aktuelles_res[index][3])
-            zu_erfassen.append(["UPDATE pordb_vid SET vorhanden = %s, hd = %s WHERE cd = %s AND bild = %s", werte])
+            zu_erfassen.append(["UPDATE pordb_vid SET vorhanden = %s, gesehen = %s, hd = %s WHERE cd = %s AND bild = %s", werte])
         if zu_erfassen:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
@@ -1732,7 +1738,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         app.restoreOverrideCursor()
         
     def onHelp(self):
-        QtGui.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2014 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
+        QtGui.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2015 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
         self.suchfeld.setFocus()
         
     def ausgabe(self, ein, zu_lesen, werte = None):

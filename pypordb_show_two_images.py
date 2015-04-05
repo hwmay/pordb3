@@ -10,6 +10,7 @@ class ShowTwoImages(QtGui.QDialog, pordb_show_two_images):
         self.bilddatei1 = bilddatei1
         self.bilddatei2 = bilddatei2
         self.filename = None
+        self.wanted_file = None
         
         self.connect(self.pushButtonOk, QtCore.SIGNAL("clicked()"), self.accept)
         self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)

@@ -3424,8 +3424,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             items = []
             for i in range(self.listWidgetDarsteller.count()):
                 items.append(str(self.listWidgetDarsteller.item(i).text()).strip())
-            items.sort(key = vergleich)
-            items.reverse()
+            items.sort(key = vergleich, reverse=True)
             self.listWidgetDarsteller.clear()
             self.listWidgetDarsteller.addItems(items)
             self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Partner", None, QtGui.QApplication.UnicodeUTF8))

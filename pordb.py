@@ -140,6 +140,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.onDarstellerUmbenennen)
         self.connect(self.pushButtonSortPartner, QtCore.SIGNAL("clicked()"), self.onPartnerSortieren)
         self.connect(self.pushButtonSort, QtCore.SIGNAL("clicked()"), self.onFilmeSortieren)
+        self.connect(self.lineEditFilter, QtCore.SIGNAL("textEdited(QString)"), self.onFilmeFilter)
         self.connect(self.pushButtonPartnerZeigen, QtCore.SIGNAL("clicked()"), self.onPartnerZeigen)
         self.connect(self.pushButtonPseudo, QtCore.SIGNAL("clicked()"), self.onPseudo)
         
@@ -3449,12 +3450,26 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             items.sort(key = vergleich)
             self.listWidgetFilme.clear()
             self.listWidgetFilme.addItems(items)
+            print (type(items))
             self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Title", None, QtGui.QApplication.UnicodeUTF8))
         else:
             self.listWidgetFilme.sortItems()
             self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Year", None, QtGui.QApplication.UnicodeUTF8))
         self.suchfeld.setFocus()
     # end of onFilmeSortieren
+    
+    def onFilmeFilter(self, text):
+        if text == "":
+            ein = self.eingabe_auswerten()
+            res = self.darsteller_lesen(ein)
+            self.onDarstellerFilme(res)
+        else:
+            liste = self.listWidgetFilme.findItems(text, QtCore.Qt.MatchContains)
+            items = []
+            for i in liste:
+                items.append(i.text())
+            self.listWidgetFilme.clear()
+            self.listWidgetFilme.addItems(items)
 
     def onPartnerZeigen(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Tue Feb 24 21:41:09 2015
+# Created: Mon Apr 13 20:09:18 2015
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -336,6 +336,9 @@ class Ui_MainWindow(object):
         self.label_17 = QtGui.QLabel(self.frame_2)
         self.label_17.setObjectName(_fromUtf8("label_17"))
         self.horizontalLayout_3.addWidget(self.label_17)
+        self.lineEditFilter = QtGui.QLineEdit(self.frame_2)
+        self.lineEditFilter.setObjectName(_fromUtf8("lineEditFilter"))
+        self.horizontalLayout_3.addWidget(self.lineEditFilter)
         self.pushButtonSort = QtGui.QPushButton(self.frame_2)
         self.pushButtonSort.setObjectName(_fromUtf8("pushButtonSort"))
         self.horizontalLayout_3.addWidget(self.pushButtonSort)
@@ -1028,7 +1031,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)
@@ -1167,9 +1170,10 @@ class Ui_MainWindow(object):
         self.pushButtonPartnerZeigen.setWhatsThis(_translate("MainWindow", "Show actors in first tab", None))
         self.pushButtonPseudo.setToolTip(_translate("MainWindow", "<html><head/><body><p>Maintain aliases</p></body></html>", None))
         self.pushButtonPseudo.setWhatsThis(_translate("MainWindow", "Add alias", None))
-        self.label_16.setText(_translate("MainWindow", "Cumshots:", None))
+        self.label_16.setText(_translate("MainWindow", "Cumshots", None))
         self.listWidgetStatistik.setWhatsThis(_translate("MainWindow", "Cumshot statistic", None))
-        self.label_17.setText(_translate("MainWindow", "Films:", None))
+        self.label_17.setText(_translate("MainWindow", "Films", None))
+        self.lineEditFilter.setToolTip(_translate("MainWindow", "<html><head/><body><p>Filter ...</p></body></html>", None))
         self.pushButtonSort.setToolTip(_translate("MainWindow", "Sort on ...", None))
         self.pushButtonSort.setWhatsThis(_translate("MainWindow", "Sort alphabetically or on year", None))
         self.pushButtonSort.setText(_translate("MainWindow", "Year", None))

@@ -117,7 +117,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("No actors selected"))
             return
         darsteller = ", ".join(actor_to_add)
-        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.verzeichnis +os.sep +scene_to_add, titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1])
+        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(self.verzeichnis, scene_to_add), titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1])
         if eingabedialog.exec_():
             for i in list(self.scene.items()):
                 if i.data(0):
@@ -142,7 +142,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
             self.y_pos += 30
             max_height = 0
             for i in dateiliste:
-                bilddatei = self.verzeichnis + os.sep + i
+                bilddatei = os.path.join(self.verzeichnis, i)
                 pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
                 if pixmap.height() > max_height:
                     max_height = pixmap.height()

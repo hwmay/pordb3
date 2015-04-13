@@ -98,7 +98,7 @@ class Cover(QtGui.QDialog, pordb_cover):
             return
         if not dateiname.endswith(".jpg"):
             dateiname += ".jpg"
-        original = self.verzeichnis_original +os.sep +dateiname
+        original = os.path.join(self.verzeichnis_original, dateiname)
         bild.save(original)
         if original != self.cover[0]:
             os.remove(self.cover[0])

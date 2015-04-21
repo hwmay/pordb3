@@ -910,7 +910,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     werte.append("x")
                     self.actionVid.toggle()
                 self.letzter_select = zu_lesen
-                zu_lesen += " ORDER BY cd, bild, darsteller"
+                zu_lesen += " ORDER BY cd, lower(bild), darsteller"
                 self.letzter_select_komplett = zu_lesen
                 self.letzter_select_komplett_werte = werte
                 self.partner = 0
@@ -949,7 +949,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def onSortieren_nach_Darsteller(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         finde = self.letzter_select_komplett.find("ORDER BY")
-        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY darsteller, cd, bild"
+        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY darsteller, cd, lower(bild)"
         self.letzter_select_komplett = zu_lesen
         self.ausgabe(zu_lesen, zu_lesen, self.letzter_select_komplett_werte)
         app.restoreOverrideCursor()
@@ -957,7 +957,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def onSortieren_nach_CD(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         finde = self.letzter_select_komplett.find("ORDER BY")
-        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY cd, darsteller, bild"
+        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY cd, darsteller, lower(bild)"
         self.letzter_select_komplett = zu_lesen
         self.ausgabe(zu_lesen, zu_lesen, self.letzter_select_komplett_werte)
         app.restoreOverrideCursor()
@@ -965,7 +965,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def onSortieren_nach_Original(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         finde = self.letzter_select_komplett.find("ORDER BY")
-        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY original, cd, darsteller, bild"
+        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY original, cd, darsteller, lower(bild)"
         self.letzter_select_komplett = zu_lesen
         self.ausgabe(zu_lesen, zu_lesen, self.letzter_select_komplett_werte)
         app.restoreOverrideCursor()
@@ -973,7 +973,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def onSortieren_nach_Titel(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         finde = self.letzter_select_komplett.find("ORDER BY")
-        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY titel, cd, darsteller, bild"
+        zu_lesen = self.letzter_select_komplett[0:finde] + " ORDER BY lower(titel), cd, darsteller, bild"
         self.letzter_select_komplett = zu_lesen
         self.ausgabe(zu_lesen, zu_lesen, self.letzter_select_komplett_werte)
         app.restoreOverrideCursor()
@@ -1005,7 +1005,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_erfassen.append(["UPDATE pordb_vid SET original = %s WHERE original = %s", werte])
                 update_func = DBUpdate(self, zu_erfassen)
                 DBUpdate.update_data(update_func)
-                zu_lesen = "SELECT * FROM pordb_vid WHERE original = %s ORDER BY original, cd, bild, darsteller"
+                zu_lesen = "SELECT * FROM pordb_vid WHERE original = %s ORDER BY original, cd, lower(bild), darsteller"
                 werte = []
                 werte.append(neuer_name.title())
                 self.letzter_select_komplett = zu_lesen
@@ -1629,7 +1629,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte.append("x")
             self.actionVid.toggle()
         self.letzter_select = zu_lesen
-        zu_lesen += " ORDER BY cd, bild, darsteller"
+        zu_lesen += " ORDER BY cd, lower(bild), darsteller"
         self.letzter_select_komplett = zu_lesen
         self.letzter_select_komplett_werte = werte
         self.partner = 0
@@ -1653,7 +1653,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte.append("x")
             self.actionVid.toggle()
         self.letzter_select = zu_lesen
-        zu_lesen += " ORDER BY bild, darsteller"
+        zu_lesen += " ORDER BY lower(bild), darsteller"
         self.letzter_select_komplett = zu_lesen
         self.letzter_select_komplett_werte = werte
         self.partner = 0
@@ -1680,7 +1680,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte.append("x")
             self.actionVid.toggle()
         self.letzter_select = zu_lesen
-        zu_lesen += " ORDER BY cd, bild, darsteller"
+        zu_lesen += " ORDER BY cd, lower(bild), darsteller"
         self.letzter_select_komplett = zu_lesen
         self.letzter_select_komplett_werte = werte
         self.partner = 0
@@ -1731,7 +1731,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte.append("x")
             self.actionVid.toggle()
         self.letzter_select = zu_lesen
-        zu_lesen += " ORDER BY original, cd, bild, darsteller"
+        zu_lesen += " ORDER BY original, cd, lower(bild), darsteller"
         self.letzter_select_komplett = zu_lesen
         self.letzter_select_komplett_werte = werte
         self.partner = 0
@@ -2132,7 +2132,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_lesen += " AND (gesehen = %s)"
                 werte.append("x")
             
-            zu_lesen += " ORDER BY cd, titel"
+            zu_lesen += " ORDER BY cd, lower(titel)"
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             self.letzter_select_komplett = zu_lesen
             self.letzter_select_komplett_werte = werte

@@ -263,6 +263,9 @@
                   <property name="acceptDrops">
                    <bool>true</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Drag and drop image of an actor here&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
                   <property name="whatsThis">
                    <string>Image of the actor</string>
                   </property>

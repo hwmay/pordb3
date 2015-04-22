@@ -55,7 +55,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.app.restoreOverrideCursor()
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
             return
-        url =  'http://www.iafd.com/graphics/headshots/' + self.bild
+        url = "http://cdn.iafd.com/headshots/" + self.bild
         self.verz = self.verzeichnis_thumbs
         urllib.request._urlopener=urllib.request.URLopener()
         urllib.request.URLopener.version="Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461)"

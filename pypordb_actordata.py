@@ -14,11 +14,11 @@ class ActorData():
         return self.seite[anfang+4:ende].strip()
     
     def actor_image(self):
-        anfang = self.seite.find('/graphics/headshots/')
+        anfang = self.seite.find('headshots/')
         if anfang < 0:
             return False
         ende = self.seite.find('"></div>', anfang)
-        return self.seite[anfang+20:ende].replace(" ", "%20")
+        return self.seite[anfang+10:ende].replace(" ", "%20")
     
     def actor_sex(self):
         anfang = self.seite.find('&amp;gender=')

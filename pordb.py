@@ -3450,7 +3450,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             items.sort(key = vergleich)
             self.listWidgetFilme.clear()
             self.listWidgetFilme.addItems(items)
-            print (type(items))
             self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Title", None, QtGui.QApplication.UnicodeUTF8))
         else:
             self.listWidgetFilme.sortItems()

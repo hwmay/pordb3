@@ -4369,30 +4369,31 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         zu_erfassen = []
         
         for i in self.dateien:
-            self.emit(QtCore.SIGNAL("add(QString)"), i)
-            zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE file = %s OR groesse = %s"
-            lese_func = DBLesen(self, zu_lesen, (i, str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))))
-            res = DBLesen.get_data(lese_func)
-            in_datenbank = True
-            for j in res:
-                if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(self.verzeichnis_tools) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
-                    in_datenbank = False
-                
-            if in_datenbank:
+            if os.path.isfile(os.path.join(self.verzeichnis_tools, i.strip())):
+                self.emit(QtCore.SIGNAL("add(QString)"), i)
+                zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE file = %s OR groesse = %s"
+                lese_func = DBLesen(self, zu_lesen, (i, str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))))
+                res = DBLesen.get_data(lese_func)
+                in_datenbank = True
                 for j in res:
-                    # put only in duplicate list, when actual directory is another one than that in database
-                    if j[1].strip() != os.path.basename(self.verzeichnis_tools).strip(): 
-                        a = list(j)
-                        a.append(i)
-                        a.append(int(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip())))
-                        self.res_duplicates.append(a)
-                werte = []
-                werte.append(str(self.comboBoxDevice.currentText()))
-                werte.append(os.path.basename(self.verzeichnis_tools))
-                werte.append(i)
-                werte.append(None)
-                werte.append(os.path.getsize(self.verzeichnis_tools + os.sep + i))
-                zu_erfassen.append(["INSERT INTO pordb_mpg_katalog VALUES (%s, %s, %s, %s, %s)", werte])
+                    if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(self.verzeichnis_tools) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
+                        in_datenbank = False
+                    
+                if in_datenbank:
+                    for j in res:
+                        # put only in duplicate list, when actual directory is another one than that in database
+                        if j[1].strip() != os.path.basename(self.verzeichnis_tools).strip(): 
+                            a = list(j)
+                            a.append(i)
+                            a.append(int(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip()))))
+                            self.res_duplicates.append(a)
+                    werte = []
+                    werte.append(str(self.comboBoxDevice.currentText()))
+                    werte.append(os.path.basename(self.verzeichnis_tools))
+                    werte.append(i)
+                    werte.append(None)
+                    werte.append(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip())))
+                    zu_erfassen.append(["INSERT INTO pordb_mpg_katalog VALUES (%s, %s, %s, %s, %s)", werte])
                     
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)

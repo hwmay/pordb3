@@ -1664,8 +1664,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         # nach Titel in pordb_vid suchen und anzeigen
         self.start_bilder = 0
         try:
-            ein = str(self.suchfeld.currentText()).replace("'", "''").lower()
-            ein = str(self.suchfeld.currentText()).replace("'", "''").lower().strip()
+            ein = str(self.suchfeld.currentText()).lower().strip()
         except:
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems to be an invalid character in the search field"))
             return

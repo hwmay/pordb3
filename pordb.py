@@ -45,16 +45,16 @@ sizeneu = QtCore.QSize(500, 400)
 size_neu = QtCore.QSize(130, 130)
 size_darsteller = QtCore.QSize(1920, 1080)
 
-dbname = "por"
+DBNAME = "por"
 initial_run = True
 
 __version__ = "1.9.5"
-file_version = "https://github.com/hwmay/pordb3/blob/master/version"
+FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
 try:
-    conn = psycopg2.connect(database=dbname, host=db_host)
+    conn = psycopg2.connect(database=DBNAME, host=db_host)
 except Exception as e:
     print("FATAL PorDB3: Database server not running")
     sys.exit()
@@ -4078,7 +4078,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         while True:
             zaehler += 1
             try:
-                seite = urllib.request.urlopen(file_version).read()
+                seite = urllib.request.urlopen(FILE_VERSION).read()
                 if seite:
                     break
                 else:
@@ -4157,7 +4157,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             res = DBLesen.get_data(lese_func)
             db_host = "localhost"
             try:
-                self.conn = psycopg2.connect(database=dbname, host=db_host)
+                self.conn = psycopg2.connect(database=DBNAME, host=db_host)
             except Exception as e:
                 message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Connection to database failed"))
                 return
@@ -4206,7 +4206,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         # Restore the database
         db_host="localhost"
         try:
-            self.conn = psycopg2.connect(database=dbname, host=db_host)
+            self.conn = psycopg2.connect(database=DBNAME, host=db_host)
         except Exception as e:
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Connection to database failed"))
             return

@@ -52,19 +52,21 @@ class Historie(QtGui.QDialog, pordb_historie):
         self.tableWidgetHistory.clearSelection()
         self.tableWidgetHistory.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
         suchbegriff = str(self.lineEditSearch.text()).lower()
-        zaehler = 0
         item_scroll = None
-        for i in range(len(self.res)):
-            item = self.tableWidgetHistory.item(i, 1)
-            text = str(item.text()).lower()
-            if suchbegriff in text:
-                zaehler += 1
-                if zaehler == 1:
-                    item_scroll = item
-                self.tableWidgetHistory.selectRow(i)
-        if item_scroll:
-            self.tableWidgetHistory.scrollToItem(item_scroll)
-        self.tableWidgetHistory.setFocus()
+        if suchbegriff:
+            zaehler = 0
+            item_scroll = None
+            for i in range(len(self.res)):
+                item = self.tableWidgetHistory.item(i, 1)
+                text = str(item.text()).lower()
+                if suchbegriff in text:
+                    zaehler += 1
+                    if zaehler == 1:
+                        item_scroll = item
+                    self.tableWidgetHistory.selectRow(i)
+            if item_scroll:
+                self.tableWidgetHistory.scrollToItem(item_scroll)
+            self.tableWidgetHistory.setFocus()
     
     def onGo(self):
         for i in range(len(self.res)):

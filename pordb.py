@@ -560,7 +560,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 or 2 pictures"))
             return    
         else:
-            bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.rstrip()
+            bilddatei_alt = os.path.join(self.verzeichnis_thumbs, "cd" + str(cd), bild.rstrip())
             if len(dateien) == 2:
                 if os.path.exists(bilddatei_alt):
                     message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 picture"))
@@ -577,21 +577,21 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 if not os.path.exists(bilddatei_alt):
                     message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
                     return
-                os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +ext)
+                os.rename(bilddatei_alt, os.path.join(self.verzeichnis_trash, "pypordb_bildalt" + ext))
             else:
                 if os.path.exists(bilddatei_alt):
                     try:
-                        os.remove(self.verzeichnis_trash +os.sep +"pypordb_bildalt.*")
+                        os.remove(os.path.join(self.verzeichnis_trash, "pypordb_bildalt.*"))
                     except:
                         pass
                     ext = os.path.splitext(bilddatei_alt)[-1].lower()
                     if ext == ".jpeg":
                         ext = "jpg"
-                    os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +ext)
+                    os.rename(bilddatei_alt, os.path.join(self.verzeichnis_trash, "pypordb_bildalt" +ext))
                     bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
                 else:
                     bilddatei = QtGui.QImage(dateien[0])
-                    bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
+                    bilddatei_alt = os.path.join(self.verzeichnis_cover, bild.rstrip())
             
         if bilddatei.save(bilddatei_alt):
             if len(dateien) == 1:

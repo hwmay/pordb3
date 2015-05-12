@@ -2539,10 +2539,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             while True:
                 zaehler += 1
                 try:
-                    seite = urllib.request.urlopen(res[0][11]).read().decode("iso-8859-1")
+                    seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("iso-8859-1")
                     break
-                except:
-                    pass
+                except urllib.error.URLError as e:
+                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), e)
+                    return
                 if zaehler > 10:
                     break
             app.restoreOverrideCursor()
@@ -2570,10 +2571,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             while True:
                 zaehler += 1
                 try:
-                    seite = str(urllib.request.urlopen(res[0][11]).read())
+                    seite = str(urllib.request.urlopen(res[0][11], timeout=10).read())
                     break
-                except:
-                    pass
+                except urllib.error.URLError as e:
+                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), e)
+                    return
                 if zaehler > 10:
                     break
             if zaehler > 10:

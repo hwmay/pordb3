@@ -2347,7 +2347,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionTitel">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/titel.png</normaloff>pypordb/titel.png</iconset>
+     <normaloff>pypordb/titel.svg</normaloff>pypordb/titel.svg</iconset>
    </property>
    <property name="text">
     <string>title</string>
@@ -2362,7 +2362,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionOriginal">
    <property name="icon">
     <iconset>
-     <normaloff>pypordb/original.png</normaloff>pypordb/original.png</iconset>
+     <normaloff>pypordb/original.svg</normaloff>pypordb/original.svg</iconset>
    </property>
    <property name="text">
     <string>original</string>

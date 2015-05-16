@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Wed Apr 22 23:40:48 2015
+# Created: Wed May 13 00:22:42 2015
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -904,12 +904,12 @@ class Ui_MainWindow(object):
         self.actionCd.setObjectName(_fromUtf8("actionCd"))
         self.actionTitel = QtGui.QAction(MainWindow)
         icon40 = QtGui.QIcon()
-        icon40.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/titel.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon40.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/titel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionTitel.setIcon(icon40)
         self.actionTitel.setObjectName(_fromUtf8("actionTitel"))
         self.actionOriginal = QtGui.QAction(MainWindow)
         icon41 = QtGui.QIcon()
-        icon41.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/original.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon41.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/original.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionOriginal.setIcon(icon41)
         self.actionOriginal.setObjectName(_fromUtf8("actionOriginal"))
         self.actionVid = QtGui.QAction(MainWindow)

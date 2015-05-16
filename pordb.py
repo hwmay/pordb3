@@ -7,6 +7,7 @@ import time
 import datetime
 import platform
 import urllib.request, urllib.error, urllib.parse
+import socket
 from operator import itemgetter, attrgetter
 import psycopg2
 from PyQt4 import QtGui, QtCore
@@ -382,22 +383,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if initial_run: 
             splash.showMessage("Loading IAFD", color = QtGui.QColor("red"))
             app.processEvents()
-            zaehler = 0
-            while True:
-                zaehler += 1
-                try:
-                    seite = urllib.request.urlopen("http://www.iafd.com/").read()
-                    if seite:
-                        self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
-                        break
-                    else:
-                        pass
-                except:
+            seite = None
+            try:
+                seite = urllib.request.urlopen("http://www.iafd.com/", timeout=10).read()
+                if seite:
+                    self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
+                else:
                     pass
-                if zaehler > 1:
-                    break
+            except (urllib.error.URLError, socket.timeout):
+                pass
+                
             self.webView.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
-            if zaehler > 1:
+            if not seite:
                 self.statusBar.showMessage(self.trUtf8("Either your computer is not online or the IAFD is not reachable"))
                 
         if initial_run:
@@ -2535,25 +2532,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         res = self.darsteller_lesen(ein)
         if res and res[0][11] and res[0][11] != "0":
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-            zaehler = 0
-            while True:
-                zaehler += 1
-                try:
-                    seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("iso-8859-1")
-                    break
-                except urllib.error.URLError as e:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), e)
-                    return
-                if zaehler > 10:
-                    break
-            app.restoreOverrideCursor()
-            if zaehler > 10:
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Site of actor could not be found"))
-                return
-            else:
-                bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs, name = res[0][0])
+            try:
+                seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("iso-8859-1")
+            except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
-                bilddialog.exec_()
+                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
+                return
+            app.restoreOverrideCursor()
+            app.restoreOverrideCursor()
+            bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs, name = res[0][0])
+            bilddialog.exec_()
         else:
             clipboard = QtGui.QApplication.clipboard()
             clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
@@ -2567,20 +2555,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if res[0][11]:
             monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-            zaehler = 0
-            while True:
-                zaehler += 1
-                try:
-                    seite = str(urllib.request.urlopen(res[0][11], timeout=10).read())
-                    break
-                except urllib.error.URLError as e:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), e)
-                    return
-                if zaehler > 10:
-                    break
-            if zaehler > 10:
+            try:
+                seite = str(urllib.request.urlopen(res[0][11], timeout=10).read())
+            except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Site of actor could not be found"))
+                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
                 return
             
             actordata = ActorData(seite)
@@ -4076,19 +4055,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         version = None
         whatsnew = None
         seite = None
-        zaehler = 0
-        while True:
-            zaehler += 1
-            try:
-                seite = urllib.request.urlopen(FILE_VERSION).read()
-                if seite:
-                    break
-                else:
-                    pass
-            except:
-                pass
-            if zaehler > 1:
-                break
+        try:
+            seite = urllib.request.urlopen(FILE_VERSION).read()
+        except (urllib.error.URLError, socket.timeout) as e:
+            app.restoreOverrideCursor()
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
+            return            
     
         if seite:
             begin = str(seite).find("pordbversion")

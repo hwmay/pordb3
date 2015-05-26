@@ -417,7 +417,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         settings.setValue("MeinDialog/State", self.saveState())
         settings.setValue("splitter", self.splitter.saveState())
         
-    def bilder_aktuell(self):
+    def bilder_aktuell(self, force = False):
         self.label_akt_verzeichnis.setText(self.verzeichnis)
         dateiliste = os.listdir(self.verzeichnis)
         zeile = -1
@@ -432,7 +432,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.setRowCount(len(dateiliste_bereinigt))
         zeile = -2
         dateiliste_bereinigt.sort()
-        if self.bilderliste != dateiliste_bereinigt:
+        if self.bilderliste != dateiliste_bereinigt or force:
             for i in dateiliste_bereinigt:
                 bild = QtGui.QPixmap(self.verzeichnis +os.sep +i)
                 text = i + "\n" + str(QtGui.QPixmap(bild).width()) +"x" +str(QtGui.QPixmap(bild).height())
@@ -742,7 +742,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
             
     def onDirectoryRefresh(self):
-        self.bilder_aktuell()
+        self.bilder_aktuell(force = True)
         
     def onHistorie(self):
         historiedialog = Historie()

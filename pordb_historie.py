@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_historie.ui'
 #
-# Created: Sun Mar 15 21:57:40 2015
+# Created: Tue Jun  2 20:10:15 2015
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,6 +35,7 @@ class Ui_Dialog(object):
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.tableWidgetHistory = QtGui.QTableWidget(Dialog)
+        self.tableWidgetHistory.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
         self.tableWidgetHistory.setObjectName(_fromUtf8("tableWidgetHistory"))
         self.tableWidgetHistory.setColumnCount(3)
         self.tableWidgetHistory.setRowCount(0)

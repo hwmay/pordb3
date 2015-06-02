@@ -73,11 +73,11 @@ class Historie(QtGui.QDialog, pordb_historie):
             if self.tableWidgetHistory.item(i, 0).checkState():
                 text = str(self.tableWidgetHistory.item(i, 1).text())
                 index = text.find("ORDER BY")
-                index += text[index : ].rfind("(")
-                self.werte = str(self.tableWidgetHistory.item(i, 1).text())[index :].lstrip("(")
+                index += text[index : ].find(" (")
+                self.werte = str(self.tableWidgetHistory.item(i, 1).text())[index :].lstrip(" (")
                 if self.werte.endswith(")"):
                     self.werte = self.werte[:-1]
-                self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index - 1]
+                self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index]
                 break
         
         self.close()

@@ -748,7 +748,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         historiedialog = Historie()
         historiedialog.exec_()
         zu_lesen = str(historiedialog.zu_lesen)
-        werte = str(historiedialog.werte).lstrip("(").rstrip(")").split(";")
+        werte = str(historiedialog.werte).split(";")
         if zu_lesen and not "pordb_history" in zu_lesen:
             self.start_bilder = 0
             self.letzter_select_komplett = zu_lesen

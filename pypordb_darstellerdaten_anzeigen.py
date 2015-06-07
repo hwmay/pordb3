@@ -126,7 +126,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             if ethnic != self.trUtf8("not available"):
                 self.ethnic = ethnic
                 self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
-        self.lineEditEthnic.setText(self.ethnic)
+        self.comboBoxEthnic.setCurrentIndex(self.comboBoxEthnic.findText(self.ethnic))
         
         # Darsteller Haarfarbe
         self.haare = ActorData.actor_hair(actordata)
@@ -138,7 +138,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             if haarfarbe != self.trUtf8("not available"):
                 self.haare = haarfarbe
                 self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
-        self.lineEditHaare.setText(self.haare)
+        self.comboBoxHaare.setCurrentIndex(self.comboBoxHaare.findText(self.haare))
         
         # Darsteller Tattoos
         self.tattoos = ActorData.actor_tattoos(actordata)
@@ -224,10 +224,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                 werte.append(str(self.lineEditGeschlecht.text()))
                 werte.append(str(0))
                 werte.append(datum)
-                werte.append(str(self.lineEditHaare.text()).lower())
+                werte.append(str(self.comboBoxHaare.currentText()))
                 werte.append(str(self.comboBoxNation.currentText())[0:2])
                 werte.append(str(self.lineEditTattos.text()))
-                werte.append(str(self.lineEditEthnic.text()).lower())
+                werte.append(str(self.comboBoxEthnic.currentText()))
                 werte.append(str(0))
                 werte.append(geboren)
                 werte.append(str(self.filme))
@@ -286,12 +286,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                 zu_erfassen.append(["UPDATE pordb_darsteller SET nation = %s WHERE darsteller = %s", werte])
             if self.checkBoxEthnic.isChecked():
                 werte = []
-                werte.append(str(self.lineEditEthnic.text()).lower())
+                werte.append(str(self.comboBoxEthnic.currentText()))
                 werte.append(res[0][0])
                 zu_erfassen.append(["UPDATE pordb_darsteller SET ethnic = %s WHERE darsteller = %s", werte])
             if self.checkBoxHaare.isChecked():
                 werte = []
-                werte.append(str(self.lineEditHaare.text()).lower())
+                werte.append(str(self.comboBoxHaare.currentText()))
                 werte.append(res[0][0])
                 zu_erfassen.append(["UPDATE pordb_darsteller SET haarfarbe = %s WHERE darsteller = %s", werte])
             if self.checkBoxTattos.isChecked() and str(self.lineEditTattos.text()):

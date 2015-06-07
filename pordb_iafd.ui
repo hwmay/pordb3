@@ -80,36 +80,8 @@
    </item>
    <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Name:</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
       <widget class="QCheckBox" name="checkBoxPseudo">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Alias:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Tattoos:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QCheckBox" name="checkBoxEthnic">
        <property name="text">
         <string/>
        </property>
@@ -122,34 +94,29 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="lineEditGeschlecht"/>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="labelGeboren">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string/>
+        <string>Alias:</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="2">
-      <widget class="QLineEdit" name="lineEditEthnic"/>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_6">
+     <item row="7" column="1">
+      <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Gender:</string>
+        <string>Hair color:</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QCheckBox" name="checkBoxName">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QCheckBox" name="checkBoxEthnic">
        <property name="text">
         <string/>
        </property>
@@ -157,39 +124,6 @@
      </item>
      <item row="8" column="2">
       <widget class="QLineEdit" name="lineEditTattos"/>
-     </item>
-     <item row="7" column="2">
-      <widget class="QLineEdit" name="lineEditHaare"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QCheckBox" name="checkBoxGeboren">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QCheckBox" name="checkBoxLand">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLineEdit" name="lineEditName"/>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="label_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Born:</string>
-       </property>
-      </widget>
      </item>
      <item row="7" column="0">
       <widget class="QCheckBox" name="checkBoxHaare">
@@ -205,20 +139,47 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="label_5">
+     <item row="4" column="0">
+      <widget class="QCheckBox" name="checkBoxLand">
        <property name="text">
-        <string>Hair color:</string>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="4" column="2">
-      <widget class="QLineEdit" name="lineEditLand"/>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Born:</string>
+       </property>
+      </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QCheckBox" name="checkBoxGeschlecht">
+     <item row="6" column="2">
+      <widget class="QLineEdit" name="lineEditEthnic"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="checkBoxName">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QCheckBox" name="checkBoxGeboren">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Tattoos:</string>
        </property>
       </widget>
      </item>
@@ -245,6 +206,13 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="lineEditGeschlecht">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="2">
       <widget class="QLabel" name="labelBirthplace">
        <property name="sizePolicy">
@@ -257,6 +225,35 @@
         <string/>
        </property>
       </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLabel" name="labelGeboren">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="lineEditName"/>
+     </item>
+     <item row="7" column="2">
+      <widget class="QLineEdit" name="lineEditHaare"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Gender:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QComboBox" name="comboBoxNation"/>
      </item>
     </layout>
    </item>
@@ -328,13 +325,11 @@
   <tabstop>checkBoxBild</tabstop>
   <tabstop>checkBoxName</tabstop>
   <tabstop>lineEditName</tabstop>
-  <tabstop>checkBoxGeschlecht</tabstop>
   <tabstop>lineEditGeschlecht</tabstop>
   <tabstop>checkBoxPseudo</tabstop>
   <tabstop>lineEditPseudo</tabstop>
   <tabstop>checkBoxGeboren</tabstop>
   <tabstop>checkBoxLand</tabstop>
-  <tabstop>lineEditLand</tabstop>
   <tabstop>checkBoxEthnic</tabstop>
   <tabstop>lineEditEthnic</tabstop>
   <tabstop>checkBoxHaare</tabstop>

@@ -26,6 +26,15 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         self.name = None
         if name:
             self.name = name.strip()
+            
+        # Combobox für Nation füllen
+        zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"
+        lese_func = DBLesen(self, zu_lesen, "x")
+        res_iso_land = DBLesen.get_data(lese_func)
+        self.comboBoxNation.clear()
+        for i in res_iso_land:
+            text = '%2s %-50s' % (i[0], i[1])
+            self.comboBoxNation.addItem(text)
         
         self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         
@@ -84,16 +93,22 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         # Darsteller Land
         self.land = ActorData.actor_country(actordata)
         if self.land == "No data":
-            self.lineEditLand.setText("")
             self.checkBoxLand.setCheckState(QtCore.Qt.Unchecked)
+            self.comboBoxNation.setCurrentIndex(-1)
         else:
-            self.lineEditLand.setText(self.land)
-            zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
-            self.lese_func = DBLesen(self, zu_lesen, self.land)
-            res = DBLesen.get_data(self.lese_func)
-            if len(res) > 0:
-                self.lineEditLand.setText(res[0][0])
-                self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
+            #zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
+            #self.lese_func = DBLesen(self, zu_lesen, self.land)
+            #res = DBLesen.get_data(self.lese_func)
+            #if len(res) > 0:
+            gefunden = False
+            for i, wert in enumerate(res_iso_land):
+                if wert[3].strip() == self.land:
+                    gefunden = True
+                    break
+            if not gefunden:
+                i = -1
+            self.comboBoxNation.setCurrentIndex(i)
+            self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
                 
         # Actor birthplace
         self.birthplace = ActorData.actor_birthplace(actordata)
@@ -210,7 +225,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                 werte.append(str(0))
                 werte.append(datum)
                 werte.append(str(self.lineEditHaare.text()).lower())
-                werte.append(str(self.lineEditLand.text()).upper()[0:2])
+                werte.append(str(self.comboBoxNation.currentText())[0:2])
                 werte.append(str(self.lineEditTattos.text()))
                 werte.append(str(self.lineEditEthnic.text()).lower())
                 werte.append(str(0))
@@ -264,9 +279,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                     werte.append(str(self.labelGeboren.text()))
                     werte.append(res[0][0])
                     zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = %s WHERE darsteller = %s", werte])
-            if self.checkBoxLand.isChecked() and str(self.lineEditLand.text()):
+            if self.checkBoxLand.isChecked() and str(self.comboBoxNation.currentText()):
                 werte = []
-                werte.append(str(self.lineEditLand.text()).upper())
+                werte.append(str(self.comboBoxNation.currentText())[0:2])
                 werte.append(res[0][0])
                 zu_erfassen.append(["UPDATE pordb_darsteller SET nation = %s WHERE darsteller = %s", werte])
             if self.checkBoxEthnic.isChecked():

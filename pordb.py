@@ -2539,7 +2539,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
                 return
             app.restoreOverrideCursor()
-            app.restoreOverrideCursor()
             bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs, name = res[0][0])
             bilddialog.exec_()
         else:

@@ -118,6 +118,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         
         # Darsteller Ethnic
         self.ethnic = ActorData.actor_ethnic(actordata)
+        self.labelEthnic.setText(self.ethnic)
         if self.ethnic == "No data":
             self.ethnic = ""
             self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
@@ -130,6 +131,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         
         # Darsteller Haarfarbe
         self.haare = ActorData.actor_hair(actordata)
+        self.labelHaare.setText(self.haare)
         if self.haare == "No data":
             self.haare = ""
             self.checkBoxHaare.setCheckState(QtCore.Qt.Unchecked)

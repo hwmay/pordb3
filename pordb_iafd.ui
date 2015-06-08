@@ -80,10 +80,17 @@
    </item>
    <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
-      <widget class="QCheckBox" name="checkBoxPseudo">
+     <item row="3" column="0">
+      <widget class="QCheckBox" name="checkBoxGeboren">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="1">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Tattoos:</string>
        </property>
       </widget>
      </item>
@@ -94,17 +101,31 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="label">
+     <item row="6" column="0">
+      <widget class="QCheckBox" name="checkBoxEthnic">
        <property name="text">
-        <string>Alias:</string>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="label_5">
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Hair color:</string>
+        <string>Country:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QCheckBox" name="checkBoxPseudo">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QCheckBox" name="checkBoxTattos">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -115,34 +136,17 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
-      <widget class="QCheckBox" name="checkBoxEthnic">
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="checkBoxName">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
-     <item row="8" column="2">
-      <widget class="QLineEdit" name="lineEditTattos"/>
-     </item>
-     <item row="7" column="0">
-      <widget class="QCheckBox" name="checkBoxHaare">
+     <item row="2" column="1">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QCheckBox" name="checkBoxTattos">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QCheckBox" name="checkBoxLand">
-       <property name="text">
-        <string/>
+        <string>Alias:</string>
        </property>
       </widget>
      </item>
@@ -159,31 +163,27 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QCheckBox" name="checkBoxName">
+     <item row="10" column="2">
+      <widget class="QLineEdit" name="lineEditTattos"/>
+     </item>
+     <item row="8" column="0">
+      <widget class="QCheckBox" name="checkBoxHaare">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QCheckBox" name="checkBoxGeboren">
+     <item row="4" column="0">
+      <widget class="QCheckBox" name="checkBoxLand">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Tattoos:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Country:</string>
+        <string>Hair color:</string>
        </property>
       </widget>
      </item>
@@ -289,7 +289,7 @@
        </item>
       </widget>
      </item>
-     <item row="7" column="2">
+     <item row="8" column="2">
       <widget class="QComboBox" name="comboBoxHaare">
        <item>
         <property name="text">
@@ -327,6 +327,32 @@
           <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
         </property>
        </item>
+      </widget>
+     </item>
+     <item row="7" column="2">
+      <widget class="QLabel" name="labelEthnic">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2">
+      <widget class="QLabel" name="labelHaare">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </item>
     </layout>

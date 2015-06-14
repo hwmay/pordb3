@@ -2584,6 +2584,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append(str(geboren))
                 werte.append(res[0][0])
                 zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = %s WHERE darsteller = %s", werte])
+                
+            # Darsteller Land
+            self.land = ActorData.actor_country(actordata)
+            gefunden = False
+            zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
+            lese_func = DBLesen(self, zu_lesen, self.land)
+            res_iso_land = DBLesen.get_data(lese_func)
+            if res_iso_land:
+                werte = []
+                werte.append(res_iso_land[0][0])
+                werte.append(res[0][0])                
+                zu_erfassen.append(["UPDATE pordb_darsteller SET nation = %s WHERE darsteller = %s", werte])
             
             # Darsteller Anzahl Filme
             filme = ActorData.actor_movies(actordata)

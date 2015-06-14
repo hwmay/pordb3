@@ -96,10 +96,6 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.checkBoxLand.setCheckState(QtCore.Qt.Unchecked)
             self.comboBoxNation.setCurrentIndex(-1)
         else:
-            #zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
-            #self.lese_func = DBLesen(self, zu_lesen, self.land)
-            #res = DBLesen.get_data(self.lese_func)
-            #if len(res) > 0:
             gefunden = False
             for i, wert in enumerate(res_iso_land):
                 if wert[3].strip() == self.land:

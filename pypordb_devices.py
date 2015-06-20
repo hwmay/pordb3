@@ -30,6 +30,11 @@ class Devices(QtGui.QDialog, pordb_devices):
                     newitem = QtGui.QTableWidgetItem(" ")
                 self.tableWidget.setItem(row, column, newitem)
             row += 1
+        newitem = QtGui.QTableWidgetItem("")
+        self.tableWidget.setItem(row, 0, newitem)
+        self.tableWidget.setCurrentItem(newitem)
+        self.tableWidget.setFocus()
+        self.tableWidget.editItem(self.tableWidget.currentItem())            
         self.tableWidget.setHorizontalHeaderLabels([self.trUtf8("Device")])
         self.tableWidget.setAlternatingRowColors(True)
         self.tableWidget.resizeColumnsToContents()

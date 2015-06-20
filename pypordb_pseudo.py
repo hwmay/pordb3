@@ -27,6 +27,11 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
             newitem = QtGui.QTableWidgetItem(i.strip())
             self.tableWidgetPseudo.setItem(row, column, newitem)
             row += 1
+        newitem = QtGui.QTableWidgetItem("")
+        self.tableWidgetPseudo.setItem(row, 0, newitem)
+        self.tableWidgetPseudo.setCurrentItem(newitem)
+        self.tableWidgetPseudo.setFocus()
+        self.tableWidgetPseudo.editItem(self.tableWidgetPseudo.currentItem())            
         self.tableWidgetPseudo.setAlternatingRowColors(True)
         self.tableWidgetPseudo.resizeColumnsToContents()
         self.tableWidgetPseudo.resizeRowsToContents()

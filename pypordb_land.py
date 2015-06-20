@@ -31,6 +31,11 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
                 self.tableWidgetLaender.setItem(row, column, newitem)
                 column += 1
             row += 1
+        newitem = QtGui.QTableWidgetItem("")
+        self.tableWidgetLaender.setItem(row, 0, newitem)
+        self.tableWidgetLaender.setCurrentItem(newitem)
+        self.tableWidgetLaender.setFocus()
+        self.tableWidgetLaender.editItem(self.tableWidgetLaender.currentItem())          
         self.tableWidgetLaender.setHorizontalHeaderLabels(["ISO Code", self.trUtf8("Country"), self.trUtf8("active"), self.trUtf8("Nationality")])
         self.tableWidgetLaender.setAlternatingRowColors(True)
         self.tableWidgetLaender.resizeColumnsToContents()

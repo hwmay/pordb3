@@ -30,6 +30,11 @@ class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
                 self.tableWidgetSuche.setItem(row, column, newitem)
                 column += 1
             row += 1
+        newitem = QtGui.QTableWidgetItem("")
+        self.tableWidgetSuche.setItem(row, 0, newitem)
+        self.tableWidgetSuche.setCurrentItem(newitem)
+        self.tableWidgetSuche.setFocus()
+        self.tableWidgetSuche.editItem(self.tableWidgetSuche.currentItem())            
         self.tableWidgetSuche.setHorizontalHeaderLabels([self.trUtf8("Search terms"), self.trUtf8("Alternative")])
         self.tableWidgetSuche.setAlternatingRowColors(True)
         self.tableWidgetSuche.resizeColumnsToContents()

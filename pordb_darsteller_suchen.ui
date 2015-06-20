@@ -329,10 +329,10 @@
        <item>
         <widget class="QPushButton" name="pushButtonSuchen">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search (enter)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search, enter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>Search</string>
          </property>
          <property name="icon">
           <iconset>
@@ -349,7 +349,7 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear all search fields, alt+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>Clear all search fields</string>
          </property>
          <property name="icon">
           <iconset>
@@ -362,6 +362,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonCancel">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel, esc&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Cancel</string>
          </property>

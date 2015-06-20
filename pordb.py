@@ -4062,6 +4062,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
         
     def onCheckNewVersion(self, initial=True):
+        app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         global initial_run
         version = None
         whatsnew = None
@@ -4118,8 +4119,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     os.execl(python, python, * sys.argv)
             else:
                 if not initial_run:
+                    app.restoreOverrideCursor()
                     message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("You have the latest version"))
                     self.suchfeld.setFocus()
+        app.restoreOverrideCursor()
         
     def onSuchbegriffe(self):
         bilddialog = SuchbegriffeBearbeiten()

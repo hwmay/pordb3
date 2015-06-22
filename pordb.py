@@ -10,6 +10,7 @@ import urllib.request, urllib.error, urllib.parse
 import socket
 from operator import itemgetter, attrgetter
 import psycopg2
+import subprocess
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtWebKit import QWebPage
 from PyQt4.QtWebKit import QWebFrame
@@ -4140,24 +4141,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         import tarfile
         # Backup database
         if self.checkBoxDatabase.isChecked():
-            zu_lesen = "SELECT * FROM information_schema.tables WHERE table_schema = %s AND table_name NOT LIKE %s AND table_name LIKE %s ORDER BY table_name"
-            lese_func = DBLesen(self, zu_lesen, ("public", "pga_%", "pordb%"))
-            res = DBLesen.get_data(lese_func)
-            db_host = "localhost"
-            try:
-                self.conn = psycopg2.connect(database=DBNAME, host=db_host)
-            except Exception as e:
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Connection to database failed"))
-                return
-            self.cur = self.conn.cursor()
-            for i in res:
-                datei = open(self.verzeichnis_original +os.sep +i[2] +".txt", "w")
-                try:
-                    self.cur.copy_to(datei, i[2], sep='|')
-                except Exception as e:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Copy to file failed"))
-                    return
-                datei.close()
+            subprocess.check_output(["pg_dump", DBNAME, "-f", os.path.join(self.verzeichnis_original, DBNAME + ".sql")], universal_newlines=True)
                 
         # Backup picture directory
         if self.checkBoxPictures.isChecked():
@@ -4192,52 +4176,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         nachricht = self.trUtf8("No files found for restoring")
         
         # Restore the database
-        db_host="localhost"
-        try:
-            self.conn = psycopg2.connect(database=DBNAME, host=db_host)
-        except Exception as e:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Connection to database failed"))
-            return
-        self.cur = self.conn.cursor()
-        dateiliste = os.listdir(self.verzeichnis)
-        # caused by foreign keys, the following tables has to be processed first
-        try:
-            dateiliste.remove("pordb_vid.txt")
-            dateiliste.remove("pordb_darsteller.txt")
-            dateiliste.insert(0, "pordb_darsteller.txt")
-            dateiliste.insert(0, "pordb_vid.txt")
-        except:
-            pass
-        dateien_gefunden = False
-        for i in dateiliste:
-            if i.startswith("pordb_") and i.endswith(".txt"):
-                tabelle = i.rstrip(".txt")
-                datei = open(self.verzeichnis +os.sep +i, "r")
-                delete = "truncate " +tabelle +" CASCADE"                
-                try:
-                    self.cur.execute(delete)
-                except Exception as e:
-                    app.restoreOverrideCursor()
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Truncate for table " +i +" failed: " +str(e)))
-                    datei.close()
-                    return
-                try:
-                    self.cur.copy_from(datei, tabelle, sep='|')
-                    dateien_gefunden = True
-                except Exception as e:
-                    app.restoreOverrideCursor()
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Copy from file " +i +" failed: " +str(e)))
-                    datei.close()
-                    return
-                datei.close()
-                
-        self.conn.commit()
+        datei = os.path.join(self.verzeichnis_original, DBNAME + ".sql")
+        conn.close()
+        subprocess.check_output(["dropdb", DBNAME], universal_newlines=True)
+        subprocess.check_output(["createdb", "-O", "postgres", "-E", "UTF8", "-T", "template0", DBNAME], universal_newlines=True)
+        subprocess.check_output(["psql", "-d", DBNAME, "-f", os.path.join(self.verzeichnis_original, DBNAME + ".sql")], universal_newlines=True)
+        os.remove(os.path.join(self.verzeichnis_original, DBNAME + ".sql"))
         
-        if dateien_gefunden:
-            for i in dateiliste:
-                if i.startswith("pordb_") and i.endswith(".txt"):
-                    os.remove(self.verzeichnis +os.sep +i)
-            nachricht = self.trUtf8("Database restore was successful")
+        nachricht = self.trUtf8("Database restore was successful")
 
         # Restore the picture directory
         parts = os.listdir(self.verzeichnis)

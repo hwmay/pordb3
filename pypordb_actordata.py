@@ -69,6 +69,8 @@ class ActorData():
     def actor_tattoos(self):
         anfang = self.seite.find('Tattoos</b></td><td>')
         ende = self.seite.find('</td>', anfang+20)
+        if ende - anfang > 500:
+            ende = anfang + 500
         return self.seite[anfang+20:ende]
     
     def actor_born(self):

@@ -4177,11 +4177,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         # Restore the database
         datei = os.path.join(self.verzeichnis_original, DBNAME + ".sql")
-        conn.close()
-        subprocess.check_output(["dropdb", DBNAME], universal_newlines=True)
-        subprocess.check_output(["createdb", "-O", "postgres", "-E", "UTF8", "-T", "template0", DBNAME], universal_newlines=True)
-        subprocess.check_output(["psql", "-d", DBNAME, "-f", os.path.join(self.verzeichnis_original, DBNAME + ".sql")], universal_newlines=True)
-        os.remove(os.path.join(self.verzeichnis_original, DBNAME + ".sql"))
+        if os.path.exists(datei):
+            conn.close()
+            subprocess.check_output(["dropdb", DBNAME], universal_newlines=True)
+            subprocess.check_output(["createdb", "-O", "postgres", "-E", "UTF8", "-T", "template0", DBNAME], universal_newlines=True)
+            subprocess.check_output(["psql", "-d", DBNAME, "-f", os.path.join(self.verzeichnis_original, DBNAME + ".sql")], universal_newlines=True)
+            os.remove(datei)
+        else:
+            app.restoreOverrideCursor()
+            message = QtGui.QMessageBox(self)
+            message.setText(self.trUtf8("No backup file in directory ") +self.verzeichnis_original + self.trUtf8(" found"))
+            message.exec_()
+            return
         
         nachricht = self.trUtf8("Database restore was successful")
 

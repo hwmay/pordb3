@@ -42,12 +42,20 @@
          <property name="text">
           <string>Save</string>
          </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/media-floppy.png</normaloff>pypordb/media-floppy.png</iconset>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonAbbrechen">
          <property name="text">
           <string>Cancel</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
          </property>
         </widget>
        </item>

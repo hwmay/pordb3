@@ -2456,12 +2456,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte = []
             zu_lesen = "SELECT * FROM pordb_pseudo WHERE pseudo = %s"
             werte.append(eingabe)
-            if self.comboBoxSex.currentText() == self.trUtf8("Male"):
-                zu_lesen += " AND sex = %s"
-                werte.append("m")
-            elif self.comboBoxSex.currentText() == self.trUtf8("Female"):
-                zu_lesen += " AND sex = %s"
-                werte.append("m")
             zu_lesen += " ORDER BY darsteller"
             lese_func = DBLesen(self, zu_lesen, werte)
             res1 = DBLesen.get_data(lese_func)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 from PyQt4 import QtGui, QtCore
 from pordb_darsteller_suchen import Ui_DarstellerSuche as pordb_darsteller_suchen
 from pypordb_dblesen import DBLesen
@@ -26,7 +27,10 @@ class DarstellerSuchen(QtGui.QDialog, pordb_darsteller_suchen):
         self.comboBoxDarstellerSucheNation.addItem("")
         for i in res:
             text = '%2s %-50s' % (i[0], i[1])
-            self.comboBoxDarstellerSucheNation.addItem(text)
+            bild = os.path.join(os.curdir, "pypordb", i[0] + ".svg")
+            icon = QtGui.QIcon()
+            icon.addFile(bild, QtCore.QSize(16, 16), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.comboBoxDarstellerSucheNation.addItem(icon, text)
         
     def onRefresh(self):
         self.lineEditDarstellerSuche.setText("")

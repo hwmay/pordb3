@@ -34,7 +34,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         self.comboBoxNation.clear()
         for i in res_iso_land:
             text = '%2s %-50s' % (i[0], i[1])
-            self.comboBoxNation.addItem(text)
+            bild = os.path.join(os.curdir, "pypordb", i[0] + ".svg")
+            icon = QtGui.QIcon()
+            icon.addFile(bild, QtCore.QSize(16, 16), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.comboBoxNation.addItem(icon, text)
         
         self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         

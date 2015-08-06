@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import time
+import os
 from PyQt4 import QtGui, QtCore
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
@@ -20,10 +21,14 @@ class NeueingabeDarsteller(QtGui.QDialog, pordb_darstellerneu):
         zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"
         lese_func = DBLesen(self, zu_lesen, "x")
         res = DBLesen.get_data(lese_func)
+        self.comboBoxDarstellerneuNation.clear()
         for i in res:
             text = '%2s %-50s' % (i[0], i[1])
-            self.comboBoxDarstellerneuNation.addItem(text)
-        
+            bild = os.path.join(os.curdir, "pypordb", i[0] + ".svg")
+            icon = QtGui.QIcon()
+            icon.addFile(bild, QtCore.QSize(16, 16), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.comboBoxDarstellerneuNation.addItem(icon, text)
+            
     def accept(self):
         if not self.comboBoxDarstellerneuGeschlecht.currentText():
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select the gender"))

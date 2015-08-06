@@ -63,10 +63,18 @@
           <property name="text">
            <string>m</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/male.png</normaloff>pypordb/male.png</iconset>
+          </property>
          </item>
          <item>
           <property name="text">
            <string>w</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/female.png</normaloff>pypordb/female.png</iconset>
           </property>
          </item>
         </widget>
@@ -96,20 +104,36 @@
           <property name="text">
            <string>bl</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/blond.png</normaloff>pypordb/blond.png</iconset>
+          </property>
          </item>
          <item>
           <property name="text">
            <string>br</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
           </property>
          </item>
          <item>
           <property name="text">
            <string>r</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/red.png</normaloff>pypordb/red.png</iconset>
+          </property>
          </item>
          <item>
           <property name="text">
            <string>s</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
           </property>
          </item>
         </widget>
@@ -171,20 +195,36 @@
           <property name="text">
            <string>w</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
+          </property>
          </item>
          <item>
           <property name="text">
            <string>a</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
           </property>
          </item>
          <item>
           <property name="text">
            <string>s</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+          </property>
          </item>
          <item>
           <property name="text">
            <string>l</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
           </property>
          </item>
         </widget>

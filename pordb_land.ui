@@ -34,6 +34,14 @@
           <property name="whatsThis">
            <string>Here you can enter countries with their ISO codes and the corresponding nationality. By setting an &quot;X&quot; in column &quot;active&quot;, this country will appear in the combo box on the actors tab and can be used for adding new actors.</string>
           </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Flag</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>ISO Code</string>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 from PyQt4 import QtGui, QtCore
 from pordb_land import Ui_Landdialog as pordb_land
 from pypordb_dblesen import DBLesen
@@ -25,30 +26,39 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
             column = 0
             for j in i:
                 if j:
-                    newitem = QtGui.QTableWidgetItem(j.strip())
+                    if column == 0:
+                        bild = os.path.join(os.curdir, "pypordb", i[0] + ".svg")
+                        icon = QtGui.QIcon()
+                        icon.addFile(bild, QtCore.QSize(24, 24), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                        newitem = QtGui.QTableWidgetItem(icon, "")
+                        self.tableWidgetLaender.setItem(row, column, newitem)
+                        column += 1
+                        newitem = QtGui.QTableWidgetItem(j.strip())
+                    else:
+                        newitem = QtGui.QTableWidgetItem(j.strip())
                 else:
                     newitem = QtGui.QTableWidgetItem(" ")
                 self.tableWidgetLaender.setItem(row, column, newitem)
                 column += 1
             row += 1
         newitem = QtGui.QTableWidgetItem("")
-        self.tableWidgetLaender.setItem(row, 0, newitem)
+        self.tableWidgetLaender.setItem(row, 1, newitem)
         self.tableWidgetLaender.setCurrentItem(newitem)
         self.tableWidgetLaender.setFocus()
         self.tableWidgetLaender.editItem(self.tableWidgetLaender.currentItem())          
-        self.tableWidgetLaender.setHorizontalHeaderLabels(["ISO Code", self.trUtf8("Country"), self.trUtf8("active"), self.trUtf8("Nationality")])
+        self.tableWidgetLaender.setHorizontalHeaderLabels([self.trUtf8("Flag"), "ISO Code", self.trUtf8("Country"), self.trUtf8("active"), self.trUtf8("Nationality")])
         self.tableWidgetLaender.setAlternatingRowColors(True)
         self.tableWidgetLaender.resizeColumnsToContents()
         self.tableWidgetLaender.resizeRowsToContents()
         
     def onSpeichern(self):
-        position = 0
         zu_erfassen = []
         zu_erfassen.append("DELETE FROM pordb_iso_land")
         for i in range(self.tableWidgetLaender.rowCount()):
             cell = []
-            position += 1
             for j in range(self.tableWidgetLaender.columnCount()):
+                if j == 0: # column 0 is only flag icon
+                    continue
                 tableItem = self.tableWidgetLaender.item(i, j)
                 try:
                     cellItem = str(QtGui.QTableWidgetItem(tableItem).text())

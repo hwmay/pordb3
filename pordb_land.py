@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_land.ui'
 #
-# Created: Tue Nov  4 21:15:55 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Sun Aug  9 00:20:49 2015
+#      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,7 +42,7 @@ class Ui_Landdialog(object):
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.tableWidgetLaender = QtGui.QTableWidget(self.frame)
         self.tableWidgetLaender.setObjectName(_fromUtf8("tableWidgetLaender"))
-        self.tableWidgetLaender.setColumnCount(4)
+        self.tableWidgetLaender.setColumnCount(5)
         self.tableWidgetLaender.setRowCount(0)
         item = QtGui.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(0, item)
@@ -52,6 +52,8 @@ class Ui_Landdialog(object):
         self.tableWidgetLaender.setHorizontalHeaderItem(2, item)
         item = QtGui.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(3, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidgetLaender.setHorizontalHeaderItem(4, item)
         self.horizontalLayout_2.addWidget(self.tableWidgetLaender)
         self.verticalLayout.addWidget(self.frame)
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -79,13 +81,16 @@ class Ui_Landdialog(object):
     def retranslateUi(self, Landdialog):
         Landdialog.setWindowTitle(_translate("Landdialog", "Edit table of countries", None))
         self.tableWidgetLaender.setWhatsThis(_translate("Landdialog", "Here you can enter countries with their ISO codes and the corresponding nationality. By setting an \"X\" in column \"active\", this country will appear in the combo box on the actors tab and can be used for adding new actors.", None))
+        self.tableWidgetLaender.setSortingEnabled(True)
         item = self.tableWidgetLaender.horizontalHeaderItem(0)
-        item.setText(_translate("Landdialog", "ISO Code", None))
+        item.setText(_translate("Landdialog", "Flag", None))
         item = self.tableWidgetLaender.horizontalHeaderItem(1)
-        item.setText(_translate("Landdialog", "Country", None))
+        item.setText(_translate("Landdialog", "ISO Code", None))
         item = self.tableWidgetLaender.horizontalHeaderItem(2)
-        item.setText(_translate("Landdialog", "active", None))
+        item.setText(_translate("Landdialog", "Country", None))
         item = self.tableWidgetLaender.horizontalHeaderItem(3)
+        item.setText(_translate("Landdialog", "active", None))
+        item = self.tableWidgetLaender.horizontalHeaderItem(4)
         item.setText(_translate("Landdialog", "Nationality", None))
         self.pushButtonLandSpeichern.setToolTip(_translate("Landdialog", "<html><head/><body><p>Save</p></body></html>", None))
         self.pushButtonLandAbbrechen.setToolTip(_translate("Landdialog", "<html><head/><body><p>Cancel</p></body></html>", None))

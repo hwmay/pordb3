@@ -787,7 +787,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
     # end of darsteller_addieren
 
     def darsteller_pruefen(self, darsteller_liste):
-        darsteller = darsteller_liste.split(", ")
+        darstellerliste = darsteller_liste.split(",")
+        darsteller = []
+        for i in darstellerliste:
+            darsteller.append(i.strip())
         fehler = 0
         k = -1
         for i in darsteller:

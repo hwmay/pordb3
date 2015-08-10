@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS version="2.0" language="de_DE" sourcelanguage="">
 <context>
     <name>Bildbeschneiden</name>
     <message>
@@ -2040,7 +2039,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Landdialog</name>
     <message>
-        <location filename="pordb_land.py" line="87"/>
+        <location filename="pordb_land.py" line="88"/>
         <source>ISO Code</source>
         <translation>ISO Code</translation>
     </message>
@@ -2050,17 +2049,17 @@ p, li { white-space: pre-wrap; }
         <translation>Ländertabelle bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="89"/>
+        <location filename="pordb_land.py" line="90"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="91"/>
+        <location filename="pordb_land.py" line="92"/>
         <source>active</source>
         <translation>aktiv</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="93"/>
+        <location filename="pordb_land.py" line="94"/>
         <source>Nationality</source>
         <translation>Nationalität</translation>
     </message>
@@ -2080,17 +2079,17 @@ p, li { white-space: pre-wrap; }
         <translation>Hier kann man Länder mit ihren ISO Codes und den zugehörigen Nationalitäten erfassen. Ist die Spalte &quot;aktiv&quot; mit &quot;X&quot; gefüllt, erscheint dieses Land in der Combo Box im Darsteller Tab und kann zum Erfassen neuer Darsteller genutzt werden.</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="94"/>
+        <location filename="pordb_land.py" line="95"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speichern&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="95"/>
+        <location filename="pordb_land.py" line="96"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abbrechen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_land.py" line="85"/>
+        <location filename="pordb_land.py" line="86"/>
         <source>Flag</source>
         <translation>Flagge</translation>
     </message>

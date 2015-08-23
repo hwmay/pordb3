@@ -1853,7 +1853,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             zu_erfassen.append(["DELETE FROM pordb_history WHERE sql = %s", werte])
             werte = []
             werte.append(befehl)
-            werte.append(datetime.datetime.now().isoformat(' '))
+            werte.append(datetime.datetime.now().isoformat(" "))
             zu_erfassen.append(["INSERT INTO pordb_history VALUES (%s, %s)", werte])
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
@@ -2563,7 +2563,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             
             # Check if actors name has changed in IAFD
             actor_name = ActorData.actor_name(actordata)
-            if res[0][0].lower() != actor_name.lower():
+            if res[0][0].lower().strip() != actor_name.lower():
                 app.restoreOverrideCursor()
                 message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
             
@@ -2589,17 +2589,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append(res[0][0])
                 zu_erfassen.append(["UPDATE pordb_darsteller SET geboren = %s WHERE darsteller = %s", werte])
                 
-            # Darsteller Land
-            self.land = ActorData.actor_country(actordata)
-            gefunden = False
+            # Check if actors country differs from that in IAFD
+            actor_country = ActorData.actor_country(actordata)
             zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
-            lese_func = DBLesen(self, zu_lesen, self.land)
+            lese_func = DBLesen(self, zu_lesen, actor_country)
             res_iso_land = DBLesen.get_data(lese_func)
-            if res_iso_land:
-                werte = []
-                werte.append(res_iso_land[0][0])
-                werte.append(res[0][0])                
-                zu_erfassen.append(["UPDATE pordb_darsteller SET nation = %s WHERE darsteller = %s", werte])
+            if res[0][5] != res_iso_land[0][0]:
+                actor_birthplace = ActorData.actor_birthplace(actordata)
+                if actor_birthplace == "No data":
+                    actor_birthplace = "-"
+                app.restoreOverrideCursor()
+                message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors country in \nPorDB --> ({0}) \ndiffers from actors country in the \nIAFD --> ({1}, birthplace: {2}).\nMaybe you should check the actor in PorDB.").format(res[0][5].strip(), res_iso_land[0][0], actor_birthplace))
             
             # Darsteller Anzahl Filme
             filme = ActorData.actor_movies(actordata)

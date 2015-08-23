@@ -2553,14 +2553,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             try:
-                seite = str(urllib.request.urlopen(res[0][11], timeout=10).read())
+                seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("iso-8859-1")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
                 message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
                 return
             
             actordata = ActorData(seite)
-                
+            
+            # Check if actors name has changed in IAFD
+            actor_name = ActorData.actor_name(actordata)
+            if res[0][0].lower() != actor_name.lower():
+                app.restoreOverrideCursor()
+                message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
+            
             # Darsteller Geboren
             geboren = ActorData.actor_born(actordata)
             monat = monate.get(geboren[0:geboren.find(" ")], self.trUtf8("not available"))

@@ -2594,7 +2594,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             zu_lesen = "SELECT iso FROM pordb_iso_land WHERE national = %s"
             lese_func = DBLesen(self, zu_lesen, actor_country)
             res_iso_land = DBLesen.get_data(lese_func)
-            if res[0][5] != res_iso_land[0][0]:
+            if res_iso_land and res[0][5] != res_iso_land[0][0]:
                 actor_birthplace = ActorData.actor_birthplace(actordata)
                 if actor_birthplace == "No data":
                     actor_birthplace = "-"

@@ -1,6 +1,25 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+'''
+    Copyright 2012-2015 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+'''
+
 import sys
 import os
 import time
@@ -387,6 +406,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             seite = None
             try:
                 seite = urllib.request.urlopen("http://www.iafd.com/", timeout=10).read()
+                
                 if seite:
                     self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
                 else:
@@ -3764,29 +3784,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
         
     def onVideoSuchen(self):
-        #Logik:
-        #1. Suchen nach 'class="moviecount">'
-        #2. dann bis zum nächsten Blank: dazwischen ist Anzahl Movies
-        #3. Suchen nach "tr class"
-        #4. dann Suchen nach '.htm">'
-        #5. dann Suchen nach dem nächsten "<": dazwischen ist der Titel
-        #6. weiter bei 3.
-        
         text = str(self.webView.page().mainFrame().toHtml())
-        anfang = text.find('class="moviecount">')
-        ende = text.find(' ', anfang)
-        anzahl = 0
-        try:
-            anzahl = int(text[anfang+19:ende])
-        except:
-            pass
-        titel = []
-        if anzahl:
-            for i in range(anzahl):
-                anfang = text.find("tr class", ende)
-                anfang2 = text.find('.htm">', anfang)
-                ende = text.find("<", anfang2)
-                titel.append(text[anfang2+6:ende].strip())
+        actordata = ActorData(text)
+        titel = ActorData.actor_list_of_movies(actordata)
         if titel:
             self.video_anzeigen(titel)
             

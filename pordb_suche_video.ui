@@ -19,13 +19,6 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Enter text (Ctrl+V)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
@@ -36,7 +29,7 @@
         <x>0</x>
         <y>0</y>
         <width>989</width>
-        <height>657</height>
+        <height>675</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -89,7 +82,7 @@
      </widget>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QLabel" name="label_2">

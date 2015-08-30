@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
 
+'''
+    Copyright 2012-2015 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+'''
+
 import os
 import urllib.request, urllib.parse, urllib.error
 import time
@@ -67,18 +86,18 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.app.restoreOverrideCursor()
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
             return
-        url = "http://cdn.iafd.com/headshots/" + self.bild
+        url = self.bild
         self.verz = self.verzeichnis_thumbs
         urllib.request._urlopener=urllib.request.URLopener()
         urllib.request.URLopener.version="Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461)"
         urllib.request.FancyURLopener.prompt_user_passwd = lambda self, host, realm: (None, None)
         while True:
             try:
-                bild=urllib.request.urlretrieve(url, self.verz +os.sep +self.bild)
+                bild=urllib.request.urlretrieve(url, os.path.join(self.verz, os.path.basename(self.bild)))
                 break
             except:
                 pass
-        bild = QtGui.QPixmap(self.verz +os.sep +self.bild)
+        bild = QtGui.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))
         self.labelBild.setPixmap(bild)
             
         # Darsteller Geschlecht
@@ -87,7 +106,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.app.restoreOverrideCursor()
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
             return
-        self.lineEditGeschlecht.setText(self.geschlecht)
+        if self.geschlecht:
+            self.lineEditGeschlecht.setText(self.geschlecht)
         
         # Darsteller Pseudonyme
         self.pseudonyme = ActorData.actor_alias(actordata)
@@ -383,7 +403,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                     
     def onClose(self):
         try:
-            os.remove(self.verz +os.sep +self.bild)
+            os.remove(os.path.join(self.verz, os.path.basename(self.bild)))
         except:
             pass
         self.close()

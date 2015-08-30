@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_suche_video.ui'
 #
-# Created: Sun Dec  7 15:00:33 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Sun Aug 30 19:55:05 2015
+#      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -32,14 +32,11 @@ class Ui_Dialog(object):
         Dialog.setWindowIcon(icon)
         self.gridLayout = QtGui.QGridLayout(Dialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.label = QtGui.QLabel(Dialog)
-        self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.scrollArea = QtGui.QScrollArea(Dialog)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 989, 657))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 989, 675))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.horizontalLayout_3 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
@@ -59,7 +56,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.textEditVideo)
         self.horizontalLayout_3.addLayout(self.horizontalLayout)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.gridLayout.addWidget(self.scrollArea, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.scrollArea, 0, 0, 1, 1)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.label_2 = QtGui.QLabel(Dialog)
@@ -99,14 +96,13 @@ class Ui_Dialog(object):
         self.pushButtonAbbrechen.setIcon(icon3)
         self.pushButtonAbbrechen.setObjectName(_fromUtf8("pushButtonAbbrechen"))
         self.horizontalLayout_2.addWidget(self.pushButtonAbbrechen)
-        self.gridLayout.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout_2, 1, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(_translate("Dialog", "Search in existing movies", None))
-        self.label.setText(_translate("Dialog", "Enter text (Ctrl+V)", None))
         self.listWidgetVideo.setToolTip(_translate("Dialog", "Presentation of the existing movies", None))
         self.listWidgetVideo.setWhatsThis(_translate("Dialog", "Presentation of the existing movies", None))
         self.textEditVideo.setWhatsThis(_translate("Dialog", "Insert text (Ctrl+v)", None))

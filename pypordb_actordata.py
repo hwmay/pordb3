@@ -94,11 +94,13 @@ class ActorData():
     def actor_activ(self):
         anfang = self.seite.find('Years Active</p><p class="biodata">')
         if anfang == -1:
-            anfang = self.seite.find('Years Active as Performer</p><p class="biodata">') 
+            anfang = self.seite.find('Years Active as Performer') 
             if anfang == -1:
                 anfang = self.seite.find('Year Active</p><p class="biodata">') + 34
             else:
-                anfang += 48
+                anfang = self.seite.find('"biodata">', anfang)
+                if anfang > -1:
+                    anfang += 10
         else:
             anfang += 35
         aktiv_von = self.seite[anfang:anfang+4]

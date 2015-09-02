@@ -267,7 +267,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                     extension = ".jpg"
                 if extension != ".gif":
                     newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +str(self.lineEditGeschlecht.text()) +os.sep +name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
-                    os.rename(self.verz +os.sep +self.bild, newfilename)
+                    os.rename(os.path.join(self.verz, os.path.basename(self.bild)), newfilename)
             else:
                 self.onClose()
         # Darsteller existiert bereits

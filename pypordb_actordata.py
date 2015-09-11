@@ -75,11 +75,11 @@ class ActorData():
     
     def actor_born(self):
         anfang = self.seite.find('Birthday</p><p class="biodata">')
-        ende = self.seite.find('</p><p', anfang+15)
+        ende = self.seite.find('</a>', anfang+15)
         born = self.seite[anfang+31:ende]
         if born.startswith('<a href'):
             anfang = self.seite.find('">', anfang+31)
-            return self.seite[anfang+2:ende-4]
+            return self.seite[anfang+2:ende]
         else:
             return self.seite[anfang+31:ende]
     

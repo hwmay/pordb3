@@ -281,10 +281,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                         newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
                     else:
                         newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.name).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
-                    os.rename(self.verz +os.sep +self.bild, newfilename)
+                    os.rename(os.path.join(self.verz, os.path.basename(self.bild)), newfilename)
             else:
                 try:
-                    os.remove(self.verz +os.sep +self.bild)
+                    os.remove(os.path.join(self.verz, os.path.basename(self.bild)))
                 except:
                     pass
             if self.checkBoxGeboren.isChecked():

@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
 
+'''
+    Copyright 2012-2015 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+'''
+
 from PyQt4 import QtGui, QtCore
 from pordb_neu import Ui_Dialog as pordb_neu
 from pypordb_dblesen import DBLesen
@@ -19,7 +38,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None):
+    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, access_from_iafd = None):
         
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
@@ -44,6 +63,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.verzeichnis_cover = verzeichnis_cover
         self.original_cover = original_cover
         self.high_definition = high_definition
+        self.access_from_iafd = access_from_iafd
         
         self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
         self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
@@ -221,10 +241,16 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                         break
             self.lineEditNeuCD.setText(str(self.res_vid_neu[0][2]))
             self.lineEditNeuBild.setText(os.path.basename(str(self.bilddatei)))
-            self.pushButtonBildloeschen.setEnabled(True)
-            self.pushButtonBildbeschneiden.setEnabled(True)
+            if self.access_from_iafd:
+                self.pushButtonBildloeschen.setEnabled(False)
+                self.pushButtonBildbeschneiden.setEnabled(False)
+                self.pushButtonVerz.setEnabled(False)
+            else:
+                self.pushButtonBildloeschen.setEnabled(True)
+                self.pushButtonBildbeschneiden.setEnabled(True)
+                self.pushButtonVerz.setEnabled(True)
             self.pushButtonNeuDelete.setEnabled(False)
-            
+                
     def keyPressEvent(self, event):
         try:
             if event.modifiers() & QtCore.Qt.ControlModifier:

@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
 
+'''
+    Copyright 2012-2015 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+'''
+
 from PyQt4 import QtGui, QtCore
 from pordb_show_iafd_data import Ui_Dialog as pordb_show_iafd_data
 from pypordb_dblesen import DBLesen
@@ -117,7 +136,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("No actors selected"))
             return
         darsteller = ", ".join(actor_to_add)
-        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(self.verzeichnis, scene_to_add), titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1])
+        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(self.verzeichnis, scene_to_add), titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1], access_from_iafd=True)
         if eingabedialog.exec_():
             for i in list(self.scene.items()):
                 if i.data(0):

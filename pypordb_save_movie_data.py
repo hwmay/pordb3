@@ -45,9 +45,10 @@ class SaveMovieData(QtGui.QDialog):
         alternatives = []
         anfang = self.text.find("Also Known As", ende)
         if anfang > 0:
-            anfang = self.text.find("</dt><dd>", anfang)
+            anfang = self.text.find("<dd>", anfang)
             ende = self.text.find("</dd></dl>", anfang)
-            alternatives = self.text[anfang + 9 : ende].strip().replace("&amp;", "&").split("</dd><dd>")
+            print (anfang, ende)
+            alternatives = self.text[anfang + 4 : ende].strip().replace("&amp;", "&").split("</dd><dd>")
         
         # get actors and scenes
         scenes = []

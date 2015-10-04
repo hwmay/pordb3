@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1389,7 +1389,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="pushButtonSearchMpg">
                   <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results, ALT+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="whatsThis">
                    <string>Search in results</string>
@@ -1401,19 +1401,15 @@ p, li { white-space: pre-wrap; }
                    <iconset>
                     <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelMpgFound">
-                  <property name="text">
-                   <string/>
+                  <property name="shortcut">
+                   <string>Alt+S</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButtonDelete">
                   <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in table mpg_katalog, Alt+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in database, Alt+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="whatsThis">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in table mpg_katalog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1427,6 +1423,13 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <property name="shortcut">
                    <string>Alt+L</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="labelMpgFound">
+                  <property name="text">
+                   <string/>
                   </property>
                  </widget>
                 </item>
@@ -1491,7 +1494,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="pushButtonSearchVid">
                   <property name="toolTip">
-                   <string>Search in results</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results, CTRL+ALT+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -1499,6 +1502,9 @@ p, li { white-space: pre-wrap; }
                   <property name="icon">
                    <iconset>
                     <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+Alt+S</string>
                   </property>
                  </widget>
                 </item>
@@ -2761,7 +2767,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButtonRefresh</tabstop>
   <tabstop>pushButtonDir</tabstop>
   <tabstop>tableWidgetBilderAktuell</tabstop>
-  <tabstop>tabWidget</tabstop>
   <tabstop>tableWidgetBilder</tabstop>
   <tabstop>bildAnzeige</tabstop>
   <tabstop>comboBoxSex</tabstop>
@@ -2796,13 +2801,11 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButtonUebernehmen</tabstop>
   <tabstop>lineEditSearchMpg</tabstop>
   <tabstop>pushButtonSearchMpg</tabstop>
-  <tabstop>tableWidget</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
   <tabstop>lineEditSearchVid</tabstop>
   <tabstop>pushButtonSearchVid</tabstop>
+  <tabstop>tableWidget</tabstop>
   <tabstop>tableWidget1</tabstop>
-  <tabstop>pushButtonBack</tabstop>
-  <tabstop>pushButtonForward</tabstop>
-  <tabstop>pushButtonIAFD</tabstop>
   <tabstop>lineEditSearchWebsite</tabstop>
   <tabstop>pushButtonSearchWebsite</tabstop>
   <tabstop>pushButtonVideo</tabstop>
@@ -2835,6 +2838,10 @@ p, li { white-space: pre-wrap; }
   <tabstop>tableWidgetDubletten</tabstop>
   <tabstop>pushButtonDeleteDuplicates</tabstop>
   <tabstop>pushButtonDeselect</tabstop>
+  <tabstop>lineEditFilter</tabstop>
+  <tabstop>pushButtonIAFD</tabstop>
+  <tabstop>pushButtonForward</tabstop>
+  <tabstop>pushButtonBack</tabstop>
  </tabstops>
  <resources/>
  <connections/>

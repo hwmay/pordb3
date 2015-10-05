@@ -1389,7 +1389,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="pushButtonSearchMpg">
                   <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results, ALT+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="whatsThis">
                    <string>Search in results</string>
@@ -1401,15 +1401,12 @@ p, li { white-space: pre-wrap; }
                    <iconset>
                     <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
                   </property>
-                  <property name="shortcut">
-                   <string>Alt+S</string>
-                  </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButtonDelete">
                   <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in database, Alt+L&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in database, Ctrl+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="whatsThis">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in table mpg_katalog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1494,7 +1491,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="pushButtonSearchVid">
                   <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results, CTRL+ALT+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in results&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -1502,9 +1499,6 @@ p, li { white-space: pre-wrap; }
                   <property name="icon">
                    <iconset>
                     <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
-                  </property>
-                  <property name="shortcut">
-                   <string>Ctrl+Alt+S</string>
                   </property>
                  </widget>
                 </item>

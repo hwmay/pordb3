@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Oct  4 22:45:37 2015
+# Created: Sun Oct  4 23:21:40 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1237,17 +1237,15 @@ class Ui_MainWindow(object):
         self.pushButtonUebernehmen.setShortcut(_translate("MainWindow", "Ctrl+PgUp", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "mpg_katalog", None))
         self.labelMpgGefunden.setText(_translate("MainWindow", "0 found", None))
-        self.pushButtonSearchMpg.setToolTip(_translate("MainWindow", "<html><head/><body><p>Search in results, ALT+S</p></body></html>", None))
+        self.pushButtonSearchMpg.setToolTip(_translate("MainWindow", "<html><head/><body><p>Search in results</p></body></html>", None))
         self.pushButtonSearchMpg.setWhatsThis(_translate("MainWindow", "Search in results", None))
-        self.pushButtonSearchMpg.setShortcut(_translate("MainWindow", "Alt+S", None))
-        self.pushButtonDelete.setToolTip(_translate("MainWindow", "<html><head/><body><p>Delete selected lines in database, Alt+L</p></body></html>", None))
+        self.pushButtonDelete.setToolTip(_translate("MainWindow", "<html><head/><body><p>Delete selected lines in database, Ctrl+S</p></body></html>", None))
         self.pushButtonDelete.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Delete selected lines in table mpg_katalog</p></body></html>", None))
         self.pushButtonDelete.setShortcut(_translate("MainWindow", "Alt+L", None))
         self.tableWidget.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Search result from file catalog</p></body></html>", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "Vid", None))
         self.labelVidGefunden.setText(_translate("MainWindow", "0 found", None))
-        self.pushButtonSearchVid.setToolTip(_translate("MainWindow", "<html><head/><body><p>Search in results, CTRL+ALT+S</p></body></html>", None))
-        self.pushButtonSearchVid.setShortcut(_translate("MainWindow", "Ctrl+Alt+S", None))
+        self.pushButtonSearchVid.setToolTip(_translate("MainWindow", "<html><head/><body><p>Search in results</p></body></html>", None))
         self.tableWidget1.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Search result from database</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Search file", None))
         self.pushButtonBack.setToolTip(_translate("MainWindow", "back", None))

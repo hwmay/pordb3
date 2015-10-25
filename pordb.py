@@ -335,7 +335,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.setIconSize(size_neu)
 
         self.printer = QtGui.QPrinter(QtGui.QPrinter.ScreenResolution)
-        self.printer.setOutputFileName(self.verzeichnis_original + os.sep + "print.pdf")
+        self.printer.setOutputFileName(os.path.join(self.verzeichnis_original, "print.pdf"))
         
         zu_lesen = "SELECT cd, partnerw, partnerm, anzahl_bilder, anzahl_spalten FROM pordb_vid_neu"
         lese_func = DBLesen(self, zu_lesen)

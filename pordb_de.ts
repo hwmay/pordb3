@@ -4844,11 +4844,21 @@ Vielleicht solltest Du den Darsteller in der PorDB überprüfen.</translation>
     <message>
         <location filename="pypordb_save_movie_data.py" line="62"/>
         <source>Seams there are no scenes on the IAFD</source>
-        <translation>Anscheinend sind keine Scenen in der IAFD</translation>
+        <translation type="obsolete">Anscheinend sind keine Scenen in der IAFD</translation>
     </message>
     <message>
         <location filename="pypordb_save_movie_data.py" line="85"/>
         <source>Seams there are no scenes/actors on the IAFD</source>
+        <translation type="obsolete">Anscheinend sind keine Scenen/Darsteller in der IAFD</translation>
+    </message>
+    <message>
+        <location filename="pypordb_save_movie_data.py" line="62"/>
+        <source>Seems there are no scenes on the IAFD</source>
+        <translation>Anscheinend sind keine Scenen in der IAFD</translation>
+    </message>
+    <message>
+        <location filename="pypordb_save_movie_data.py" line="85"/>
+        <source>Seems there are no scenes/actors on the IAFD</source>
         <translation>Anscheinend sind keine Scenen/Darsteller in der IAFD</translation>
     </message>
 </context>

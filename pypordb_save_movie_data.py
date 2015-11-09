@@ -59,7 +59,7 @@ class SaveMovieData(QtGui.QDialog):
             anfang_scene = self.text.find("Scene ", anfang + 1)
             if anfang_scene < 0:
                 self.app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seams there are no scenes on the IAFD"))
+                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems there are no scenes on the IAFD"))
                 return
             while True:
                 anfang_scene = self.text.find("Scene ", anfang + 1)
@@ -82,7 +82,7 @@ class SaveMovieData(QtGui.QDialog):
         anfang_actors = self.text.find("<h3>Performers</h3>")
         if anfang_actors < 0:
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seams there are no scenes/actors on the IAFD"))
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems there are no scenes/actors on the IAFD"))
             return
         scenes = []
         # get the actors
@@ -91,6 +91,9 @@ class SaveMovieData(QtGui.QDialog):
         darsteller = ""
         last_anfang_actor = 0
         while True:
+            anfang_actor = self.text.find('class="headshot"', anfang + 1)
+            if anfang_actor < 0:
+                break
             anfang_actor = self.text.find('><br>', anfang + 1)
             if anfang_actor < 0 or anfang_actor < last_anfang_actor:
                 break

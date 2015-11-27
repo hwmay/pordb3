@@ -75,8 +75,9 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
         if self.res_alle:
             self.zu_lesen = "SELECT * FROM pordb_vid WHERE original = %s"
             for i in self.res_alle:
-                self.werte.append(i[5].strip())
-                if i != self.res_alle[len(self.res_alle) -1]:
-                    self.zu_lesen += " OR original = %s"
+                if i[5].strip() not in self.werte: # This can happen, when an actor is also director
+                    self.werte.append(i[5].strip())
+                    if i != self.res_alle[len(self.res_alle) -1]:
+                        self.zu_lesen += " OR original = %s"
             self.zu_lesen += " ORDER BY original"
         self.close()

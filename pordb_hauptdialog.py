@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Oct  4 23:21:40 2015
+# Created: Wed Dec  2 23:50:19 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -522,7 +522,10 @@ class Ui_MainWindow(object):
         self.pushButtonUebernehmen.setObjectName(_fromUtf8("pushButtonUebernehmen"))
         self.horizontalLayout_20.addWidget(self.pushButtonUebernehmen)
         self.verticalLayout_3.addLayout(self.horizontalLayout_20)
-        self.groupBox_2 = QtGui.QGroupBox(self.tab_3)
+        self.splitter_2 = QtGui.QSplitter(self.tab_3)
+        self.splitter_2.setOrientation(QtCore.Qt.Vertical)
+        self.splitter_2.setObjectName(_fromUtf8("splitter_2"))
+        self.groupBox_2 = QtGui.QGroupBox(self.splitter_2)
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
         self.gridLayout_7 = QtGui.QGridLayout(self.groupBox_2)
         self.gridLayout_7.setObjectName(_fromUtf8("gridLayout_7"))
@@ -560,8 +563,7 @@ class Ui_MainWindow(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.gridLayout_7.addWidget(self.tableWidget, 1, 0, 1, 1)
-        self.verticalLayout_3.addWidget(self.groupBox_2)
-        self.groupBox_3 = QtGui.QGroupBox(self.tab_3)
+        self.groupBox_3 = QtGui.QGroupBox(self.splitter_2)
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.gridLayout_8 = QtGui.QGridLayout(self.groupBox_3)
         self.gridLayout_8.setObjectName(_fromUtf8("gridLayout_8"))
@@ -593,7 +595,7 @@ class Ui_MainWindow(object):
         self.tableWidget1.setColumnCount(0)
         self.tableWidget1.setRowCount(0)
         self.gridLayout_8.addWidget(self.tableWidget1, 1, 0, 1, 1)
-        self.verticalLayout_3.addWidget(self.groupBox_3)
+        self.verticalLayout_3.addWidget(self.splitter_2)
         self.gridLayout_9.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tab_4 = QtGui.QWidget()

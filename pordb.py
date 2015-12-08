@@ -437,6 +437,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         settings.setValue("MeinDialog/Position", self.pos())
         settings.setValue("MeinDialog/State", self.saveState())
         settings.setValue("splitter", self.splitter.saveState())
+        self.onDarstellerspeichern(refresh=False)
         
     def bilder_aktuell(self, force = False):
         self.label_akt_verzeichnis.setText(self.verzeichnis)
@@ -2166,6 +2167,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     # end of onSuche
                 
     def onbildAnzeige(self):
+        self.onDarstellerspeichern(refresh=False)
         ein = self.eingabe_auswerten()
         if not ein:
             return
@@ -2491,7 +2493,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         return res
     # end of darsteller_lesen
     
-    def onDarstellerspeichern(self):
+    def onDarstellerspeichern(self, refresh=True):
         name = str(self.labelDarsteller.text()).replace("'", "''")
         if not name:
             return
@@ -2538,9 +2540,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if os.path.exists(oldfilename):
                 os.rename(oldfilename, filename)
         
-        self.onbildAnzeige()
-        self.labelFehler.clear()
-        self.suchfeld.setFocus()
+        if refresh:
+            self.onbildAnzeige()
+            self.labelFehler.clear()
+            self.suchfeld.setFocus()
     # end of onDarstellerspeichern
     
     def onIAFD(self):

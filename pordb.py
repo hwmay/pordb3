@@ -2567,6 +2567,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
             self.tabWidget.setCurrentIndex(3)
         
+        self.darsteller_lesen(ein)
         self.onbildAnzeige()
             
     def onIAFDBackground(self):
@@ -2574,6 +2575,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         res = self.darsteller_lesen(ein)
         if res[0][11]:
             monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
+            haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r"}
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             try:
                 seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("iso-8859-1")
@@ -2632,6 +2634,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append(res[0][0])
                 zu_erfassen.append(["UPDATE pordb_darsteller SET filme = %s WHERE darsteller = %s", werte])
                 
+            # Actors hair color
+            hair = ActorData.actor_hair(actordata)
+            haarfarbe = haarfarben.get(hair, self.trUtf8("not available"))
+            if haarfarbe != self.trUtf8("not available"):
+                werte = []
+                werte.append(haarfarbe)
+                werte.append(res[0][0])
+                zu_erfassen.append(["UPDATE pordb_darsteller SET haarfarbe = %s WHERE darsteller = %s", werte])
+                
             # Darsteller aktiv von / bis
             aktiv_von, aktiv_bis = ActorData.actor_activ(actordata)
 
@@ -2648,9 +2659,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 
             # Darsteller Tattoos
             tattoos = ActorData.actor_tattoos(actordata)
-            if tattoos == "None" or tattoos == "none":
+            if tattoos.lower() == "none":
                 tats = "-"
-            elif tattoos == "No data" or tattoos == "No Data":
+            elif tattoos.lower() == "no data":
                 tats = ""
             else:
                 tats = tattoos.replace("'", "''").replace('\\', "")
@@ -2668,6 +2679,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
                 
+            self.darsteller_lesen(ein)
             self.onbildAnzeige()
                 
             app.restoreOverrideCursor()

@@ -163,10 +163,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         
         # Darsteller Tattoos
         self.tattoos = ActorData.actor_tattoos(actordata)
-        if self.tattoos == "None" or self.tattoos == "none":
+        if self.tattoos.lower() == "none":
             self.lineEditTattos.setText("-")
             self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
-        elif self.tattoos == "No data" or self.tattoos == "No Data":
+        elif self.tattoos.lower() == "no data":
             self.lineEditTattos.setText("")
             self.checkBoxTattos.setCheckState(QtCore.Qt.Unchecked)
         else:

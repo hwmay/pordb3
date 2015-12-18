@@ -3827,6 +3827,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             bilddialog.exec_()
         self.suchfeld.setFocus()
         
+        self.darsteller_lesen(bilddialog.name)
+        self.onbildAnzeige()
+        
     def onMovieData(self):
         url = self.webView.url().toString()
         text = str(self.webView.page().mainFrame().toHtml())

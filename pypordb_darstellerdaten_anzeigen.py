@@ -42,9 +42,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         self.app = app
         self.url = url
         self.verzeichnis_thumbs = verzeichnis_thumbs
-        self.name = None
         if name:
             self.name = name.strip()
+        else:
+            self.name = None
             
         # Combobox für Nation füllen
         zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"
@@ -217,9 +218,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.app.restoreOverrideCursor()
         zu_lesen = "SELECT * FROM pordb_darsteller WHERE darsteller = %s"
         if self.checkBoxName.isChecked():
-            wert = str(self.lineEditName.text()).title()
-        else:
-            wert = self.name.strip().title()
+            self.name = str(self.lineEditName.text())
+        wert = self.name.strip().title()
         self.lese_func = DBLesen(self, zu_lesen, wert)
         res = DBLesen.get_data(self.lese_func)
         zu_erfassen = []

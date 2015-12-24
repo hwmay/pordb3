@@ -2812,8 +2812,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             res = DBLesen.get_data(lese_func)
             self.spinBoxAktuell.setValue(res[0][2])
             self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
-            self.darsteller_lesen(str(self.labelDarsteller.text()).strip().title())
-            self.onbildAnzeige()
+            if str(self.labelDarsteller.text()) != "":
+                self.darsteller_lesen(str(self.labelDarsteller.text()).strip().title())
+                self.onbildAnzeige()
         
     # end of onNeueingabe
         
@@ -2875,6 +2876,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
             if change_flag:
                 self.statusBar.showMessage("upd:CD" +str(res_alt[index][2]) +" Title:" +res_alt[index][0].strip() +" Act:" +res_alt[index][1].strip())
+            if str(self.labelDarsteller.text()) != "":
+                self.darsteller_lesen(str(self.labelDarsteller.text()).strip().title())
+                self.onbildAnzeige()
         self.suchfeld.setFocus()
     # end of onKorrektur
         

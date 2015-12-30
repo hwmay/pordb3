@@ -720,7 +720,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 werte = []
                 werte.append(str(res1[zaehler][0]))
                 zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE nr = %s", werte])
-        if not self.korrektur and original:
+        if not self.korrektur:
             werte = []
             werte.append(titel)
             werte.append(", ".join(darsteller))

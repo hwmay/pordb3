@@ -2787,7 +2787,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 for i in dateiliste:
                     if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
                         j += 1
-                        self.file = self.verzeichnis +os.sep +i
+                        self.file = os.path.join(self.verzeichnis, i)
                 if j != 1:
                     self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
                     if self.file:
@@ -2813,7 +2813,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.spinBoxAktuell.setValue(res[0][2])
             self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
             if str(self.labelDarsteller.text()) != "":
-                self.darsteller_lesen(str(self.labelDarsteller.text()).strip().title())
+                self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
                 self.onbildAnzeige()
         
     # end of onNeueingabe
@@ -2877,7 +2877,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if change_flag:
                 self.statusBar.showMessage("upd:CD" +str(res_alt[index][2]) +" Title:" +res_alt[index][0].strip() +" Act:" +res_alt[index][1].strip())
             if str(self.labelDarsteller.text()) != "":
-                self.darsteller_lesen(str(self.labelDarsteller.text()).strip().title())
+                self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
                 self.onbildAnzeige()
         self.suchfeld.setFocus()
     # end of onKorrektur
@@ -3833,7 +3833,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             bilddialog.exec_()
         self.suchfeld.setFocus()
         
-        self.darsteller_lesen(bilddialog.name)
+        self.darsteller_lesen("=" +bilddialog.name)
         self.onbildAnzeige()
         
     def onMovieData(self):

@@ -3844,6 +3844,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if res:
             show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res)
             show_iafd_data.exec_()
+        if str(self.labelDarsteller.text()) != "":
+            self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
+            self.onbildAnzeige()
         self.suchfeld.setFocus()
         
     def onLinkClicked(self, url):

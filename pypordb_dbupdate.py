@@ -38,6 +38,7 @@ class DBUpdate():
                     werte = i[1]
                 update_db.append([befehl, werte])
         for i in update_db:
+            #print (i)
             try:
                 self.cur.execute(i[0], i[1])
             except Exception as e:

@@ -3227,6 +3227,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if not ein:
             return
         umbenennen = DarstellerUmbenennen(ein)
+        neuer_name = None
         if umbenennen.exec_():
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             neuer_name = str(umbenennen.lineEditNeuerName.text())
@@ -3246,7 +3247,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     werte.append(eingabe + ",%")
                     werte.append("%, " + eingabe + ",%")
                     werte.append("%, " + eingabe)
-                    
                 else:
                     zu_lesen = "SELECT * FROM pordb_vid WHERE darsteller LIKE %s"
                     werte.append("%" + eingabe + "%")
@@ -3291,7 +3291,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     besucht = str(res[0][14])
                 else:
                     besucht = "0001-01-01"
-                    
                     
                 zu_erfassen = []
                 zu_lesen = "SELECT darsteller FROM pordb_darsteller WHERE darsteller = %s"
@@ -3413,11 +3412,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         os.rename(datei_alt, datei_neu)
                     except:
                         message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
-                    
-        try:
+                        
+        if neuer_name:
             self.labelDarsteller.setText(neuer_name.replace("''", "'").title())
-        except:
-            pass
+            self.darsteller_lesen("=" + neuer_name)
+            self.onbildAnzeige()
         app.restoreOverrideCursor()
         self.suchfeld.setCurrentIndex(-1)
         self.suchfeld.setFocus()

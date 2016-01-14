@@ -35,8 +35,10 @@ class DBLesen():
         try:
             if self.werte:
                 self.cur.execute(self.zu_lesen, self.werte)
+                #print (self.zu_lesen, self.werte)
             else:
                 self.cur.execute(self.zu_lesen)
+                #print (self.zu_lesen)
         except Exception as e:
             print(self.zu_lesen, type(self.zu_lesen))
             print(e)

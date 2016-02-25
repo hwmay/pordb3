@@ -1734,13 +1734,27 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         res = DBLesen.get_data(lese_func)
         werte = []
         if ein[0] == "=":
-            zu_lesen = "SELECT * FROM pordb_vid WHERE (LOWER(original) = %s OR original LIKE %s)"
+            zu_lesen = "SELECT * FROM pordb_vid WHERE (LOWER(original) = %s OR original LIKE %s"
             werte.append(ein3[1:])
             werte.append(ein2[1:] + " %")
         else:
-            zu_lesen = "SELECT * FROM pordb_vid WHERE (LOWER(original) LIKE %s OR original LIKE %s)"
+            zu_lesen = "SELECT * FROM pordb_vid WHERE (LOWER(original) LIKE %s OR original LIKE %s"
             werte.append("%" + ein3.replace(" ", "%") + "%")
             werte.append("%" + ein2.replace(" ", "%") + "%")
+        for i in self.suchbegriffe:
+                suchbegriff = i.lower().strip()
+                if suchbegriff:
+                    for j, wert in enumerate(werte):
+                        wert_lower = wert.lower()
+                        if suchbegriff in wert_lower:
+                            if suchbegriff == "-":
+                                neuer_wert = wert_lower.replace(suchbegriff, " ").title()
+                            else:
+                                neuer_wert = wert_lower.replace(suchbegriff, self.suchbegriffe[i].lower().strip()).title()
+                            if neuer_wert not in werte:
+                                werte.append(neuer_wert)
+                                zu_lesen += " OR original LIKE %s"
+        zu_lesen += ")"                        
         original_erweiterung = ""
         for i in res:
             original_erweiterung += " OR primkey = %s"
@@ -1768,32 +1782,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.aktuelles_res = DBLesen.get_data(lese_func)
         zw_res = []
         if "SELECT * FROM pordb_vid WHERE (LOWER(original)" in zu_lesen:
-            ende = zu_lesen.find("primkey")
-            if ende < 0:
-                ende1 = zu_lesen.find("gesehen") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
-                ende2 = zu_lesen.find("vorhanden") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
-                if ende1 > 0 and ende2 > 0:
-                    ende = min(ende1, ende2)
-                else:
-                    ende = max(ende1, ende2)
-            for i in self.suchbegriffe:
-                suchbegriff = i.lower().strip()
-                if suchbegriff and suchbegriff in zu_lesen[0:ende]:
-                    if ende > 0:
-                        zu_lesen2 = zu_lesen[0:ende - 3]
-                        zu_lesen3 = zu_lesen[ende - 3 :]
-                    else:
-                        zu_lesen2 = zu_lesen
-                        zu_lesen3 = ""
-                    if suchbegriff == "-":
-                        zu_lesen2.replace(suchbegriff, " ")
-                    else:
-                        zu_lesen2 = zu_lesen2.replace(suchbegriff, self.suchbegriffe[i].lower().strip()) + zu_lesen3
-                    if zu_lesen != zu_lesen2:
-                        lese_func = DBLesen(self, zu_lesen2)
-                        res2 = DBLesen.get_data(lese_func)
-                        if res2:
-                            self.aktuelles_res.extend(res2)
             if self.actionCheckBoxDVDCover.isChecked():
                 for i in self.aktuelles_res:
                     dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip()

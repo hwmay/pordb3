@@ -2191,6 +2191,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             pass
         
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        zu_erfassen = []
+        werte = []
+        werte.append(name)
+        zu_erfassen.append(["INSERT INTO pordb_darsteller100 (darsteller) VALUES (%s)", werte])
+        update_func = DBUpdate(self, zu_erfassen)
+        DBUpdate.update_data(update_func)
         self.onStatistik()
         self.onDarstellerFilme(res)
         self.onpaareSuchen(res)

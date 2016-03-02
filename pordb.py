@@ -2194,6 +2194,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         zu_erfassen = []
         werte = []
         werte.append(name)
+        zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE darsteller = %s", werte])
         zu_erfassen.append(["INSERT INTO pordb_darsteller100 (darsteller) VALUES (%s)", werte])
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)

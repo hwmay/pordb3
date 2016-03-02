@@ -668,15 +668,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl + 1 WHERE darsteller = %s", werte])
             if i == "" or i == "?" or i == "(Uninteressant)" or i == "(Komplett)" or i == "(Schlechte Qualitaet)":
                 continue
-            zu_lesen = "SELECT * FROM pordb_darsteller100 WHERE darsteller = %s"
-            self.lese_func = DBLesen(self, zu_lesen, i)
-            res1 = DBLesen.get_data(self.lese_func)
-            if len(res1) != 0:
-                werte = []
-                werte.append(str(res1[0][0]))
-                zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE nr = %s", werte])
-            werte = []
-            werte.append(i)
+            zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE darsteller = %s", werte])
             zu_erfassen.append(["INSERT INTO pordb_darsteller100 (darsteller) VALUES (%s)", werte])
             
             partner_zaehler = 0

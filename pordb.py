@@ -2810,6 +2810,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if str(self.labelDarsteller.text()) != "":
                 self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
                 self.onbildAnzeige()
+                
+        if self.tabWidget.currentIndex() == 0:
+            self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         
     # end of onNeueingabe
         

@@ -17,8 +17,8 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
         self.pseudonyme = pseudonyme
         self.pushButtonSpeichern.setDefault(True)
         
-        self.darsteller = darsteller.lstrip('=').replace("'", "''")
-        self.setWindowTitle(self.trUtf8("Edit aliases for ") +self.darsteller.replace("''", "'"))
+        self.darsteller = darsteller.lstrip('=')
+        self.setWindowTitle(self.trUtf8("Edit aliases for ") +self.darsteller)
         row = 0
         column = 0
         self.lineEditPseudo.setFocus()

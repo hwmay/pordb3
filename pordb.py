@@ -67,7 +67,6 @@ size_neu = QtCore.QSize(130, 130)
 size_darsteller = QtCore.QSize(1920, 1080)
 
 DBNAME = "por"
-initial_run = True
 
 __version__ = "1.9.16"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
@@ -211,8 +210,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.pushButtonDeleteDuplicates.setEnabled(False)
         self.pushButtonDeselect.setEnabled(False)
         
-        global initial_run
-        if initial_run:
+        self.initial_run = True
+        if self.initial_run:
             bild = QtGui.QPixmap(os.getcwd() +os.sep +"pypordb" +os.sep +"8027068_splash.png").scaled(276, 246, QtCore.Qt.KeepAspectRatio)
             splash = QtGui.QSplashScreen(bild)
             splash.show()
@@ -281,11 +280,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.setWindowTitle("PorDB3")
         self.screen = QtGui.QDesktopWidget().screenGeometry()
         #print self.screen.width(), self.screen.height()
-        if initial_run:
+        if self.initial_run:
             splash.showMessage("Loading history", color = QtGui.QColor("red"))
             app.processEvents()
         self.historie()
-        if initial_run:
+        if self.initial_run:
             splash.showMessage("Initializing ...", color = QtGui.QColor("red"))
             for i in os.listdir(os.path.expanduser("~" +os.sep +"tmp")):
                 os.remove(os.path.expanduser("~" +os.sep +"tmp" +os.sep +i))
@@ -368,7 +367,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.onAnzahlZeilen()
         self.onAnzahlSpalten()
         
-        if initial_run:
+        if self.initial_run:
             splash.showMessage("Getting search items", color = QtGui.QColor("red"))
             app.processEvents()
             self.suchbegriffe_lesen()
@@ -395,12 +394,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.cumshots = {"f":"Facial", "h":"Handjob", "t":str(self.trUtf8("Tits")), "c":"Creampie", "x":"Analcreampie", "o":"Oralcreampie", "v":str(self.trUtf8("Cunt")), "b":str(self.trUtf8("Belly")), "a":str(self.trUtf8("Ass")), "s":str(self.trUtf8("Others"))}
         self.cumshots_reverse = {"Facial":"f", "Handjob":"h", str(self.trUtf8("Tits")):"t", "Creampie":"c", "Analcreampie":"x", "Oralcreampie":"o", str(self.trUtf8("Cunt")):"v", str(self.trUtf8("Belly")):"b", str(self.trUtf8("Ass")):"a", str(self.trUtf8("Others")):"s"}
         
-        if initial_run:
+        if self.initial_run:
             splash.showMessage("Getting device names", color = QtGui.QColor("red"))
             app.processEvents()
             self.device_fuellen()
         
-        if initial_run: 
+        if self.initial_run: 
             splash.showMessage("Loading IAFD", color = QtGui.QColor("red"))
             app.processEvents()
             seite = None
@@ -418,15 +417,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if not seite:
                 self.statusBar.showMessage(self.trUtf8("Either your computer is not online or the IAFD is not reachable"))
                 
-        if initial_run:
+        if self.initial_run:
             splash.showMessage("Ready", color = QtGui.QColor("green"))
             app.processEvents()
             splash.finish(self)
         
         # Get version file from github
-        if initial_run: 
+        if self.initial_run: 
             self.onCheckNewVersion()
-            initial_run = False
+            self.initial_run = False
             
     def setFocus(self, i):
         self.suchfeld.setFocus()
@@ -4091,7 +4090,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
     def onCheckNewVersion(self, initial=True):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-        global initial_run
         version = None
         whatsnew = None
         seite = None
@@ -4146,7 +4144,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     python = sys.executable
                     os.execl(python, python, * sys.argv)
             else:
-                if not initial_run:
+                if not self.initial_run:
                     app.restoreOverrideCursor()
                     message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("You have the latest version"))
                     self.suchfeld.setFocus()

@@ -1408,6 +1408,20 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item>
+                  <widget class="QPushButton" name="pushButtonFilterMpgKatalog">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter on search results&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/filter.svg</normaloff>pypordb/filter.svg</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QPushButton" name="pushButtonDelete">
                    <property name="toolTip">
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected lines in database, Ctrl+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1501,6 +1515,20 @@ p, li { white-space: pre-wrap; }
                    <property name="icon">
                     <iconset>
                      <normaloff>pypordb/suchen.svg</normaloff>pypordb/suchen.svg</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonFilterVid">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter on search results&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>pypordb/filter.svg</normaloff>pypordb/filter.svg</iconset>
                    </property>
                   </widget>
                  </item>

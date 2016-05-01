@@ -172,6 +172,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onDateinamenUebernehmen)
         self.connect(self.pushButtonSearchMpg, QtCore.SIGNAL("clicked()"), self.onSearchMpg)
         self.connect(self.pushButtonSearchVid, QtCore.SIGNAL("clicked()"), self.onSearchVid)
+        self.connect(self.pushButtonFilterMpgKatalog, QtCore.SIGNAL("clicked()"), self.onFilterMpg)
+        self.connect(self.pushButtonFilterVid, QtCore.SIGNAL("clicked()"), self.onFilterVid)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL("clicked()"), self.onDeleteMpgKatalog)
         
         # Slots einrichten für Web
@@ -3535,7 +3537,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
     # end of onPseudo
     
-    def onSuchen(self):
+    def onSuchen(self, suchfilterMpg=None, suchfilterVid=None):
         import locale
         locale.setlocale(locale.LC_ALL, '')
         ein = str(self.lineEditSuchen.text()).strip().replace(".", " ")
@@ -3567,6 +3569,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if ein:
             zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE LOWER(file) LIKE %s" 
             werte.append("%" + ein.lower().replace(" ", "%") + "%")
+            if suchfilterMpg:
+                zu_lesen += " AND LOWER(file) LIKE %s"
+                werte.append("%" + suchfilterMpg + "%")
         else:
             zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE "
         if filesizefrom:
@@ -3592,6 +3597,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             zu_lesen += "groesse >= %s AND groesse < %s"
             werte.append(groesse1)
             werte.append(groesse2)
+            if suchfilterMpg:
+                zu_lesen += " AND LOWER(file) LIKE %s"
+                werte.append("%" + suchfilterMpg + "%")
         zu_lesen += " ORDER BY file"
         if len(ein) < 3 and not filesizefrom:
             self.lineEditSuchen.setFocus()
@@ -3654,6 +3662,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             werte_erweiterung = []
             zu_lesen = "SELECT * FROM pordb_original WHERE LOWER(original) LIKE %s"
             werte.append("%" + ein.lower().replace(" ", "%") + "%")
+            if suchfilterVid:
+                zu_lesen += " AND LOWER(original) LIKE %s"
+                werte.append("%" + suchfilterVid + "%")
             lese_func = DBLesen(self, zu_lesen, werte)
             res = DBLesen.get_data(lese_func)
             original_erweiterung = ""
@@ -3662,9 +3673,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte_erweiterung.append(str(i[2]))
             
             werte = []
-            zu_lesen = "SELECT * FROM pordb_vid WHERE LOWER(original) LIKE %s OR LOWER(titel) LIKE %s"
+            zu_lesen = "SELECT * FROM pordb_vid WHERE (LOWER(original) LIKE %s OR LOWER(titel) LIKE %s)"
             werte.append("%" + ein.lower() + "%")
             werte.append("%" + ein.lower().replace(" ", "%") + "%")
+            if suchfilterVid:
+                zu_lesen += " AND (LOWER(original) LIKE %s OR LOWER(titel) LIKE %s)"
+                werte.append("%" + suchfilterVid + "%")
+                werte.append("%" + suchfilterVid + "%")
             if original_erweiterung:
                 zu_lesen += original_erweiterung
                 werte.extend(werte_erweiterung)
@@ -3717,6 +3732,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if self.searchResultsVid:
             anzahl = self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
             self.labelVidFound.setText(self.trUtf8("found: ") + str(anzahl))
+            
+    def onFilterMpg(self):
+        self.onSuchen(str(self.lineEditSearchMpg.text()).lower(), str(self.lineEditSearchVid.text()).lower())
+        
+    def onFilterVid(self):
+        self.onSuchen(str(self.lineEditSearchMpg.text()).lower(), str(self.lineEditSearchVid.text()).lower())
             
     def onDeleteMpgKatalog(self):
         items = self.tableWidget.selectedIndexes()

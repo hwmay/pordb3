@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sat Nov 15 23:33:13 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Tue May 10 23:19:08 2016
+#      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -467,8 +467,8 @@ class Ui_Dialog(object):
         self.label_1.setText(_translate("Dialog", "Title", None))
         self.label_2.setText(_translate("Dialog", "Actor", None))
         self.lineEditNeuDarsteller.setWhatsThis(_translate("Dialog", "Enter the list of actors, separated by comma", None))
-        self.pushButtonAddYear.setToolTip(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the right and add it to the original title, ALT+Q</p></body></html>", None))
-        self.pushButtonAddYear.setWhatsThis(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the right and add it to the original title<br/></p></body></html>", None))
+        self.pushButtonAddYear.setToolTip(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the left and add it to the original title, ALT+Q</p></body></html>", None))
+        self.pushButtonAddYear.setWhatsThis(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the left and add it to the original title<br/></p></body></html>", None))
         self.pushButtonAddYear.setShortcut(_translate("Dialog", "Alt+Q", None))
         self.label_3.setText(_translate("Dialog", "CD", None))
 

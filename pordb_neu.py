@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Tue May 10 23:19:08 2016
+# Created: Thu May 19 23:44:31 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(1107, 516)
+        Dialog.resize(1109, 516)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
@@ -210,6 +210,8 @@ class Ui_Dialog(object):
         self.spinBoxK = QtGui.QSpinBox(Dialog)
         self.spinBoxK.setObjectName(_fromUtf8("spinBoxK"))
         self.horizontalLayout_5.addWidget(self.spinBoxK)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem2)
         self.gridLayout_2.addLayout(self.horizontalLayout_5, 2, 0, 1, 2)
         self.verticalLayout_3 = QtGui.QVBoxLayout()
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
@@ -282,8 +284,8 @@ class Ui_Dialog(object):
         self.pushButtonVerz.setIcon(icon7)
         self.pushButtonVerz.setObjectName(_fromUtf8("pushButtonVerz"))
         self.horizontalLayout.addWidget(self.pushButtonVerz)
-        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem2)
+        spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem3)
         self.formLayout_5.setLayout(1, QtGui.QFormLayout.LabelRole, self.horizontalLayout)
         self.groupBox_2 = QtGui.QGroupBox(Dialog)
         self.groupBox_2.setMinimumSize(QtCore.QSize(500, 200))

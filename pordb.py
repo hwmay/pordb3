@@ -1598,7 +1598,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             zu_lesen = "SELECT url FROM pordb_darsteller WHERE darsteller = %s"
             lese_func = DBLesen(self, zu_lesen, ein)
             res = DBLesen.get_data(lese_func)
-            if res[0][0]:
+            if res[0][0] != "0":
                 self.lineEditURL.setText(res[0][0])
                 self.GetWebsite()
                 self.tabWidget.setCurrentIndex(3)

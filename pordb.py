@@ -893,6 +893,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 suchtext = name + ", %" + ein
             else:
                 suchtext = ein + ", %" + name
+            zu_erfassen = []
+            werte = []
+            werte.append(ein)
+            zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE darsteller = %s", werte])
+            zu_erfassen.append(["INSERT INTO pordb_darsteller100 (darsteller) VALUES (%s)", werte])
+            update_func = DBUpdate(self, zu_erfassen)
+            DBUpdate.update_data(update_func)            
             self.suchfeld.insertItem(0, suchtext)
             self.suchfeld.setCurrentIndex(0)
             self.tabWidget.setCurrentIndex(0)

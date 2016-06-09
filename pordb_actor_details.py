@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_actor_details.ui'
 #
-# Created: Sat Apr 19 22:55:17 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Thu Jun  9 21:39:30 2016
+#      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -92,10 +92,6 @@ class Ui_Dialog(object):
         self.labelUrl = QtGui.QLabel(self.scrollAreaWidgetContents)
         self.labelUrl.setObjectName(_fromUtf8("labelUrl"))
         self.gridLayout_2.addWidget(self.labelUrl, 1, 0, 1, 1)
-        self.textEditUrl = QtGui.QTextEdit(self.scrollAreaWidgetContents)
-        self.textEditUrl.setReadOnly(True)
-        self.textEditUrl.setObjectName(_fromUtf8("textEditUrl"))
-        self.gridLayout_2.addWidget(self.textEditUrl, 1, 1, 1, 1)
         self.labelDateC = QtGui.QLabel(self.scrollAreaWidgetContents)
         self.labelDateC.setObjectName(_fromUtf8("labelDateC"))
         self.gridLayout_2.addWidget(self.labelDateC, 2, 0, 1, 1)
@@ -103,6 +99,10 @@ class Ui_Dialog(object):
         self.lineEditDate.setReadOnly(True)
         self.lineEditDate.setObjectName(_fromUtf8("lineEditDate"))
         self.gridLayout_2.addWidget(self.lineEditDate, 2, 1, 1, 1)
+        self.lineEditUrl = QtGui.QLineEdit(self.scrollAreaWidgetContents)
+        self.lineEditUrl.setReadOnly(True)
+        self.lineEditUrl.setObjectName(_fromUtf8("lineEditUrl"))
+        self.gridLayout_2.addWidget(self.lineEditUrl, 1, 1, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout_2)
         self.gridLayout_3.addLayout(self.verticalLayout, 0, 0, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)

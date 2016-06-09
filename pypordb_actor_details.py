@@ -45,7 +45,7 @@ class ActorDetails(QtGui.QDialog, pordb_actor_details):
         self.plainTextEditTattoos.setPlainText(res[0][6])
         
         if res[0][11]:
-            self.textEditUrl.setPlainText(res[0][11])
+            self.lineEditUrl.setText(res[0][11])
         
         self.lineEditDate.setText(str(res[0][3]))
         

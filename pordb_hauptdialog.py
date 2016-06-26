@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun May  1 21:20:22 2016
+# Created: Sun Jun 26 23:47:14 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1056,7 +1056,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(5)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)

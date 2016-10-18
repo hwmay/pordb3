@@ -216,7 +216,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         self.initial_run = True
         if self.initial_run:
-            bild = QtGui.QPixmap(os.getcwd() +os.sep +"pypordb" +os.sep +"8027068_splash.png").scaled(276, 246, QtCore.Qt.KeepAspectRatio)
+            bild = QtGui.QPixmap(os.path.join(os.getcwd(), "pypordb", "8027068_splash.png")).scaled(276, 246, QtCore.Qt.KeepAspectRatio)
             splash = QtGui.QSplashScreen(bild)
             splash.show()
             zu_lesen = "SELECT * FROM pordb_history ORDER BY time DESC LIMIT 50"
@@ -229,11 +229,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_erfassen.append(["DELETE FROM pordb_history WHERE time < %s", werte])
                 update_func = DBUpdate(self, zu_erfassen)
                 DBUpdate.update_data(update_func)
-            self.verzeichnis = str(os.path.expanduser("~") +os.sep +"mpg")
+            self.verzeichnis = os.path.join(os.path.expanduser("~"), "mpg")
             self.verzeichnis_original = self.verzeichnis
-            self.verzeichnis_thumbs = str(os.path.expanduser("~") +os.sep +"thumbs_sammlung")
-            self.verzeichnis_trash = str(self.verzeichnis_thumbs +os.sep +"trash")
-            self.verzeichnis_cover = str(self.verzeichnis_thumbs +os.sep +"cover")
+            self.verzeichnis_thumbs = os.path.join(os.path.expanduser("~"), "thumbs_sammlung")
+            self.verzeichnis_trash = os.path.join(self.verzeichnis_thumbs, "trash")
+            self.verzeichnis_cover = os.path.join(self.verzeichnis_thumbs, "cover")
             self.verzeichnis_tools = None
             settings = QtCore.QSettings()
             window_size = settings.value("MeinDialog/Size", QtCore.QSize(600, 500))
@@ -2303,7 +2303,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     if res1[0][0] != 0:
                         mengeCs.add(i[0])
                 except: 
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with partners: ") +zu_lesen)
+                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with partners: ") + zu_lesen + "(" + str(i[1]) + ", " + i[2] + ")")
                     return
             if ethnic:
                 menge = mengeEthnic & mengeCs
@@ -4139,8 +4139,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 whatsnew = str(seite)[begin + 17 : begin + 17 + str(seite)[begin + 17 :].find("&")]
                 dialog = UpdateVersion(version, whatsnew)
                 if dialog.exec_():
-                    desktop_directory = str(os.path.expanduser("~") +os.sep +".local/share/applications")
-                    desktop_datei = desktop_directory + os.sep + "PorDB.desktop"
+                    desktop_directory = os.path.join(os.path.expanduser("~"), ".local/share/applications")
+                    desktop_datei = os.path.join(desktop_directory, "PorDB.desktop")
                     if not os.path.exists(desktop_directory):
                         os.makedirs(desktop_directory)
                     messageBox = QtGui.QMessageBox()
@@ -4155,8 +4155,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                             datei = open(desktop_datei, "w")
                             datei.write("[Desktop Entry]" + "\n")
                             datei.write("Comment=PorDB" + "\n")
-                            datei.write("Exec=python3 " + os.getcwd() + os.sep + "pordb.py" + "\n")
-                            datei.write("Icon=" + os.getcwd() + os.sep + "pypordb/8027068_splash.png" + "\n")
+                            datei.write("Exec=python3 " + os.path.join(os.getcwd(), "pordb.py") + "\n")
+                            datei.write("Icon=" + os.path.join(os.getcwd(), "pypordb/8027068_splash.png") + "\n")
                             datei.write("Name=PorDB" + "\n")
                             datei.write("NoDisplay=false" + "\n")
                             datei.write("Path[$e]=" + os.getcwd() + "\n")

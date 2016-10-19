@@ -38,7 +38,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, access_from_iafd = None):
+    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, stars=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, access_from_iafd = None):
         
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
@@ -51,6 +51,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.original = original
         self.cs = cs
         self.vorhanden = vorhanden
+        self.stars = stars
         self.undo = undo
         self.cover = cover
         self.cover_anlegen = cover_anlegen
@@ -64,6 +65,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.original_cover = original_cover
         self.high_definition = high_definition
         self.access_from_iafd = access_from_iafd
+        self.icon_starred = QtGui.QIcon()
+        self.icon_starred.addPixmap(QtGui.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_nonstarred = QtGui.QIcon()
+        self.icon_nonstarred.addPixmap(QtGui.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.set_stars = 0
         
         self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
         self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
@@ -71,6 +77,12 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.connect(self.pushButtonOriginal, QtCore.SIGNAL("clicked()"), self.onOriginal)
         self.connect(self.pushButtonOriginalAlt, QtCore.SIGNAL("clicked()"), self.onOriginalAlt)
         self.connect(self.pushButtonAddYear, QtCore.SIGNAL("clicked()"), self.onAddYear)
+        self.connect(self.pushButtonStar1, QtCore.SIGNAL("clicked()"), self.onStar1)
+        self.connect(self.pushButtonStar2, QtCore.SIGNAL("clicked()"), self.onStar2)
+        self.connect(self.pushButtonStar3, QtCore.SIGNAL("clicked()"), self.onStar3)
+        self.connect(self.pushButtonStar4, QtCore.SIGNAL("clicked()"), self.onStar4)
+        self.connect(self.pushButtonStar5, QtCore.SIGNAL("clicked()"), self.onStar5)
+        self.connect(self.pushButtonClearRating, QtCore.SIGNAL("clicked()"), self.onClearRating)
         self.connect(self.listWidgetW, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
         self.connect(self.listWidgetM, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
         self.connect(self.pushButtonNeuDarstelleruebernehmen, QtCore.SIGNAL("clicked()"), self.onDarstelleruebernehmen)
@@ -186,6 +198,26 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 self.radioButtonVorhandenJa.setChecked(True)
             else:
                 self.radioButtonVorhandenNein.setChecked(True)
+            if self.stars == 1:
+                self.pushButtonStar1.setIcon(self.icon_starred)
+            elif self.stars == 2:
+                self.pushButtonStar1.setIcon(self.icon_starred)
+                self.pushButtonStar2.setIcon(self.icon_starred)
+            elif self.stars == 3:
+                self.pushButtonStar1.setIcon(self.icon_starred)
+                self.pushButtonStar2.setIcon(self.icon_starred)
+                self.pushButtonStar3.setIcon(self.icon_starred)
+            elif self.stars == 4:
+                self.pushButtonStar1.setIcon(self.icon_starred)
+                self.pushButtonStar2.setIcon(self.icon_starred)
+                self.pushButtonStar3.setIcon(self.icon_starred)
+                self.pushButtonStar4.setIcon(self.icon_starred)
+            elif self.stars == 5:
+                self.pushButtonStar1.setIcon(self.icon_starred)
+                self.pushButtonStar2.setIcon(self.icon_starred)
+                self.pushButtonStar3.setIcon(self.icon_starred)
+                self.pushButtonStar4.setIcon(self.icon_starred)
+                self.pushButtonStar5.setIcon(self.icon_starred)                 
             self.pushButtonBildloeschen.setEnabled(False)
             self.pushButtonBildbeschneiden.setEnabled(False)
             if self.undo:
@@ -284,6 +316,60 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         year = self.comboBoxYear.currentText()
         self.lineEditNeuOriginal.setText(self.lineEditNeuOriginal.text().strip() + " (" + str(year) + ")")
         self.pushButtonNeuOK.setFocus()
+        
+    def onStar1(self):
+        self.pushButtonStar1.setIcon(self.icon_starred)
+        self.pushButtonStar2.setIcon(self.icon_nonstarred)
+        self.pushButtonStar3.setIcon(self.icon_nonstarred)
+        self.pushButtonStar4.setIcon(self.icon_nonstarred)
+        self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.pushButtonNeuOK.setFocus()
+        self.set_stars = 1
+        
+    def onStar2(self):
+        self.pushButtonStar1.setIcon(self.icon_starred)
+        self.pushButtonStar2.setIcon(self.icon_starred)
+        self.pushButtonStar3.setIcon(self.icon_nonstarred)
+        self.pushButtonStar4.setIcon(self.icon_nonstarred)
+        self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.pushButtonNeuOK.setFocus()
+        self.set_stars = 2
+        
+    def onStar3(self):
+        self.pushButtonStar1.setIcon(self.icon_starred)
+        self.pushButtonStar2.setIcon(self.icon_starred)
+        self.pushButtonStar3.setIcon(self.icon_starred)
+        self.pushButtonStar4.setIcon(self.icon_nonstarred)
+        self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.pushButtonNeuOK.setFocus()
+        self.set_stars = 3
+        
+    def onStar4(self):
+        self.pushButtonStar1.setIcon(self.icon_starred)
+        self.pushButtonStar2.setIcon(self.icon_starred)
+        self.pushButtonStar3.setIcon(self.icon_starred)
+        self.pushButtonStar4.setIcon(self.icon_starred)
+        self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.pushButtonNeuOK.setFocus()
+        self.set_stars = 4
+        
+    def onStar5(self):
+        self.pushButtonStar1.setIcon(self.icon_starred)
+        self.pushButtonStar2.setIcon(self.icon_starred)
+        self.pushButtonStar3.setIcon(self.icon_starred)
+        self.pushButtonStar4.setIcon(self.icon_starred)
+        self.pushButtonStar5.setIcon(self.icon_starred)
+        self.pushButtonNeuOK.setFocus()
+        self.set_stars = 5
+        
+    def onClearRating(self):
+        self.pushButtonStar1.setIcon(self.icon_nonstarred)
+        self.pushButtonStar2.setIcon(self.icon_nonstarred)
+        self.pushButtonStar3.setIcon(self.icon_nonstarred)
+        self.pushButtonStar4.setIcon(self.icon_nonstarred)
+        self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.pushButtonNeuOK.setFocus()
+        self.set_stars = 0
     
     def onDarstelleruebernehmen(self):
         selected = self.listWidgetW.selectedItems()
@@ -446,7 +532,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(bild)
             werte.append(gesehen)
             werte.append(original)
-            zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s WHERE cd = %s AND bild = %s"
+            zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s, stars = %s WHERE cd = %s AND bild = %s"
             if self.spinBoxF.value() > 0:
                 werte.append(self.spinBoxF.value())
                 self.spinBoxK.setValue(0)
@@ -514,6 +600,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             elif self.comboBoxDefinition.currentIndex() == 5:
                 werte.append("9")
             werte.append(vorhanden)
+            werte.append(self.set_stars)
             werte.append(self.cd_alt)
             werte.append(bild)
             if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
@@ -577,8 +664,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(original)
             werte.append("")
             werte.append(vorhanden)
+            werte.append(self.set_stars)
             werte.append(res[0][0])
-            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             if self.spinBoxF.value() > 0:
                 cs = self.spinBoxF.value()
             else:

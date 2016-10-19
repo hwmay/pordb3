@@ -7,7 +7,7 @@ import urllib.request, urllib.error, urllib.parse
 import tempfile
 import zipfile
 
-file_download = "https://github.com/hwmay/pordb3/archive/master.zip"
+FILE_DOWNLOAD = "https://github.com/hwmay/pordb3/archive/master.zip"
 
 class UpdateVersion(QtGui.QDialog, pordb_update_version):
     def __init__(self, version, whatsnew):
@@ -40,7 +40,7 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
         while True:
             zaehler += 1
             try:
-                seite = urllib.request.urlopen(file_download)
+                seite = urllib.request.urlopen(FILE_DOWNLOAD)
                 if seite:
                     break
                 else:

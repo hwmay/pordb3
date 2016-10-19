@@ -2864,6 +2864,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             else:
                 vorhanden = ""
             definition = self.aktuelles_res[index][20]
+            stars = self.aktuelles_res[index][22]
             self.file = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[index][3].strip()
             cover = False
             if not os.path.exists(self.file):
@@ -2877,7 +2878,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             original_weitere = []
             for i in res2:
                 original_weitere.append(i[1])
-            eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
+            eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, stars, cover, None, None, original_weitere, high_definition = definition)
             change_flag = None
             res_alt = self.aktuelles_res
             if eingabedialog.exec_():
@@ -4120,6 +4121,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
         
     def onCheckNewVersion(self, initial=True):
+        def change_tables_definition():
+            zu_erfassen = []
+            werte = []
+            zu_erfassen.append(["ALTER TABLE pordb_vid ADD COLUMN remarks VARCHAR(256)", werte])
+            zu_erfassen.append(["ALTER TABLE pordb_vid ADD COLUMN stars INTEGER", werte])
+            update_func = DBUpdate(self, zu_erfassen)
+            DBUpdate.update_data(update_func)
+            
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         version = None
         whatsnew = None
@@ -4134,11 +4143,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if seite:
             begin = str(seite).find("pordbversion")
             version = str(seite)[begin + 21 : begin + 21 + str(seite)[begin + 21 :].find("&")]
+            change_tables_definition()
             if version != __version__:
                 begin = str(seite).find("whatsnew")
                 whatsnew = str(seite)[begin + 17 : begin + 17 + str(seite)[begin + 17 :].find("&")]
                 dialog = UpdateVersion(version, whatsnew)
                 if dialog.exec_():
+                    change_tables_definition()
                     desktop_directory = os.path.join(os.path.expanduser("~"), ".local/share/applications")
                     desktop_datei = os.path.join(desktop_directory, "PorDB.desktop")
                     if not os.path.exists(desktop_directory):

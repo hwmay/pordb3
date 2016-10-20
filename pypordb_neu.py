@@ -664,9 +664,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(original)
             werte.append("")
             werte.append(vorhanden)
-            werte.append(self.set_stars)
             werte.append(res[0][0])
-            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             if self.spinBoxF.value() > 0:
                 cs = self.spinBoxF.value()
             else:
@@ -745,6 +744,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 werte.append("3")
             elif self.comboBoxDefinition.currentIndex() == 5:
                 werte.append("9")
+                
+            werte.append("") # hier kommen die Remarks hin            
+            werte.append(self.set_stars)
             
         zu_erfassen.append([zu_erfassen_zw, werte])
             

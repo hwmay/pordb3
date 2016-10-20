@@ -295,7 +295,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             app.processEvents()
         
         self.aktuelle_ausgabe = " "
-        self.suche_darsteller = self.suche_cd = self.suche_titel = self.suche_original = self.suche_cs = ""
+        self.suche_darsteller = self.suche_cd = self.suche_titel = self.suche_original = self.suche_cs = self.suche_remarks = ""
+        self.suche_stars = 0
         self.sucheD_darsteller = self.sucheD_geschlecht = self.sucheD_haar = self.sucheD_nation = self.sucheD_tattoo = self.sucheD_etattoo = self.sucheD_ethnic = ""
         self.sucheD_actor1 = self.sucheD_actor2 = self.sucheD_actor3 = ""
         self.sucheD_ab = ""
@@ -2086,6 +2087,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             suche.comboBoxCS.setCurrentIndex(suche.comboBoxCS.findText(self.suche_cs))
         except:
             pass
+        if self.suche_stars == 1:
+            suche.onStar1()
+        elif self.suche_stars == 2:
+            suche.onStar2()
+        elif self.suche_stars == 3:
+            suche.onStar3()
+        elif self.suche_stars == 4:
+            suche.onStar4()
+        elif self.suche_stars == 5:
+            suche.onStar5()
+        suche.lineEditRemarks.setText(self.suche_remarks)
         if suche.exec_():
             self.suche_darsteller = suche.lineEditDarsteller.text()
             self.suche_cd = suche.lineEditCD.text()
@@ -2094,6 +2106,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.video = suche.checkBoxVid.isChecked()
             self.watched = suche.checkBoxWatched.isChecked()
             self.suche_cs = suche.comboBoxCS.currentText()
+            self.suche_stars = suche.set_stars
+            self.suche_remarks = suche.lineEditRemarks.text()
+            
             # select-Anweisung aufbauen
             zu_lesen = "SELECT * FROM pordb_vid WHERE "
             argument = 0
@@ -2150,6 +2165,22 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if argument == 1 and self.watched:
                 zu_lesen += " AND (gesehen = %s)"
                 werte.append("x")
+                
+            # Rating
+            if self.suche_stars:
+                if argument == 1:
+                    zu_lesen += " AND "    
+                argument = 1
+                zu_lesen += "stars = %s"
+                werte.append(str(self.suche_stars))
+                
+            # Remarks 
+            if self.suche_remarks:
+                if argument == 1:
+                    zu_lesen += " AND "    
+                argument = 1
+                zu_lesen += "remarks LIKE %s"
+                werte.append("%" + str(self.suche_remarks) + "%")
             
             zu_lesen += " ORDER BY cd, lower(titel)"
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2015 HWM
+    Copyright 2012-2016 HWM
     
     This file is part of PorDB3.
 
@@ -70,7 +70,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.icon_starred.addPixmap(QtGui.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.icon_nonstarred = QtGui.QIcon()
         self.icon_nonstarred.addPixmap(QtGui.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.set_stars = 0
+        self.set_stars = stars
         
         self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
         self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)

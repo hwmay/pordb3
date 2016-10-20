@@ -2797,9 +2797,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             definition = text[20].strip()
             if not definition:
                 definition = "0"
+            remarks = text[21].strip()
+            try:
+                stars = int(text[22].strip())
+            except:
+                stars = 0
             if j != 1:
                 self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis_trash, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
-            eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, "", undo, original_cover=trash_cover, high_definition = definition)
+            eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, remarks, stars, "", undo, original_cover=trash_cover, high_definition = definition)
         else:
             if not cover_anlegen:
                 if len(self.tableWidgetBilderAktuell.selectedItems()) == 1 or len(self.tableWidgetBilderAktuell.selectedItems()) == 2:

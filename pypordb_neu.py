@@ -511,9 +511,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 werte.append(i)
                 zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl - 1 WHERE darsteller = %s", werte])
             if not self.radioButtonCoverJa.isChecked():
-                bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +str(bild).rstrip()
+                bilddatei_alt = os.path.join(self.verzeichnis_thumbs, "cd" + str(self.cd_alt), str(bild).rstrip())
                 if str(cd) != self.cd_alt:
-                    bilddatei_neu = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +str(bild).rstrip()
+                    bilddatei_neu = os.path.join(self.verzeichnis_thumbs, "cd" + str(cd), str(bild).rstrip())
                     os.renames(bilddatei_alt, bilddatei_neu)
                 else:
                     if self.bilddatei != bilddatei_alt:
@@ -618,25 +618,25 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("When adding a cover you must also enter a movie title"))
                 return
             if self.undo:
-                bilddatei = QtGui.QImage(self.verzeichnis_trash +os.sep +bild)
+                bilddatei = QtGui.QImage(os.path.join(self.verzeichnis_trash, bild))
             else:
                 if self.radioButtonCoverJa.isChecked():
-                    bilddatei = QtGui.QImage(self.verzeichnis +os.sep +bild)
+                    bilddatei = QtGui.QImage(os.path.join(self.verzeichnis, bild))
                 else:
-                    bilddatei = QtGui.QImage(self.verzeichnis +os.sep +bild).scaled(size, QtCore.Qt.KeepAspectRatio)
+                    bilddatei = QtGui.QImage(os.path.join(self.verzeichnis, bild)).scaled(size, QtCore.Qt.KeepAspectRatio)
             if self.radioButtonCoverJa.isChecked():
-                newfilename = str(self.verzeichnis_cover +os.sep +bild)
+                newfilename = os.path.join(self.verzeichnis_cover, bild)
             else:
-                newfilename = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild)
+                newfilename = os.path.join(self.verzeichnis_thumbs, "cd" +str(cd), bild)
             # hier klappt noch etwas nicht richtig mit den Partnern, wenn len>256
             if len(bild) > 256 or os.path.exists(newfilename):
                 neue_bilddatei = BilddateiUmbenennen(newfilename)
                 if neue_bilddatei.exec_():
                     try:
-                        bild_alt = str(self.verzeichnis +os.sep +bild)
-                        bild_neu = str(self.verzeichnis +os.sep +neue_bilddatei.lineEditDateiname.text())
+                        bild_alt = os.path.join(self.verzeichnis, bild)
+                        bild_neu = os.path.join(self.verzeichnis, neue_bilddatei.lineEditDateiname.text())
                         os.rename(bild_alt, bild_neu)
-                        newfilename = os.path.dirname(newfilename) +os.sep +neue_bilddatei.lineEditDateiname.text()
+                        newfilename = os.path.join(os.path.dirname(newfilename), neue_bilddatei.lineEditDateiname.text())
                         bild = neue_bilddatei.lineEditDateiname.text()
                         titel = str(bild.split('.')[0])
                     except:

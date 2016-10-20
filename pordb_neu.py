@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Thu Oct 20 00:04:48 2016
+# Created: Thu Oct 20 20:13:27 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -346,14 +346,12 @@ class Ui_Dialog(object):
         self.labelNeuBildanzeige.setObjectName(_fromUtf8("labelNeuBildanzeige"))
         self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.labelNeuBildanzeige)
         self.formLayout_5.setWidget(1, QtGui.QFormLayout.LabelRole, self.groupBox_2)
-        self.textBrowserRemarks = QtGui.QTextBrowser(Dialog)
-        self.textBrowserRemarks.setReadOnly(False)
-        self.textBrowserRemarks.setAcceptRichText(False)
-        self.textBrowserRemarks.setObjectName(_fromUtf8("textBrowserRemarks"))
-        self.formLayout_5.setWidget(1, QtGui.QFormLayout.FieldRole, self.textBrowserRemarks)
         self.label_19 = QtGui.QLabel(Dialog)
         self.label_19.setObjectName(_fromUtf8("label_19"))
         self.formLayout_5.setWidget(0, QtGui.QFormLayout.FieldRole, self.label_19)
+        self.plainTextEditRemarks = QtGui.QPlainTextEdit(Dialog)
+        self.plainTextEditRemarks.setObjectName(_fromUtf8("plainTextEditRemarks"))
+        self.formLayout_5.setWidget(1, QtGui.QFormLayout.FieldRole, self.plainTextEditRemarks)
         self.gridLayout_2.addLayout(self.formLayout_5, 3, 1, 1, 1)
         self.gridLayout = QtGui.QGridLayout()
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))

@@ -42,14 +42,11 @@ class DBUpdate():
             try:
                 self.cur.execute(i[0], i[1])
             except Exception as e:
-                if i[0].startswith("ALTER TABLE"):
-                    pass
-                else:
-                    print("Error:", e)
-                    print(i)
-                    message = QtGui.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
-                    self.cur.close()
-                    return 
+                print("Error:", e)
+                print(i)
+                message = QtGui.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
+                self.cur.close()
+                return 
         self.commit()
         
     def commit(self):

@@ -38,7 +38,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, stars=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, access_from_iafd = None):
+    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, remarks=None, stars=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, access_from_iafd = None):
         
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
@@ -52,6 +52,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.cs = cs
         self.vorhanden = vorhanden
         self.stars = stars
+        self.remarks = remarks
         self.undo = undo
         self.cover = cover
         self.cover_anlegen = cover_anlegen
@@ -198,6 +199,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 self.radioButtonVorhandenJa.setChecked(True)
             else:
                 self.radioButtonVorhandenNein.setChecked(True)
+            self.plainTextEditRemarks.setPlainText(self.remarks)
             if self.stars == 1:
                 self.pushButtonStar1.setIcon(self.icon_starred)
             elif self.stars == 2:
@@ -532,7 +534,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(bild)
             werte.append(gesehen)
             werte.append(original)
-            zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s, stars = %s WHERE cd = %s AND bild = %s"
+            zu_erfassen_zw = "UPDATE pordb_vid SET titel = %s, darsteller = %s, cd = %s, bild = %s, gesehen = %s, original = %s, csf = %s, csh = %s, cst = %s, csc = %s, csx = %s, cso = %s, csv = %s, csb = %s, csa = %s, css = %s, csk = %s, hd = %s, vorhanden = %s, remarks = %s, stars = %s WHERE cd = %s AND bild = %s"
             if self.spinBoxF.value() > 0:
                 werte.append(self.spinBoxF.value())
                 self.spinBoxK.setValue(0)
@@ -600,6 +602,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             elif self.comboBoxDefinition.currentIndex() == 5:
                 werte.append("9")
             werte.append(vorhanden)
+            werte.append(self.plainTextEditRemarks.toPlainText())
             werte.append(self.set_stars)
             werte.append(self.cd_alt)
             werte.append(bild)
@@ -665,7 +668,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append("")
             werte.append(vorhanden)
             werte.append(res[0][0])
-            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             if self.spinBoxF.value() > 0:
                 cs = self.spinBoxF.value()
             else:
@@ -745,7 +748,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             elif self.comboBoxDefinition.currentIndex() == 5:
                 werte.append("9")
                 
-            werte.append("") # hier kommen die Remarks hin            
+            werte.append(self.plainTextEditRemarks.toPlainText())
             werte.append(self.set_stars)
             
         zu_erfassen.append([zu_erfassen_zw, werte])

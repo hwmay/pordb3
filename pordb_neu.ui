@@ -772,22 +772,15 @@ First click with the left mouse button in the left top corner, then click with t
        </layout>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowserRemarks">
-       <property name="readOnly">
-        <bool>false</bool>
-       </property>
-       <property name="acceptRichText">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QLabel" name="label_19">
        <property name="text">
         <string>Remarks:</string>
        </property>
       </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPlainTextEdit" name="plainTextEditRemarks"/>
      </item>
     </layout>
    </item>

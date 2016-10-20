@@ -668,7 +668,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append("")
             werte.append(vorhanden)
             werte.append(res[0][0])
-            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             if self.spinBoxF.value() > 0:
                 cs = self.spinBoxF.value()
             else:

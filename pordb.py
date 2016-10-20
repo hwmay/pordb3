@@ -1866,7 +1866,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         self.ausgabe_in_table()
         befehl = zu_lesen[:] + " (" +  ";".join(werte) + ")"
-        if len(befehl) < 5001:
+        if befehl and len(befehl) < 5001:
             zu_erfassen = []
             werte = []
             werte.append(befehl)
@@ -2853,6 +2853,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
                 self.onbildAnzeige()
                 
+        # next block is necessary in case a new entry should be created without any search action before
+        if not self.aktuelles_res:
+            self.letzter_select_komplett_werte = []
+            self.letzter_select_komplett_werte.append(str(self.spinBoxAktuell.value()))
+            self.letzter_select_komplett_werte.append(os.path.basename(self.file))
+            self.letzter_select_komplett = "SELECT * FROM pordb_vid WHERE cd = %s AND bild = %s"
+            
         if self.tabWidget.currentIndex() == 0:
             self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         
@@ -4159,13 +4166,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             zu_lesen = "SELECT Column_Name from information_schema.columns where table_name = 'pordb_vid' and Column_Name = 'remarks'"
             lese_func = DBLesen(self, zu_lesen)
             res = DBLesen.get_data(lese_func)
-            print (res)
             if not res:
                 zu_erfassen.append(["ALTER TABLE pordb_vid ADD COLUMN remarks VARCHAR(256)", werte])
             zu_lesen = "SELECT Column_Name from information_schema.columns where table_name = 'pordb_vid' and Column_Name = 'stars'"
             lese_func = DBLesen(self, zu_lesen)
             res = DBLesen.get_data(lese_func)
-            print (res)
             if not res:
                 zu_erfassen.append(["ALTER TABLE pordb_vid ADD COLUMN stars INTEGER", werte])
             if zu_erfassen:

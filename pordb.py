@@ -1900,9 +1900,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.tableWidgetBilder.setColumnCount(self.columns)
         for i in res:
             cover = ""
-            dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip()
+            dateiname = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3].strip())
             if not os.path.exists(dateiname) or self.actionCheckBoxDVDCover.isChecked():
-                dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+                dateiname = os.path.join(self.verzeichnis_cover, i[3].strip())
                 if os.path.exists(dateiname):
                     cover = "x"
             if os.path.exists(dateiname):
@@ -1910,9 +1910,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 groesse = bild.size()
                 bild = QtGui.QIcon(dateiname)
             else:
-                bild = QtGui.QPixmap(self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg")
+                bild = QtGui.QPixmap(os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg"))
                 groesse = bild.size()
-                bild = QtGui.QIcon(self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg")
+                bild = QtGui.QIcon(os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg"))
             cs = ""
             if i[9] != 0:
                 cs += str(i[9]) +"f"
@@ -2020,6 +2020,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             res2 = DBLesen.get_data(lese_func)
             if len(res2) > 0:
                 text += "\n>>>>>"
+            if i[22]:
+                text += "\n\n" + i[22] * "* "
             newitem = QtGui.QTableWidgetItem(bild, text)
             if i[4] != " " and i[7] != " " and i[7] != None: # clip is present and watched
                 newitem.setTextColor(QtGui.QColor("green"))

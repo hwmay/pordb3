@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_suchen.ui'
 #
-# Created: Thu Oct 20 21:05:04 2016
+# Created: Sat Oct 22 19:55:16 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -164,6 +164,13 @@ class Ui_ErweiterteSuche(object):
         self.pushButtonStar5.setFlat(True)
         self.pushButtonStar5.setObjectName(_fromUtf8("pushButtonStar5"))
         self.horizontalLayout_2.addWidget(self.pushButtonStar5)
+        self.pushButtonClear = QtGui.QPushButton(self.groupBox)
+        self.pushButtonClear.setText(_fromUtf8(""))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/clear_l.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonClear.setIcon(icon2)
+        self.pushButtonClear.setObjectName(_fromUtf8("pushButtonClear"))
+        self.horizontalLayout_2.addWidget(self.pushButtonClear)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.gridLayout.addLayout(self.horizontalLayout_2, 7, 1, 1, 1)
@@ -178,16 +185,14 @@ class Ui_ErweiterteSuche(object):
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonSuchen = QtGui.QPushButton(ErweiterteSuche)
         self.pushButtonSuchen.setText(_fromUtf8(""))
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButtonSuchen.setIcon(icon2)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/suchen.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonSuchen.setIcon(icon3)
         self.pushButtonSuchen.setObjectName(_fromUtf8("pushButtonSuchen"))
         self.horizontalLayout.addWidget(self.pushButtonSuchen)
         self.pushButtonRefresh = QtGui.QPushButton(ErweiterteSuche)
         self.pushButtonRefresh.setText(_fromUtf8(""))
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/clear_l.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButtonRefresh.setIcon(icon3)
+        self.pushButtonRefresh.setIcon(icon2)
         self.pushButtonRefresh.setObjectName(_fromUtf8("pushButtonRefresh"))
         self.horizontalLayout.addWidget(self.pushButtonRefresh)
         self.pushButtonCancel = QtGui.QPushButton(ErweiterteSuche)

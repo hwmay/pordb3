@@ -32,6 +32,7 @@ class Suchen(QtGui.QDialog, pordb_suchen):
         self.connect(self.pushButtonStar3, QtCore.SIGNAL("clicked()"), self.onStar3)
         self.connect(self.pushButtonStar4, QtCore.SIGNAL("clicked()"), self.onStar4)
         self.connect(self.pushButtonStar5, QtCore.SIGNAL("clicked()"), self.onStar5)
+        self.connect(self.pushButtonClear, QtCore.SIGNAL("clicked()"), self.onClearStars)
         self.connect(self.pushButtonSuchen, QtCore.SIGNAL("clicked()"), self.accept)
         self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL("clicked()"), self.onRefresh)
@@ -86,6 +87,15 @@ class Suchen(QtGui.QDialog, pordb_suchen):
         self.pushButtonStar5.setIcon(self.icon_starred)
         self.pushButtonSuchen.setFocus()
         self.set_stars = 5
+        
+    def onClearStars(self):
+        self.pushButtonStar1.setIcon(self.icon_nonstarred)
+        self.pushButtonStar2.setIcon(self.icon_nonstarred)
+        self.pushButtonStar3.setIcon(self.icon_nonstarred)
+        self.pushButtonStar4.setIcon(self.icon_nonstarred)
+        self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.pushButtonSuchen.setFocus()
+        self.set_stars = 0
         
     def onRefresh(self):
         self.lineEditDarsteller.clear()

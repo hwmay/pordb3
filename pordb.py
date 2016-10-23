@@ -1361,10 +1361,39 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         else:
                             painter.drawText(x, y, "Original: ")
                         y += 15
-                        if i[6]:
-                            painter.drawText(x, y, "CS: " +i[6])
-                        else:
-                            painter.drawText(x, y, "CS: ")
+                        painter.drawText(x, y, "CS: ")
+                        x += 25
+                        if i[9]:
+                            painter.drawText(x, y, str(i[9]) + "f")
+                            x += 25
+                        if i[10]:
+                            painter.drawText(x, y, str(i[10]) + "h")
+                            x += 25
+                        if i[11]:
+                            painter.drawText(x, y, str(i[11]) + "t")
+                            x += 25
+                        if i[12]:
+                            painter.drawText(x, y, str(i[12]) + "c")
+                            x += 25
+                        if i[13]:
+                            painter.drawText(x, y, str(i[13]) + "x")
+                            x += 25
+                        if i[14]:
+                            painter.drawText(x, y, str(i[14]) + "o")
+                            x += 25
+                        if i[15]:
+                            painter.drawText(x, y, str(i[15]) + "v")
+                            x += 25
+                        if i[16]:
+                            painter.drawText(x, y, str(i[16]) + "b")
+                            x += 25
+                        if i[17]:
+                            painter.drawText(x, y, str(i[17]) + "a")
+                            x += 25
+                        if i[18]:
+                            painter.drawText(x, y, str(i[18]) + "s")
+                            x += 25                            
+                        x = 30
                         y += 15
                         if i[7]:
                             painter.drawText(x, y, self.trUtf8("available: ") +i[7])

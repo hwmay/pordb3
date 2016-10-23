@@ -1354,7 +1354,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         y += 15
                         painter.drawText(x, y, self.trUtf8("Image: ") +i[3])
                         y += 15
-                        painter.drawText(x, y, self.trUtf8("only image: ") +i[4])
+                        painter.drawText(x, y, self.trUtf8("watched: ") +i[4])
                         y += 15
                         if i[5]:
                             painter.drawText(x, y, "Original: " +i[5])
@@ -1399,6 +1399,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                             painter.drawText(x, y, self.trUtf8("available: ") +i[7])
                         else:
                             painter.drawText(x, y, self.trUtf8("available: "))
+                        if i[21]:
+                            y += 15
+                            painter.drawText(x, y, self.trUtf8("Remarks: ") + i[21])
+                        if i[22]:
+                            y += 15
+                            painter.drawText(x, y, self.trUtf8("Rating: ") + i[22] * "*")                            
                     y += 20
                     painter.drawLine(x, y, x + 600, y)
                     y += 20

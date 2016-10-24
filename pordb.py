@@ -3950,7 +3950,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         text = str(self.webView.page().mainFrame().toHtml())
         movie_data = SaveMovieData(app, url, text)
         res = SaveMovieData.get_data(movie_data)
-        if res:
+        if res and res[2]:
             show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res)
             show_iafd_data.exec_()
         if str(self.labelDarsteller.text()) != "":

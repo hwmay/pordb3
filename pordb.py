@@ -1263,8 +1263,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     painter.drawText(x + 300, y, "- " +str(seite) +" -")
                     y += 15
                     darsteller = str(self.labelDarsteller.text()).strip()
-                    verzeichnis_m = self.verzeichnis_thumbs + os.sep + "darsteller_m"
-                    verzeichnis_w = self.verzeichnis_thumbs + os.sep + "darsteller_w"
+                    verzeichnis_m = os.path.join(self.verzeichnis_thumbs, "darsteller_m")
+                    verzeichnis_w = os.path.join(self.verzeichnis_thumbs, "darsteller_w")
                     randunten = 50
                     for i in self.aktuelles_res:
                         if i[-1] == ")":
@@ -1272,11 +1272,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         else:
                             anfang = len(i)
                         name = i[0 : anfang]
-                        filename = verzeichnis_w + os.sep + name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+                        filename = os.path.join(verzeichnis_w, name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
                         if not os.path.exists(filename):
-                            filename = verzeichnis_m + os.sep + name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+                            filename = os.path.join(verzeichnis_m, name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
                         if not os.path.exists(filename):
-                            filename = self.verzeichnis_thumbs + os.sep + "nichtvorhanden" + os.sep + "nicht_vorhanden.jpg"
+                            filename = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
                         bild = QtGui.QPixmap(filename).scaled(size, QtCore.Qt.KeepAspectRatio)
                         if y + bild.height() + randunten > self.printer.pageRect().height():
                             y = 0
@@ -1304,11 +1304,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 for i in res:
                     if self.aktuelle_ausgabe == "Darsteller":
                         sex = str(self.letzter_select_komplett)[str(self.letzter_select_komplett).find("sex") + 7]
-                        filename = self.verzeichnis_thumbs + os.sep + "darsteller_" + sex + os.sep + i[0].strip().lower().replace(" ", "_") + ".jpg"
+                        filename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, i[0].strip().lower().replace(" ", "_") + ".jpg")
                     else:
-                        filename = self.verzeichnis_thumbs + os.sep + "cd" +str(i[2]) +os.sep +i[3].strip()
+                        filename = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3].strip())
                         if not os.path.exists(filename):
-                            filename = self.verzeichnis_cover +os.sep +i[3].strip()
+                            filename = os.path.join(self.verzeichnis_cover, + i[3].strip())
                     bild = QtGui.QPixmap(filename)
                     if bild.height() > self.printer.pageRect().height() - 60 or bild.width() > self.printer.pageRect().width() - 60:
                         bild = QtGui.QPixmap(bild).scaled(self.printer.pageRect().width() - 60, self.printer.pageRect().height() - 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
@@ -1417,9 +1417,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     y += 15
                     painter.drawText(x, y, name)
                     y += 15
-                    filename = self.verzeichnis_thumbs + os.sep + "darsteller_w" + os.sep + name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+                    filename = os.path.join(self.verzeichnis_thumbs, "darsteller_w", name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
                     if not os.path.exists(filename):
-                        filename = self.verzeichnis_thumbs + os.sep + "darsteller_m" + os.sep + name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+                        filename = os.path.join(self.verzeichnis_thumbs, "darsteller_m", name.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
                     bild = QtGui.QPixmap(filename)
                     if bild.height() > self.printer.pageRect().height() - 60 or bild.width() > self.printer.pageRect().width() - 60:
                         bild = QtGui.QPixmap(bild).scaled(self.printer.pageRect().width() - 60, self.printer.pageRect().height() - 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
@@ -2662,6 +2662,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             
             # Check if actors name has changed in IAFD
             actor_name = ActorData.actor_name(actordata)
+            if not actor_name:
+                app.restoreOverrideCursor()
+                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems IAFD site is offline"))
+                return
             if res[0][0].lower().strip() != actor_name.lower():
                 app.restoreOverrideCursor()
                 message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
@@ -3935,11 +3939,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         bilddialog = DarstellerdatenAnzeigen(app, url, text, self.verzeichnis_thumbs)
         fehler = False
         try:
-            geschlecht = bilddialog.ethnic
+            geschlecht = bilddialog.geschlecht
         except:
             fehler = True
-        if not fehler:
-            bilddialog.exec_()
+        if fehler:
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems IAFD site is offline"))
+            return
+
+        bilddialog.exec_()
         self.suchfeld.setFocus()
         
         self.darsteller_lesen("=" +bilddialog.name)

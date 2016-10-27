@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
 
+'''
+    Copyright 2012-2017 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+'''
+
 from PyQt4 import QtGui, QtCore
 from pordb_actor_details import Ui_Dialog as pordb_actor_details
 from pypordb_dblesen import DBLesen
@@ -29,11 +48,11 @@ class ActorDetails(QtGui.QDialog, pordb_actor_details):
         res = DBLesen.get_data(lese_func)
         
         bildname = darsteller.lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-        bilddarsteller = verzeichnis + os.sep + "darsteller_" + res[0][1] + os.sep + bildname +".jpg"
+        bilddarsteller = os.path.join(verzeichnis, "darsteller_" + res[0][1], bildname +".jpg")
         if not os.path.isfile(bilddarsteller):
-            bilddarsteller = verzeichnis + os.sep + "darsteller_" + res[0][1] + os.sep  + bildname + ".png"
+            bilddarsteller = os.path.join(verzeichnis, "darsteller_" + res[0][1], bildname + ".png")
             if not os.path.isfile(bilddarsteller):
-                bilddarsteller = verzeichnis + os.sep + "nichtvorhanden" + os.sep + "nicht_vorhanden.jpg"
+                bilddarsteller = os.path.join(verzeichnis, "nichtvorhanden", "nicht_vorhanden.jpg")
         
         self.bildQImage = QtGui.QImage(bilddarsteller)
         self.labelBild1.setAlignment(QtCore.Qt.AlignCenter)

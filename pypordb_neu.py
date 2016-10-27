@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2016 HWM
+    Copyright 2012-2017 HWM
     
     This file is part of PorDB3.
 
@@ -607,12 +607,12 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(self.cd_alt)
             werte.append(bild)
             if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
-                if os.path.exists(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()):
+                if os.path.exists(os.path.join(self.verzeichnis_thumbs, "cd" + str(self.cd_alt), bild.rstrip())):
                     # Bild war Thumbnail im CD Verzeichnis -> dieses löschen und neues im Cover Verzeichnis anlegen
-                    os.remove(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip())
-                    os.rename(self.bilddatei, self.verzeichnis_cover +os.sep +self.bild.strip())
+                    os.remove(os.path.join(self.verzeichnis_thumbs, "cd" + str(self.cd_alt), bild.rstrip()))
+                    os.rename(self.bilddatei, os.path.join(self.verzeichnis_cover, self.bild.strip()))
                 else:
-                    os.rename(self.bilddatei, self.verzeichnis_cover +os.sep +self.bild.strip())
+                    os.rename(self.bilddatei, os.path.join(self.verzeichnis_cover, self.bild.strip()))
         else:
             if self.radioButtonCoverJa.isChecked() and not original:
                 message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("When adding a cover you must also enter a movie title"))
@@ -649,7 +649,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                     os.mkdir(os.path.dirname(newfilename))
             if bilddatei.save(newfilename):
                 if not self.undo:
-                    os.remove(self.verzeichnis +os.sep +str(bild))
+                    os.remove(os.path.join(self.verzeichnis, str(bild)))
             else:
                 message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
                 return
@@ -889,7 +889,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                             extension = '.jpg'
                         try:
                             sex = res[0][0]
-                            newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].strip().replace(" ", "_").replace("'", "_apostroph_").lower() + extension.strip()
+                            newfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, darsteller[fehler_index].strip().replace(" ", "_").replace("'", "_apostroph_").lower() + extension.strip())
                             os.rename(self.file, newfilename)
                         except:
                             pass
@@ -974,17 +974,17 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         # Bild in Trash Verzeichnis verschieben
         if not os.path.exists(self.verzeichnis_trash):
             os.mkdir(self.verzeichnis_trash)
-        filename = self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd) +os.sep +self.bild.strip()
+        filename = os.path.join(self.verzeichnis_thumbs, "cd" + str(self.cd), self.bild.strip())
         cover = None
         if not os.path.exists(filename):
-            filename = self.verzeichnis_cover +os.sep +self.bild.strip()
+            filename = os.path.join(self.verzeichnis_cover, self.bild.strip())
             cover = "x"
-        newfilename = str(self.verzeichnis_trash +os.sep +self.bild.strip())
+        newfilename = os.path.join(self.verzeichnis_trash, self.bild.strip())
         if os.path.exists(filename):
             os.rename(filename, newfilename)
 
         # Textdatei erstellen mit alten Daten
-        textdatei = open(self.verzeichnis_trash +os.sep +self.bild[-2] +".txt", "w")
+        textdatei = open(os.path.join(self.verzeichnis_trash, self.bild[-2] + ".txt"), "w")
         zaehler = 0
         for i in res:
             for j in i:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2015 HWM
+    Copyright 2012-2017 HWM
     
     This file is part of PorDB3.
 
@@ -187,13 +187,13 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         bilddatei = None
         if actor:
             if sex:
-                bilddatei = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") +".jpg"
+                bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
             else:
-                bilddatei = self.verzeichnis_thumbs +os.sep +"darsteller_" +"w" +os.sep +actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") +".jpg"
+                bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + "w", + actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
                 if not os.path.exists(bilddatei):
-                    bilddatei = self.verzeichnis_thumbs +os.sep +"darsteller_" +"m" +os.sep +actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") +".jpg"
+                    bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + "m", actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
         if not bilddatei or not os.path.exists(bilddatei):
-            bilddatei = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
+            bilddatei = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
         return bilddatei
     
     def closeEvent(self, event):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2015 HWM
+    Copyright 2012-2017 HWM
     
     This file is part of PorDB3.
 
@@ -262,25 +262,25 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                     action = self.pseudo_uebernehmen(name, zu_erfassen)
                     if not action: 
                         return
-                extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
+                extension = os.path.splitext(os.path.join(self.verz, self.bild))[-1].lower()
                 if extension == ".jpeg":
                     extension = ".jpg"
                 if extension != ".gif":
-                    newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +str(self.lineEditGeschlecht.text()) +os.sep +name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
+                    newfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + str(self.lineEditGeschlecht.text()), name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension)
                     os.rename(os.path.join(self.verz, os.path.basename(self.bild)), newfilename)
             else:
                 self.onClose()
         # Darsteller existiert bereits
         else:
             if self.checkBoxBild.isChecked():
-                extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
+                extension = os.path.splitext(os.path.join(self.verz, + self.bild))[-1].lower()
                 if extension == ".jpeg":
                     extension = ".jpg"
                 if extension != ".gif":
                     if self.checkBoxName.isChecked():
-                        newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
+                        newfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + self.lineEditGeschlecht.text(), str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension)
                     else:
-                        newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.name).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
+                        newfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + self.lineEditGeschlecht.text(), str(self.name).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension)
                     os.rename(os.path.join(self.verz, os.path.basename(self.bild)), newfilename)
             else:
                 try:

@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 
 '''
-    Copyright 2012-2015 HWM
+    Copyright 2012-2017 HWM
     
     This file is part of PorDB3.
 

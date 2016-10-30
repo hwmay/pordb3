@@ -290,8 +290,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.historie()
         if self.initial_run:
             splash.showMessage("Initializing ...", color = QtGui.QColor("red"))
-            for i in os.listdir(os.path.expanduser("~" +os.sep +"tmp")):
-                os.remove(os.path.expanduser("~" +os.sep +"tmp" +os.sep +i))
+            for i in os.listdir(os.path.expanduser(os.path.join("~", "tmp"))):
+                os.remove(os.path.expanduser(os.path.join("~", "tmp", i)))
             app.processEvents()
         
         self.aktuelle_ausgabe = " "
@@ -460,9 +460,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         dateiliste_bereinigt.sort()
         if self.bilderliste != dateiliste_bereinigt or force:
             for i in dateiliste_bereinigt:
-                bild = QtGui.QPixmap(self.verzeichnis +os.sep +i)
+                bild = QtGui.QPixmap(os.path.join(self.verzeichnis, i))
                 text = i + "\n" + str(QtGui.QPixmap(bild).width()) +"x" +str(QtGui.QPixmap(bild).height())
-                bild = QtGui.QPixmap(self.verzeichnis +os.sep +i).scaled(size, QtCore.Qt.KeepAspectRatio)
+                bild = QtGui.QPixmap(os.path.join(self.verzeichnis, i)).scaled(size, QtCore.Qt.KeepAspectRatio)
                 bild = QtGui.QIcon(bild)
                 newitem = QtGui.QTableWidgetItem(bild, text)
                 zeile += 1
@@ -581,7 +581,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         bild = self.aktuelles_res[index][3]
         dateien = []
         for i in items:
-            dateien.append(str(self.verzeichnis +os.sep +i.text().split("\n")[0]))
+            dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         if len(dateien) > 2:
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 or 2 pictures"))
             return    
@@ -596,7 +596,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 dialog.exec_()
                 datei, original = dialog.datei()
                 bilddatei = QtGui.QImage(datei)
-                bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
+                bilddatei_alt = os.path.join(self.verzeichnis_cover, bild.rstrip())
                 ext = os.path.splitext(bilddatei_alt)[-1].lower()
                 if ext == ".jpeg":
                     ext = "jpg"
@@ -637,7 +637,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         items = self.tableWidgetBilderAktuell.selectedItems()
         dateien = []
         for i in items:
-            dateien.append(str(self.verzeichnis +os.sep +i.text().split("\n")[0]))
+            dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         if len(dateien) > 1:
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 picture"))
             return    
@@ -656,10 +656,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 extension_new = '.jpg'
             sex = res[0][0]
             if sex:
-                oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".jpg"
+                oldfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".jpg")
                 extension_old = None
                 if not os.path.isfile(oldfilename):
-                    oldfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".png"
+                    oldfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, name.replace(" ", "_").replace("'", "_apostroph_").lower() + ".png")
                     if os.path.isfile(oldfilename):
                         extension_old = ".png"
                 else:
@@ -722,7 +722,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         items = self.tableWidgetBilderAktuell.selectedItems()
         dateien = []
         for i in items:
-            dateien.append(self.verzeichnis +os.sep +i.text().split("\n")[0])
+            dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         self.onNeueingabe(dateien=dateien)
         self.bilder_aktuell()
                 
@@ -1161,11 +1161,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         bilddatei_trash = None
         for i in dateiliste:
             if os.path.splitext(i)[0] == "pypordb_bildalt":
-                bilddatei_trash = self.verzeichnis_trash +os.sep +i
+                bilddatei_trash = os.path.join(self.verzeichnis_trash, i)
                 break
-        bilddatei_neu = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.rstrip()
+        bilddatei_neu = os.path.join(self.verzeichnis_thumbs, "cd" +str(cd), bild.rstrip())
         if not os.path.exists(bilddatei_neu):
-            bilddatei_neu = self.verzeichnis_cover +os.sep +os.sep +bild.rstrip()
+            bilddatei_neu = os.path.join(self.verzeichnis_cover, bild.rstrip())
         if bilddatei_trash and os.path.exists(bilddatei_neu):
             messageBox = QtGui.QMessageBox()
             messageBox.addButton(self.trUtf8("Image restore"), QtGui.QMessageBox.AcceptRole)
@@ -1211,7 +1211,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             original = self.aktuelles_res[index][5]
         else:
             original = ""
-        cover = self.verzeichnis_cover + os.sep + self.aktuelles_res[index][3].strip()
+        cover = os.path.join(self.verzeichnis_cover, self.aktuelles_res[index][3].strip())
         if os.path.exists(cover):
             bilddialog = DarstellerAnzeigeGross(cover)
             bilddialog.exec_()
@@ -1221,7 +1221,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         items = self.tableWidgetBilderAktuell.selectedItems()
         for i in items:
             text = str(i.text().split("\n")[0])
-            bilddatei = self.verzeichnis +os.sep +text 
+            bilddatei = os.path.join(self.verzeichnis, text) 
             try:
                 os.remove(bilddatei)
             except:
@@ -1605,15 +1605,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.listWidgetDarsteller.clearSelection()
         if ein:
             bildname = ein.lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-            self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_w" + os.sep + bildname + ".jpg"
+            self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "darsteller_w", bildname + ".jpg")
             if not os.path.isfile(self.bilddarsteller):
-                self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_w" + os.sep + bildname + ".png"
+                self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "darsteller_w", bildname + ".png")
                 if not os.path.isfile(self.bilddarsteller):
-                    self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_m" + os.sep + bildname + ".jpg"
+                    self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "darsteller_m", bildname + ".jpg")
                     if not os.path.isfile(self.bilddarsteller):
-                        self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_m" + os.sep + bildname + ".png"
+                        self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "darsteller_m", bildname + ".png")
                         if not os.path.isfile(self.bilddarsteller):
-                            self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "nichtvorhanden" + os.sep + "nicht_vorhanden.jpg"
+                            self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
             bilddialog = DarstellerAnzeigeGross(self.bilddarsteller)
             bilddialog.exec_()
         self.suchfeld.setFocus()
@@ -2253,11 +2253,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if i[1] == "m" or i[1] == "w": # not from pseudo_table
                 name = i[0]
                 bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-                self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".jpg"
+                self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "darsteller_" +i[1], bildname + ".jpg")
                 if not os.path.isfile(self.bilddarsteller):
-                    self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".png"
+                    self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "darsteller_" +i[1], bildname + ".png")
                     if not os.path.isfile(self.bilddarsteller):
-                        self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
+                        self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
                 if i[11] and i[11] != "0": # URL vorhanden
                     self.pushButtonIAFDBackground.setEnabled(True)
                 else:
@@ -2297,7 +2297,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.labelDarsteller.clear()
         self.labelAlter.clear()
         self.pushButtonIAFDBackground.setEnabled(False)
-        self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
+        self.bilddarsteller = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
         self.bildSetzen()
         self.listWidgetStatistik.clear()
         self.listWidgetFilme.clear()
@@ -2597,9 +2597,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)
         
-        filename = self.verzeichnis_thumbs + os.sep + "darsteller_" +str(self.comboBoxGeschlecht.currentText()) + os.sep + name.strip().lower().replace(" ", "_") + ".jpg"
+        filename = os.path.join(self.verzeichnis_thumbs, "darsteller_" +str(self.comboBoxGeschlecht.currentText()),  name.strip().lower().replace(" ", "_") + ".jpg")
         if not os.path.exists(filename):
-            filename = self.verzeichnis_thumbs + os.sep + "darsteller_" +str(self.comboBoxGeschlecht.currentText()) + os.sep + name.strip().lower().replace(" ", "_") + ".png"
+            filename = os.path.join(self.verzeichnis_thumbs, "darsteller_" +str(self.comboBoxGeschlecht.currentText()), name.strip().lower().replace(" ", "_") + ".png")
             extension = ".png"
         else:
             extension = ".jpg"
@@ -2610,7 +2610,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 sex_alt = "m"
             else:
                 sex_alt = "w"
-            oldfilename = self.verzeichnis_thumbs + os.sep + "darsteller_" +sex_alt + os.sep + name.strip().lower().replace(" ", "_") + extension
+            oldfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex_alt, name.strip().lower().replace(" ", "_") + extension)
             if os.path.exists(oldfilename):
                 os.rename(oldfilename, filename)
         
@@ -2787,7 +2787,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
             bildname = name.strip().lower().replace(" ", "_").replace("'", "_apostroph_")
-            datei_alt = self.verzeichnis_thumbs +os.sep +"darsteller_" +str(self.comboBoxGeschlecht.currentText()) +os.sep +bildname +".jpg"
+            datei_alt = os.path.join(self.verzeichnis_thumbs, "darsteller_" +str(self.comboBoxGeschlecht.currentText()), bildname +".jpg")
             try:
                 os.remove(datei_alt)
             except:
@@ -2806,12 +2806,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             j = 0
             for i in dateiliste:
                 if os.path.splitext(i)[-1] == ".txt":
-                    datei = open(self.verzeichnis_trash +os.sep +i, "r")
+                    datei = open(os.path.join(self.verzeichnis_trash, i), "r")
                     text = datei.readlines()
                     datei.close()
                 elif (os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png") and os.path.splitext(i)[0] != "pypordb_bildalt":
                     j += 1
-                    self.file = str(self.verzeichnis_trash +os.sep +i)
+                    self.file = os.path.join(self.verzeichnis_trash, i)
             titel = text[0].strip()
             darsteller = text[1].strip()
             cd = text[2].strip()
@@ -2852,7 +2852,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     items = self.tableWidgetBilderAktuell.selectedItems()
                     dateien = []
                     for i in items:
-                        dateien.append(str(self.verzeichnis +os.sep +i.text().split("\n")[0]))
+                        dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
             if dateien:
                 if type(dateien) == str:
                     self.file = dateien
@@ -2950,10 +2950,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             definition = self.aktuelles_res[index][20]
             remarks = self.aktuelles_res[index][21]
             stars = self.aktuelles_res[index][22]
-            self.file = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[index][3].strip()
+            self.file = os.path.join(self.verzeichnis_thumbs, "cd" +str(cd), self.aktuelles_res[index][3].strip())
             cover = False
             if not os.path.exists(self.file):
-                self.file = self.verzeichnis_cover +os.sep +self.aktuelles_res[index][3].strip()
+                self.file = os.path.join(self.verzeichnis_cover, self.aktuelles_res[index][3].strip())
                 cover = True
             zu_lesen = "SELECT * FROM pordb_original WHERE foreign_key_pordb_vid = %s"
             werte = []
@@ -3175,14 +3175,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 else:
                     active = ""
                 text = name + "\n" + nationality + "\n" + active
-                if os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname +".jpg"):
-                    dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname +".jpg"
-                elif os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname +".png"):
-                    dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname +".png"
-                elif os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname +".jpg"):
-                    dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname +".jpg"
+                if os.path.exists(os.path.join(self.verzeichnis_thumbs, "darsteller_w", bildname + ".jpg")):
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_w",  bildname + ".jpg")
+                elif os.path.exists(os.path.join(self.verzeichnis_thumbs, "darsteller_w", bildname + ".png")):
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_w", bildname + ".png")
+                elif os.path.exists(os.path.join(self.verzeichnis_thumbs, "darsteller_m", bildname + ".jpg")):
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_m", bildname + ".jpg")
                 else:
-                    dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname +".png"
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_m", bildname + ".png")
             else:
                 bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
                 if i[5]: 
@@ -3196,10 +3196,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 else:
                     active = ""
                 text = i[0] + "\n" + nationality + "\n" + active
-                if os.path.exists(self.verzeichnis_thumbs +"/darsteller_" +i[1] + os.sep +bildname +".jpg"):
-                    dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] + os.sep +bildname +".jpg"
+                if os.path.exists(os.path.join(self.verzeichnis_thumbs, "darsteller_" + i[1], bildname + ".jpg")):
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_" + i[1], bildname +".jpg")
                 else:
-                    dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] + os.sep +bildname +".png"
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_" + i[1], bildname + ".png")
             if not os.path.isfile(dateiname):
                 dateiname = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
             bild = QtGui.QIcon(dateiname)
@@ -3424,9 +3424,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_erfassen.append(["DELETE FROM pordb_darsteller WHERE darsteller = %s", werte])
                 l = -1
                 bildname = eingabe.lower().replace(" ", "_").replace("''", "_apostroph_")
-                datei_alt = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +os.sep +bildname +".jpg"
+                datei_alt = os.path.join(self.verzeichnis_thumbs, "darsteller_" + res[0][1], bildname + ".jpg")
                 bildname = neuer_name.lower().strip().replace("'", "''").lstrip("=").replace(" ", "_").replace("''", "_apostroph_")
-                datei_neu = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +os.sep +bildname +".jpg"
+                datei_neu = os.path.join(self.verzeichnis_thumbs, "darsteller_" + res[0][1], bildname + ".jpg")
                 sortier = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, datei_alt)
                 for i in res2:
                     l += 1
@@ -4308,11 +4308,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 
         # Backup picture directory
         if self.checkBoxPictures.isChecked():
-            tar = tarfile.open(self.verzeichnis_original +os.sep +"archive.tar.gz", "w:gz")
+            tar = tarfile.open(os.path.join(self.verzeichnis_original, "archive.tar.gz"), "w:gz")
             tar.add(self.verzeichnis_thumbs)
             tar.close()
             
-            datei = open(self.verzeichnis_original +os.sep +"archive.tar.gz", "rb")
+            datei = open(os.path.join(self.verzeichnis_original, "archive.tar.gz"), "rb")
             partnum = 0
             while True:
                 chunk = datei.read(100000000)
@@ -4325,7 +4325,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 fileobj.close()
             
             datei.close()
-            os.remove(self.verzeichnis_original +os.sep +"archive.tar.gz")
+            os.remove(os.path.join(self.verzeichnis_original, "archive.tar.gz"))
         
         app.restoreOverrideCursor()
         self.suchfeld.setFocus()
@@ -4358,7 +4358,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         # Restore the picture directory
         parts = os.listdir(self.verzeichnis)
         parts.sort()
-        output = open(self.verzeichnis +os.sep +"archive.tar.gz", "wb")
+        output = open(os.path.join(self.verzeichnis, "archive.tar.gz"), "wb")
         bilddatei_gefunden = False
         for filename in parts:
             if filename.startswith("pordb_part"):
@@ -4372,11 +4372,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     output.write(filebytes)
                 fileobj.close()
         output.close()
-        if os.path.isfile(self.verzeichnis +os.sep +"archive.tar.gz") and os.path.getsize(self.verzeichnis +os.sep +"archive.tar.gz") == 0:
-            os.remove(self.verzeichnis +os.sep +"archive.tar.gz")
+        if os.path.isfile(os.path.join(self.verzeichnis, "archive.tar.gz")) and os.path.getsize(os.path.join(self.verzeichnis, "archive.tar.gz")) == 0:
+            os.remove(os.path.join(self.verzeichnis, "archive.tar.gz"))
         if bilddatei_gefunden:
-            if os.path.isfile(self.verzeichnis +os.sep +"archive.tar.gz"):
-                tar = tarfile.open(self.verzeichnis +os.sep +"archive.tar.gz")
+            if os.path.isfile(os.path.join(self.verzeichnis, "archive.tar.gz")):
+                tar = tarfile.open(os.path.join(self.verzeichnis, "archive.tar.gz"))
                 try:
                     tar.extractall(path=self.verzeichnis)
                 except:
@@ -4475,7 +4475,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if os.path.isfile(os.path.join(self.verzeichnis_tools, i.strip())):
                 self.emit(QtCore.SIGNAL("add(QString)"), i)
                 zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE file = %s OR groesse = %s"
-                lese_func = DBLesen(self, zu_lesen, (i, str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))))
+                lese_func = DBLesen(self, zu_lesen, (i, str(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip())))))
                 res = DBLesen.get_data(lese_func)
                 in_datenbank = True
                 for j in res:
@@ -4518,7 +4518,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             # Checkbox
             newitem = QtGui.QTableWidgetItem()
             newitem.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsUserCheckable)
-            if self.verzeichnis_tools +os.sep +j[5].strip() == j[2].strip() and str(j[4]) == str(os.path.getsize(self.verzeichnis_tools +os.sep +j[5].strip())):
+            if os.path.join(self.verzeichnis_tools, j[5].strip()) == j[2].strip() and str(j[4]) == str(os.path.getsize(os.path.join(self.verzeichnis_tools, j[5].strip()))):
                 newitem.setCheckState(QtCore.Qt.Checked)
                 counter += 1
             else:
@@ -4577,7 +4577,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append(str(self.tableWidgetDubletten.item(i, 5).text()).strip())
                 zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s AND dir = %s AND file = %s", werte])
                 try:
-                    os.remove(self.verzeichnis_tools +os.sep +str(self.tableWidgetDubletten.item(i, 5).text()).strip())
+                    os.remove(os.path.join(self.verzeichnis_tools, str(self.tableWidgetDubletten.item(i, 5).text()).strip()))
                     counter += 1
                 except:
                     pass

@@ -71,37 +71,37 @@ class Dialog(QtGui.QDialog, Dialog):
             
     def install(self):
         # Create all directories
-        directory = os.path.expanduser("~") +os.sep +"mpg"
+        directory = os.path.join(os.path.expanduser("~"), "mpg")
         self.create_directory(directory)
         if self.error:
             pass
         
-        directory = os.path.expanduser("~") +os.sep +"thumbs_sammlung"
+        directory = os.path.join(os.path.expanduser("~"), "thumbs_sammlung")
         self.create_directory(directory)
         if self.error:
             pass
         
-        directory_new = directory +os.sep +"cover"
+        directory_new = os.path.join(directory, "cover")
         self.create_directory(directory)
         if self.error:
             pass
         
-        directory_new = directory +os.sep +"darsteller_m"
+        directory_new = os.path.join(directory, "darsteller_m")
         self.create_directory(directory_new)
         if self.error:
             pass
         
-        directory_new = directory +os.sep +"darsteller_w"
+        directory_new = os.path.join(directory, "darsteller_w")
         self.create_directory(directory_new)
         if self.error:
             pass
         
-        directory_new = directory +os.sep +"nichtvorhanden"
+        directory_new = os.path.join(directory, "nichtvorhanden")
         self.create_directory(directory_new)
         if self.error:
             pass
         
-        directory_new = directory +os.sep +"trash"
+        directory_new = os.path.join(directory, "trash")
         self.create_directory(directory_new)
         if self.error:
             pass
@@ -109,12 +109,11 @@ class Dialog(QtGui.QDialog, Dialog):
         # Unzip and move all files to installation directory
         file = zipfile.ZipFile(self.file, "r")
         zipfile.ZipFile.extractall(file, self.verzeichnis)
-        #os.rename(self.verzeichnis +os.sep +"pypordb" +os.sep +"nicht_vorhanden.jpg", os.path.expanduser("~") +os.sep +"thumbs_sammlung" +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg")
         self.listWidget.addItem(self.trUtf8("Congratulations, PorDB3 installation was successful!"))
         self.listWidget.addItem("")
         self.listWidget.addItem(self.trUtf8("How to start?"))
         self.listWidget.addItem(self.trUtf8("Postgresql database server must be running!"))
-        self.listWidget.addItem(self.trUtf8("Go to install directory ") +self.verzeichnis +os.sep +"pordb-master")
+        self.listWidget.addItem(self.trUtf8("Go to install directory ") + os.path.join(self.verzeichnis, "pordb-master"))
         self.listWidget.addItem(self.trUtf8("Start the PorDB3 with command 'python3 pordb.py &'"))
         
     def create_directory(self, directory):

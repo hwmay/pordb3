@@ -328,7 +328,9 @@ class Dialog(QtGui.QDialog, Dialog):
     csa integer DEFAULT 0,
     css integer DEFAULT 0,
     csk integer DEFAULT 0,
-    hd  character(1)
+    hd  character(1),
+    remarks VARCHAR(256),
+    stars INTEGER
 );''')
         cur.execute("ALTER TABLE public.pordb_vid OWNER TO postgres;")
         

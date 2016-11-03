@@ -1295,7 +1295,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     if self.actionCheckBoxDVDCover.isChecked():
                         zw_res = []
                         for i in res:
-                            dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+                            dateiname = os.path.join(self.verzeichnis_cover, i[3].strip())
                             if os.path.exists(dateiname):
                                 zw_res.append(i)
                         res = zw_res
@@ -1830,9 +1830,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if "SELECT * FROM pordb_vid WHERE (LOWER(original)" in zu_lesen:
             if self.actionCheckBoxDVDCover.isChecked():
                 for i in self.aktuelles_res:
-                    dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip()
+                    dateiname = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3].strip())
                     if not os.path.exists(dateiname):
-                        dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+                        dateiname = os.path.join(self.verzeichnis_cover, i[3].strip())
                         if os.path.exists(dateiname):
                             zw_res.append(i)
                 self.aktuelles_res = zw_res
@@ -3201,7 +3201,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 else:
                     dateiname = os.path.join(self.verzeichnis_thumbs, "darsteller_" + i[1], bildname + ".png")
             if not os.path.isfile(dateiname):
-                dateiname = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
+                dateiname = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
             bild = QtGui.QIcon(dateiname)
             newitem = QtGui.QTableWidgetItem(bild, text)
             spalte += 1
@@ -4246,7 +4246,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 dialog = UpdateVersion(version, whatsnew)
                 if dialog.exec_():
                     change_tables_definition()
-                    desktop_directory = os.path.join(os.path.expanduser("~"), ".local/share/applications")
+                    desktop_directory = os.path.join(os.path.expanduser("~"), ".local", "share", "applications")
                     desktop_datei = os.path.join(desktop_directory, "PorDB.desktop")
                     if not os.path.exists(desktop_directory):
                         os.makedirs(desktop_directory)
@@ -4263,7 +4263,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                             datei.write("[Desktop Entry]" + "\n")
                             datei.write("Comment=PorDB" + "\n")
                             datei.write("Exec=python3 " + os.path.join(os.getcwd(), "pordb.py") + "\n")
-                            datei.write("Icon=" + os.path.join(os.getcwd(), "pypordb/8027068_splash.png") + "\n")
+                            datei.write("Icon=" + os.path.join(os.getcwd(), "pypordb", "8027068_splash.png") + "\n")
                             datei.write("Name=PorDB" + "\n")
                             datei.write("NoDisplay=false" + "\n")
                             datei.write("Path[$e]=" + os.getcwd() + "\n")
@@ -4406,8 +4406,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
     def onWartung(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-        befehl = "/usr/bin/vacuumdb --analyze por"
-        os.system(befehl)
+        os.system("vacuumdb" + " --analyze " + DBNAME)
         app.restoreOverrideCursor()
         self.suchfeld.setFocus()
         message = QtGui.QMessageBox(self)

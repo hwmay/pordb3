@@ -303,8 +303,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.sucheD_bis = ""
         
         self.tabWidget.setCurrentIndex(0)
-        self.video = False
-        self.watched = False
+        self.present = True
+        self.watched = True
+        self.notpresent = True
+        self.notwatched = True
         self.bilddarsteller = None
         self.columns = 3.0
         self.tableWidgetBilder.setColumnCount(self.columns)
@@ -2118,8 +2120,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         suche.lineEditCD.setText(self.suche_cd)
         suche.lineEditTitel.setText(self.suche_titel)
         suche.lineEditOriginal.setText(self.suche_original)
-        suche.checkBoxVid.setChecked(self.video)
+        suche.checkBoxVid.setChecked(self.present)
         suche.checkBoxWatched.setChecked(self.watched)
+        suche.checkBoxNotVid.setChecked(self.notpresent)
+        suche.checkBoxNotWatched.setChecked(self.notwatched)
         try:
             suche.comboBoxCS.setCurrentIndex(suche.comboBoxCS.findText(self.suche_cs))
         except:
@@ -2140,8 +2144,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.suche_cd = suche.lineEditCD.text()
             self.suche_titel = suche.lineEditTitel.text()
             self.suche_original = suche.lineEditOriginal.text()
-            self.video = suche.checkBoxVid.isChecked()
+            self.present = suche.checkBoxVid.isChecked()
             self.watched = suche.checkBoxWatched.isChecked()
+            self.notpresent = suche.checkBoxNotVid.isChecked()
+            self.notwatched = suche.checkBoxNotWatched.isChecked()
             self.suche_cs = suche.comboBoxCS.currentText()
             self.suche_stars = suche.set_stars
             self.suche_remarks = suche.lineEditRemarks.text()
@@ -2193,15 +2199,25 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_lesen += "cs" +str(self.suche_cs).split()[0] +"<> %s"
                 werte.append("0")
             
-            # Vid Button gesetzt
-            if argument == 1 and self.video:
-                zu_lesen += " AND (vorhanden != %s)"
+            # Present Button gesetzt
+            if argument == 1 and self.present and not self.notpresent:
+                zu_lesen += " AND vorhanden = %s"
+                werte.append("x")
+                
+            # NotPresent Button gesetzt
+            if argument == 1 and self.notpresent and not self.present:
+                zu_lesen += " AND vorhanden = %s"
                 werte.append(" ")
                 
             # Watched Button gesetzt
-            if argument == 1 and self.watched:
-                zu_lesen += " AND (gesehen = %s)"
+            if argument == 1 and self.watched and not self.notwatched:
+                zu_lesen += " AND gesehen = %s"
                 werte.append("x")
+                
+            # NotWatched Button gesetzt
+            if argument == 1 and self.notwatched and not self.watched:
+                zu_lesen += " AND gesehen = %s"
+                werte.append(" ")
                 
             # Rating
             if self.suche_stars:

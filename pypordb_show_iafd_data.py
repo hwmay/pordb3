@@ -189,7 +189,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
             if sex:
                 bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
             else:
-                bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + "w", + actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
+                bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + "w", actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
                 if not os.path.exists(bilddatei):
                     bilddatei = os.path.join(self.verzeichnis_thumbs, "darsteller_" + "m", actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") + ".jpg")
         if not bilddatei or not os.path.exists(bilddatei):

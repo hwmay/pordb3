@@ -112,5 +112,6 @@ class Suchen(QtGui.QDialog, pordb_suchen):
         self.pushButtonStar3.setIcon(self.icon_nonstarred)
         self.pushButtonStar4.setIcon(self.icon_nonstarred)
         self.pushButtonStar5.setIcon(self.icon_nonstarred)
+        self.set_stars = 0
         self.lineEditRemarks.clear()
         self.lineEditDarsteller.setFocus()

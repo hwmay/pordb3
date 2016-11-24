@@ -88,6 +88,7 @@ class Historie(QtGui.QDialog, pordb_historie):
             self.tableWidgetHistory.setFocus()
     
     def onGo(self):
+        text = None
         for i in range(len(self.res)):
             if self.tableWidgetHistory.item(i, 0).checkState():
                 text = str(self.tableWidgetHistory.item(i, 1).text())
@@ -98,8 +99,11 @@ class Historie(QtGui.QDialog, pordb_historie):
                     self.werte = self.werte[:-1]
                 self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index]
                 break
-        
-        self.close()
+        if not text:
+            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please check one history entry"))
+            return
+        else:
+            self.close()
         
     def onClear(self):
         zu_lesen = "SELECT * FROM pordb_history ORDER BY time DESC LIMIT 50"

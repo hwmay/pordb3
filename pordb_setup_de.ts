@@ -162,17 +162,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">PorDB installiert</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="115"/>
+        <location filename="pypordb_setup.py" line="114"/>
         <source>How to start?</source>
         <translation>Wie starten?</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="116"/>
+        <location filename="pypordb_setup.py" line="115"/>
         <source>Postgresql database server must be running!</source>
         <translation>Postgresql Datenbankserver muss gestartet sein!</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="117"/>
+        <location filename="pypordb_setup.py" line="116"/>
         <source>Go to install directory </source>
         <translation>Gehe zum Installationsverzeichnis </translation>
     </message>
@@ -182,12 +182,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Starte die PorDB mit &apos;python pordb.py &amp;&apos;</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="681"/>
+        <location filename="pypordb_setup.py" line="682"/>
         <source>Error </source>
         <translation>Fehler </translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="127"/>
+        <location filename="pypordb_setup.py" line="126"/>
         <source>Directory </source>
         <translation>Verzeichnis </translation>
     </message>
@@ -197,7 +197,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete"> existiert bereits</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="127"/>
+        <location filename="pypordb_setup.py" line="126"/>
         <source> created</source>
         <translation> angelegt</translation>
     </message>
@@ -265,7 +265,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Initialisiere Datenbank ...</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="153"/>
+        <location filename="pypordb_setup.py" line="152"/>
         <source>Database already exists</source>
         <translation>Datenbank existiert bereits</translation>
     </message>
@@ -285,42 +285,42 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nein</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="155"/>
+        <location filename="pypordb_setup.py" line="154"/>
         <source>Should I drop the existing database and create a new one?</source>
         <translation>Soll ich die bestehende Datenbank löschen und neu anlegen?</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="681"/>
+        <location filename="pypordb_setup.py" line="682"/>
         <source>Errors occured</source>
         <translation>Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="149"/>
+        <location filename="pypordb_setup.py" line="148"/>
         <source>Yes, delete database and all data in it</source>
         <translation>Ja, Datenbank mit allen Inhalten löschen</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="150"/>
+        <location filename="pypordb_setup.py" line="149"/>
         <source>No, abort installation</source>
         <translation>Nein, Installation abbrechen</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="151"/>
+        <location filename="pypordb_setup.py" line="150"/>
         <source>No, only software installation</source>
         <translation>Nein, nur die Software installieren</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="678"/>
+        <location filename="pypordb_setup.py" line="679"/>
         <source>Database created</source>
         <translation>Datenbank angelegt</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="679"/>
+        <location filename="pypordb_setup.py" line="680"/>
         <source>Database tables created</source>
         <translation>Datenbanktabellen angelegt</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="160"/>
+        <location filename="pypordb_setup.py" line="159"/>
         <source>Database has not been changed</source>
         <translation>Datenbank wurde nicht geändert</translation>
     </message>
@@ -358,7 +358,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Falls diese Verzeichnisse bereits existieren, bleiben sie unverändert!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="124"/>
+        <location filename="pypordb_setup.py" line="123"/>
         <source>Warning </source>
         <translation>Warnung</translation>
     </message>
@@ -402,27 +402,27 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="113"/>
+        <location filename="pypordb_setup.py" line="112"/>
         <source>Congratulations, PorDB3 installation was successful!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="118"/>
+        <location filename="pypordb_setup.py" line="117"/>
         <source>Start the PorDB3 with command &apos;python3 pordb.py &amp;&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="124"/>
+        <location filename="pypordb_setup.py" line="123"/>
         <source> already exists, nothing changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="136"/>
+        <location filename="pypordb_setup.py" line="135"/>
         <source>Fatal error </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pypordb_setup.py" line="136"/>
+        <location filename="pypordb_setup.py" line="135"/>
         <source>Package psycopg2 not found. You have to install this package first.</source>
         <translation type="unfinished"></translation>
     </message>

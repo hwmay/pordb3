@@ -2535,7 +2535,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     jahr = int(geboren[0])
                     monat = int(geboren[1])
                     tag = int(geboren[2])
-                    alter = age((datetime.date(jahr, monat, tag)))
+                    alter = age(datetime.date(jahr, monat, tag))
                     self.labelAlter.setText(str(alter))
                 else:
                     self.labelAlter.clear()
@@ -2558,7 +2558,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 jahr = int(besuch[0])
                 monat = int(besuch[1])
                 tag = int(besuch[2])
-                besucht = age((datetime.date(jahr, monat, tag)))
+                besucht = age(datetime.date(jahr, monat, tag))
             if aktiv:
                 if besucht > 0:
                     farbe = "<font color=red>"
@@ -2595,6 +2595,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             return
         # update-Anweisung aufbauen
         if str(self.lineEditGeboren.text()):
+            geboren = self.lineEditGeboren.text().split("-")
+            try:
+                geboren = datetime.date(int(geboren[0]), int(geboren[1]),int(geboren[2]))
+            except ValueError:
+                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid birthday"))
+                return
             geboren = str(self.lineEditGeboren.text())
         else:
             geboren = "0001-01-01"
@@ -4113,7 +4119,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 monat = int(geboren[1])
                 tag = int(geboren[2])
                 if jahr != 1:
-                    alter = age((datetime.date(jahr, monat, tag)))
+                    alter = age(datetime.date(jahr, monat, tag))
                     newitem = QtGui.QTableWidgetItem(str(alter))
                 else:
                     newitem = QtGui.QTableWidgetItem()

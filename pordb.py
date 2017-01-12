@@ -60,6 +60,7 @@ from pypordb_devices import Devices
 from pypordb_update_version import UpdateVersion
 from pypordb_mass_change import MassChange
 from pypordb_actordata import ActorData
+from pypordb_genericthread import GenericThread            
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(500, 400)
@@ -70,6 +71,7 @@ DBNAME = "por"
 
 __version__ = "1.10.0"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
+IMAGE_FILES = (".jpg", ".jpeg", ".png")
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -333,7 +335,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         self.updatetimer = QtCore.QTimer()
         QtCore.QObject.connect(self.updatetimer, QtCore.SIGNAL("timeout()"), self.bilder_aktuell)
-        self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellPressed(int, int)"), self.onTimerStop)
+        #self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellPressed(int, int)"), self.onTimerStop)
         self.updatefrequenz = 1000
         self.updatetimer.start(self.updatefrequenz)
         
@@ -448,47 +450,59 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def bilder_aktuell(self, force = False):
         self.label_akt_verzeichnis.setText(self.verzeichnis)
         dateiliste = os.listdir(self.verzeichnis)
-        zeile = -1
-        dateiliste_bereinigt = dateiliste[:]
+        dateiliste_bereinigt = []
         for i in dateiliste:
-            zeile += 1
-            if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
-                pass
-            else:
-                del dateiliste_bereinigt[zeile]
-                zeile -= 1
+            if os.path.splitext(i)[-1].lower() in IMAGE_FILES:
+                dateiliste_bereinigt.append(i)
         self.tableWidgetBilderAktuell.setRowCount(len(dateiliste_bereinigt))
-        zeile = -2
         dateiliste_bereinigt.sort()
         if self.bilderliste != dateiliste_bereinigt or force:
-            for i in dateiliste_bereinigt:
-                bild = QtGui.QPixmap(os.path.join(self.verzeichnis, i))
-                text = i + "\n" + str(QtGui.QPixmap(bild).width()) +"x" +str(QtGui.QPixmap(bild).height())
-                bild = QtGui.QPixmap(os.path.join(self.verzeichnis, i)).scaled(size, QtCore.Qt.KeepAspectRatio)
-                bild = QtGui.QIcon(bild)
-                newitem = QtGui.QTableWidgetItem(bild, text)
-                zeile += 1
-                self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
+            # generic thread
+            threadPool = []
+            threadPool.append(GenericThread(self.showImages, dateiliste_bereinigt))
+            self.disconnect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
+            self.connect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
+            # start thread
+            threadPool[len(threadPool)-1].start()
+            
             self.tableWidgetBilderAktuell.resizeColumnsToContents()
             self.tableWidgetBilderAktuell.resizeRowsToContents()
             self.tableWidgetBilderAktuell.scrollToTop()
             self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
             self.bilderliste = dateiliste_bereinigt[:]
-        if not self.updatetimer.isActive():
-            if len(dateiliste_bereinigt) > 10000:
-                self.updatefrequenz = 10000000
-            elif len(dateiliste_bereinigt) > 1000:
-                self.updatefrequenz = 1000000
-            elif len(dateiliste_bereinigt) > 100:
-                self.updatefrequenz = 100000
-            elif len(dateiliste_bereinigt) > 10:
-                self.updatefrequenz = 10000
-            else:
-                self.updatefrequenz = 1000
-            self.updatetimer.start(self.updatefrequenz)
-        #print "Anzahl Bilder:", len(dateiliste_bereinigt), str(time.localtime()[3]) +":" +str(time.localtime()[4]) +":" +str(time.localtime()[5])
+            
+        #if not self.updatetimer.isActive():
+            #if len(dateiliste_bereinigt) > 10000:
+                #self.updatefrequenz = 10000000
+            #elif len(dateiliste_bereinigt) > 1000:
+                #self.updatefrequenz = 1000000
+            #elif len(dateiliste_bereinigt) > 100:
+                #self.updatefrequenz = 100000
+            #elif len(dateiliste_bereinigt) > 10:
+                #self.updatefrequenz = 10000
+            #else:
+                #self.updatefrequenz = 1000
+            #self.updatetimer.start(self.updatefrequenz)
     # end of bilder_aktuell
     
+    def showImages(self, list_of_image_files):
+        zeile = -1
+        for i in list_of_image_files:
+            print ("##############################################", i)
+            bild = QtGui.QImage(os.path.join(self.verzeichnis, i))
+            text = i + "\n" + str(QtGui.QImage(bild).width()) + "x" + str(QtGui.QImage(bild).height())
+            self.emit(QtCore.SIGNAL("add(QImage, QString, int)"), bild, text, zeile)
+            zeile += 1
+            
+    def makePixmap(self, image, text, zeile):
+        print (image, text, zeile)
+        pixmap = QtGui.QPixmap()
+        pixmap.convertFromImage(image)
+        #bild = QtGui.QPixmap(os.path.join(self.verzeichnis, i)).scaled(size, QtCore.Qt.KeepAspectRatio)
+        bild = QtGui.QIcon(pixmap.scaled(size, QtCore.Qt.KeepAspectRatio))
+        newitem = QtGui.QTableWidgetItem(bild, text)
+        self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
+            
     def onTimerStop(self, zeile, spalte):
         self.updatetimer.stop()
     
@@ -1237,7 +1251,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if not datei:
             dateiliste = os.listdir(self.verzeichnis_original)
             for i in dateiliste:
-                if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
+                if os.path.splitext(i)[-1].lower() in IMAGE_FILES:
                     cover.append(os.path.join(self.verzeichnis_original, i))
                     j += 1
                     if j == 2:    # es werden nur 2 Bilddateien akzeptiert
@@ -2831,7 +2845,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     datei = open(os.path.join(self.verzeichnis_trash, i), "r")
                     text = datei.readlines()
                     datei.close()
-                elif (os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png") and os.path.splitext(i)[0] != "pypordb_bildalt":
+                elif (os.path.splitext(i)[-1].lower() in IMAGE_FILES) and os.path.splitext(i)[0] != "pypordb_bildalt":
                     j += 1
                     self.file = os.path.join(self.verzeichnis_trash, i)
             titel = text[0].strip()
@@ -2890,7 +2904,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     dateiliste = os.listdir(self.verzeichnis)
                 j = 0
                 for i in dateiliste:
-                    if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
+                    if os.path.splitext(i)[-1].lower() in IMAGE_FILES:
                         j += 1
                         self.file = os.path.join(self.verzeichnis, i)
                 if j != 1:
@@ -4452,8 +4466,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
             
     def onStartScan(self):
-        from pypordb_genericthread import GenericThread
-        
         if not self.comboBoxDevice.currentText():
             message = QtGui.QMessageBox(self)
             message.setText(self.trUtf8("Select device"))

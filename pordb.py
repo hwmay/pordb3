@@ -330,12 +330,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.searchResultsVid = None
         self.context_actor_image = False
         self.files_added = ""
+        self.forced_image_refresh_done = False
         
         self.pushButtonIAFDBackground.setEnabled(False)
         
         self.updatetimer = QtCore.QTimer()
         QtCore.QObject.connect(self.updatetimer, QtCore.SIGNAL("timeout()"), self.bilder_aktuell)
-        #self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellPressed(int, int)"), self.onTimerStop)
         self.updatefrequenz = 1000
         self.updatetimer.start(self.updatefrequenz)
         
@@ -456,14 +456,19 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 dateiliste_bereinigt.append(i)
         self.tableWidgetBilderAktuell.setRowCount(len(dateiliste_bereinigt))
         dateiliste_bereinigt.sort()
+        if self.bilderliste != dateiliste_bereinigt:
+            self.forced_image_refresh_done = False
         if self.bilderliste != dateiliste_bereinigt or force:
             # generic thread
-            threadPool = []
-            threadPool.append(GenericThread(self.showImages, dateiliste_bereinigt))
+            self.threadPool = []
+            self.threadPool.append(GenericThread(self.showImages, dateiliste_bereinigt))
             self.disconnect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
             self.connect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
+            # signal for finished
+            self.disconnect(self, QtCore.SIGNAL("finished"), self.update_image_files_finished)
+            self.connect(self, QtCore.SIGNAL("finished"), self.update_image_files_finished)
             # start thread
-            threadPool[len(threadPool)-1].start()
+            self.threadPool[len(self.threadPool)-1].start()
             
             self.tableWidgetBilderAktuell.resizeColumnsToContents()
             self.tableWidgetBilderAktuell.resizeRowsToContents()
@@ -471,41 +476,31 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
             self.bilderliste = dateiliste_bereinigt[:]
             
-        #if not self.updatetimer.isActive():
-            #if len(dateiliste_bereinigt) > 10000:
-                #self.updatefrequenz = 10000000
-            #elif len(dateiliste_bereinigt) > 1000:
-                #self.updatefrequenz = 1000000
-            #elif len(dateiliste_bereinigt) > 100:
-                #self.updatefrequenz = 100000
-            #elif len(dateiliste_bereinigt) > 10:
-                #self.updatefrequenz = 10000
-            #else:
-                #self.updatefrequenz = 1000
-            #self.updatetimer.start(self.updatefrequenz)
     # end of bilder_aktuell
     
     def showImages(self, list_of_image_files):
         zeile = -1
         for i in list_of_image_files:
-            print ("##############################################", i)
             bild = QtGui.QImage(os.path.join(self.verzeichnis, i))
             text = i + "\n" + str(QtGui.QImage(bild).width()) + "x" + str(QtGui.QImage(bild).height())
             self.emit(QtCore.SIGNAL("add(QImage, QString, int)"), bild, text, zeile)
             zeile += 1
+        self.emit(QtCore.SIGNAL("finished"))
             
     def makePixmap(self, image, text, zeile):
-        print (image, text, zeile)
         pixmap = QtGui.QPixmap()
         pixmap.convertFromImage(image)
-        #bild = QtGui.QPixmap(os.path.join(self.verzeichnis, i)).scaled(size, QtCore.Qt.KeepAspectRatio)
-        bild = QtGui.QIcon(pixmap.scaled(size, QtCore.Qt.KeepAspectRatio))
+        bild = QtGui.QIcon(pixmap.scaled(size_neu, QtCore.Qt.KeepAspectRatio))
         newitem = QtGui.QTableWidgetItem(bild, text)
         self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
-            
-    def onTimerStop(self, zeile, spalte):
-        self.updatetimer.stop()
-    
+        
+    def update_image_files_finished(self):
+        if self.forced_image_refresh_done == True:
+            self.bilder_aktuell()
+        else:
+            self.forced_image_refresh_done = True
+            self.bilder_aktuell(force = True)
+        
     def suchbegriffe_lesen(self):
         zu_lesen = "SELECT * FROM pordb_suchbegriffe"
         lese_func = DBLesen(self, zu_lesen)
@@ -4494,6 +4489,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.disconnect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
         self.connect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
         # signal for finished
+        self.disconnect(self, QtCore.SIGNAL("finished"), self.output_result)
         self.connect(self, QtCore.SIGNAL("finished"), self.output_result)
         # start thread
         self.threadPool[len(self.threadPool)-1].start()

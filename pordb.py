@@ -456,8 +456,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 dateiliste_bereinigt.append(i)
         self.tableWidgetBilderAktuell.setRowCount(len(dateiliste_bereinigt))
         dateiliste_bereinigt.sort()
-        if self.bilderliste != dateiliste_bereinigt:
-            self.forced_image_refresh_done = False
         if self.bilderliste != dateiliste_bereinigt or force:
             # generic thread
             self.threadPool = []
@@ -470,10 +468,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             # start thread
             self.threadPool[len(self.threadPool)-1].start()
             
-            self.tableWidgetBilderAktuell.resizeColumnsToContents()
-            self.tableWidgetBilderAktuell.resizeRowsToContents()
-            self.tableWidgetBilderAktuell.scrollToTop()
-            self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
             self.bilderliste = dateiliste_bereinigt[:]
             
     # end of bilder_aktuell
@@ -495,11 +489,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
         
     def update_image_files_finished(self):
-        if self.forced_image_refresh_done == True:
-            self.bilder_aktuell()
-        else:
-            self.forced_image_refresh_done = True
-            self.bilder_aktuell(force = True)
+        #if self.forced_image_refresh_done == True:
+            #self.bilder_aktuell()
+        #else:
+            #self.forced_image_refresh_done = True
+            #self.bilder_aktuell(force = True)
+        self.tableWidgetBilderAktuell.resizeColumnsToContents()
+        self.tableWidgetBilderAktuell.resizeRowsToContents()
+        #self.tableWidgetBilderAktuell.scrollToTop()
+        self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
         
     def suchbegriffe_lesen(self):
         zu_lesen = "SELECT * FROM pordb_suchbegriffe"

@@ -489,11 +489,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
         
     def update_image_files_finished(self):
-        #if self.forced_image_refresh_done == True:
-            #self.bilder_aktuell()
-        #else:
-            #self.forced_image_refresh_done = True
-            #self.bilder_aktuell(force = True)
         self.tableWidgetBilderAktuell.resizeColumnsToContents()
         self.tableWidgetBilderAktuell.resizeRowsToContents()
         #self.tableWidgetBilderAktuell.scrollToTop()

@@ -457,6 +457,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.setRowCount(len(dateiliste_bereinigt))
         dateiliste_bereinigt.sort()
         if self.bilderliste != dateiliste_bereinigt or force:
+            self.updatetimer.stop()
             # generic thread
             self.threadPool = []
             self.threadPool.append(GenericThread(self.showImages, dateiliste_bereinigt))
@@ -493,6 +494,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.resizeRowsToContents()
         #self.tableWidgetBilderAktuell.scrollToTop()
         self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
+        self.updatetimer.start(self.updatefrequenz)
         
     def suchbegriffe_lesen(self):
         zu_lesen = "SELECT * FROM pordb_suchbegriffe"
@@ -1225,6 +1227,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
     def onBildLoeschen(self):
         items = self.tableWidgetBilderAktuell.selectedItems()
+        self.updatetimer.stop()
         for i in items:
             text = str(i.text().split("\n")[0])
             bilddatei = os.path.join(self.verzeichnis, text) 
@@ -1234,6 +1237,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 pass
         self.bilder_aktuell()
         self.suchfeld.setFocus()
+        self.updatetimer.start(self.updatefrequenz)
         
     def onCover(self, datei = None):
         cover = []

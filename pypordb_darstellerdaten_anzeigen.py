@@ -273,7 +273,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         # Darsteller existiert bereits
         else:
             if self.checkBoxBild.isChecked():
-                extension = os.path.splitext(os.path.join(self.verz, + self.bild))[-1].lower()
+                extension = os.path.splitext(os.path.join(self.verz + self.bild))[-1].lower()
                 if extension == ".jpeg":
                     extension = ".jpg"
                 if extension != ".gif":

@@ -492,7 +492,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def update_image_files_finished(self):
         self.tableWidgetBilderAktuell.resizeColumnsToContents()
         self.tableWidgetBilderAktuell.resizeRowsToContents()
-        #self.tableWidgetBilderAktuell.scrollToTop()
         self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
         self.updatetimer.start(self.updatefrequenz)
         

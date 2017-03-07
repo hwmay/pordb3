@@ -3342,9 +3342,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         ein = self.eingabe_auswerten()
         if ein == "=":
             return
-        vorname = ""
-        if ein.find('=') == 0:
-            vorname = "X"
+        vorname = False
+        if ein[0] == "=":
+            vorname = True
             eingabe = ein.lstrip('=').title()
         else:
             eingabe = ein.title()
@@ -3381,7 +3381,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 for i in res:
                     darsteller_liste = i[1].split(',')
                     for j in range(len(darsteller_liste)):
-                        darsteller_liste[j] = darsteller_liste[j].strip().replace("'", "''")
+                        darsteller_liste[j] = darsteller_liste[j].strip()
                     res1.append([i[2], i[3], darsteller_liste])
                 k = -1
                 res2 = res1[:]
@@ -3452,7 +3452,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append(eingabe)
                 zu_erfassen.append(["DELETE FROM pordb_darsteller WHERE darsteller = %s", werte])
                 l = -1
-                bildname = eingabe.lower().replace(" ", "_").replace("''", "_apostroph_")
+                bildname = eingabe.lower().replace(" ", "_").replace("'", "_apostroph_")
                 datei_alt = os.path.join(self.verzeichnis_thumbs, "darsteller_" + res[0][1], bildname + ".jpg")
                 bildname = neuer_name.lower().strip().replace("'", "''").lstrip("=").replace(" ", "_").replace("''", "_apostroph_")
                 datei_neu = os.path.join(self.verzeichnis_thumbs, "darsteller_" + res[0][1], bildname + ".jpg")
@@ -3465,7 +3465,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         if j == eingabe:
                             res2[l][2][k] = eingabe.title().lstrip("=").replace("''", "'")
                     darsteller_liste = sortier.darsteller_sortieren(res2[l][2])
-                    darsteller_liste2 = [neuer_name.title().replace("'", "''") if x==eingabe.title().lstrip("=").replace("''", "'") else x for x in darsteller_liste]
+                    darsteller_liste2 = [neuer_name.title() if x==eingabe.title().lstrip("=") else x for x in darsteller_liste]
                     werte = []
                     werte.append(", ".join(darsteller_liste2))
                     werte.append(i[0])
@@ -3477,6 +3477,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_lesen = "SELECT * FROM pordb_partner WHERE darsteller = %s"
                 lese_func = DBLesen(self, zu_lesen, eingabe)
                 res = DBLesen.get_data(lese_func)
+                werte = []
+                werte.append(eingabe)
+                zu_erfassen.append(["DELETE FROM pordb_partner WHERE darsteller = %s", werte])
                 for i in res:
                     werte = []
                     werte.append(neuer_name.title())
@@ -3484,13 +3487,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     werte.append(i[2])
                     werte.append(str(i[3]))
                     zu_erfassen.append(["INSERT INTO pordb_partner VALUES (%s, %s, %s,%s)", werte])
-                    werte = []
-                    werte.append(eingabe)
-                    zu_erfassen.append(["DELETE FROM pordb_partner WHERE darsteller = %s", werte])
                     
                 zu_lesen = "SELECT * FROM pordb_partner WHERE partner = %s"
                 lese_func = DBLesen(self, zu_lesen, eingabe)
                 res = DBLesen.get_data(lese_func)
+                werte = []
+                werte.append(eingabe)
+                zu_erfassen.append(["DELETE FROM pordb_partner WHERE partner = %s", werte])
                 for i in res:
                     werte = []
                     werte.append(str(i[0]))
@@ -3498,9 +3501,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     werte.append(i[2])
                     werte.append(str(i[3]))
                     zu_erfassen.append(["INSERT INTO pordb_partner VALUES (%s, %s, %s, %s)", werte])
-                    werte = []
-                    werte.append(eingabe)
-                    zu_erfassen.append(["DELETE FROM pordb_partner WHERE partner = %s", werte])
                     
                 update_func = DBUpdate(self, zu_erfassen)
                 DBUpdate.update_data(update_func)

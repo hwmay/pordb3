@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Thu Nov  3 21:38:34 2016
+# Created: Sun Aug 27 22:03:38 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -412,6 +412,13 @@ class Ui_Dialog(object):
         self.comboBoxYear = QtGui.QComboBox(Dialog)
         self.comboBoxYear.setObjectName(_fromUtf8("comboBoxYear"))
         self.gridLayout.addWidget(self.comboBoxYear, 4, 3, 1, 1)
+        self.pushButtonRepeat = QtGui.QPushButton(Dialog)
+        self.pushButtonRepeat.setText(_fromUtf8(""))
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/repeat.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButtonRepeat.setIcon(icon13)
+        self.pushButtonRepeat.setObjectName(_fromUtf8("pushButtonRepeat"))
+        self.gridLayout.addWidget(self.pushButtonRepeat, 3, 2, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 2)
 
         self.retranslateUi(Dialog)
@@ -530,4 +537,6 @@ class Ui_Dialog(object):
         self.pushButtonAddYear.setWhatsThis(_translate("Dialog", "<html><head/><body><p>Select year from the combo box on the left and add it to the original title<br/></p></body></html>", None))
         self.pushButtonAddYear.setShortcut(_translate("Dialog", "Alt+Q", None))
         self.label_3.setText(_translate("Dialog", "CD", None))
+        self.pushButtonRepeat.setToolTip(_translate("Dialog", "<html><head/><body><p>Repeat you last input, F12</p></body></html>", None))
+        self.pushButtonRepeat.setShortcut(_translate("Dialog", "F12", None))
 

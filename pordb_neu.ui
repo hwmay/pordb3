@@ -926,6 +926,23 @@ First click with the left mouse button in the left top corner, then click with t
      <item row="4" column="3">
       <widget class="QComboBox" name="comboBoxYear"/>
      </item>
+     <item row="3" column="2">
+      <widget class="QPushButton" name="pushButtonRepeat">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Repeat you last input, F12&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/repeat.svg</normaloff>pypordb/repeat.svg</iconset>
+       </property>
+       <property name="shortcut">
+        <string>F12</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

@@ -77,6 +77,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.connect(self.pushButtonNeuDelete, QtCore.SIGNAL("clicked()"), self.onDelete)
         self.connect(self.pushButtonOriginal, QtCore.SIGNAL("clicked()"), self.onOriginal)
         self.connect(self.pushButtonOriginalAlt, QtCore.SIGNAL("clicked()"), self.onOriginalAlt)
+        self.connect(self.pushButtonRepeat, QtCore.SIGNAL("clicked()"), self.onRepeat)
         self.connect(self.pushButtonAddYear, QtCore.SIGNAL("clicked()"), self.onAddYear)
         self.connect(self.pushButtonStar1, QtCore.SIGNAL("clicked()"), self.onStar1)
         self.connect(self.pushButtonStar2, QtCore.SIGNAL("clicked()"), self.onStar2)
@@ -313,6 +314,17 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         if self.res_vid_neu[0][3]:
             self.lineEditNeuOriginal.setText(self.res_vid_neu[0][3])
         self.pushButtonNeuOK.setFocus()
+        
+    def onRepeat(self):
+        if self.res_vid_neu[0][0]:
+            self.lineEditNeuTitel.setText(self.res_vid_neu[0][0])
+        if self.res_vid_neu[0][1]:
+            self.lineEditNeuDarsteller.setText(self.res_vid_neu[0][1])
+        if self.res_vid_neu[0][2]:
+            self.lineEditNeuCD.setText(str(self.res_vid_neu[0][2]))
+        if self.res_vid_neu[0][3]:
+            self.lineEditNeuOriginal.setText(self.res_vid_neu[0][3])
+        self.pushButtonNeuOK.setFocus()  
         
     def onAddYear(self):
         year = self.comboBoxYear.currentText()

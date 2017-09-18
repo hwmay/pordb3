@@ -4002,7 +4002,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.statusBar.showMessage(self.url)
         
     def GetWebsite(self):
-        if str(self.lineEditURL.text()).startswith("http://"):
+        if str(self.lineEditURL.text()).startswith("http://") or str(self.lineEditURL.text()).startswith("https://"):
             url = self.lineEditURL.text()
         else:
             url = "http://" + self.lineEditURL.text()

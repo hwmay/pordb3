@@ -216,6 +216,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
             self.app.restoreOverrideCursor()
+            self.lineEditGeschlecht.setReadOnly(False)
+            self.lineEditGeschlecht.setFocus()
+            return
         zu_lesen = "SELECT * FROM pordb_darsteller WHERE darsteller = %s"
         if self.checkBoxName.isChecked():
             self.name = str(self.lineEditName.text())

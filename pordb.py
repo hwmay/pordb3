@@ -2255,9 +2255,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
     # end of onSuche
                 
-    def onbildAnzeige(self):
+    def onbildAnzeige(self, ignorelist=False):
         self.onDarstellerspeichern(refresh=False)
-        ein = self.eingabe_auswerten()
+        if type(ignorelist) != bool:
+            ignorelist = False
+        ein = self.eingabe_auswerten(ignorelist)
         if not ein:
             return
         res = self.darsteller_lesen(ein)
@@ -2421,20 +2423,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             DBUpdate.update_data(update_func)
     # end of onpaareSuchen
         
-    def eingabe_auswerten(self):
+    def eingabe_auswerten(self, ignorelist = False):
         ein = None
         try:
             ein = str(self.suchfeld.currentText()).strip().title()
         except:
             message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Illegal characters in search field"))
             return
-        if not ein:
+        if not ein and not ignorelist:
             selected = self.listWidgetDarsteller.selectedItems()
             if selected:
                 ein = str(selected[0].text())
                 ein = "=" +ein[0 : ein.rfind("(")].strip()
         if not ein:
-            ein = "=" +str(self.labelDarsteller.text()).strip().title()
+            ein = "=" + str(self.labelDarsteller.text()).strip().title()
         return ein
     
     def darsteller_lesen(self, ein):
@@ -2674,7 +2676,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.onbildAnzeige()
             
     def onIAFDBackground(self):
-        ein = self.eingabe_auswerten()
+        # ignorelist is added because very often a list entry is selected
+        ein = self.eingabe_auswerten(ignorelist=True)
         res = self.darsteller_lesen(ein)
         if res[0][11]:
             monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
@@ -2787,7 +2790,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             DBUpdate.update_data(update_func)
                 
             self.darsteller_lesen(ein)
-            self.onbildAnzeige()
+            self.onbildAnzeige(ignorelist=True)
                 
             app.restoreOverrideCursor()
             

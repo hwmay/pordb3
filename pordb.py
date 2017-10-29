@@ -2064,6 +2064,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             res2 = DBLesen.get_data(lese_func)
             if len(res2) > 0:
                 text += "\n>>>>>"
+            if i[21]:
+                text += "\n!!!"
             if i[22]:
                 text += "\n\n" + i[22] * "* "
             newitem = QtGui.QTableWidgetItem(bild, text)

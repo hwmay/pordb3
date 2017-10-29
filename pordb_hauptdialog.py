@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Jan 16 16:33:33 2017
+# Created: Sun Oct 29 20:40:11 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1056,7 +1056,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(5)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)
@@ -1146,7 +1146,7 @@ class Ui_MainWindow(object):
         self.pushButtonDir.setToolTip(_translate("MainWindow", "Change directory", None))
         self.pushButtonDir.setWhatsThis(_translate("MainWindow", "Change actual directory.", None))
         self.tableWidgetBilderAktuell.setWhatsThis(_translate("MainWindow", "Actual image files in working directory. For adding the image file to the database, double click on it or mark it and press F5. If 2 image files are marked, the dialog for adding a cover will appear.", None))
-        self.tableWidgetBilder.setWhatsThis(_translate("MainWindow", "Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted in mode of viewing clips or the actors data will be shown in mode of viewing actors. In mode of viewing clips F12 toggles showing complete data (title and image file) or not.", None))
+        self.tableWidgetBilder.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted in mode of viewing clips or the actors data will be shown in mode of viewing actors. In mode of viewing clips F12 toggles showing complete data (title and image file) or not.</p><p><br/></p><p>&gt;&gt;&gt;&gt;&gt; indicates that there are more original titles.</p><p>!!! indicates that there is a comment</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("MainWindow", "Images", None))
         self.labelBildanzeige.setToolTip(_translate("MainWindow", "<html><head/><body><p>Drag and drop image of an actor here</p></body></html>", None))
         self.labelBildanzeige.setWhatsThis(_translate("MainWindow", "Image of the actor", None))

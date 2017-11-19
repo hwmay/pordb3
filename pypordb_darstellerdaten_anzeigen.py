@@ -366,13 +366,15 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             klammer_auf = i.find("(")
             klammer_zu = i.find(")")
             if klammer_auf > -1 and klammer_zu > -1:
-                pseudos_neu.append(i[0:klammer_auf] + i[klammer_zu + 1 :])
+                pseudo = i[0:klammer_auf] + i[klammer_zu + 1 :].strip()
             elif klammer_auf > -1 and klammer_zu == -1:
-                pseudos_neu.append(i[0:klammer_auf])
+                pseudo = i[0:klammer_auf].strip()
             elif klammer_auf == -1 and klammer_zu > -1:
-                pseudos_neu.append(i[klammer_zu + 1 :])
+                pseudo = i[klammer_zu + 1 :].strip()
             else:
-                pseudos_neu.append(i)
+                pseudo = i.strip()
+            if pseudo:
+                pseudos_neu.append(pseudo)
         self.lineEditPseudo.setText(", ".join(pseudos_neu))
         
     def pseudo_uebernehmen(self, name, zu_erfassen):

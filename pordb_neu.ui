@@ -561,7 +561,7 @@
      <item>
       <widget class="QPushButton" name="pushButtonNeuDarstelleruebernehmen">
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adopt actor, F2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="whatsThis">
         <string>Copy the marked actors to the actors field</string>
@@ -578,6 +578,9 @@
          <width>24</width>
          <height>24</height>
         </size>
+       </property>
+       <property name="shortcut">
+        <string>F2</string>
        </property>
        <property name="checkable">
         <bool>false</bool>

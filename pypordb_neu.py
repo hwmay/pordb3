@@ -822,8 +822,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             werte.append(titel)
             werte.append(", ".join(darsteller))
             werte.append(cd)
-            werte.append(original)
-            zu_erfassen.append(["UPDATE pordb_vid_neu SET titel = %s, darsteller = %s, cd = %s, original = %s", werte])
+            if original:
+                werte.append(original)
+                zu_erfassen.append(["UPDATE pordb_vid_neu SET titel = %s, darsteller = %s, cd = %s, original = %s", werte])
+            else:
+                zu_erfassen.append(["UPDATE pordb_vid_neu SET titel = %s, darsteller = %s, cd = %s", werte])
         
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Oct 29 20:40:11 2017
+# Created: Tue Jan  9 20:54:02 2018
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1056,7 +1056,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)
@@ -1094,10 +1094,12 @@ class Ui_MainWindow(object):
         MainWindow.setTabOrder(self.pushButtonSuchen, self.pushButtonUebernehmen)
         MainWindow.setTabOrder(self.pushButtonUebernehmen, self.lineEditSearchMpg)
         MainWindow.setTabOrder(self.lineEditSearchMpg, self.pushButtonSearchMpg)
-        MainWindow.setTabOrder(self.pushButtonSearchMpg, self.pushButtonDelete)
+        MainWindow.setTabOrder(self.pushButtonSearchMpg, self.pushButtonFilterMpgKatalog)
+        MainWindow.setTabOrder(self.pushButtonFilterMpgKatalog, self.pushButtonDelete)
         MainWindow.setTabOrder(self.pushButtonDelete, self.lineEditSearchVid)
         MainWindow.setTabOrder(self.lineEditSearchVid, self.pushButtonSearchVid)
-        MainWindow.setTabOrder(self.pushButtonSearchVid, self.tableWidget)
+        MainWindow.setTabOrder(self.pushButtonSearchVid, self.pushButtonFilterVid)
+        MainWindow.setTabOrder(self.pushButtonFilterVid, self.tableWidget)
         MainWindow.setTabOrder(self.tableWidget, self.tableWidget1)
         MainWindow.setTabOrder(self.tableWidget1, self.lineEditSearchWebsite)
         MainWindow.setTabOrder(self.lineEditSearchWebsite, self.pushButtonSearchWebsite)
@@ -1245,6 +1247,7 @@ class Ui_MainWindow(object):
         self.comboBoxFilesizeUnit.setItemText(0, _translate("MainWindow", "MB", None))
         self.comboBoxFilesizeUnit.setItemText(1, _translate("MainWindow", "GB", None))
         self.comboBoxFilesizeUnit.setItemText(2, _translate("MainWindow", "Bytes", None))
+        self.pushButtonSuchen.setToolTip(_translate("MainWindow", "<html><head/><body><p>Search, enter</p></body></html>", None))
         self.pushButtonSuchen.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Execute search, Enter</p></body></html>", None))
         self.pushButtonSuchen.setShortcut(_translate("MainWindow", "Return", None))
         self.pushButtonUebernehmen.setToolTip(_translate("MainWindow", "<html><head/><body><p>Copy content from this search field to the main search field, Ctrl+PageUp</p></body></html>", None))

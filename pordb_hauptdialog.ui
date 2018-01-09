@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1324,6 +1324,9 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonSuchen">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search, enter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="whatsThis">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Execute search, Enter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -2826,9 +2829,11 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButtonUebernehmen</tabstop>
   <tabstop>lineEditSearchMpg</tabstop>
   <tabstop>pushButtonSearchMpg</tabstop>
+  <tabstop>pushButtonFilterMpgKatalog</tabstop>
   <tabstop>pushButtonDelete</tabstop>
   <tabstop>lineEditSearchVid</tabstop>
   <tabstop>pushButtonSearchVid</tabstop>
+  <tabstop>pushButtonFilterVid</tabstop>
   <tabstop>tableWidget</tabstop>
   <tabstop>tableWidget1</tabstop>
   <tabstop>lineEditSearchWebsite</tabstop>

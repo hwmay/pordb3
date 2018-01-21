@@ -1,17 +1,36 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtGui, QtCore
+'''
+    Copyright 2012-2018 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+'''
+
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pypordb_dblesen import DBLesen
 from pordb_suchbegriffe import Ui_Suchbegriffedialog as pordb_suchbegriffe
 from pypordb_dbupdate import DBUpdate
 
-class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
+class SuchbegriffeBearbeiten(QtWidgets.QDialog, pordb_suchbegriffe):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonLandSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
-        self.connect(self.pushButtonLandAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonLandSpeichern.clicked.connect(self.onSpeichern)
+        self.pushButtonLandAbbrechen.clicked.connect(self.close)
         
         zu_lesen = "SELECT * FROM pordb_suchbegriffe ORDER BY suchbegriff"
         lese_func = DBLesen(self, zu_lesen)
@@ -24,18 +43,18 @@ class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
             column = 0
             for j in i:
                 if j:
-                    newitem = QtGui.QTableWidgetItem(j.strip())
+                    newitem = QtWidgets.QTableWidgetItem(j.strip())
                 else:
-                    newitem = QtGui.QTableWidgetItem(" ")
+                    newitem = QtWidgets.QTableWidgetItem(" ")
                 self.tableWidgetSuche.setItem(row, column, newitem)
                 column += 1
             row += 1
-        newitem = QtGui.QTableWidgetItem("")
+        newitem = QtWidgets.QTableWidgetItem("")
         self.tableWidgetSuche.setItem(row, 0, newitem)
         self.tableWidgetSuche.setCurrentItem(newitem)
         self.tableWidgetSuche.setFocus()
         self.tableWidgetSuche.editItem(self.tableWidgetSuche.currentItem())            
-        self.tableWidgetSuche.setHorizontalHeaderLabels([self.trUtf8("Search terms"), self.trUtf8("Alternative")])
+        self.tableWidgetSuche.setHorizontalHeaderLabels([self.tr("Search terms"), self.tr("Alternative")])
         self.tableWidgetSuche.setAlternatingRowColors(True)
         self.tableWidgetSuche.resizeColumnsToContents()
         self.tableWidgetSuche.resizeRowsToContents()
@@ -51,7 +70,7 @@ class SuchbegriffeBearbeiten(QtGui.QDialog, pordb_suchbegriffe):
             for j in range(self.tableWidgetSuche.columnCount()):
                 tableItem = self.tableWidgetSuche.item(i, j)
                 try:
-                    cellItem = str(QtGui.QTableWidgetItem(tableItem).text())
+                    cellItem = str(QtWidgets.QTableWidgetItem(tableItem).text())
                     cell.append(cellItem)
                 except:
                     pass

@@ -2,75 +2,60 @@
 
 # Form implementation generated from reading ui file 'pordb_land.ui'
 #
-# Created: Sun Aug  9 00:20:49 2015
-#      by: PyQt4 UI code generator 4.11.3
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Landdialog(object):
     def setupUi(self, Landdialog):
-        Landdialog.setObjectName(_fromUtf8("Landdialog"))
+        Landdialog.setObjectName("Landdialog")
         Landdialog.resize(735, 905)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("pypordb/8027068_splash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Landdialog.setWindowIcon(icon)
-        self.gridLayout = QtGui.QGridLayout(Landdialog)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.verticalLayout = QtGui.QVBoxLayout()
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.frame = QtGui.QFrame(Landdialog)
-        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtGui.QFrame.Raised)
-        self.frame.setObjectName(_fromUtf8("frame"))
-        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.frame)
-        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.tableWidgetLaender = QtGui.QTableWidget(self.frame)
-        self.tableWidgetLaender.setObjectName(_fromUtf8("tableWidgetLaender"))
+        self.gridLayout = QtWidgets.QGridLayout(Landdialog)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.frame = QtWidgets.QFrame(Landdialog)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.tableWidgetLaender = QtWidgets.QTableWidget(self.frame)
+        self.tableWidgetLaender.setObjectName("tableWidgetLaender")
         self.tableWidgetLaender.setColumnCount(5)
         self.tableWidgetLaender.setRowCount(0)
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(0, item)
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(1, item)
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(2, item)
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(3, item)
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidgetLaender.setHorizontalHeaderItem(4, item)
         self.horizontalLayout_2.addWidget(self.tableWidgetLaender)
         self.verticalLayout.addWidget(self.frame)
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.pushButtonLandSpeichern = QtGui.QPushButton(Landdialog)
-        self.pushButtonLandSpeichern.setText(_fromUtf8(""))
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pushButtonLandSpeichern = QtWidgets.QPushButton(Landdialog)
+        self.pushButtonLandSpeichern.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/media-floppy.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("pypordb/media-floppy.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonLandSpeichern.setIcon(icon1)
-        self.pushButtonLandSpeichern.setObjectName(_fromUtf8("pushButtonLandSpeichern"))
+        self.pushButtonLandSpeichern.setObjectName("pushButtonLandSpeichern")
         self.horizontalLayout.addWidget(self.pushButtonLandSpeichern)
-        self.pushButtonLandAbbrechen = QtGui.QPushButton(Landdialog)
-        self.pushButtonLandAbbrechen.setText(_fromUtf8(""))
+        self.pushButtonLandAbbrechen = QtWidgets.QPushButton(Landdialog)
+        self.pushButtonLandAbbrechen.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("pypordb/dialog-cancel.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonLandAbbrechen.setIcon(icon2)
-        self.pushButtonLandAbbrechen.setObjectName(_fromUtf8("pushButtonLandAbbrechen"))
+        self.pushButtonLandAbbrechen.setObjectName("pushButtonLandAbbrechen")
         self.horizontalLayout.addWidget(self.pushButtonLandAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
@@ -79,19 +64,20 @@ class Ui_Landdialog(object):
         QtCore.QMetaObject.connectSlotsByName(Landdialog)
 
     def retranslateUi(self, Landdialog):
-        Landdialog.setWindowTitle(_translate("Landdialog", "Edit table of countries", None))
-        self.tableWidgetLaender.setWhatsThis(_translate("Landdialog", "Here you can enter countries with their ISO codes and the corresponding nationality. By setting an \"X\" in column \"active\", this country will appear in the combo box on the actors tab and can be used for adding new actors.", None))
+        _translate = QtCore.QCoreApplication.translate
+        Landdialog.setWindowTitle(_translate("Landdialog", "Edit table of countries"))
+        self.tableWidgetLaender.setWhatsThis(_translate("Landdialog", "Here you can enter countries with their ISO codes and the corresponding nationality. By setting an \"X\" in column \"active\", this country will appear in the combo box on the actors tab and can be used for adding new actors."))
         self.tableWidgetLaender.setSortingEnabled(True)
         item = self.tableWidgetLaender.horizontalHeaderItem(0)
-        item.setText(_translate("Landdialog", "Flag", None))
+        item.setText(_translate("Landdialog", "Flag"))
         item = self.tableWidgetLaender.horizontalHeaderItem(1)
-        item.setText(_translate("Landdialog", "ISO Code", None))
+        item.setText(_translate("Landdialog", "ISO Code"))
         item = self.tableWidgetLaender.horizontalHeaderItem(2)
-        item.setText(_translate("Landdialog", "Country", None))
+        item.setText(_translate("Landdialog", "Country"))
         item = self.tableWidgetLaender.horizontalHeaderItem(3)
-        item.setText(_translate("Landdialog", "active", None))
+        item.setText(_translate("Landdialog", "active"))
         item = self.tableWidgetLaender.horizontalHeaderItem(4)
-        item.setText(_translate("Landdialog", "Nationality", None))
-        self.pushButtonLandSpeichern.setToolTip(_translate("Landdialog", "<html><head/><body><p>Save</p></body></html>", None))
-        self.pushButtonLandAbbrechen.setToolTip(_translate("Landdialog", "<html><head/><body><p>Cancel</p></body></html>", None))
+        item.setText(_translate("Landdialog", "Nationality"))
+        self.pushButtonLandSpeichern.setToolTip(_translate("Landdialog", "<html><head/><body><p>Save</p></body></html>"))
+        self.pushButtonLandAbbrechen.setToolTip(_translate("Landdialog", "<html><head/><body><p>Cancel</p></body></html>"))
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -20,13 +20,13 @@
 '''
 
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_darsteller_suchen import Ui_DarstellerSuche as pordb_darsteller_suchen
 from pypordb_dblesen import DBLesen
 
-class DarstellerSuchen(QtGui.QDialog, pordb_darsteller_suchen):
+class DarstellerSuchen(QtWidgets.QDialog, pordb_darsteller_suchen):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
         self.maximum = QtCore.QDate.currentDate()
@@ -35,9 +35,9 @@ class DarstellerSuchen(QtGui.QDialog, pordb_darsteller_suchen):
         self.dateEditDarstellerSucheBis.setDateRange(self.minimum, self.maximum)
         self.dateEditDarstellerSucheBis.setDate(self.maximum)
         
-        self.connect(self.pushButtonSuchen, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
-        self.connect(self.pushButtonRefresh, QtCore.SIGNAL("clicked()"), self.onRefresh)
+        self.pushButtonSuchen.clicked.connect(self.accept)
+        self.pushButtonCancel.clicked.connect(self.close)
+        self.pushButtonRefresh.clicked.connect(self.onRefresh)
         
         # Combobox für Nation füllen
         zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"

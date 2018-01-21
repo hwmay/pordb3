@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,20 +19,20 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_historie import Ui_Dialog as pordb_historie
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 
-class Historie(QtGui.QDialog, pordb_historie):
+class Historie(QtWidgets.QDialog, pordb_historie):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonSearch, QtCore.SIGNAL("clicked()"), self.onSearch)
-        self.connect(self.pushButtonGo, QtCore.SIGNAL("clicked()"), self.onGo)
-        self.connect(self.pushButtonAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
-        self.connect(self.pushButtonClear, QtCore.SIGNAL("clicked()"), self.onClear)
+        self.pushButtonSearch.clicked.connect(self.onSearch)
+        self.pushButtonGo.clicked.connect(self.onGo)
+        self.pushButtonAbbrechen.clicked.connect(self.close)
+        self.pushButtonClear.clicked.connect(self.onClear)
         
         self.row = 0
         self.column = 0
@@ -49,17 +49,17 @@ class Historie(QtGui.QDialog, pordb_historie):
         self.tableWidgetHistory.setRowCount(len(self.res))
         for i in self.res:
             # Checkbox
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             newitem.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsUserCheckable)
             newitem.setCheckState(QtCore.Qt.Unchecked)
             self.tableWidgetHistory.setItem(self.row, self.column, newitem)
             # Befehl
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(i[0])
+            newitem = QtWidgets.QTableWidgetItem(i[0])
             self.tableWidgetHistory.setItem(self.row, self.column, newitem)
             # Time
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(str(i[1]))
+            newitem = QtWidgets.QTableWidgetItem(str(i[1]))
             self.tableWidgetHistory.setItem(self.row, self.column, newitem)
             self.column = 0
             self.row += 1
@@ -69,7 +69,7 @@ class Historie(QtGui.QDialog, pordb_historie):
         
     def onSearch(self):
         self.tableWidgetHistory.clearSelection()
-        self.tableWidgetHistory.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
+        self.tableWidgetHistory.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         suchbegriff = str(self.lineEditSearch.text()).lower()
         item_scroll = None
         if suchbegriff:
@@ -100,7 +100,7 @@ class Historie(QtGui.QDialog, pordb_historie):
                 self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index]
                 break
         if not text:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please check one history entry"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please check one history entry"))
             return
         else:
             self.close()

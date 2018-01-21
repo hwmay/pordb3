@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -30,10 +30,10 @@ import socket
 from operator import itemgetter, attrgetter
 import psycopg2
 import subprocess
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtWebKit import QWebPage
-from PyQt4.QtWebKit import QWebFrame
-import PyQt4.QtWebKit as webkit
+from PyQt5 import QtGui, QtCore, QtWidgets, QtPrintSupport
+from PyQt5.QtWebKitWidgets import QWebPage, QWebFrame
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+import PyQt5.QtWebKitWidgets as webkit
 from pordb_hauptdialog import Ui_MainWindow as MainWindow
 
 from pypordb_suchen import Suchen
@@ -89,137 +89,138 @@ def age(dob):
         return today.year - dob.year
 # end of age
 
-class MeinDialog(QtGui.QMainWindow, MainWindow):
+class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     def __init__(self):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
         # Slot für Splitter zum Re-Scalen des Darstellerbildes
-        self.connect(self.splitter, QtCore.SIGNAL("splitterMoved(int, int)"), self.bildSetzen)
+        self.splitter.splitterMoved[int, int].connect(self.bildSetzen)
         
         # Slot für Aktivieren von Buttons bei Wechsel des Tabs
-        self.connect(self.tabWidget, QtCore.SIGNAL("currentChanged(int)"), self.onTabwechsel)
+        self.tabWidget.currentChanged.connect(self.onTabwechsel)
         
         # Slots einrichten für Bilder
-        self.connect(self.actionNeueingabe, QtCore.SIGNAL("triggered()"), self.onNeueingabe)
-        self.connect(self.actionDarsteller, QtCore.SIGNAL("triggered()"), self.onDarsteller)
-        self.connect(self.actionCd, QtCore.SIGNAL("triggered()"), self.onCD)
-        self.connect(self.actionTitel, QtCore.SIGNAL("triggered()"), self.onTitel)
-        self.connect(self.actionOriginal, QtCore.SIGNAL("triggered()"), self.onOriginal)
-        self.connect(self.actionSuche, QtCore.SIGNAL("triggered()"), self.onSuche)
-        self.connect(self.actionDrucken, QtCore.SIGNAL("triggered()"), self.onDrucken)
-        self.connect(self.tableWidgetBilder, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onKorrektur)
-        self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onNeuDoubleClick)
-        self.connect(self.tableWidgetBilder, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContexttableWidgetBilder)
+        self.actionNeueingabe.triggered.connect(self.onNeueingabe)
+        self.actionDarsteller.triggered.connect(self.onDarsteller)
+        self.actionCd.triggered.connect(self.onCD)
+        self.actionTitel.triggered.connect(self.onTitel)
+        self.actionOriginal.triggered.connect(self.onOriginal)
+        self.actionSuche.triggered.connect(self.onSuche)
+        self.actionDrucken.triggered.connect(self.onDrucken)
+        self.tableWidgetBilder.cellDoubleClicked.connect(self.onKorrektur)
+        self.tableWidgetBilderAktuell.cellDoubleClicked.connect(self.onNeuDoubleClick)
+        self.tableWidgetBilder.customContextMenuRequested.connect(self.onContexttableWidgetBilder)
         self.tableWidgetBilderAktuell.__class__.dragEnterEvent = self.tableWidgetBilderAktuelldragEnterEvent
         self.tableWidgetBilder.__class__.dropEvent = self.tableWidgetBilderdropEvent
-        self.connect(self.actionDarstellerUebernehmen, QtCore.SIGNAL("triggered()"), self.onDarstellerUebernehmen)
-        self.connect(self.actionAnzeigenOriginal, QtCore.SIGNAL("triggered()"), self.onAnzeigenOriginal)
-        self.connect(self.actionAnzeigenTitle, QtCore.SIGNAL("triggered()"), self.onAnzeigenTitle)
-        self.connect(self.actionMassChange, QtCore.SIGNAL("triggered()"), self.onMassChange)
-        self.connect(self.actionSortieren_nach_Darsteller, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Darsteller)
-        self.connect(self.actionSortieren_nach_CD, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_CD)
-        self.connect(self.actionSortieren_nach_Titel, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Titel)
-        self.connect(self.actionOriginal_umbenennen, QtCore.SIGNAL("triggered()"), self.onOriginal_umbenennen)
-        self.connect(self.actionOriginal_weitere, QtCore.SIGNAL("triggered()"), self.onOriginal_weitere)
-        self.connect(self.actionRedoImageChange, QtCore.SIGNAL("triggered()"), self.onRedoImageChange)
-        self.connect(self.actionSortieren_nach_Original, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Original)
-        self.connect(self.actionOriginalIntoClipboard, QtCore.SIGNAL("triggered()"), self.onOriginalIntoClipboard)
-        self.connect(self.actionCovergross, QtCore.SIGNAL("triggered()"), self.onCovergross)
-        self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContexttableWidgetBilderAktuell)
-        self.connect(self.actionBildLoeschen, QtCore.SIGNAL("triggered()"), self.onBildLoeschen)
-        self.connect(self.actionFirst, QtCore.SIGNAL("triggered()"), self.onPageFirst)
-        self.connect(self.actionPrev, QtCore.SIGNAL("triggered()"), self.onPageUp)
-        self.connect(self.actionNext, QtCore.SIGNAL("triggered()"), self.onPageDown)
-        self.connect(self.actionLast, QtCore.SIGNAL("triggered()"), self.onPageLast)
-        self.connect(self.actionUndo, QtCore.SIGNAL("triggered()"), self.onUndo)
-        self.connect(self.actionOnHelp, QtCore.SIGNAL("triggered()"), self.onHelp)
-        self.connect(self.pushButtonDir, QtCore.SIGNAL("clicked()"), self.onDirectoryChange)
-        self.connect(self.pushButtonRefresh, QtCore.SIGNAL("clicked()"), self.onDirectoryRefresh)
+        self.actionDarstellerUebernehmen.triggered.connect(self.onDarstellerUebernehmen)
+        self.actionAnzeigenOriginal.triggered.connect(self.onAnzeigenOriginal)
+        self.actionAnzeigenTitle.triggered.connect(self.onAnzeigenTitle)
+        self.actionSortieren_nach_Darsteller.triggered.connect(self.onSortieren_nach_Darsteller)
+        self.actionSortieren_nach_CD.triggered.connect(self.onSortieren_nach_CD)
+        self.actionSortieren_nach_Titel.triggered.connect(self.onSortieren_nach_Titel)
+        self.actionMassChange.triggered.connect(self.onMassChange)
+        self.actionOriginal_umbenennen.triggered.connect(self.onOriginal_umbenennen)
+        self.actionOriginal_weitere.triggered.connect(self.onOriginal_weitere)
+        self.actionRedoImageChange.triggered.connect(self.onRedoImageChange)
+        self.actionSortieren_nach_Original.triggered.connect(self.onSortieren_nach_Original)
+        self.actionOriginalIntoClipboard.triggered.connect(self.onOriginalIntoClipboard)
+        self.actionCovergross.triggered.connect(self.onCovergross)
+        self.tableWidgetBilderAktuell.customContextMenuRequested.connect(self.onContexttableWidgetBilderAktuell)
+        self.actionBildLoeschen.triggered.connect(self.onBildLoeschen)
+        self.actionFirst.triggered.connect(self.onPageFirst)
+        self.actionPrev.triggered.connect(self.onPageUp)
+        self.actionNext.triggered.connect(self.onPageDown)
+        self.actionLast.triggered.connect(self.onPageLast)
+        self.actionUndo.triggered.connect(self.onUndo)
+        self.actionOnHelp.triggered.connect(self.onHelp)
+        self.pushButtonDir.clicked.connect(self.onDirectoryChange)
+        self.pushButtonRefresh.clicked.connect(self.onDirectoryRefresh)
         
         # Slots einrichten für Darsteller
-        self.connect(self.bildAnzeige, QtCore.SIGNAL("clicked()"), self.onbildAnzeige)
-        self.connect(self.comboBoxSex, QtCore.SIGNAL("currentIndexChanged(int)"), self.setFocus)
-        self.connect(self.pushButtonDarstellerspeichern, QtCore.SIGNAL("clicked()"), self.onDarstellerspeichern)
-        self.connect(self.pushButtonIAFDholen, QtCore.SIGNAL("clicked()"), self.onIAFD)
-        self.connect(self.pushButtonIAFDBackground, QtCore.SIGNAL("clicked()"), self.onIAFDBackground)
-        self.connect(self.pushButtonDarstellerLoeschen, QtCore.SIGNAL("clicked()"), self.onDarstellerloeschen)
-        self.connect(self.listWidgetDarsteller, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextDarsteller)
-        self.connect(self.listWidgetDarsteller, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onbildAnzeige)
-        self.connect(self.actionAnzeigenPaar, QtCore.SIGNAL("triggered()"), self.onAnzeigenPaar)
-        self.connect(self.labelBildanzeige, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onBildgross)
+        self.bildAnzeige.clicked.connect(self.onbildAnzeige)
+        self.comboBoxSex.currentIndexChanged[int].connect(self.setFocus)
+        
+        self.pushButtonDarstellerspeichern.clicked.connect(self.onDarstellerspeichern)
+        self.pushButtonIAFDholen.clicked.connect(self.onIAFD)
+        self.pushButtonIAFDBackground.clicked.connect(self.onIAFDBackground)
+        self.pushButtonDarstellerLoeschen.clicked.connect(self.onDarstellerloeschen)
+        self.listWidgetDarsteller.customContextMenuRequested.connect(self.onContextDarsteller)
+        self.listWidgetDarsteller.itemDoubleClicked.connect(self.onbildAnzeige)
+        self.actionAnzeigenPaar.triggered.connect(self.onAnzeigenPaar)
+        self.labelBildanzeige.customContextMenuRequested.connect(self.onBildgross)
         self.labelBildanzeige.__class__.dragEnterEvent = self.tableWidgetBilderAktuelldragEnterEvent
         self.labelBildanzeige.__class__.dropEvent = self.labelBildanzeigedropEvent
-        self.connect(self.actionGetUrl, QtCore.SIGNAL("triggered()"), self.onGetUrl)
-        self.connect(self.actionGoToUrl, QtCore.SIGNAL("triggered()"), self.onGoToUrl)
-        self.connect(self.actionShowDetails, QtCore.SIGNAL("triggered()"), self.onShowDetails)
-        self.connect(self.actionBildanzeigegross, QtCore.SIGNAL("triggered()"), self.onDarstellerGross)
-        self.connect(self.listWidgetFilme, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextFilm)
-        self.connect(self.actionFilm_zeigen, QtCore.SIGNAL("triggered()"), self.onFilm_zeigen)
-        self.connect(self.listWidgetFilme, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onFilm_zeigen)
-        self.connect(self.listWidgetStatistik, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextCS)
-        self.connect(self.actionCSZeigen, QtCore.SIGNAL("triggered()"), self.onCSZeigen)
-        self.connect(self.listWidgetStatistik, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onCSZeigen)
-        self.connect(self.pushButtonDarstellerSuchen, QtCore.SIGNAL("clicked()"), self.onDarstellerSuchen)
-        self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.onDarstellerUmbenennen)
-        self.connect(self.pushButtonSortPartner, QtCore.SIGNAL("clicked()"), self.onPartnerSortieren)
-        self.connect(self.pushButtonSort, QtCore.SIGNAL("clicked()"), self.onFilmeSortieren)
-        self.connect(self.lineEditFilter, QtCore.SIGNAL("textEdited(QString)"), self.onFilmeFilter)
-        self.connect(self.pushButtonPartnerZeigen, QtCore.SIGNAL("clicked()"), self.onPartnerZeigen)
-        self.connect(self.pushButtonPseudo, QtCore.SIGNAL("clicked()"), self.onPseudo)
+        self.actionGetUrl.triggered.connect(self.onGetUrl)
+        self.actionGoToUrl.triggered.connect(self.onGoToUrl)
+        self.actionShowDetails.triggered.connect(self.onShowDetails)
+        self.actionBildanzeigegross.triggered.connect(self.onDarstellerGross)
+        self.listWidgetFilme.customContextMenuRequested.connect(self.onContextFilm)
+        self.actionFilm_zeigen.triggered.connect(self.onFilm_zeigen)
+        self.listWidgetFilme.itemDoubleClicked.connect(self.onFilm_zeigen)
+        self.listWidgetStatistik.customContextMenuRequested.connect(self.onContextCS)
+        self.actionCSZeigen.triggered.connect(self.onCSZeigen)
+        self.listWidgetStatistik.itemDoubleClicked.connect(self.onCSZeigen)
+        self.pushButtonDarstellerSuchen.clicked.connect(self.onDarstellerSuchen)
+        self.pushButtonUmbenennen.clicked.connect(self.onDarstellerUmbenennen)
+        self.pushButtonSortPartner.clicked.connect(self.onPartnerSortieren)
+        self.pushButtonSort.clicked.connect(self.onFilmeSortieren)
+        self.lineEditFilter.textChanged[str].connect(self.onFilmeFilter)
+        self.pushButtonPartnerZeigen.clicked.connect(self.onPartnerZeigen)
+        self.pushButtonPseudo.clicked.connect(self.onPseudo)
         
         # Slots einrichten für Dateien suchen
-        self.connect(self.pushButtonSuchen, QtCore.SIGNAL("clicked()"), self.onSuchen)
-        self.connect(self.pushButtonClear, QtCore.SIGNAL("clicked()"), self.onClear)
-        self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onDateinamenUebernehmen)
-        self.connect(self.pushButtonSearchMpg, QtCore.SIGNAL("clicked()"), self.onSearchMpg)
-        self.connect(self.pushButtonSearchVid, QtCore.SIGNAL("clicked()"), self.onSearchVid)
-        self.connect(self.pushButtonFilterMpgKatalog, QtCore.SIGNAL("clicked()"), self.onFilterMpg)
-        self.connect(self.pushButtonFilterVid, QtCore.SIGNAL("clicked()"), self.onFilterVid)
-        self.connect(self.pushButtonDelete, QtCore.SIGNAL("clicked()"), self.onDeleteMpgKatalog)
+        self.pushButtonClear.clicked.connect(self.onClear)
+        self.pushButtonSuchen.clicked.connect(self.onSuchen)
+        self.pushButtonUebernehmen.clicked.connect(self.onDateinamenUebernehmen)
+        self.pushButtonSearchMpg.clicked.connect(self.onSearchMpg)
+        self.pushButtonSearchVid.clicked.connect(self.onSearchVid)
+        self.pushButtonFilterMpgKatalog.clicked.connect(self.onFilterMpg)
+        self.pushButtonFilterVid.clicked.connect(self.onFilterVid)
+        self.pushButtonDelete.clicked.connect(self.onDeleteMpgKatalog)
         
         # Slots einrichten für Web
-        self.connect(self.webView, QtCore.SIGNAL("loadStarted()"), self.onLoadStarted)
-        self.connect(self.webView, QtCore.SIGNAL("loadFinished (bool)"), self.onLoadFinished)
-        self.connect(self.pushButtonVideo, QtCore.SIGNAL("clicked()"), self.onVideoSuchen)
-        self.connect(self.pushButtonBack, QtCore.SIGNAL("clicked()"), self.webView.back)
-        self.connect(self.pushButtonForward, QtCore.SIGNAL("clicked()"), self.webView.forward)
-        self.connect(self.pushButtonIAFD, QtCore.SIGNAL("clicked()"), self.onIAFDSeite)
-        self.connect(self.pushButtonAbholen, QtCore.SIGNAL("clicked()"), self.onDarstellerdatenAbholen)
-        self.connect(self.pushButtonMovie, QtCore.SIGNAL("clicked()"), self.onMovieData)
-        self.connect(self.pushButtonClearURL, QtCore.SIGNAL("clicked()"), self.onClearURL)
-        self.connect(self.pushButtonUrl, QtCore.SIGNAL("clicked()"), self.onUrlVerwalten)
-        self.connect(self.pushButtonSearchWebsite, QtCore.SIGNAL("clicked()"), self.onSearchWebsite)
-        self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
-        self.connect(self.webView, QtCore.SIGNAL("urlChanged (const QUrl&)"), self.onUrlChanged)
+        self.pushButtonVideo.clicked.connect(self.onVideoSuchen)
+        self.pushButtonBack.clicked.connect(self.webView.back)
+        self.pushButtonForward.clicked.connect(self.webView.forward)
+        self.pushButtonIAFD.clicked.connect(self.onIAFDSeite)
+        self.pushButtonAbholen.clicked.connect(self.onDarstellerdatenAbholen)
+        self.pushButtonMovie.clicked.connect(self.onMovieData)
+        self.pushButtonClearURL.clicked.connect(self.onClearURL)
+        self.pushButtonUrl.clicked.connect(self.onUrlVerwalten)
+        self.pushButtonSearchWebsite.clicked.connect(self.onSearchWebsite)
+        self.webView.loadStarted.connect(self.onLoadStarted)
+        self.webView.loadFinished.connect(self.onLoadFinished)
+        #self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
+        self.webView.urlChanged.connect(self.onUrlChanged)
         
         # Slots einrichten für Statistiken
-        self.connect(self.pushButtonCS, QtCore.SIGNAL("clicked()"), self.onStatistikCS)
-        self.connect(self.pushButtonDarstellerW, QtCore.SIGNAL("clicked()"), self.onStatistikDarstellerW)
-        self.connect(self.pushButtonDarstellerM, QtCore.SIGNAL("clicked()"), self.onStatistikDarstellerM)
-        self.connect(self.pushButtonAnzahlClips, QtCore.SIGNAL("clicked()"), self.onStatistikAnzahlClips)
-        self.connect(self.pushButtonClipsJahr, QtCore.SIGNAL("clicked()"), self.onStatistikAnzahlClipsJahr)
+        self.pushButtonCS.clicked.connect(self.onStatistikCS)
+        self.pushButtonDarstellerW.clicked.connect(self.onStatistikDarstellerW)
+        self.pushButtonDarstellerM.clicked.connect(self.onStatistikDarstellerM)
+        self.pushButtonAnzahlClips.clicked.connect(self.onStatistikAnzahlClips)
+        self.pushButtonClipsJahr.clicked.connect(self.onStatistikAnzahlClipsJahr)
         
         # Slots einrichten für Tools
-        self.connect(self.pushButtonCheckNewVersion, QtCore.SIGNAL("clicked()"), self.onCheckNewVersion)
-        self.connect(self.pushButtonSuchbegriffe, QtCore.SIGNAL("clicked()"), self.onSuchbegriffe)
-        self.connect(self.pushButtonLand, QtCore.SIGNAL("clicked()"), self.onLand)
-        self.connect(self.pushButtonBackup, QtCore.SIGNAL("clicked()"), self.onBackup)
-        self.connect(self.pushButtonRestore, QtCore.SIGNAL("clicked()"), self.onRestore)
-        self.connect(self.pushButtonWartung, QtCore.SIGNAL("clicked()"), self.onWartung)
-        self.connect(self.pushButtonDateikatalog, QtCore.SIGNAL("toggled(bool)"), self.frame_Dateikatalog, QtCore.SLOT("setVisible(bool)"))
+        self.pushButtonCheckNewVersion.clicked.connect(self.onCheckNewVersion)
+        self.pushButtonSuchbegriffe.clicked.connect(self.onSuchbegriffe)
+        self.pushButtonLand.clicked.connect(self.onLand)
+        self.pushButtonBackup.clicked.connect(self.onBackup)
+        self.pushButtonRestore.clicked.connect(self.onRestore)
+        self.pushButtonWartung.clicked.connect(self.onWartung)
+        self.pushButtonDateikatalog.toggled.connect(self.frame_Dateikatalog.setVisible)
         self.frame_Dateikatalog.hide()
-        self.connect(self.pushButtonVerwalten, QtCore.SIGNAL("clicked()"), self.onDevicesVerwalten)
-        self.connect(self.pushButtonStart, QtCore.SIGNAL("clicked()"), self.onStartScan)
-        self.connect(self.pushButtonDeleteDuplicates, QtCore.SIGNAL("clicked()"), self.onDeleteDuplicates)
-        self.connect(self.pushButtonDeselect, QtCore.SIGNAL("clicked()"), self.onDeselect)
+        self.pushButtonVerwalten.clicked.connect(self.onDevicesVerwalten)
+        self.pushButtonStart.clicked.connect(self.onStartScan)
+        self.pushButtonDeleteDuplicates.clicked.connect(self.onDeleteDuplicates)
+        self.pushButtonDeselect.clicked.connect(self.onDeselect)
         self.pushButtonDeleteDuplicates.setEnabled(False)
         self.pushButtonDeselect.setEnabled(False)
         
         self.initial_run = True
         if self.initial_run:
             bild = QtGui.QPixmap(os.path.join(os.getcwd(), "pypordb", "8027068_splash.png")).scaled(276, 246, QtCore.Qt.KeepAspectRatio)
-            splash = QtGui.QSplashScreen(bild)
+            splash = QtWidgets.QSplashScreen(bild)
             splash.show()
             zu_lesen = "SELECT * FROM pordb_history ORDER BY time DESC LIMIT 50"
             lese_func = DBLesen(self, zu_lesen)
@@ -231,9 +232,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 zu_erfassen.append(["DELETE FROM pordb_history WHERE time < %s", werte])
                 update_func = DBUpdate(self, zu_erfassen)
                 DBUpdate.update_data(update_func)
-            self.verzeichnis = os.path.join(os.path.expanduser("~"), "mpg")
+            #TODO Hier muss noch eine Lösung her, vlt. Verzeichnisauswahl über den Installer
+            self.verzeichnis = os.path.join(os.path.expanduser("~"), "sdb/ich", "mpg")
             self.verzeichnis_original = self.verzeichnis
-            self.verzeichnis_thumbs = os.path.join(os.path.expanduser("~"), "thumbs_sammlung")
+            self.verzeichnis_thumbs = os.path.join(os.path.expanduser("~"), "sdb/ich", "thumbs_sammlung")
             self.verzeichnis_trash = os.path.join(self.verzeichnis_thumbs, "trash")
             self.verzeichnis_cover = os.path.join(self.verzeichnis_thumbs, "cover")
             self.verzeichnis_tools = None
@@ -252,39 +254,39 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 pass
             
         # Populate statusbar
-        self.anzahl = QtGui.QLabel()
+        self.anzahl = QtWidgets.QLabel()
         self.statusBar.addPermanentWidget(self.anzahl)
         
-        self.mpg_aktuell = QtGui.QLabel()
-        self.mpg_aktuell.setText(self.trUtf8("Actual volume: "))
+        self.mpg_aktuell = QtWidgets.QLabel()
+        self.mpg_aktuell.setText(self.tr("Actual volume: "))
         self.statusBar.addPermanentWidget(self.mpg_aktuell)
         
-        self.spinBoxAktuell = QtGui.QSpinBox()
+        self.spinBoxAktuell = QtWidgets.QSpinBox()
         self.spinBoxAktuell.setRange(1, 9999)
         self.statusBar.addPermanentWidget(self.spinBoxAktuell)
-        self.connect(self.spinBoxAktuell, QtCore.SIGNAL("valueChanged(int)"), self.onVidNeuAktualisieren)
+        self.spinBoxAktuell.valueChanged[int].connect(self.onVidNeuAktualisieren)
         
-        self.pushButtonHistorie = QtGui.QPushButton()
-        self.pushButtonHistorie.setText(QtGui.QApplication.translate("Dialog", "Historie", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonHistorie.setToolTip(self.trUtf8("Open search history"))
+        self.pushButtonHistorie = QtWidgets.QPushButton()
+        self.pushButtonHistorie.setText(QtWidgets.QApplication.translate("Dialog", "Historie", None))
+        self.pushButtonHistorie.setToolTip(self.tr("Open search history"))
         self.statusBar.addPermanentWidget(self.pushButtonHistorie)
-        self.connect(self.pushButtonHistorie, QtCore.SIGNAL("clicked()"), self.onHistorie)
+        self.pushButtonHistorie.clicked.connect(self.onHistorie)
         
-        self.labelSeite = QtGui.QLabel()
+        self.labelSeite = QtWidgets.QLabel()
         self.statusBar.addPermanentWidget(self.labelSeite)
         
         # populate toolbar
-        self.suchfeld = QtGui.QComboBox()
+        self.suchfeld = QtWidgets.QComboBox()
         self.suchfeld.setMinimumWidth(250)
         self.suchfeld.setEditable(True)
-        self.suchfeld.setWhatsThis(self.trUtf8("Searching field. By pressing the escape key it will be cleared and gets the focus."))
+        self.suchfeld.setWhatsThis(self.tr("Searching field. By pressing the escape key it will be cleared and gets the focus."))
         self.toolBar.insertWidget(self.actionSuchfeld, self.suchfeld)
         self.toolBar.removeAction(self.actionSuchfeld)
         
         self.toolBar.removeAction(self.actionAnzahlBilder)
         
         self.setWindowTitle("PorDB3")
-        self.screen = QtGui.QDesktopWidget().screenGeometry()
+        #self.screen = QtGui.QDesktopWidget().screenGeometry()
         #print self.screen.width(), self.screen.height()
         if self.initial_run:
             splash.showMessage("Loading history", color = QtGui.QColor("red"))
@@ -335,14 +337,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.pushButtonIAFDBackground.setEnabled(False)
         
         self.updatetimer = QtCore.QTimer()
-        QtCore.QObject.connect(self.updatetimer, QtCore.SIGNAL("timeout()"), self.bilder_aktuell)
+        self.updatetimer.timeout.connect(self.bilder_aktuell)
         self.updatefrequenz = 1000
         self.updatetimer.start(self.updatefrequenz)
         
         self.tableWidgetBilderAktuell.setColumnCount(1)
         self.tableWidgetBilderAktuell.setIconSize(size_neu)
 
-        self.printer = QtGui.QPrinter(QtGui.QPrinter.ScreenResolution)
+        self.printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.ScreenResolution)
         self.printer.setOutputFileName(os.path.join(self.verzeichnis_original, "print.pdf"))
         
         zu_lesen = "SELECT cd, partnerw, partnerm, anzahl_bilder, anzahl_spalten FROM pordb_vid_neu"
@@ -352,25 +354,25 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.lineEditAnzahlM.setText(str(res[0][2]))
         self.lineEditAnzahlW.setText(str(res[0][1]))
         
-        self.spinBoxZeilen = QtGui.QSpinBox()
+        self.spinBoxZeilen = QtWidgets.QSpinBox()
         self.spinBoxZeilen.setRange(1, 99)
         try:
             self.spinBoxZeilen.setValue(res[0][3])
         except:
             self.spinBoxZeilen.setValue(12)
-        self.spinBoxZeilen.setToolTip(self.trUtf8("Images per page"))
+        self.spinBoxZeilen.setToolTip(self.tr("Images per page"))
         self.toolBar.insertWidget(self.actionAnzahlBilder, self.spinBoxZeilen)
-        self.connect(self.spinBoxZeilen, QtCore.SIGNAL("valueChanged(int)"), self.onAnzahlZeilen)
+        self.spinBoxZeilen.valueChanged[int].connect(self.onAnzahlZeilen)
         
-        self.spinBoxSpalten = QtGui.QSpinBox()
+        self.spinBoxSpalten = QtWidgets.QSpinBox()
         self.spinBoxSpalten.setRange(1, 10)
         try:
             self.spinBoxSpalten.setValue(res[0][4])
         except:
             self.spinBoxSpalten.setValue(3)
-        self.spinBoxSpalten.setToolTip(self.trUtf8("Columns"))
+        self.spinBoxSpalten.setToolTip(self.tr("Columns"))
         self.toolBar.insertWidget(self.actionAnzahlBilder, self.spinBoxSpalten)
-        self.connect(self.spinBoxSpalten, QtCore.SIGNAL("valueChanged(int)"), self.onAnzahlSpalten)
+        self.spinBoxSpalten.valueChanged[int].connect(self.onAnzahlSpalten)
         
         self.anzahl_bilder = self.spinBoxZeilen.value()
         self.onAnzahlZeilen()
@@ -400,8 +402,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.fieldnames_mpg.append(x.title())
         self.fieldnames_mpg.append("MB")
         self.fieldnames_mpg.append("GB")
-        self.cumshots = {"f":"Facial", "h":"Handjob", "t":str(self.trUtf8("Tits")), "c":"Creampie", "x":"Analcreampie", "o":"Oralcreampie", "v":str(self.trUtf8("Cunt")), "b":str(self.trUtf8("Belly")), "a":str(self.trUtf8("Ass")), "s":str(self.trUtf8("Others"))}
-        self.cumshots_reverse = {"Facial":"f", "Handjob":"h", str(self.trUtf8("Tits")):"t", "Creampie":"c", "Analcreampie":"x", "Oralcreampie":"o", str(self.trUtf8("Cunt")):"v", str(self.trUtf8("Belly")):"b", str(self.trUtf8("Ass")):"a", str(self.trUtf8("Others")):"s"}
+        self.cumshots = {"f":"Facial", "h":"Handjob", "t":str(self.tr("Tits")), "c":"Creampie", "x":"Analcreampie", "o":"Oralcreampie", "v":str(self.tr("Cunt")), "b":str(self.tr("Belly")), "a":str(self.tr("Ass")), "s":str(self.tr("Others"))}
+        self.cumshots_reverse = {"Facial":"f", "Handjob":"h", str(self.tr("Tits")):"t", "Creampie":"c", "Analcreampie":"x", "Oralcreampie":"o", str(self.tr("Cunt")):"v", str(self.tr("Belly")):"b", str(self.tr("Ass")):"a", str(self.tr("Others")):"s"}
         
         if self.initial_run:
             splash.showMessage("Getting device names", color = QtGui.QColor("red"))
@@ -421,10 +423,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     pass
             except (urllib.error.URLError, socket.timeout):
                 pass
-                
-            self.webView.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
+            
+            #TODO: linkclicked funktioniert nicht mehr
+            #self.webView.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
             if not seite:
-                self.statusBar.showMessage(self.trUtf8("Either your computer is not online or the IAFD is not reachable"))
+                self.statusBar.showMessage(self.tr("Either your computer is not online or the IAFD is not reachable"))
                 
         if self.initial_run:
             splash.showMessage("Ready", color = QtGui.QColor("green"))
@@ -458,16 +461,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         dateiliste_bereinigt.sort()
         if self.bilderliste != dateiliste_bereinigt or force:
             self.updatetimer.stop()
+            self.showImages(dateiliste_bereinigt)
             # generic thread
-            self.threadPool = []
-            self.threadPool.append(GenericThread(self.showImages, dateiliste_bereinigt))
-            self.disconnect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
-            self.connect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
-            # signal for finished
-            self.disconnect(self, QtCore.SIGNAL("finished"), self.update_image_files_finished)
-            self.connect(self, QtCore.SIGNAL("finished"), self.update_image_files_finished)
-            # start thread
-            self.threadPool[len(self.threadPool)-1].start()
+            #self.threadPool = QtCore.QThreadPool()
+            #self.threadPool.append(GenericThread(self.showImages, dateiliste_bereinigt))
+            #self.disconnect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
+            #self.connect(self, QtCore.SIGNAL("add(QImage, QString, int)"), self.makePixmap)
+            ## signal for finished
+            #self.disconnect(self, QtCore.SIGNAL("finished"), self.update_image_files_finished)
+            #self.connect(self, QtCore.SIGNAL("finished"), self.update_image_files_finished)
+            ## start thread
+            #self.threadPool[len(self.threadPool)-1].start()
             
             self.bilderliste = dateiliste_bereinigt[:]
             
@@ -478,15 +482,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         for i in list_of_image_files:
             bild = QtGui.QImage(os.path.join(self.verzeichnis, i))
             text = i + "\n" + str(QtGui.QImage(bild).width()) + "x" + str(QtGui.QImage(bild).height())
-            self.emit(QtCore.SIGNAL("add(QImage, QString, int)"), bild, text, zeile)
+            #self.emit(QtCore.SIGNAL("add(QImage, QString, int)"), bild, text, zeile)
+            self.makePixmap(bild, text, zeile)
             zeile += 1
-        self.emit(QtCore.SIGNAL("finished"))
+        self.update_image_files_finished()
+        #self.emit(QtCore.SIGNAL("finished"))
             
     def makePixmap(self, image, text, zeile):
         pixmap = QtGui.QPixmap()
         pixmap.convertFromImage(image)
         bild = QtGui.QIcon(pixmap.scaled(size_neu, QtCore.Qt.KeepAspectRatio))
-        newitem = QtGui.QTableWidgetItem(bild, text)
+        newitem = QtWidgets.QTableWidgetItem(bild, text)
         self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
         
     def update_image_files_finished(self):
@@ -590,13 +596,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         for i in items:
             dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         if len(dateien) > 2:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 or 2 pictures"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 or 2 pictures"))
             return    
         else:
             bilddatei_alt = os.path.join(self.verzeichnis_thumbs, "cd" + str(cd), bild.rstrip())
             if len(dateien) == 2:
                 if os.path.exists(bilddatei_alt):
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 picture"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 picture"))
                     return    
                 original = self.aktuelles_res[index][5]
                 dialog = Cover(dateien, self.verzeichnis_original, original)
@@ -608,7 +614,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 if ext == ".jpeg":
                     ext = "jpg"
                 if not os.path.exists(bilddatei_alt):
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image to replace does not exist"))
                     return
                 os.rename(bilddatei_alt, os.path.join(self.verzeichnis_trash, "pypordb_bildalt" + ext))
             else:
@@ -632,7 +638,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             else:
                 os.remove(datei)
         else:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
             return
             
         self.ausgabe_in_table()
@@ -646,7 +652,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         for i in items:
             dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         if len(dateien) > 1:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 picture"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 picture"))
             return    
         else:
             name = str(self.labelDarsteller.text()).strip().lstrip("=")
@@ -654,7 +660,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 return
             bild = QtGui.QImage(dateien[0])
             if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
-                message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
+                message = QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Image of the actor is very big"))
             zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
             lese_func = DBLesen(self, zu_lesen, name)
             res = DBLesen.get_data(lese_func)
@@ -769,7 +775,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett, self.letzter_select_komplett_werte)
                 
     def onDirectoryChange(self):
-        datei = QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), self.verzeichnis)
+        datei = QtWidgets.QFileDialog.getExistingDirectory(self, self.tr("Select directory"), self.verzeichnis)
         if datei:
             self.verzeichnis = str(datei)
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -821,19 +827,19 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.suchfeld.setFocus()
             
     def onContextDarsteller(self, event):
-        menu = QtGui.QMenu(self.listWidgetDarsteller)
+        menu = QtWidgets.QMenu(self.listWidgetDarsteller)
         menu.addAction(self.actionAnzeigenPaar)
         menu.addAction(self.actionBildanzeigegross)
         self.context_actor_image = False
         menu.exec_(self.listWidgetDarsteller.mapToGlobal(event))
             
     def onContextCS(self, event):
-        menu = QtGui.QMenu(self.listWidgetStatistik)
+        menu = QtWidgets.QMenu(self.listWidgetStatistik)
         menu.addAction(self.actionCSZeigen)
         menu.exec_(self.listWidgetStatistik.mapToGlobal(event))
         
     def onContextFilm(self, event):
-        menu = QtGui.QMenu(self.listWidgetFilme)
+        menu = QtWidgets.QMenu(self.listWidgetFilme)
         menu.addAction(self.actionFilm_zeigen)
         menu.exec_(self.listWidgetFilme.mapToGlobal(event))
         
@@ -841,7 +847,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         item = self.tableWidgetBilder.currentItem()
         if not item:
             return
-        menu = QtGui.QMenu(self.tableWidgetBilder)
+        menu = QtWidgets.QMenu(self.tableWidgetBilder)
         if self.aktuelle_ausgabe == "Darsteller":
             menu.addAction(self.actionDarstellerUebernehmen)
             menu.addAction(self.actionBildanzeigegross)
@@ -869,7 +875,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             
     def onContexttableWidgetBilderAktuell(self, event):
         if len(self.bilderliste) > 0:
-            menu = QtGui.QMenu(self.tableWidgetBilderAktuell)
+            menu = QtWidgets.QMenu(self.tableWidgetBilderAktuell)
             menu.addAction(self.actionBildLoeschen)
             menu.exec_(self.tableWidgetBilderAktuell.mapToGlobal(event))
         
@@ -883,7 +889,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.suchfeld.setCurrentIndex(0)
     
     def onBildgross(self, event):
-        menu = QtGui.QMenu(self.labelBildanzeige)
+        menu = QtWidgets.QMenu(self.labelBildanzeige)
         menu.addAction(self.actionBildanzeigegross)
         self.context_actor_image = True
         menu.addAction(self.actionShowDetails)
@@ -1030,7 +1036,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         else:
             original = ""
         if not original:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is no original title: cannot be renamed"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("There is no original title: cannot be renamed"))
             app.restoreOverrideCursor()
             return
         umbenennen = DarstellerUmbenennen(original)
@@ -1105,7 +1111,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         else:
             original = ""
         if not original:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Movie has no original title"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Movie has no original title"))
             app.restoreOverrideCursor()
             return
         zu_lesen = "SELECT primkey FROM pordb_vid WHERE original = %s"
@@ -1174,12 +1180,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if not os.path.exists(bilddatei_neu):
             bilddatei_neu = os.path.join(self.verzeichnis_cover, bild.rstrip())
         if bilddatei_trash and os.path.exists(bilddatei_neu):
-            messageBox = QtGui.QMessageBox()
-            messageBox.addButton(self.trUtf8("Image restore"), QtGui.QMessageBox.AcceptRole)
-            messageBox.addButton(self.trUtf8("Cancel"), QtGui.QMessageBox.RejectRole)
-            messageBox.setWindowTitle(self.trUtf8("Image restore ") +os.path.basename(bilddatei_neu))
-            messageBox.setIcon(QtGui.QMessageBox.Question)
-            messageBox.setText(self.trUtf8("Do you want to restore the image?"))
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.addButton(self.tr("Image restore"), QtWidgets.QMessageBox.AcceptRole)
+            messageBox.addButton(self.tr("Cancel"), QtWidgets.QMessageBox.RejectRole)
+            messageBox.setWindowTitle(self.tr("Image restore ") +os.path.basename(bilddatei_neu))
+            messageBox.setIcon(QtWidgets.QMessageBox.Question)
+            messageBox.setText(self.tr("Do you want to restore the image?"))
             message = messageBox.exec_()
             if message == 0:
                 os.rename(bilddatei_trash, bilddatei_neu)
@@ -1206,7 +1212,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             zu_erfassen.append(["UPDATE pordb_vid_neu SET original = %s", werte])
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
-            self.statusBar.showMessage('"' +original +'"' +self.trUtf8(" transferred into clipboard"))
+            self.statusBar.showMessage('"' +original +'"' +self.tr(" transferred into clipboard"))
         self.suchfeld.setFocus()
         
     def onCovergross(self):
@@ -1336,7 +1342,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     if self.aktuelle_ausgabe == "Darsteller":
                         painter.drawText(x, y, i[0])
                         y += 15
-                        painter.drawText(x, y, self.trUtf8("Count: ") +str(i[2]))
+                        painter.drawText(x, y, self.tr("Count: ") +str(i[2]))
                         y += 15
                         if i[5]:
                             painter.drawText(x, y, "Nation: " +i[5])
@@ -1355,15 +1361,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         y += 15
                         painter.drawText(x, y, "Partner: " +str(i[8]))
                     else:
-                        painter.drawText(x, y, self.trUtf8("Title: ") +i[0])
+                        painter.drawText(x, y, self.tr("Title: ") +i[0])
                         y += 15
-                        painter.drawText(x, y, self.trUtf8("Actor: ") +i[1])
+                        painter.drawText(x, y, self.tr("Actor: ") +i[1])
                         y += 15
                         painter.drawText(x, y, "CD: " +str(i[2]))
                         y += 15
-                        painter.drawText(x, y, self.trUtf8("Image: ") +i[3])
+                        painter.drawText(x, y, self.tr("Image: ") +i[3])
                         y += 15
-                        painter.drawText(x, y, self.trUtf8("watched: ") +i[4])
+                        painter.drawText(x, y, self.tr("watched: ") +i[4])
                         y += 15
                         if i[5]:
                             painter.drawText(x, y, "Original: " +i[5])
@@ -1405,15 +1411,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         x = 30
                         y += 15
                         if i[7]:
-                            painter.drawText(x, y, self.trUtf8("available: ") +i[7])
+                            painter.drawText(x, y, self.tr("available: ") +i[7])
                         else:
-                            painter.drawText(x, y, self.trUtf8("available: "))
+                            painter.drawText(x, y, self.tr("available: "))
                         if i[21]:
                             y += 15
-                            painter.drawText(x, y, self.trUtf8("Remarks: ") + i[21])
+                            painter.drawText(x, y, self.tr("Remarks: ") + i[21])
                         if i[22]:
                             y += 15
-                            painter.drawText(x, y, self.trUtf8("Rating: ") + i[22] * "*")                            
+                            painter.drawText(x, y, self.tr("Rating: ") + i[22] * "*")                            
                     y += 20
                     painter.drawLine(x, y, x + 600, y)
                     y += 20
@@ -1449,7 +1455,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         painter.drawText(x + 300, y, "- " +str(seite) +" -")
                         y += 15
                         
-                    painter.drawText(x, y, self.trUtf8("Statistics"))
+                    painter.drawText(x, y, self.tr("Statistics"))
                     y += 10
                     painter.drawLine(x, y, x + 60, y)
                     for i in range(self.listWidgetStatistik.count()):
@@ -1514,7 +1520,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         painter.drawText(x + 300, y, "- " +str(seite) +" -")
                         y += 15
                         
-                    painter.drawText(x, y, self.trUtf8("Movies (") +str(self.listWidgetFilme.count()) +")")
+                    painter.drawText(x, y, self.tr("Movies (") +str(self.listWidgetFilme.count()) +")")
                     y += 10
                     painter.drawLine(x, y, x + 60, y)
                     for i in range(self.listWidgetFilme.count()):
@@ -1531,7 +1537,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             elif self.tabWidget.currentIndex() == 2:
                 painter.drawText(x + 100, y, "- " +str(seite) +" -")
                 y += 15
-                painter.drawText(x, y, self.trUtf8("Search term: ") +self.lineEditSuchen.text())
+                painter.drawText(x, y, self.tr("Search term: ") +self.lineEditSuchen.text())
                 y += 15
                 painter.drawText(x, y, "In mpg_katalog: " +"_" *90)
                 y += 15
@@ -1589,8 +1595,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         
-        self.preview = QtGui.QPrintPreviewDialog(self.printer)
-        self.connect(self.preview, QtCore.SIGNAL("paintRequested (QPrinter *)"), paint_action)
+        self.preview = QtPrintSupport.QPrintPreviewDialog(self.printer)
+        self.preview.paintRequested.connect(paint_action)
         self.suchfeld.setFocus()
         if not self.preview.exec_():
             app.restoreOverrideCursor()
@@ -1640,8 +1646,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             lese_func = DBLesen(self, zu_lesen, ein)
             res = DBLesen.get_data(lese_func)
             if res[0][0]:
-                clipboard = QtGui.QApplication.clipboard()
-                clipboard.setText(res[0][0], mode=QtGui.QClipboard.Clipboard)
+                clipboard = QtWidgets.QApplication.clipboard()
+                clipboard.setText(res[0][0], mode=QtGui.clipboard.Clipboard)
         self.suchfeld.setFocus()
         
     def onGoToUrl(self):
@@ -1655,8 +1661,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 self.GetWebsite()
                 self.tabWidget.setCurrentIndex(3)
             else:
-                clipboard = QtGui.QApplication.clipboard()
-                clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
+                clipboard = QtWidgets.QApplication.clipboard()
+                clipboard.setText(ein.lstrip("="))
                 self.tabWidget.setCurrentIndex(3)
         self.suchfeld.setFocus()
         
@@ -1680,7 +1686,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).title().strip()
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems to be an invalid character in the search field"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
             return
         if not ein or ein == "=":
             return
@@ -1719,7 +1725,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             ein = int(self.suchfeld.currentText())
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("CD is not a number"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
             return
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         werte = []
@@ -1743,7 +1749,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).lower().strip()
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems to be an invalid character in the search field"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
             return
         if not ein:
             return
@@ -1769,7 +1775,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).replace("#","").lower().strip()
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems to be an invalid character in the search field"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
             return
         if not ein or ein == "=":
             return
@@ -1829,7 +1835,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         app.restoreOverrideCursor()
         
     def onHelp(self):
-        QtGui.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2017 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
+        QtWidgets.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2017 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
         self.suchfeld.setFocus()
         
     def ausgabe(self, ein, zu_lesen, werte = None):
@@ -1925,7 +1931,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if ein.startswith("SELECT "):
             pass
         else:
-            self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
+            self.statusBar.showMessage(self.tr("Search was: ") +ein)
             self.suchhistorie(ein)
         self.suchfeld.setCurrentIndex(-1)
         self.tabWidget.setCurrentIndex(0)
@@ -2038,7 +2044,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 else:
                     bild_liste.append(bild_element)
                 bild_element = "\n".join(bild_liste)
-                text += self.trUtf8("Title: ") +"\n" +titel +"\n" +self.trUtf8("Image: ") +"\n" +bild_element +"\n------------------------------\n"
+                text += self.tr("Title: ") +"\n" +titel +"\n" +self.tr("Image: ") +"\n" +bild_element +"\n------------------------------\n"
                 self.angezeigt_komplett = True
             else:
                 self.angezeigt_komplett = False
@@ -2046,9 +2052,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 text += darsteller_ausgabe +"\n------------------------------\n" 
             text += "CD=" +ort +" "
             if i[4] == 'x':
-                text += self.trUtf8("\nwatched")
+                text += self.tr("\nwatched")
             elif i[7] == 'x':
-                text += self.trUtf8("\nin stock")
+                text += self.tr("\nin stock")
             if i[20] == '0':
                 text += " SD"
             elif i[20] == '1':
@@ -2058,7 +2064,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             elif i[20] == '3':
                 text += " UltraHD"
             elif i[20] == '9':
-                text += self.trUtf8(" unknown")
+                text += self.tr(" unknown")
             zu_lesen = "SELECT * FROM pordb_original WHERE foreign_key_pordb_vid = %s"
             lese_func = DBLesen(self, zu_lesen, str(i[8]))
             res2 = DBLesen.get_data(lese_func)
@@ -2068,11 +2074,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 text += "\n!!!"
             if i[22]:
                 text += "\n\n" + i[22] * "* "
-            newitem = QtGui.QTableWidgetItem(bild, text)
+            newitem = QtWidgets.QTableWidgetItem(bild, text)
             if i[4] != " " and i[7] != " " and i[7] != None: # clip is present and watched
-                newitem.setTextColor(QtGui.QColor("green"))
+                newitem.setForeground(QtGui.QColor("green"))
             elif i[7] == " " or i[7] == None:
-                newitem.setTextColor(QtGui.QColor("red"))
+                newitem.setForeground(QtGui.QColor("red"))
             spalte += 1
             if spalte == self.columns:
                 spalte = 0
@@ -2176,7 +2182,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 try:
                     cd = int(self.suche_cd)
                 except:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("CD is not a number"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
                     return
                 if argument == 1:
                     zu_lesen += " AND "
@@ -2309,8 +2315,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.suchfeld.setCurrentIndex(-1)
         self.suchfeld.setFocus()
         self.listWidgetDarsteller.clearSelection()
-        self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Quantity", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Year", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonSortPartner.setText(QtWidgets.QApplication.translate("Dialog", "Quantity", None))
+        self.pushButtonSort.setText(QtWidgets.QApplication.translate("Dialog", "Year", None))
         app.restoreOverrideCursor()
     # end of onbildAnzeige
     
@@ -2398,7 +2404,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     if res1[0][0] != 0:
                         mengeCs.add(i[0])
                 except: 
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with partners: ") + zu_lesen + "(" + str(i[1]) + ", " + i[2] + ")")
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("There is something wrong with partners: ") + zu_lesen + "(" + str(i[1]) + ", " + i[2] + ")")
                     return
             if ethnic:
                 menge = mengeEthnic & mengeCs
@@ -2414,7 +2420,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.paarung.sort()
         self.listWidgetDarsteller.clear()
         self.listWidgetDarsteller.addItems(self.paarung)
-        self.labelText.setText(self.trUtf8("Partner: ") +str(len(self.paarung)))
+        self.labelText.setText(self.tr("Partner: ") +str(len(self.paarung)))
         if not ethnic and not cs:
             werte = []
             werte.append(len(self.paarung))
@@ -2430,7 +2436,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).strip().title()
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Illegal characters in search field"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Illegal characters in search field"))
             return
         if not ein and not ignorelist:
             selected = self.listWidgetDarsteller.selectedItems()
@@ -2475,7 +2481,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             lese_func = DBLesen(self, zu_lesen, "%" + eingabe + "%")
             res1 = DBLesen.get_data(lese_func)
             if len(res) == 0 and len(res1) > 0:
-                message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Actor has been found as pseudonym only!"))
+                message = QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Actor has been found as pseudonym only!"))
             if res1:
                 for i in res1:
                     werte = []
@@ -2504,7 +2510,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.listWidgetDarsteller.clear()
             for i in res:
                 self.listWidgetDarsteller.addItem(i[0])
-            self.labelText.setText("<font color=red>" +self.trUtf8("Please select:") +"</font>")
+            self.labelText.setText("<font color=red>" +self.tr("Please select:") +"</font>")
             self.suchfeld.setCurrentIndex(-1)
         elif len(res) == 1:
             self.labelDarsteller.setText(res[0][0])
@@ -2524,13 +2530,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     self.comboBoxNation.setCurrentIndex(i)
                 except:
                     self.comboBoxNation.setCurrentIndex(-1)
-                    self.labelFehler.setText("<font color=red>" +self.trUtf8("Data collection of actor seems to be not complete, nation: ") +res[0][5]  +"</font>")
+                    self.labelFehler.setText("<font color=red>" +self.tr("Data collection of actor seems to be not complete, nation: ") +res[0][5]  +"</font>")
             else:
                 if res[0][5] and res[0][5][0:1] != "-":
                     nation = res[0][5]
                 else:
                     nation = ""
-                    self.labelFehler.setText("<font color=red>" +self.trUtf8("Data collection of actor seems to be not complete, nation: ") +nation  +"</font>")
+                    self.labelFehler.setText("<font color=red>" +self.tr("Data collection of actor seems to be not complete, nation: ") +nation  +"</font>")
             if res[0][6] != None:
                 self.lineEditTattoo.setText(res[0][6].strip())
             else:
@@ -2575,7 +2581,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     farbe = "<font color=red>"
                 else:
                     farbe = "<font color=black>"
-                self.labelAktiv.setText(farbe +self.trUtf8("active : ") +aktiv +"</font>")
+                self.labelAktiv.setText(farbe +self.tr("active : ") +aktiv +"</font>")
             else:
                 self.labelAktiv.clear()
         else:
@@ -2589,7 +2595,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 ein = "=" + res1[0][1].strip()
                 res = self.darsteller_lesen(ein)
             else:
-                self.labelFehler.setText("<font color=red>" +self.trUtf8("Actor not available") +"</font>")
+                self.labelFehler.setText("<font color=red>" +self.tr("Actor not available") +"</font>")
         self.suchfeld.setFocus()
         return res
     # end of darsteller_lesen
@@ -2601,7 +2607,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             ein = int(self.lineEditAnzahl.text())
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Quantity is not a number"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Quantity is not a number"))
             self.lineEditAnzahl.setSelection(0, len(self.lineEditAnzahl.text()))
             return
         # update-Anweisung aufbauen
@@ -2610,7 +2616,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             try:
                 geboren = datetime.date(int(geboren[0]), int(geboren[1]),int(geboren[2]))
             except ValueError:
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid birthday"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Invalid birthday"))
                 return
             geboren = str(self.lineEditGeboren.text())
         else:
@@ -2664,14 +2670,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("utf-8")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
                 return
             app.restoreOverrideCursor()
             bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs, name = res[0][0])
             bilddialog.exec_()
         else:
-            clipboard = QtGui.QApplication.clipboard()
-            clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
+            clipboard = QtWidgets.QApplication.clipboard()
+            clipboard.setText(ein.lstrip("="), mode=clipboard.Clipboard)
             self.tabWidget.setCurrentIndex(3)
         
         self.darsteller_lesen(ein)
@@ -2689,7 +2695,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("utf-8")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
                 return
             
             actordata = ActorData(seite)
@@ -2698,16 +2704,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             actor_name = ActorData.actor_name(actordata)
             if not actor_name:
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems IAFD site is offline"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems IAFD site is offline"))
                 return
             if res[0][0].lower().strip() != actor_name.lower():
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
+                message = QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
             
             # Darsteller Geboren
             geboren = ActorData.actor_born(actordata)
-            monat = monate.get(geboren[0:geboren.find(" ")], self.trUtf8("not available"))
-            if monat != self.trUtf8("not available"):
+            monat = monate.get(geboren[0:geboren.find(" ")], self.tr("not available"))
+            if monat != self.tr("not available"):
                 tag = geboren[geboren.find(" ")+1:geboren.find(",")]
                 jahr = geboren[geboren.find(", ")+2:]
                 geboren = jahr +"-" + monat + "-" + tag
@@ -2736,7 +2742,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 if actor_birthplace == "No data":
                     actor_birthplace = "-"
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors country in \nPorDB --> ({0}) \ndiffers from actors country in the \nIAFD --> ({1}, birthplace: {2}).\nMaybe you should check the actor in PorDB.").format(res[0][5].strip(), res_iso_land[0][0], actor_birthplace))
+                message = QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors country in \nPorDB --> ({0}) \ndiffers from actors country in the \nIAFD --> ({1}, birthplace: {2}).\nMaybe you should check the actor in PorDB.").format(res[0][5].strip(), res_iso_land[0][0], actor_birthplace))
             
             # Darsteller Anzahl Filme
             filme = ActorData.actor_movies(actordata)
@@ -2748,8 +2754,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 
             # Actors hair color
             hair = ActorData.actor_hair(actordata)
-            haarfarbe = haarfarben.get(hair, self.trUtf8("not available"))
-            if haarfarbe != self.trUtf8("not available"):
+            haarfarbe = haarfarben.get(hair, self.tr("not available"))
+            if haarfarbe != self.tr("not available"):
                 werte = []
                 werte.append(haarfarbe)
                 werte.append(res[0][0])
@@ -2802,12 +2808,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         name = str(self.labelDarsteller.text())
         if not name:
             return
-        messageBox = QtGui.QMessageBox()
-        messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-        messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-        messageBox.setWindowTitle(self.trUtf8("Actor ") +name.strip() +self.trUtf8(" will be deleted now"))
-        messageBox.setIcon(QtGui.QMessageBox.Question)
-        messageBox.setText(self.trUtf8("Should the actor really be deleted?"))
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+        messageBox.addButton(self.tr("No"), QtWidgets.QMessageBox.RejectRole)
+        messageBox.setWindowTitle(self.tr("Actor ") +name.strip() +self.tr(" will be deleted now"))
+        messageBox.setIcon(QtWidgets.QMessageBox.Question)
+        messageBox.setText(self.tr("Should the actor really be deleted?"))
         message = messageBox.exec_()
         if message == 0:
             zu_erfassen = []
@@ -2826,7 +2832,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 os.remove(datei_alt)
             except:
                 pass
-            self.statusBar.showMessage(self.trUtf8("Actor ") +name.strip() +self.trUtf8(" deleted"))
+            self.statusBar.showMessage(self.tr("Actor ") +name.strip() +self.tr(" deleted"))
         self.labelFehler.clear()
         self.suchfeld.setFocus()
     # end of onDarstellerloeschen
@@ -2878,7 +2884,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             except:
                 stars = 0
             if j != 1:
-                self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis_trash, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+                self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), self.verzeichnis_trash, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
             eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, remarks, stars, "", undo, original_cover=trash_cover, high_definition = definition)
         else:
             if not cover_anlegen:
@@ -2906,7 +2912,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         j += 1
                         self.file = os.path.join(self.verzeichnis, i)
                 if j != 1:
-                    self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+                    self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), self.verzeichnis, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
                     if self.file:
                         self.verzeichnis = os.path.dirname(str(self.file))
             # In case we have just stored a cover, this part of program is already done
@@ -3112,7 +3118,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append(self.sucheD_nation[0:2])
     
             # Tattoo
-            if self.sucheD_tattoo == self.trUtf8("yes"):
+            if self.sucheD_tattoo == self.tr("yes"):
                 if argument == 1:
                     zu_lesen += " AND "
                 argument = 1
@@ -3120,7 +3126,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 werte.append("-")
                 werte.append(" ")
                 werte.append("")
-            elif self.sucheD_tattoo == self.trUtf8("no"):
+            elif self.sucheD_tattoo == self.tr("no"):
                 if argument == 1:
                     zu_lesen += " AND "
                 argument = 1
@@ -3237,7 +3243,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             if not os.path.isfile(dateiname):
                 dateiname = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
             bild = QtGui.QIcon(dateiname)
-            newitem = QtGui.QTableWidgetItem(bild, text)
+            newitem = QtWidgets.QTableWidgetItem(bild, text)
             spalte += 1
             if spalte == self.columns:
                 spalte = 0
@@ -3258,10 +3264,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetBilder.setVerticalHeaderLabels(vertical_header)
         self.tableWidgetBilder.resizeRowsToContents()
         self.tableWidgetBilder.resizeColumnsToContents()
-        self.anzahl.setText(self.trUtf8("Quantity: ") +str(len(self.aktuelles_res)))
+        self.anzahl.setText(self.tr("Quantity: ") +str(len(self.aktuelles_res)))
         seite_von = int(round(self.start_bilder / self.anzahl_bilder + 1))
         seite_bis = int(round(len(self.aktuelles_res) / float(self.anzahl_bilder) + 0.499999))
-        self.labelSeite.setText(self.trUtf8("Page ") +str(seite_von) + self.trUtf8(" of ") +str(seite_bis))
+        self.labelSeite.setText(self.tr("Page ") +str(seite_von) + self.tr(" of ") +str(seite_bis))
         if seite_von == 1:
             self.actionFirst.setEnabled(False)
             self.actionPrev.setEnabled(False)
@@ -3329,9 +3335,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         cs.append(cs_summe)
         stats = []
         k = -1
-        for i in ["Facial......", "Handjob.....", self.trUtf8("Tits........"), "Creampie....", "Analcreampie", "Oralcreampie", self.trUtf8("Cunt........"), self.trUtf8("Belly......."), self.trUtf8("Ass........."), self.trUtf8("Others......"), self.trUtf8("Summary.....")]:
+        for i in ["Facial......", "Handjob.....", self.tr("Tits........"), "Creampie....", "Analcreampie", "Oralcreampie", self.tr("Cunt........"), self.tr("Belly......."), self.tr("Ass........."), self.tr("Others......"), self.tr("Summary.....")]:
             k += 1
-            if i == self.trUtf8("Summary....."):
+            if i == self.tr("Summary....."):
                 stats.append("________________________")
                 stats.append("")
             try:
@@ -3367,7 +3373,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 res = DBLesen.get_data(lese_func)
                 if res:
                     app.restoreOverrideCursor()
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("New name already exists as alias, please first edit/delete the aliases"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("New name already exists as alias, please first edit/delete the aliases"))
                     return
                 werte = []
                 if vorname:
@@ -3477,7 +3483,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     werte.append(i[1])
                     zu_erfassen.append(["UPDATE pordb_vid SET darsteller = %s WHERE cd = %s AND bild = %s", werte])
 
-                self.statusBar.showMessage(str(len(res2)) + self.trUtf8(" lines changed"))
+                self.statusBar.showMessage(str(len(res2)) + self.tr(" lines changed"))
                 
                 zu_lesen = "SELECT * FROM pordb_partner WHERE darsteller = %s"
                 lese_func = DBLesen(self, zu_lesen, eingabe)
@@ -3525,14 +3531,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                             os.remove(datei_neu)
                             os.rename(datei_alt, datei_neu)
                         except:
-                            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+                            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
                     elif datei == 2:
                         try:
                             os.remove(datei_alt)
                         except:
-                            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+                            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
                     else:
-                        message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Renaming canceled"))
+                        message = QtWidgets.QMessageBox.information(self, self.tr("Information "), self.tr("Renaming canceled"))
                         self.suchfeld.setCurrentIndex(-1)
                         self.suchfeld.setFocus()
                         return
@@ -3540,7 +3546,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     try:
                         os.rename(datei_alt, datei_neu)
                     except:
-                        message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+                        message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
                         
         if neuer_name:
             self.labelDarsteller.setText(neuer_name.replace("''", "'").title())
@@ -3576,7 +3582,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 filme.append(i[0].strip())
         self.listWidgetFilme.clear()
         self.listWidgetFilme.addItems(filme)
-        self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Year", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonSort.setText(QtWidgets.QApplication.translate("Dialog", "Year", None))
     # end of onDarstellerFilme
     
     def onPartnerSortieren(self):
@@ -3585,17 +3591,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             return int(wert1)
                 
         text = self.pushButtonSortPartner.text()
-        if text == self.trUtf8("Quantity"):
+        if text == self.tr("Quantity"):
             items = []
             for i in range(self.listWidgetDarsteller.count()):
                 items.append(str(self.listWidgetDarsteller.item(i).text()).strip())
             items.sort(key = vergleich, reverse=True)
             self.listWidgetDarsteller.clear()
             self.listWidgetDarsteller.addItems(items)
-            self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Partner", None, QtGui.QApplication.UnicodeUTF8))
+            self.pushButtonSortPartner.setText(QtWidgets.QApplication.translate("Dialog", "Partner", None))
         else:
             self.listWidgetDarsteller.sortItems()
-            self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Quantity", None, QtGui.QApplication.UnicodeUTF8))
+            self.pushButtonSortPartner.setText(QtWidgets.QApplication.translate("Dialog", "Quantity", None))
         self.suchfeld.setFocus()
     # end of onPartnerSortieren
         
@@ -3607,17 +3613,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 return 0
                 
         text = self.pushButtonSort.text()
-        if text == self.trUtf8("Year"):
+        if text == self.tr("Year"):
             items = []
             for i in range(self.listWidgetFilme.count()):
                 items.append(str(self.listWidgetFilme.item(i).text()).strip())
             items.sort(key = vergleich)
             self.listWidgetFilme.clear()
             self.listWidgetFilme.addItems(items)
-            self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Title", None, QtGui.QApplication.UnicodeUTF8))
+            self.pushButtonSort.setText(QtWidgets.QApplication.translate("Dialog", "Title", None))
         else:
             self.listWidgetFilme.sortItems()
-            self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Year", None, QtGui.QApplication.UnicodeUTF8))
+            self.pushButtonSort.setText(QtWidgets.QApplication.translate("Dialog", "Year", None))
         self.suchfeld.setFocus()
     # end of onFilmeSortieren
     
@@ -3678,7 +3684,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             except:
                 self.lineEditFilesizeFrom.setFocus()
                 self.lineEditFilesizeFrom.selectAll()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Only digits allowed as filesize"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Only digits allowed as filesize"))
                 return
         if self.lineEditFilesizeTo.text():
             try:
@@ -3686,7 +3692,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             except:
                 self.lineEditFilesizeTo.setFocus()
                 self.lineEditFilesizeTo.selectAll()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Only digits allowed as filesize"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Only digits allowed as filesize"))
                 return
         
         if not ein and not filesizefrom and not filesizeto:
@@ -3715,7 +3721,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 if groesse2 <= groesse1:
                     self.lineEditFilesizeTo.setFocus()
                     self.lineEditFilesizeTo.selectAll()
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Filesize to must be bigger than filesize from"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Filesize to must be bigger than filesize from"))
                     return
                     
             else:
@@ -3731,7 +3737,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         zu_lesen += " ORDER BY file"
         if len(ein) < 3 and not filesizefrom:
             self.lineEditSuchen.setFocus()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter at least 3 characters in the searchfield"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please enter at least 3 characters in the searchfield"))
             return
             
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -3758,10 +3764,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             for j in range(len(zeilen[i])):
                 mb = 0
                 try:    # fieldtype is char
-                    newitem = QtGui.QTableWidgetItem(zeilen[i][j].strip())
+                    newitem = QtWidgets.QTableWidgetItem(zeilen[i][j].strip())
                 except:
                     try:    # fieldtype is int
-                        newitem = QtGui.QTableWidgetItem()
+                        newitem = QtWidgets.QTableWidgetItem()
                         if type(zeilen[i][j]) == int:
                             wert = locale.format("%d", zeilen[i][j], grouping=True)
                             newitem.setData(0, wert)
@@ -3771,7 +3777,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                         else:
                             newitem.setData(0, str(int(zeilen[i][j])))
                     except:    # fieldtype is None
-                        newitem = QtGui.QTableWidgetItem(" ")
+                        newitem = QtWidgets.QTableWidgetItem(" ")
                 self.tableWidget.setItem(i, j, newitem)
         try:
             self.tableWidget.resizeColumnsToContents()
@@ -3781,7 +3787,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             pass
         self.tableWidget.scrollToTop()
         zeilen = len(rows)
-        self.labelMpgGefunden.setText(str(zeilen) +self.trUtf8(" found"))
+        self.labelMpgGefunden.setText(str(zeilen) +self.tr(" found"))
         self.labelMpgFound.clear()
             
         self.tableWidget1.clearContents()
@@ -3826,12 +3832,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             for i in range(len(res)):
                 for j in range(len(res[0])):
                     try:    # fieldtype is char
-                        newitem = QtGui.QTableWidgetItem(res[i][j].strip())
+                        newitem = QtWidgets.QTableWidgetItem(res[i][j].strip())
                     except:
                         try:    # fieldtype is int
-                            newitem = QtGui.QTableWidgetItem(str(res[i][j]))
+                            newitem = QtWidgets.QTableWidgetItem(str(res[i][j]))
                         except:    # fieldtype is None
-                            newitem = QtGui.QTableWidgetItem(" ")
+                            newitem = QtWidgets.QTableWidgetItem(" ")
                     self.tableWidget1.setItem(i, j, newitem)
             try:
                 self.tableWidget1.resizeColumnsToContents()
@@ -3841,7 +3847,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 pass
             self.tableWidget1.scrollToTop()
             zeilen = len(res)
-            self.labelVidGefunden.setText(str(zeilen) +self.trUtf8(" found"))
+            self.labelVidGefunden.setText(str(zeilen) +self.tr(" found"))
         else:
             self.labelVidGefunden.clear()
             self.tableWidget1.setColumnCount(0)
@@ -3854,12 +3860,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
     def onSearchMpg(self):
         if self.searchResultsMpg:
             anzahl = self.searchResults(self.lineEditSearchMpg, self.tableWidget, self.searchResultsMpg, (2,))
-            self.labelMpgFound.setText(self.trUtf8("found: ") + str(anzahl))
+            self.labelMpgFound.setText(self.tr("found: ") + str(anzahl))
         
     def onSearchVid(self):
         if self.searchResultsVid:
             anzahl = self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
-            self.labelVidFound.setText(self.trUtf8("found: ") + str(anzahl))
+            self.labelVidFound.setText(self.tr("found: ") + str(anzahl))
             
     def onFilterMpg(self):
         self.onSuchen(str(self.lineEditSearchMpg.text()).lower(), str(self.lineEditSearchVid.text()).lower())
@@ -3893,14 +3899,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if zu_erfassen:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Information "), str(anzahl_werte) + self.trUtf8(" line(s) deleted"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Information "), str(anzahl_werte) + self.tr(" line(s) deleted"))
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         self.onSuchen()
         app.restoreOverrideCursor()
         
     def searchResults(self, lineEdit, tableWidget, rows, column):
         tableWidget.clearSelection()
-        tableWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
+        tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         suchbegriff = str(lineEdit.text()).lower()
         item_scroll = None
         row_scroll = 0
@@ -3977,7 +3983,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         except:
             fehler = True
         if fehler:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems IAFD site is offline"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems IAFD site is offline"))
             return
 
         bilddialog.exec_()
@@ -4047,20 +4053,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             res = DBLesen.get_data(lese_func)
             if res[0][0]:
                 gesamt += res[0][0]
-            newitem = QtGui.QTableWidgetItem(self.cumshots[i])
+            newitem = QtWidgets.QTableWidgetItem(self.cumshots[i])
             j += 1
             self.tableWidgetStatistik.setItem(j, 0, newitem)
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             if res[0][0]:
                 newitem.setData(0, res[0][0])
             else:
                 newitem.setData(0, 0)
             newitem.setTextAlignment(QtCore.Qt.AlignRight)
             self.tableWidgetStatistik.setItem(j, 1, newitem)
-        newitem = QtGui.QTableWidgetItem(self.trUtf8("Summary"))
+        newitem = QtWidgets.QTableWidgetItem(self.tr("Summary"))
         j += 1
         self.tableWidgetStatistik.setItem(j, 0, newitem)
-        newitem = QtGui.QTableWidgetItem()
+        newitem = QtWidgets.QTableWidgetItem()
         newitem.setData(0, gesamt)
         newitem.setTextAlignment(QtCore.Qt.AlignRight)
         self.tableWidgetStatistik.setItem(j, 1, newitem)
@@ -4074,7 +4080,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             anzahl = int(self.lineEditAnzahlW.text())
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Quantity is not a number"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Quantity is not a number"))
             return
         werte = []
         werte.append(anzahl)
@@ -4088,7 +4094,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         try:
             anzahl = int(self.lineEditAnzahlM.text())
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Quantity is not a number"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Quantity is not a number"))
             return
         werte = []
         werte.append(anzahl)
@@ -4109,21 +4115,22 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         self.tableWidgetStatistik.setAlternatingRowColors(True)
         j = -1
         for i in res:
-            newitem = QtGui.QTableWidgetItem(i[0])
+            newitem = QtWidgets.QTableWidgetItem(i[0])
             j += 1
             self.tableWidgetStatistik.setItem(j, 0, newitem)
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, i[1])
             newitem.setTextAlignment(QtCore.Qt.AlignRight)
+            newitem.setTextAlignment(QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, 1, newitem)
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, i[2])
             newitem.setTextAlignment(QtCore.Qt.AlignRight)
             self.tableWidgetStatistik.setItem(j, 2, newitem)
             if i[3]:
-                newitem = QtGui.QTableWidgetItem(i[3])
+                newitem = QtWidgets.QTableWidgetItem(i[3])
             else:
-                newitem = QtGui.QTableWidgetItem("")
+                newitem = QtWidgets.QTableWidgetItem("")
             self.tableWidgetStatistik.setItem(j, 3, newitem)
             try:
                 geboren = (str(i[4])[0:10]).split("-")
@@ -4132,20 +4139,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 tag = int(geboren[2])
                 if jahr != 1:
                     alter = age(datetime.date(jahr, monat, tag))
-                    newitem = QtGui.QTableWidgetItem(str(alter))
+                    newitem = QtWidgets.QTableWidgetItem(str(alter))
                 else:
-                    newitem = QtGui.QTableWidgetItem()
+                    newitem = QtWidgets.QTableWidgetItem()
             except:
-                newitem = QtGui.QTableWidgetItem()
+                newitem = QtWidgets.QTableWidgetItem()
             self.tableWidgetStatistik.setItem(j, 4, newitem)
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             if i[5]:
                 newitem.setData(0, i[5])
             else:
                 newitem.setData(0, 0)
             newitem.setTextAlignment(QtCore.Qt.AlignRight)
             self.tableWidgetStatistik.setItem(j, 5, newitem)
-        self.tableWidgetStatistik.setHorizontalHeaderLabels([self.trUtf8("Actor"), self.trUtf8("Quantity"), self.trUtf8("Partner"), self.trUtf8("Nation"), self.trUtf8("Age"), self.trUtf8("Movies")])
+        self.tableWidgetStatistik.setHorizontalHeaderLabels([self.tr("Actor"), self.tr("Quantity"), self.tr("Partner"), self.tr("Nation"), self.tr("Age"), self.tr("Movies")])
         self.tableWidgetStatistik.resizeColumnsToContents()
         self.tableWidgetStatistik.resizeRowsToContents()
         self.tableWidgetStatistik.setSortingEnabled(True)
@@ -4158,7 +4165,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         lese_func = DBLesen(self, zu_lesen)
         res = DBLesen.get_data(lese_func)
         try:
-            QtGui.QMessageBox.information(self, "PorDB", self.trUtf8("Quantity of movies: ") +str(res[0][0]))
+            QtWidgets.QMessageBox.information(self, "PorDB", self.tr("Quantity of movies: ") +str(res[0][0]))
         except:
             pass
         self.suchfeld.setFocus()
@@ -4210,12 +4217,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         for i in jahre_titel:
             j += 1
             k = 0
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, i)
             newitem.setTextAlignment(QtCore.Qt.AlignRight)
             self.tableWidgetStatistik.setItem(j, k, newitem)
             k = 1
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             try:
                 newitem.setData(0, jahre[i])
             except:
@@ -4228,11 +4235,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 pass
         if datum_alt != "1900-01-01":
             k += 1
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, gesamt)
             newitem.setTextAlignment(QtCore.Qt.AlignRight)
             self.tableWidgetStatistik.setItem(j, k, newitem)
-        self.tableWidgetStatistik.setHorizontalHeaderLabels([self.trUtf8("Year"), self.trUtf8("Quantity")])
+        self.tableWidgetStatistik.setHorizontalHeaderLabels([self.tr("Year"), self.tr("Quantity")])
         self.tableWidgetStatistik.resizeColumnsToContents()
         self.tableWidgetStatistik.resizeRowsToContents()
         self.tableWidgetStatistik.setSortingEnabled(True)
@@ -4268,7 +4275,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             seite = urllib.request.urlopen(FILE_VERSION).read()
         except (urllib.error.URLError, socket.timeout) as e:
             app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), str(e))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
             return            
     
         if seite:
@@ -4284,12 +4291,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     desktop_datei = os.path.join(desktop_directory, "PorDB.desktop")
                     if not os.path.exists(desktop_directory):
                         os.makedirs(desktop_directory)
-                    messageBox = QtGui.QMessageBox()
-                    messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-                    messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-                    messageBox.setWindowTitle(self.trUtf8("Menu entry"))
-                    messageBox.setIcon(QtGui.QMessageBox.Question)
-                    messageBox.setText(self.trUtf8("Should I create a menu entry?"))
+                    messageBox = QtWidgets.QMessageBox()
+                    messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+                    messageBox.addButton(self.tr("No"), QtWidgets.QMessageBox.RejectRole)
+                    messageBox.setWindowTitle(self.tr("Menu entry"))
+                    messageBox.setIcon(QtWidgets.QMessageBox.Question)
+                    messageBox.setText(self.tr("Should I create a menu entry?"))
                     message = messageBox.exec_()
                     if message == 0:
                         try:
@@ -4309,16 +4316,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                             datei.write("X-KDE-SubstituteUID=false" + "\n")
                             datei.write("X-KDE-Username=" + "\n")
                             datei.close()
-                            message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Menu entry added under graphics"))
+                            message = QtWidgets.QMessageBox.information(self, self.tr("Information "), self.tr("Menu entry added under graphics"))
                         except:
-                            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Adding of menu entry failed"))
+                            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Adding of menu entry failed"))
                             
                     python = sys.executable
                     os.execl(python, python, * sys.argv)
             else:
                 if not self.initial_run:
                     app.restoreOverrideCursor()
-                    message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("You have the latest version"))
+                    message = QtWidgets.QMessageBox.information(self, self.tr("Information "), self.tr("You have the latest version"))
                     self.suchfeld.setFocus()
         app.restoreOverrideCursor()
         
@@ -4363,14 +4370,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         app.restoreOverrideCursor()
         self.suchfeld.setFocus()
-        message = QtGui.QMessageBox(self)
-        message.setText(self.trUtf8("Backup in directory ") +self.verzeichnis_original + self.trUtf8(" created"))
+        message = QtWidgets.QMessageBox(self)
+        message.setText(self.tr("Backup in directory ") +self.verzeichnis_original + self.tr(" created"))
         message.exec_()
         
     def onRestore(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         import tarfile
-        nachricht = self.trUtf8("No files found for restoring")
+        nachricht = self.tr("No files found for restoring")
         
         # Restore the database
         datei = os.path.join(self.verzeichnis_original, DBNAME + ".sql")
@@ -4382,12 +4389,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             #os.remove(datei)
         else:
             app.restoreOverrideCursor()
-            message = QtGui.QMessageBox(self)
-            message.setText(self.trUtf8("No backup file in directory ") +self.verzeichnis_original + self.trUtf8(" found"))
+            message = QtWidgets.QMessageBox(self)
+            message.setText(self.tr("No backup file in directory ") +self.verzeichnis_original + self.tr(" found"))
             message.exec_()
             return
         
-        nachricht = self.trUtf8("Database restore was successful, you can now delete your backup file")
+        nachricht = self.tr("Database restore was successful, you can now delete your backup file")
 
         # Restore the picture directory
         parts = os.listdir(self.verzeichnis)
@@ -4415,8 +4422,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                     tar.extractall(path=self.verzeichnis)
                 except:
                     self.suchfeld.setFocus()
-                    message = QtGui.QMessageBox(self)
-                    message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. In most cases there is a file with an invalid creation/change date."))
+                    message = QtWidgets.QMessageBox(self)
+                    message.setText(self.tr("Restore from directory ") +self.verzeichnis + self.tr(" failed. In most cases there is a file with an invalid creation/change date."))
                     message.exec_()
                     app.restoreOverrideCursor()
                     return
@@ -4424,17 +4431,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             else:
                 self.suchfeld.setFocus()
                 app.restoreOverrideCursor()
-                message = QtGui.QMessageBox(self)
-                message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. No backup files found."))
+                message = QtWidgets.QMessageBox(self)
+                message.setText(self.tr("Restore from directory ") +self.verzeichnis + self.tr(" failed. No backup files found."))
                 message.exec_()
                 return
             if dateien_gefunden:
                 nachricht += "; "
-            nachricht += self.trUtf8("Backup in directory ") +self.verzeichnis + self.trUtf8(" restored. You can now copy the complete directory to its origin place.")
+            nachricht += self.tr("Backup in directory ") +self.verzeichnis + self.tr(" restored. You can now copy the complete directory to its origin place.")
 
         app.restoreOverrideCursor()
         self.suchfeld.setFocus()
-        message = QtGui.QMessageBox(self)
+        message = QtWidgets.QMessageBox(self)
         message.setText(nachricht)
         message.exec_()
         
@@ -4443,8 +4450,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         os.system("vacuumdb" + " --analyze " + DBNAME)
         app.restoreOverrideCursor()
         self.suchfeld.setFocus()
-        message = QtGui.QMessageBox(self)
-        message.setText(self.trUtf8("Maintenance executed"))
+        message = QtWidgets.QMessageBox(self)
+        message.setText(self.tr("Maintenance executed"))
         message.exec_()
         
     def device_fuellen(self):
@@ -4465,12 +4472,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             
     def onStartScan(self):
         if not self.comboBoxDevice.currentText():
-            message = QtGui.QMessageBox(self)
-            message.setText(self.trUtf8("Select device"))
+            message = QtWidgets.QMessageBox(self)
+            message.setText(self.tr("Select device"))
             message.exec_()
             return
             
-        self.verzeichnis_tools = str(QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), "/"))
+        self.verzeichnis_tools = str(QtWidgets.QFileDialog.getExistingDirectory(self, self.tr("Select directory"), "/"))
         if self.verzeichnis_tools:
             self.dateien = os.listdir(self.verzeichnis_tools)
             self.dateien.sort()
@@ -4479,23 +4486,28 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         for i in self.dateien:
             if len(i) > 256:
-                message = QtGui.QMessageBox(self)
-                message.setText(self.trUtf8("Error, filename ") +i +self.trUtf8(" to long"))
+                message = QtWidgets.QMessageBox(self)
+                message.setText(self.tr("Error, filename ") +i +self.tr(" to long"))
                 message.exec_()
                 return
             
-        self.threadPool = []
+        #self.threadPool = []
         
         # generic thread using signal
-        self.threadPool.append(GenericThread(self.addFiles))
+        #self.threadPool.append(GenericThread(self.addFiles))
         # signal for updating current file
-        self.disconnect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
-        self.connect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
+        #self.disconnect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
+        #self.connect(self, QtCore.SIGNAL("add(QString)"), self.updateFileLabel)
         # signal for finished
-        self.disconnect(self, QtCore.SIGNAL("finished"), self.output_result)
-        self.connect(self, QtCore.SIGNAL("finished"), self.output_result)
+        #self.disconnect(self, QtCore.SIGNAL("finished"), self.output_result)
+        #self.connect(self, QtCore.SIGNAL("finished"), self.output_result)
         # start thread
-        self.threadPool[len(self.threadPool)-1].start()
+        #self.threadPool[len(self.threadPool)-1].start()
+        
+        app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.addFiles()
+        self.output_result()
+        app.restoreOverrideCursor()
         
     # end of onStartScan
     
@@ -4505,7 +4517,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         
         for i in self.dateien:
             if os.path.isfile(os.path.join(self.verzeichnis_tools, i.strip())):
-                self.emit(QtCore.SIGNAL("add(QString)"), i)
+                #self.emit(QtCore.SIGNAL("add(QString)"), i)
                 zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE file = %s OR groesse = %s"
                 lese_func = DBLesen(self, zu_lesen, (i, str(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip())))))
                 res = DBLesen.get_data(lese_func)
@@ -4533,7 +4545,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)
         self.files_added = str(len(zu_erfassen))
-        self.emit(QtCore.SIGNAL("finished"))
+        #self.emit(QtCore.SIGNAL("finished"))
         
     # end of addFiles
     
@@ -4548,7 +4560,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         counter = 0
         for j in self.res_duplicates:
             # Checkbox
-            newitem = QtGui.QTableWidgetItem()
+            newitem = QtWidgets.QTableWidgetItem()
             newitem.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsUserCheckable)
             if os.path.join(self.verzeichnis_tools, j[5].strip()) == j[2].strip() and str(j[4]) == str(os.path.getsize(os.path.join(self.verzeichnis_tools, j[5].strip()))):
                 newitem.setCheckState(QtCore.Qt.Checked)
@@ -4557,38 +4569,38 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
                 newitem.setCheckState(QtCore.Qt.Unchecked)
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(j[2].strip())     # Filename
+            newitem = QtWidgets.QTableWidgetItem(j[2].strip())     # Filename
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(j[0].strip())        # Device
+            newitem = QtWidgets.QTableWidgetItem(j[0].strip())        # Device
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(j[1].strip())        # Directory
+            newitem = QtWidgets.QTableWidgetItem(j[1].strip())        # Directory
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(str(j[4]))    # Size in database
+            newitem = QtWidgets.QTableWidgetItem(str(j[4]))    # Size in database
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(j[5].strip())     # new Filename
+            newitem = QtWidgets.QTableWidgetItem(j[5].strip())     # new Filename
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.column += 1
-            newitem = QtGui.QTableWidgetItem(str(j[6]))    # Size of new file
+            newitem = QtWidgets.QTableWidgetItem(str(j[6]))    # Size of new file
             self.tableWidgetDubletten.setItem(self.row, self.column, newitem)
             self.row += 1
             self.column = 0
             
-        self.tableWidgetDubletten.setHorizontalHeaderLabels([self.trUtf8("delete"), self.trUtf8("File in database"), self.trUtf8("Device"), self.trUtf8("Directory"), self.trUtf8("Size in database"), self.trUtf8("new file"), self.trUtf8("Size of new file")])
+        self.tableWidgetDubletten.setHorizontalHeaderLabels([self.tr("delete"), self.tr("File in database"), self.tr("Device"), self.tr("Directory"), self.tr("Size in database"), self.tr("new file"), self.tr("Size of new file")])
         self.tableWidgetDubletten.resizeColumnsToContents()
         self.tableWidgetDubletten.resizeRowsToContents()
         
-        message = self.files_added + self.trUtf8(" File(s) collected")
+        message = self.files_added + self.tr(" File(s) collected")
         if len(self.res_duplicates) > 0:
             self.pushButtonDeleteDuplicates.setEnabled(True)
             self.pushButtonDeselect.setEnabled(True)
             if counter > 0:
-                message += ", " +str(counter) +self.trUtf8(" Duplicate(s) found") 
+                message += ", " +str(counter) +self.tr(" Duplicate(s) found") 
             else:
-                message += ", " +str(len(self.res_duplicates)) +self.trUtf8(" Duplicate(s) found, but some of them only in relation to file size")
+                message += ", " +str(len(self.res_duplicates)) +self.tr(" Duplicate(s) found, but some of them only in relation to file size")
         
         self.labelMessage.setText(message)
         self.suchfeld.setFocus()
@@ -4616,7 +4628,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
         if counter > 0:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
-            message = str(counter) +self.trUtf8(" File(s) deleted")
+            message = str(counter) +self.tr(" File(s) deleted")
         else:
             message = ""
         self.statusBar.showMessage(message)
@@ -4628,7 +4640,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
             self.tableWidgetDubletten.item(i, 0).setCheckState(QtCore.Qt.Unchecked)
         self.suchfeld.setFocus()
         
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 app.setOrganizationName("pypordb")
 app.setOrganizationDomain("pypordb")
 locale = QtCore.QLocale.system().name()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -21,21 +21,21 @@
 
 import time
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 from pordb_darstellerneu import Ui_Dialog as pordb_darstellerneu
 
-class NeueingabeDarsteller(QtGui.QDialog, pordb_darstellerneu):
+class NeueingabeDarsteller(QtWidgets.QDialog, pordb_darstellerneu):
     def __init__(self, darsteller, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         self.darsteller = darsteller
         
-        self.connect(self.pushButtonDarstellerneuSpeichern, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonDarstellerneuCancel, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonDarstellerneuSpeichern.clicked.connect(self.accept)
+        self.pushButtonDarstellerneuCancel.clicked.connect(self.close)
         
-        self.setWindowTitle(self.trUtf8("Actor ") +self.darsteller + self.trUtf8(" will be added"))
+        self.setWindowTitle(self.tr("Actor ") +self.darsteller + self.tr(" will be added"))
         # Combobox für Nation füllen
         zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"
         lese_func = DBLesen(self, zu_lesen, "x")
@@ -50,7 +50,7 @@ class NeueingabeDarsteller(QtGui.QDialog, pordb_darstellerneu):
             
     def accept(self):
         if not self.comboBoxDarstellerneuGeschlecht.currentText():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select the gender"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select the gender"))
             return
         # insert/update-Anweisung aufbauen
         datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])

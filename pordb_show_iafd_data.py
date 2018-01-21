@@ -2,49 +2,34 @@
 
 # Form implementation generated from reading ui file 'pordb_show_iafd_data.ui'
 #
-# Created: Mon Sep 30 16:35:38 2013
-#      by: PyQt4 UI code generator 4.9.6
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
-        Dialog.setObjectName(_fromUtf8("Dialog"))
+        Dialog.setObjectName("Dialog")
         Dialog.resize(1160, 611)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("pypordb/8027068_splash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
-        self.verticalLayout = QtGui.QVBoxLayout(Dialog)
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.graphicsView = QtGui.QGraphicsView(Dialog)
-        self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.graphicsView = QtWidgets.QGraphicsView(Dialog)
+        self.graphicsView.setObjectName("graphicsView")
         self.verticalLayout.addWidget(self.graphicsView)
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.pushButtonOK = QtGui.QPushButton(Dialog)
+        self.pushButtonOK = QtWidgets.QPushButton(Dialog)
         self.pushButtonOK.setDefault(True)
-        self.pushButtonOK.setObjectName(_fromUtf8("pushButtonOK"))
+        self.pushButtonOK.setObjectName("pushButtonOK")
         self.horizontalLayout.addWidget(self.pushButtonOK)
-        self.pushButtonCancel = QtGui.QPushButton(Dialog)
-        self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
+        self.pushButtonCancel = QtWidgets.QPushButton(Dialog)
+        self.pushButtonCancel.setObjectName("pushButtonCancel")
         self.horizontalLayout.addWidget(self.pushButtonCancel)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
@@ -52,8 +37,9 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "Select items for adding a new scene", None))
-        self.graphicsView.setWhatsThis(_translate("Dialog", "For adding a scene mark the scene at the top of this window and the involved actors, then press the \"add scene\" button.", None))
-        self.pushButtonOK.setText(_translate("Dialog", "Add scene", None))
-        self.pushButtonCancel.setText(_translate("Dialog", "Cancel", None))
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Select items for adding a new scene"))
+        self.graphicsView.setWhatsThis(_translate("Dialog", "For adding a scene mark the scene at the top of this window and the involved actors, then press the \"add scene\" button."))
+        self.pushButtonOK.setText(_translate("Dialog", "Add scene"))
+        self.pushButtonCancel.setText(_translate("Dialog", "Cancel"))
 

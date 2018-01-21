@@ -2,87 +2,72 @@
 
 # Form implementation generated from reading ui file 'pordb_pseudo.ui'
 #
-# Created: Tue Nov  4 20:48:11 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Pseudo(object):
     def setupUi(self, Pseudo):
-        Pseudo.setObjectName(_fromUtf8("Pseudo"))
+        Pseudo.setObjectName("Pseudo")
         Pseudo.resize(676, 800)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("pypordb/8027068_splash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Pseudo.setWindowIcon(icon)
-        self.gridLayout = QtGui.QGridLayout(Pseudo)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.verticalLayout_3 = QtGui.QVBoxLayout()
-        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
-        self.frame = QtGui.QFrame(Pseudo)
-        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtGui.QFrame.Raised)
-        self.frame.setObjectName(_fromUtf8("frame"))
-        self.verticalLayout_2 = QtGui.QVBoxLayout(self.frame)
-        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
-        self.tableWidgetPseudo = QtGui.QTableWidget(self.frame)
+        self.gridLayout = QtWidgets.QGridLayout(Pseudo)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.frame = QtWidgets.QFrame(Pseudo)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.tableWidgetPseudo = QtWidgets.QTableWidget(self.frame)
         self.tableWidgetPseudo.setMinimumSize(QtCore.QSize(381, 0))
         self.tableWidgetPseudo.setRowCount(50)
-        self.tableWidgetPseudo.setObjectName(_fromUtf8("tableWidgetPseudo"))
+        self.tableWidgetPseudo.setObjectName("tableWidgetPseudo")
         self.tableWidgetPseudo.setColumnCount(1)
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidgetPseudo.setHorizontalHeaderItem(0, item)
         self.tableWidgetPseudo.horizontalHeader().setDefaultSectionSize(600)
         self.tableWidgetPseudo.horizontalHeader().setMinimumSectionSize(600)
         self.verticalLayout_2.addWidget(self.tableWidgetPseudo)
         self.verticalLayout_3.addWidget(self.frame)
-        self.verticalLayout = QtGui.QVBoxLayout()
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.lineEditPseudo = QtGui.QLineEdit(Pseudo)
-        self.lineEditPseudo.setObjectName(_fromUtf8("lineEditPseudo"))
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.lineEditPseudo = QtWidgets.QLineEdit(Pseudo)
+        self.lineEditPseudo.setObjectName("lineEditPseudo")
         self.horizontalLayout.addWidget(self.lineEditPseudo)
-        self.pushButtonPseudo = QtGui.QPushButton(Pseudo)
-        self.pushButtonPseudo.setText(_fromUtf8(""))
+        self.pushButtonPseudo = QtWidgets.QPushButton(Pseudo)
+        self.pushButtonPseudo.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("../pordb/pypordb/go-up.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../pordb/pypordb/go-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonPseudo.setIcon(icon1)
-        self.pushButtonPseudo.setObjectName(_fromUtf8("pushButtonPseudo"))
+        self.pushButtonPseudo.setObjectName("pushButtonPseudo")
         self.horizontalLayout.addWidget(self.pushButtonPseudo)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        spacerItem = QtGui.QSpacerItem(478, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        spacerItem = QtWidgets.QSpacerItem(478, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
-        self.pushButtonSpeichern = QtGui.QPushButton(Pseudo)
-        self.pushButtonSpeichern.setText(_fromUtf8(""))
+        self.pushButtonSpeichern = QtWidgets.QPushButton(Pseudo)
+        self.pushButtonSpeichern.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/media-floppy.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("pypordb/media-floppy.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonSpeichern.setIcon(icon2)
-        self.pushButtonSpeichern.setObjectName(_fromUtf8("pushButtonSpeichern"))
+        self.pushButtonSpeichern.setObjectName("pushButtonSpeichern")
         self.horizontalLayout_2.addWidget(self.pushButtonSpeichern)
-        self.pushButtonAbbrechen = QtGui.QPushButton(Pseudo)
-        self.pushButtonAbbrechen.setText(_fromUtf8(""))
+        self.pushButtonAbbrechen = QtWidgets.QPushButton(Pseudo)
+        self.pushButtonAbbrechen.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/dialog-cancel.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("pypordb/dialog-cancel.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonAbbrechen.setIcon(icon3)
-        self.pushButtonAbbrechen.setObjectName(_fromUtf8("pushButtonAbbrechen"))
+        self.pushButtonAbbrechen.setObjectName("pushButtonAbbrechen")
         self.horizontalLayout_2.addWidget(self.pushButtonAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.verticalLayout_3.addLayout(self.verticalLayout)
@@ -92,12 +77,13 @@ class Ui_Pseudo(object):
         QtCore.QMetaObject.connectSlotsByName(Pseudo)
 
     def retranslateUi(self, Pseudo):
-        Pseudo.setWindowTitle(_translate("Pseudo", "Edit aliases", None))
+        _translate = QtCore.QCoreApplication.translate
+        Pseudo.setWindowTitle(_translate("Pseudo", "Edit aliases"))
         self.tableWidgetPseudo.setSortingEnabled(True)
         item = self.tableWidgetPseudo.horizontalHeaderItem(0)
-        item.setText(_translate("Pseudo", "Alias", None))
-        self.lineEditPseudo.setWhatsThis(_translate("Pseudo", "<html><head/><body><p>Enter aliases comma separated here. When ready press the button on the right side, this will move your entries into the list above, then press the save button.</p></body></html>", None))
-        self.pushButtonPseudo.setToolTip(_translate("Pseudo", "<html><head/><body><p>Adopt the aliases</p></body></html>", None))
-        self.pushButtonSpeichern.setToolTip(_translate("Pseudo", "<html><head/><body><p>Save</p></body></html>", None))
-        self.pushButtonAbbrechen.setToolTip(_translate("Pseudo", "<html><head/><body><p>Cancel</p></body></html>", None))
+        item.setText(_translate("Pseudo", "Alias"))
+        self.lineEditPseudo.setWhatsThis(_translate("Pseudo", "<html><head/><body><p>Enter aliases comma separated here. When ready press the button on the right side, this will move your entries into the list above, then press the save button.</p></body></html>"))
+        self.pushButtonPseudo.setToolTip(_translate("Pseudo", "<html><head/><body><p>Adopt the aliases</p></body></html>"))
+        self.pushButtonSpeichern.setToolTip(_translate("Pseudo", "<html><head/><body><p>Save</p></body></html>"))
+        self.pushButtonAbbrechen.setToolTip(_translate("Pseudo", "<html><head/><body><p>Cancel</p></body></html>"))
 

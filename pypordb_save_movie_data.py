@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -22,11 +22,11 @@
 import os
 import urllib.request, urllib.parse, urllib.error
 import time
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 
-class SaveMovieData(QtGui.QDialog):
+class SaveMovieData(QtWidgets.QDialog):
     def __init__(self, app, url, text):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.app = app
         self.url = url
         self.text = text
@@ -36,7 +36,7 @@ class SaveMovieData(QtGui.QDialog):
         anfang = self.text.find("<h1>")
         if anfang < 0:
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be a movie site of the IAFD"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be a movie site of the IAFD"))
             return
         ende = self.text.find("</h1>", anfang)
         movie = str(self.text[anfang + 4:ende].strip())
@@ -58,7 +58,7 @@ class SaveMovieData(QtGui.QDialog):
             anfang_scene = self.text.find("Scene ", anfang + 1)
             if anfang_scene < 0:
                 self.app.restoreOverrideCursor()
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems there are no scenes on the IAFD"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems there are no scenes on the IAFD"))
                 return
             while True:
                 anfang_scene = self.text.find("Scene ", anfang + 1)
@@ -81,7 +81,7 @@ class SaveMovieData(QtGui.QDialog):
         anfang_actors = self.text.find("<h3>Performers</h3>")
         if anfang_actors < 0:
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Seems there are no scenes/actors on the IAFD"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems there are no scenes/actors on the IAFD"))
             return
         scenes = []
         # get the actors

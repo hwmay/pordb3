@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,18 +19,18 @@
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_suche_video import Ui_Dialog as pordb_suche_video
 from pypordb_dblesen import DBLesen
 
-class SucheVideo(QtGui.QDialog, pordb_suche_video):
+class SucheVideo(QtWidgets.QDialog, pordb_suche_video):
     def __init__(self, app, titel=None, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonSuchen, QtCore.SIGNAL("clicked()"), self.onSuchen)
-        self.connect(self.pushButtonAnzeigen, QtCore.SIGNAL("clicked()"), self.onAnzeigen)
-        self.connect(self.pushButtonAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonSuchen.clicked.connect(self.onSuchen)
+        self.pushButtonAnzeigen.clicked.connect(self.onAnzeigen)
+        self.pushButtonAbbrechen.clicked.connect(self.close)
         
         self.app = app
         

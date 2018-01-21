@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,16 +19,16 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_show_iafd_data import Ui_Dialog as pordb_show_iafd_data
 from pypordb_dblesen import DBLesen
 from pypordb_neu import Neueingabe
 import os
 
-class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
+class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
     def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, video):
         
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
         self.verzeichnis = verzeichnis
@@ -38,8 +38,8 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         self.verzeichnis_cover = verzeichnis_cover
         self.video = video
         
-        self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
-        self.connect(self.pushButtonOK, QtCore.SIGNAL("clicked()"), self.accept)
+        self.pushButtonCancel.clicked.connect(self.close)
+        self.pushButtonOK.clicked.connect(self.accept)
         
         self.imagesize = 200
         self.complete_size = QtCore.QSize(self.imagesize, self.imagesize)
@@ -51,7 +51,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         self.move(window_position)
         
         self.graphicsView.setAlignment(QtCore.Qt.AlignLeft)
-        self.scene = QtGui.QGraphicsScene()
+        self.scene = QtWidgets.QGraphicsScene()
         self.left_margin = 20
         
         self.font = QtGui.QFont()
@@ -61,7 +61,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         
         # set original title
         self.font.setBold(True)
-        textitem = QtGui.QGraphicsTextItem(self.video[0])
+        textitem = QtWidgets.QGraphicsTextItem(self.video[0])
         textitem.setPos(0, self.y_pos)
         textitem.setFont(self.font)
         self.scene.addItem(textitem)
@@ -70,7 +70,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         # set alternate titles
         for i, wert in enumerate(self.video[1]):
             alt_title = wert
-            textitem = QtGui.QGraphicsTextItem(alt_title)
+            textitem = QtWidgets.QGraphicsTextItem(alt_title)
             textitem.setPos(self.x_pos, self.y_pos)
             self.scene.addItem(textitem)
             self.y_pos += 30
@@ -82,7 +82,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
                 image_shown = False
                 max_height = 0
                 for k, wert2 in enumerate(darsteller_liste):
-                    textitem = QtGui.QGraphicsTextItem(wert2)
+                    textitem = QtWidgets.QGraphicsTextItem(wert2)
                     if wert1.startswith("Scene "):
                         self.y_pos += 30
                         self.font.setBold(True)
@@ -98,15 +98,15 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
                             bilddatei = self.getBilddatei(res[0][0], res[0][1])
                         else:
                             bilddatei = self.getBilddatei(wert2.replace("'", "_apostroph_").title())
-                        pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
+                        pixmap = QtWidgets.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
                         if pixmap.height() > max_height:
                             max_height = pixmap.height()
-                        pixmapitem = QtGui.QGraphicsPixmapItem(pixmap)
+                        pixmapitem = QtWidgets.QGraphicsPixmapItem(pixmap)
                         pixmapitem.setPos(0, 20)
                         itemgroup = self.scene.createItemGroup([textitem, pixmapitem])
                         itemgroup.setPos(self.x_pos, self.y_pos)
                         itemgroup.setData(1, wert2)
-                        itemgroup.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
+                        itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
                         self.x_pos += self.imagesize + 20
                         image_shown = True
                 self.x_pos = self.left_margin
@@ -122,7 +122,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         for i in self.scene.selectedItems():
             if i.data(0):
                 if scene_to_add:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select only one scene"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select only one scene"))
                     return
                 else:
                     scene_to_add = str(i.data(0))
@@ -130,10 +130,10 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
                 actor_to_add.append(str(i.data(1)))
                 
         if not scene_to_add:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("No scene selected"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No scene selected"))
             return
         if not actor_to_add:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("No actors selected"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No actors selected"))
             return
         darsteller = ", ".join(actor_to_add)
         eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(self.verzeichnis, scene_to_add), titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1], access_from_iafd=True)
@@ -151,7 +151,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
         zeile = -1
         if dateiliste:
             dateiliste.sort()
-            textitem = QtGui.QGraphicsTextItem(self.trUtf8("Clips to add:"))
+            textitem = QtWidgets.QGraphicsTextItem(self.tr("Clips to add:"))
             self.font.setPointSize(16)
             self.font.setWeight(75)
             self.font.setBold(True)
@@ -162,19 +162,19 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
             max_height = 0
             for i in dateiliste:
                 bilddatei = os.path.join(self.verzeichnis, i)
-                pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
+                pixmap = QtWidgets.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
                 if pixmap.height() > max_height:
                     max_height = pixmap.height()
-                self.pixmapitem_scene = QtGui.QGraphicsPixmapItem(pixmap)
+                self.pixmapitem_scene = QtWidgets.QGraphicsPixmapItem(pixmap)
                 self.pixmapitem_scene.setPos(0, 20)
                 datei = i[0:24]
                 if len(i) > 25:
                     datei += "..."
-                self.textitem_scene = QtGui.QGraphicsTextItem(datei)
+                self.textitem_scene = QtWidgets.QGraphicsTextItem(datei)
                 itemgroup = self.scene.createItemGroup([self.textitem_scene, self.pixmapitem_scene])
                 itemgroup.setPos(self.x_pos, self.y_pos)
                 itemgroup.setData(0, i)
-                itemgroup.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
+                itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
                 self.x_pos += self.imagesize + 20
             self.x_pos = self.left_margin
             self.y_pos += max_height + 50

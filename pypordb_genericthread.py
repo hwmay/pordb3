@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 
 class GenericThread(QtCore.QThread):
     def __init__(self, function, *args, **kwargs):

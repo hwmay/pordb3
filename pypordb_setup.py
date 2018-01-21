@@ -39,9 +39,9 @@ class Dialog(QtGui.QDialog, Dialog):
         elif self.neuer_tab == 2:
             self.pushButtonNext.setEnabled(False)
         elif self.neuer_tab == 4:
-            self.pushButtonNext.setText(self.trUtf8("Finish"))
+            self.pushButtonNext.setText(self.tr("Finish"))
         else:
-            self.pushButtonNext.setText(self.trUtf8("Next"))
+            self.pushButtonNext.setText(self.tr("Next"))
         
     def onBack(self):
         self.neuer_tab = self.tabWidget.currentIndex() - 1
@@ -52,21 +52,21 @@ class Dialog(QtGui.QDialog, Dialog):
         elif self.neuer_tab == 1:
             self.pushButtonNext.setEnabled(True)
         elif self.neuer_tab == 4:
-            self.pushButtonNext.setText(self.trUtf8("Finish"))
+            self.pushButtonNext.setText(self.tr("Finish"))
         else:
-            self.pushButtonNext.setText(self.trUtf8("Next"))
+            self.pushButtonNext.setText(self.tr("Next"))
             
     def onDirectory(self):
-        datei = QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory or create a new one"), self.verzeichnis)
+        datei = QtGui.QFileDialog.getExistingDirectory(self, self.tr("Select directory or create a new one"), self.verzeichnis)
         if datei:
             self.verzeichnis = str(datei)
-            self.labelDirectory.setText(self.trUtf8("Directory: ") +self.verzeichnis)
+            self.labelDirectory.setText(self.tr("Directory: ") +self.verzeichnis)
             
     def onZipFile(self):
-        datei = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Zip file"), os.path.expanduser("~"), self.trUtf8("Zip files (*.zip *.ZIP);;all files (*.*)"))
+        datei = QtGui.QFileDialog.getOpenFileName(self, self.tr("Zip file"), os.path.expanduser("~"), self.tr("Zip files (*.zip *.ZIP);;all files (*.*)"))
         if datei:
             self.file = str(datei)
-            self.labelFile.setText(self.trUtf8("File: ") +self.file)
+            self.labelFile.setText(self.tr("File: ") +self.file)
             self.pushButtonNext.setEnabled(True)
             
     def install(self):
@@ -109,21 +109,21 @@ class Dialog(QtGui.QDialog, Dialog):
         # Unzip and move all files to installation directory
         file = zipfile.ZipFile(self.file, "r")
         zipfile.ZipFile.extractall(file, self.verzeichnis)
-        self.listWidget.addItem(self.trUtf8("Congratulations, PorDB3 installation was successful!"))
+        self.listWidget.addItem(self.tr("Congratulations, PorDB3 installation was successful!"))
         self.listWidget.addItem("")
-        self.listWidget.addItem(self.trUtf8("How to start?"))
-        self.listWidget.addItem(self.trUtf8("Postgresql database server must be running!"))
-        self.listWidget.addItem(self.trUtf8("Go to install directory ") + os.path.join(self.verzeichnis, "pordb-master"))
-        self.listWidget.addItem(self.trUtf8("Start the PorDB3 with command 'python3 pordb.py &'"))
+        self.listWidget.addItem(self.tr("How to start?"))
+        self.listWidget.addItem(self.tr("Postgresql database server must be running!"))
+        self.listWidget.addItem(self.tr("Go to install directory ") + os.path.join(self.verzeichnis, "pordb-master"))
+        self.listWidget.addItem(self.tr("Start the PorDB3 with command 'python3 pordb.py &'"))
         
     def create_directory(self, directory):
         try:
             os.mkdir(directory)
         except:
-            message = QtGui.QMessageBox.information(self, self.trUtf8("Warning "), self.trUtf8("Directory ") +directory +self.trUtf8(" already exists, nothing changed"))
+            message = QtGui.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
             self.error = True
             return
-        self.listWidget.addItem(self.trUtf8("Directory ") +directory +self.trUtf8(" created"))
+        self.listWidget.addItem(self.tr("Directory ") +directory +self.tr(" created"))
         
     def init_db(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -132,7 +132,7 @@ class Dialog(QtGui.QDialog, Dialog):
             import psycopg2.extensions
         except:
             app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Fatal error "), self.trUtf8("Package psycopg2 not found. You have to install this package first."))
+            message = QtGui.QMessageBox.critical(self, self.tr("Fatal error "), self.tr("Package psycopg2 not found. You have to install this package first."))
             self.error = True
             return
         db_host='localhost'
@@ -145,18 +145,18 @@ class Dialog(QtGui.QDialog, Dialog):
             cur.execute("CREATE DATABASE " +database  +" ENCODING='UTF8' TEMPLATE=template0 OWNER=postgres TABLESPACE=pg_default LC_COLLATE = 'C' LC_CTYPE = 'C' CONNECTION LIMIT = -1")
         except Exception as e:
             messageBox = QtGui.QMessageBox()
-            messageBox.addButton(self.trUtf8("Yes, delete database and all data in it"), QtGui.QMessageBox.AcceptRole)
-            messageBox.addButton(self.trUtf8("No, abort installation"), QtGui.QMessageBox.RejectRole)
-            button_No = messageBox.addButton(self.trUtf8("No, only software installation"), QtGui.QMessageBox.YesRole)
+            messageBox.addButton(self.tr("Yes, delete database and all data in it"), QtGui.QMessageBox.AcceptRole)
+            messageBox.addButton(self.tr("No, abort installation"), QtGui.QMessageBox.RejectRole)
+            button_No = messageBox.addButton(self.tr("No, only software installation"), QtGui.QMessageBox.YesRole)
             messageBox.setDefaultButton(button_No)
-            messageBox.setWindowTitle(self.trUtf8("Database already exists"))
+            messageBox.setWindowTitle(self.tr("Database already exists"))
             messageBox.setIcon(QtGui.QMessageBox.Warning)
-            messageBox.setText(self.trUtf8("Should I drop the existing database and create a new one?"))
+            messageBox.setText(self.tr("Should I drop the existing database and create a new one?"))
             message = messageBox.exec_()
             if message == 2: # Only software will be installed
                 cur.close()
                 conn.close()
-                self.listWidgetDB.addItem(self.trUtf8("Database has not been changed"))
+                self.listWidgetDB.addItem(self.tr("Database has not been changed"))
                 app.restoreOverrideCursor()
                 return
             elif message == 0:
@@ -676,10 +676,10 @@ class Dialog(QtGui.QDialog, Dialog):
         
         try:
             conn.commit()
-            self.listWidgetDB.addItem(self.trUtf8("Database created"))
-            self.listWidgetDB.addItem(self.trUtf8("Database tables created"))
+            self.listWidgetDB.addItem(self.tr("Database created"))
+            self.listWidgetDB.addItem(self.tr("Database tables created"))
         except Exception as e:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Errors occured"))
+            message = QtGui.QMessageBox.critical(self, self.tr("Error "), self.tr("Errors occured"))
             sys.exit()
         cur.close()
         conn.close()

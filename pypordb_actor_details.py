@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,16 +19,16 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_actor_details import Ui_Dialog as pordb_actor_details
 from pypordb_dblesen import DBLesen
 import os
 
-class ActorDetails(QtGui.QDialog, pordb_actor_details):
+class ActorDetails(QtWidgets.QDialog, pordb_actor_details):
     def __init__(self, darsteller, verzeichnis):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
-        self.connect(self.pushButtonOk, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonOk.clicked.connect(self.close)
         
         self.darsteller = darsteller
         self.verzeichnis = verzeichnis
@@ -57,7 +57,7 @@ class ActorDetails(QtGui.QDialog, pordb_actor_details):
         self.bildQImage = QtGui.QImage(bilddarsteller)
         self.labelBild1.setAlignment(QtCore.Qt.AlignCenter)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild1.setPixmap(QtGui.QPixmap.fromImage(image))
+        self.labelBild1.setPixmap(QtWidgets.QPixmap.fromImage(image))
 
         self.labelName.setText(self.darsteller)
         

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,34 +19,34 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_pseudo import Ui_Pseudo as pordb_pseudo
 from pypordb_dbupdate import DBUpdate
 from pypordb_checkpseudos import CheckPseudos
 
-class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
+class PseudonymeBearbeiten(QtWidgets.QDialog, pordb_pseudo):
     def __init__(self, darsteller, pseudonyme):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonPseudo, QtCore.SIGNAL("clicked()"), self.onPseudo)
-        self.connect(self.pushButtonSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
-        self.connect(self.pushButtonAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonPseudo.clicked.connect(self.onPseudo)
+        self.pushButtonSpeichern.clicked.connect(self.onSpeichern)
+        self.pushButtonAbbrechen.clicked.connect(self.close)
         
         self.pseudonyme = pseudonyme
         self.pushButtonSpeichern.setDefault(True)
         
         self.darsteller = darsteller.lstrip('=')
-        self.setWindowTitle(self.trUtf8("Edit aliases for ") +self.darsteller)
+        self.setWindowTitle(self.tr("Edit aliases for ") +self.darsteller)
         row = 0
         column = 0
         self.lineEditPseudo.setFocus()
         self.tableWidgetPseudo.clearContents()
         for i in self.pseudonyme:
-            newitem = QtGui.QTableWidgetItem(i.strip())
+            newitem = QtWidgets.QTableWidgetItem(i.strip())
             self.tableWidgetPseudo.setItem(row, column, newitem)
             row += 1
-        newitem = QtGui.QTableWidgetItem("")
+        newitem = QtWidgets.QTableWidgetItem("")
         self.tableWidgetPseudo.setItem(row, 0, newitem)
         self.tableWidgetPseudo.setCurrentItem(newitem)
         self.tableWidgetPseudo.setFocus()
@@ -62,7 +62,7 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
         column = 0
         for i in pseudos:
             if len(i) > 0:
-                newitem = QtGui.QTableWidgetItem(i.strip())
+                newitem = QtWidgets.QTableWidgetItem(i.strip())
                 self.tableWidgetPseudo.setItem(row, column, newitem)
                 row += 1
     
@@ -80,7 +80,7 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
             for j in range(self.tableWidgetPseudo.columnCount()):
                 tableItem = self.tableWidgetPseudo.item(i, j)
                 if tableItem:
-                    cellItem = str(QtGui.QTableWidgetItem(tableItem).text())
+                    cellItem = str(QtWidgets.QTableWidgetItem(tableItem).text())
                     cell.append(cellItem)
             if cell and cell[0] and cell[0].title().replace("'", "''") != self.darsteller:
                 checkpseudo = CheckPseudos(cell[0].title().replace("'", "''"), self.darsteller)

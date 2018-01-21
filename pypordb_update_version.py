@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_update_version import Ui_Dialog as pordb_update_version
 import os
 import urllib.request, urllib.error, urllib.parse
@@ -28,12 +28,13 @@ import zipfile
 
 FILE_DOWNLOAD = "https://github.com/hwmay/pordb3/archive/master.zip"
 
-class UpdateVersion(QtGui.QDialog, pordb_update_version):
+class UpdateVersion(QtWidgets.QDialog, pordb_update_version):
     def __init__(self, version, whatsnew):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
-        self.connect(self.pushButtonYes, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonNo, QtCore.SIGNAL("clicked()"), self.close)
+        
+        self.pushButtonYes.clicked.connect(self.accept)
+        self.pushButtonNo.clicked.connect(self.close)
         
         self.version = version
         self.whatsnew = whatsnew
@@ -86,7 +87,7 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
             
         self.unsetCursor()
         self.close
-        QtGui.QDialog.accept(self)
+        QtWidgets.QDialog.accept(self)
     
     def closeEvent(self, event):
         settings = QtCore.QSettings()

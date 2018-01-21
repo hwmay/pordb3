@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,13 +19,14 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_mass_change import Ui_Dialog as pordb_mass_change
 
-class MassChange(QtGui.QDialog, pordb_mass_change):
+class MassChange(QtWidgets.QDialog, pordb_mass_change):
     def __init__(self):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
+        
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.close)
         
@@ -35,16 +36,16 @@ class MassChange(QtGui.QDialog, pordb_mass_change):
         
     def accept(self):
         if not self.radioButtonVorhandenJa.isChecked() and not self.radioButtonVorhandenNein.isChecked():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is available"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please mark whether movie is available"))
             return
         if not self.radioButtonWatchedJa.isChecked() and not self.radioButtonWatchedNein.isChecked():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie has been watched"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please mark whether movie has been watched"))
             return
         if self.radioButtonVorhandenNein.isChecked() and self.comboBoxResolution.currentIndex() != 0:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Video is not in stock: resolution is set to unknown"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Video is not in stock: resolution is set to unknown"))
             self.comboBoxResolution.setCurrentIndex(0)
         if self.radioButtonVorhandenJa.isChecked() and self.comboBoxResolution.currentIndex() == 0:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select a resolution"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select a resolution"))
             return
             
         if self.radioButtonVorhandenJa.isChecked():

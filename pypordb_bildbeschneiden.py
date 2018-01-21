@@ -1,24 +1,43 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtGui, QtCore
+'''
+    Copyright 2012-2018 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+'''
+
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_bildschneiden import Ui_Dialog as pordb_bildschneiden
 
 size = QtCore.QSize(260, 260)
 
-class Bildbeschneiden(QtGui.QDialog, pordb_bildschneiden):
+class Bildbeschneiden(QtWidgets.QDialog, pordb_bildschneiden):
     def __init__(self, bilddatei, positionX, positionY, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         self.bilddatei = bilddatei
         self.positionX = positionX
         self.positionY = positionY
-        
-        self.connect(self.pushButtonNeuSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
-        self.connect(self.pushButtonNeuSpeichernAls, QtCore.SIGNAL("clicked()"), self.onSpeichernAls)
-        self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
+
+        self.pushButtonNeuSpeichern.clicked.connect(self.onSpeichern)
+        self.pushButtonNeuSpeichernAls.clicked.connect(self.onSpeichernAls)
+        self.pushButtonNeuCancel.clicked.connect(self.close)
         
         # Workaround, weil keine Scrollarea in Qt Designer
-        self.sa = QtGui.QScrollArea()
+        self.sa = QtWidgets.QScrollArea()
         self.labelBild.setParent(None)
         self.sa.setWidget(self.labelBild)
         self.vboxlayout.insertWidget(0, self.sa)
@@ -38,7 +57,7 @@ class Bildbeschneiden(QtGui.QDialog, pordb_bildschneiden):
         self.labelBild.setMinimumSize(QtCore.QSize(width, height))
         self.labelBild.setAlignment(QtCore.Qt.AlignTop)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild.setPixmap(QtGui.QPixmap.fromImage(image))
+        self.labelBild.setPixmap(QtWidgets.QPixmap.fromImage(image))
         self.sa.horizontalScrollBar().setMaximum(positionX)
         self.sa.verticalScrollBar().setMaximum(positionY)
         self.sa.horizontalScrollBar().setValue(positionX)
@@ -70,16 +89,16 @@ class Bildbeschneiden(QtGui.QDialog, pordb_bildschneiden):
         if self.bildQImage.save(self.bilddatei):
             self.close()
         else:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error, image file could not be saved"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error, image file could not be saved"))
             return 
     
     def onSpeichernAls(self):
-        filename = QtGui.QFileDialog.getSaveFileName(self, self.trUtf8("jpg files"), self.bilddatei, self.trUtf8("jpg files (*.jpg)"))
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, self.tr("jpg files"), self.bilddatei, self.tr("jpg files (*.jpg)"))
         self.bildQImage = self.bildQImage.scaled(size, QtCore.Qt.KeepAspectRatio)
         if self.bildQImage.save(filename):
             self.close()
         else:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error, image file could not be saved"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error, image file could not be saved"))
             return 
         
     def closeEvent(self, event):

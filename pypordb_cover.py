@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -20,13 +20,13 @@
 '''
 
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_cover import Ui_Dialog as pordb_cover
 from pypordb_dblesen import DBLesen
 
-class Cover(QtGui.QDialog, pordb_cover):
+class Cover(QtWidgets.QDialog, pordb_cover):
     def __init__(self, cover, verzeichnis_original, original=None, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         self.cover = cover
         self.original = original
@@ -34,9 +34,9 @@ class Cover(QtGui.QDialog, pordb_cover):
         self.filename = None
         self.originaldatei = None
         
-        self.connect(self.pushButtonCoverOriginalAlt, QtCore.SIGNAL("clicked()"), self.onCoverOriginalAlt)
-        self.connect(self.pushButtonCover, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonCoverOriginalAlt.clicked.connect(self.onCoverOriginalAlt)
+        self.pushButtonCover.clicked.connect(self.accept)
+        self.pushButtonCancel.clicked.connect(self.close)
         
         self.pushButtonCover.setFocus()
         width = 280
@@ -44,14 +44,14 @@ class Cover(QtGui.QDialog, pordb_cover):
         self.bildQImage = QtGui.QImage(cover[0])
         self.labelBild1.setAlignment(QtCore.Qt.AlignTop)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild1.setPixmap(QtGui.QPixmap.fromImage(image))
+        self.labelBild1.setPixmap(QtWidgets.QPixmap.fromImage(image))
         self.labelBilddatei1.setText(cover[0])
         self.labelSize1.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
         
         self.bildQImage = QtGui.QImage(cover[1])
         self.labelBild2.setAlignment(QtCore.Qt.AlignTop)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild2.setPixmap(QtGui.QPixmap.fromImage(image))
+        self.labelBild2.setPixmap(QtWidgets.QPixmap.fromImage(image))
         self.labelBilddatei2.setText(cover[1])
         self.labelSize2.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
         
@@ -86,20 +86,20 @@ class Cover(QtGui.QDialog, pordb_cover):
         
     def accept(self):
         if not self.radioButtonBild1.isChecked() and not self.radioButtonBild2.isChecked():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark front side"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please mark front side"))
             return
         
         if self.radioButtonBild2.isChecked():
             self.cover.reverse()
             
-        bild1 = QtGui.QPixmap(self.cover[0])
-        bild2 = QtGui.QPixmap(self.cover[1])
+        bild1 = QtWidgets.QPixmap(self.cover[0])
+        bild2 = QtWidgets.QPixmap(self.cover[1])
         w = bild1.width() + bild2.width()
         h = max(bild1.height(), bild2.height())
-        bild = QtGui.QPixmap(w, h)
+        bild = QtWidgets.QPixmap(w, h)
         bild.fill(QtGui.QColor("white"))
         
-        p = QtGui.QPainter(bild)
+        p = QtWidgets.QPainter(bild)
         p.drawPixmap(0, 0, bild1)
         p.drawPixmap(bild1.width(), 0, bild2)
         p.end()
@@ -110,10 +110,10 @@ class Cover(QtGui.QDialog, pordb_cover):
             self.originaldatei = str(self.lineEditDateiname.text())
         dateiname = str(self.lineEditDateiname.text()).strip()
         if not dateiname:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter a file name"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please enter a file name"))
             return
         if dateiname.find("/") > -1:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error: Original has a character /"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error: Original has a character /"))
             return
         if not dateiname.endswith(".jpg"):
             dateiname += ".jpg"

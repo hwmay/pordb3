@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,15 +19,15 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_darsteller_umbenennen import Ui_Dialog as pordb_darsteller_umbenennen
 
-class DarstellerUmbenennen(QtGui.QDialog, pordb_darsteller_umbenennen):
+class DarstellerUmbenennen(QtWidgets.QDialog, pordb_darsteller_umbenennen):
     def __init__(self, alter_name, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonUmbenennen.clicked.connect(self.accept)
+        self.pushButtonCancel.clicked.connect(self.close)
         
         self.lineEditNeuerName.setText(alter_name.strip("=").replace("''", "'"))

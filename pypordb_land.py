@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -20,18 +20,18 @@
 '''
 
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_land import Ui_Landdialog as pordb_land
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 
-class LandBearbeiten(QtGui.QDialog, pordb_land):
+class LandBearbeiten(QtWidgets.QDialog, pordb_land):
     def __init__(self, comboBoxNation, nation_fuellen, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonLandSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
-        self.connect(self.pushButtonLandAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
+        self.pushButtonLandSpeichern.clicked.connect(self.onSpeichern)
+        self.pushButtonLandAbbrechen.clicked.connect(self.close)
         
         self.nation_fuellen = nation_fuellen
         
@@ -49,23 +49,23 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
                         bild = os.path.join(os.curdir, "pypordb", i[0] + ".svg")
                         icon = QtGui.QIcon()
                         icon.addFile(bild, QtCore.QSize(24, 24), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-                        newitem = QtGui.QTableWidgetItem(icon, "")
+                        newitem = QtWidgets.QTableWidgetItem(icon, "")
                         self.tableWidgetLaender.setItem(row, column, newitem)
                         column += 1
-                        newitem = QtGui.QTableWidgetItem(j.strip())
+                        newitem = QtWidgets.QTableWidgetItem(j.strip())
                     else:
-                        newitem = QtGui.QTableWidgetItem(j.strip())
+                        newitem = QtWidgets.QTableWidgetItem(j.strip())
                 else:
-                    newitem = QtGui.QTableWidgetItem(" ")
+                    newitem = QtWidgets.QTableWidgetItem(" ")
                 self.tableWidgetLaender.setItem(row, column, newitem)
                 column += 1
             row += 1
-        newitem = QtGui.QTableWidgetItem("")
+        newitem = QtWidgets.QTableWidgetItem("")
         self.tableWidgetLaender.setItem(row, 1, newitem)
         self.tableWidgetLaender.setCurrentItem(newitem)
         self.tableWidgetLaender.setFocus()
         self.tableWidgetLaender.editItem(self.tableWidgetLaender.currentItem())          
-        self.tableWidgetLaender.setHorizontalHeaderLabels([self.trUtf8("Flag"), "ISO Code", self.trUtf8("Country"), self.trUtf8("active"), self.trUtf8("Nationality")])
+        self.tableWidgetLaender.setHorizontalHeaderLabels([self.tr("Flag"), "ISO Code", self.tr("Country"), self.tr("active"), self.tr("Nationality")])
         self.tableWidgetLaender.setAlternatingRowColors(True)
         self.tableWidgetLaender.resizeColumnsToContents()
         self.tableWidgetLaender.resizeRowsToContents()
@@ -80,7 +80,7 @@ class LandBearbeiten(QtGui.QDialog, pordb_land):
                     continue
                 tableItem = self.tableWidgetLaender.item(i, j)
                 try:
-                    cellItem = str(QtGui.QTableWidgetItem(tableItem).text())
+                    cellItem = str(QtWidgets.QTableWidgetItem(tableItem).text())
                     cell.append(cellItem)
                 except:
                     pass

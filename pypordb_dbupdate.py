@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 import psycopg2
 import psycopg2.extensions
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
@@ -35,7 +35,7 @@ class DBUpdate():
             self.conn = psycopg2.connect(database="por", host=db_host)
         except Exception as e:
             print(e)
-            message = QtGui.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Fehler "), str(e))
+            message = QtWidgets.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Fehler "), str(e))
             return 
         self.cur = self.conn.cursor()
         
@@ -63,7 +63,7 @@ class DBUpdate():
             except Exception as e:
                 print("Error:", e)
                 print(i)
-                message = QtGui.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
+                message = QtWidgets.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
                 self.cur.close()
                 return 
         self.commit()

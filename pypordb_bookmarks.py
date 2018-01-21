@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,19 +19,19 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_bookmarks import Ui_Dialog as pordb_bookmarks
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 
-class Bookmarks(QtGui.QDialog, pordb_bookmarks):
+class Bookmarks(QtWidgets.QDialog, pordb_bookmarks):
     def __init__(self, url, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonSpeichern, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonAnzeigen, QtCore.SIGNAL("clicked()"), self.anzeigen)
-        self.connect(self.pushButtonLoeschen, QtCore.SIGNAL("clicked()"), self.loeschen)
+        self.pushButtonSpeichern.clicked.connect(self.accept)
+        self.pushButtonAnzeigen.clicked.connect(self.anzeigen)
+        self.pushButtonLoeschen.clicked.connect(self.loeschen)
         
         self.url = url
         
@@ -45,7 +45,7 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
         for i in res:
             column = 0
             for j in i:
-                newitem = QtGui.QTableWidgetItem(str(j))
+                newitem = QtWidgets.QTableWidgetItem(str(j))
                 self.tableWidgetBookmarks.setItem(row, column, newitem)
                 column += 1
             row += 1

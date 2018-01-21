@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,27 +19,27 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_suchen import Ui_ErweiterteSuche as pordb_suchen
 
-class Suchen(QtGui.QDialog, pordb_suchen):
+class Suchen(QtWidgets.QDialog, pordb_suchen):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonStar1, QtCore.SIGNAL("clicked()"), self.onStar1)
-        self.connect(self.pushButtonStar2, QtCore.SIGNAL("clicked()"), self.onStar2)
-        self.connect(self.pushButtonStar3, QtCore.SIGNAL("clicked()"), self.onStar3)
-        self.connect(self.pushButtonStar4, QtCore.SIGNAL("clicked()"), self.onStar4)
-        self.connect(self.pushButtonStar5, QtCore.SIGNAL("clicked()"), self.onStar5)
-        self.connect(self.pushButtonClear, QtCore.SIGNAL("clicked()"), self.onClearStars)
-        self.connect(self.pushButtonSuchen, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
-        self.connect(self.pushButtonRefresh, QtCore.SIGNAL("clicked()"), self.onRefresh)
+        self.pushButtonStar1.clicked.connect(self.onStar1)
+        self.pushButtonStar2.clicked.connect(self.onStar2)
+        self.pushButtonStar3.clicked.connect(self.onStar3)
+        self.pushButtonStar4.clicked.connect(self.onStar4)
+        self.pushButtonStar5.clicked.connect(self.onStar5)
+        self.pushButtonClear.clicked.connect(self.onClearStars)
+        self.pushButtonSuchen.clicked.connect(self.accept)
+        self.pushButtonCancel.clicked.connect(self.close)
+        self.pushButtonRefresh.clicked.connect(self.onRefresh)
         
         self.set_stars = 0
-        self.icon_starred = QtGui.QIcon()
-        self.icon_starred.addPixmap(QtGui.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_starred = QtWidgets.QIcon()
+        self.icon_starred.addPixmap(QtWidgets.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.icon_nonstarred = QtGui.QIcon()
         self.icon_nonstarred.addPixmap(QtGui.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         

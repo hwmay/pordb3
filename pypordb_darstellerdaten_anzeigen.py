@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -22,21 +22,21 @@
 import os
 import urllib.request, urllib.parse, urllib.error
 import time
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_iafd import Ui_DatenausderIAFD as pordb_iafd
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
 from pypordb_checkpseudos import CheckPseudos
 from pypordb_actordata import ActorData
 
-class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
+class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
     def __init__(self, app, url, darstellerseite, verzeichnis_thumbs, name = None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
-        self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onUebernehmen)
-        self.connect(self.pushButtonRemoveBrackets, QtCore.SIGNAL("clicked()"), self.onRemoveBrackets)
-        self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.onClose)
+        self.pushButtonUebernehmen.clicked.connect(self.onUebernehmen)
+        self.pushButtonRemoveBrackets.clicked.connect(self.onRemoveBrackets)
+        self.pushButtonCancel.clicked.connect(self.onClose)
         
         self.darstellerseite = str(darstellerseite)
         self.app = app
@@ -71,11 +71,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         self.name_iafd = ActorData.actor_name(actordata)
         if not self.name_iafd:
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
             return
         if self.name and self.name.lower() != self.name_iafd.lower():
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.warning(self, self.trUtf8("Warning "), self.trUtf8("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(self.name, self.name_iafd))
+            message = QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(self.name, self.name_iafd))
         if not self.name:
             self.name = self.name_iafd
         self.labelName.setText(self.name)
@@ -85,7 +85,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         self.bild = ActorData.actor_image(actordata)
         if not self.bild:
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
             return
         url = self.bild
         self.verz = self.verzeichnis_thumbs
@@ -98,14 +98,14 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                 break
             except:
                 pass
-        bild = QtGui.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))
+        bild = QtWidgets.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))
         self.labelBild.setPixmap(bild)
             
         # Darsteller Geschlecht
         self.geschlecht = ActorData.actor_sex(actordata)
         if not self.bild:
             self.app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
             return
         if self.geschlecht:
             self.lineEditGeschlecht.setText(self.geschlecht)
@@ -143,8 +143,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.ethnic = ""
             self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
         else:
-            ethnic = ethniticies.get(self.ethnic, self.trUtf8("not available"))
-            if ethnic != self.trUtf8("not available"):
+            ethnic = ethniticies.get(self.ethnic, self.tr("not available"))
+            if ethnic != self.tr("not available"):
                 self.ethnic = ethnic
                 self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
         self.comboBoxEthnic.setCurrentIndex(self.comboBoxEthnic.findText(self.ethnic))
@@ -156,8 +156,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             self.haare = ""
             self.checkBoxHaare.setCheckState(QtCore.Qt.Unchecked)
         else:
-            haarfarbe = haarfarben.get(self.haare, self.trUtf8("not available"))
-            if haarfarbe != self.trUtf8("not available"):
+            haarfarbe = haarfarben.get(self.haare, self.tr("not available"))
+            if haarfarbe != self.tr("not available"):
                 self.haare = haarfarbe
                 self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
         self.comboBoxHaare.setCurrentIndex(self.comboBoxHaare.findText(self.haare))
@@ -176,8 +176,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
             
         # Darsteller Geboren
         self.geboren = ActorData.actor_born(actordata)
-        monat = monate.get(self.geboren[0:self.geboren.find(" ")], self.trUtf8("not available"))
-        if monat != self.trUtf8("not available"):
+        monat = monate.get(self.geboren[0:self.geboren.find(" ")], self.tr("not available"))
+        if monat != self.tr("not available"):
             tag = self.geboren[self.geboren.find(" ")+1:self.geboren.find(",")]
             jahr = self.geboren[self.geboren.find(", ")+2:]
             self.geboren = jahr +"-" + monat + "-" + tag
@@ -214,7 +214,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         
     def onUebernehmen(self):
         if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Invalid gender"))
             self.app.restoreOverrideCursor()
             self.lineEditGeschlecht.setReadOnly(False)
             self.lineEditGeschlecht.setFocus()
@@ -229,12 +229,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
         
         # Darsteller existiert noch nicht
         if not res:
-            messageBox = QtGui.QMessageBox()
-            messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-            messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-            messageBox.setWindowTitle(self.trUtf8("Actor ") +self.name.strip() +self.trUtf8(" not yet in database"))
-            messageBox.setIcon(QtGui.QMessageBox.Question)
-            messageBox.setText(self.trUtf8("Should the actor be created?"))
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+            messageBox.addButton(self.tr("No"), QtWidgets.QMessageBox.RejectRole)
+            messageBox.setWindowTitle(self.tr("Actor ") +self.name.strip() +self.tr(" not yet in database"))
+            messageBox.setIcon(QtWidgets.QMessageBox.Question)
+            messageBox.setText(self.tr("Should the actor be created?"))
             message = messageBox.exec_()
             if message == 0:
                 if str(self.labelGeboren.text()).strip() == "-":
@@ -320,7 +320,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                 zu_erfassen.append(["UPDATE pordb_darsteller SET haarfarbe = %s WHERE darsteller = %s", werte])
             if self.checkBoxTattos.isChecked() and str(self.lineEditTattos.text()):
                 if len((self.lineEditTattos.text())) > 500:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
                     return
                 werte = []
                 werte.append(str(self.lineEditTattos.text()))
@@ -387,12 +387,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
                 self.lese_func = DBLesen(self, zu_lesen, i.strip().title())
                 res = DBLesen.get_data(self.lese_func)
                 if res:
-                    messageBox = QtGui.QMessageBox()
-                    messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-                    messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-                    messageBox.setWindowTitle(i.strip().replace("'", "''").title() +self.trUtf8(": There is another actor in the database with this name."))
-                    messageBox.setIcon(QtGui.QMessageBox.Question)
-                    messageBox.setText(self.trUtf8("Do you want to add/change the actor anyway?"))
+                    messageBox = QtWidgets.QMessageBox()
+                    messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+                    messageBox.addButton(self.tr("No"), QtWidgets.QMessageBox.RejectRole)
+                    messageBox.setWindowTitle(i.strip().replace("'", "''").title() +self.tr(": There is another actor in the database with this name."))
+                    messageBox.setIcon(QtWidgets.QMessageBox.Question)
+                    messageBox.setText(self.tr("Do you want to add/change the actor anyway?"))
                     message = messageBox.exec_()
                     if message != 0:
                         return False

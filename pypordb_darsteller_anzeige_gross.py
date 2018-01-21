@@ -1,17 +1,36 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtGui, QtCore
+'''
+    Copyright 2012-2018 HWM
+    
+    This file is part of PorDB3.
+
+    PorDB3 is free software: you can redistribute it and or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PorDB3 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+'''
+
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_bildgross import Ui_Dialog as pordb_bildgross
 
-class DarstellerAnzeigeGross(QtGui.QDialog, pordb_bildgross):
+class DarstellerAnzeigeGross(QtWidgets.QDialog, pordb_bildgross):
     def __init__(self, bild, parent=None):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         
         self.bild = bild
         
         # Workaround, weil keine Scrollarea in Qt Designer
-        self.sa = QtGui.QScrollArea()
+        self.sa = QtWidgets.QScrollArea()
         self.labelBildgross.setParent(None)
         self.sa.setWidget(self.labelBildgross)
         self.hboxlayout.insertWidget(0, self.sa)

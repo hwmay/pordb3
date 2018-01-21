@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2018 HWM
     
     This file is part of PorDB3.
 
@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_neu import Ui_Dialog as pordb_neu
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
@@ -37,10 +37,10 @@ sizeneu = QtCore.QSize(300, 300)
 size_darsteller = QtCore.QSize(1920, 1080)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
-class Neueingabe(QtGui.QDialog, pordb_neu):
+class Neueingabe(QtWidgets.QDialog, pordb_neu):
     def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, remarks=None, stars=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, access_from_iafd = None):
         
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
         self.bilddatei = bilddatei
         self.titel = titel
@@ -67,30 +67,30 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.high_definition = high_definition
         self.access_from_iafd = access_from_iafd
         self.icon_starred = QtGui.QIcon()
-        self.icon_starred.addPixmap(QtGui.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_starred.addPixmap(QtWidgets.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.icon_nonstarred = QtGui.QIcon()
-        self.icon_nonstarred.addPixmap(QtGui.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_nonstarred.addPixmap(QtWidgets.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.set_stars = stars
         
-        self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
-        self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
-        self.connect(self.pushButtonNeuDelete, QtCore.SIGNAL("clicked()"), self.onDelete)
-        self.connect(self.pushButtonOriginal, QtCore.SIGNAL("clicked()"), self.onOriginal)
-        self.connect(self.pushButtonOriginalAlt, QtCore.SIGNAL("clicked()"), self.onOriginalAlt)
-        self.connect(self.pushButtonRepeat, QtCore.SIGNAL("clicked()"), self.onRepeat)
-        self.connect(self.pushButtonAddYear, QtCore.SIGNAL("clicked()"), self.onAddYear)
-        self.connect(self.pushButtonStar1, QtCore.SIGNAL("clicked()"), self.onStar1)
-        self.connect(self.pushButtonStar2, QtCore.SIGNAL("clicked()"), self.onStar2)
-        self.connect(self.pushButtonStar3, QtCore.SIGNAL("clicked()"), self.onStar3)
-        self.connect(self.pushButtonStar4, QtCore.SIGNAL("clicked()"), self.onStar4)
-        self.connect(self.pushButtonStar5, QtCore.SIGNAL("clicked()"), self.onStar5)
-        self.connect(self.pushButtonClearRating, QtCore.SIGNAL("clicked()"), self.onClearRating)
-        self.connect(self.listWidgetW, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
-        self.connect(self.listWidgetM, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
-        self.connect(self.pushButtonNeuDarstelleruebernehmen, QtCore.SIGNAL("clicked()"), self.onDarstelleruebernehmen)
-        self.connect(self.pushButtonBildloeschen, QtCore.SIGNAL("clicked()"), self.onBildloeschen)
-        self.connect(self.pushButtonVerz, QtCore.SIGNAL("clicked()"), self.onVerzeichnisWechseln)
-        self.connect(self.pushButtonBildbeschneiden, QtCore.SIGNAL("clicked()"), self.onBildbeschneiden)
+        self.pushButtonNeuOK.clicked.connect(self.accept)
+        self.pushButtonNeuCancel.clicked.connect(self.close)
+        self.pushButtonNeuDelete.clicked.connect(self.onDelete)
+        self.pushButtonOriginal.clicked.connect(self.onOriginal)
+        self.pushButtonOriginalAlt.clicked.connect(self.onOriginalAlt)
+        self.pushButtonRepeat.clicked.connect(self.onRepeat)
+        self.pushButtonAddYear.clicked.connect(self.onAddYear)
+        self.pushButtonStar1.clicked.connect(self.onStar1)
+        self.pushButtonStar2.clicked.connect(self.onStar2)
+        self.pushButtonStar3.clicked.connect(self.onStar3)
+        self.pushButtonStar4.clicked.connect(self.onStar4)
+        self.pushButtonStar5.clicked.connect(self.onStar5)
+        self.pushButtonClearRating.clicked.connect(self.onClearRating)
+        self.listWidgetW.itemDoubleClicked.connect(self.onDarstelleruebernehmen)
+        self.listWidgetM.itemDoubleClicked.connect(self.onDarstelleruebernehmen)
+        self.pushButtonNeuDarstelleruebernehmen.clicked.connect(self.onDarstelleruebernehmen)
+        self.pushButtonBildloeschen.clicked.connect(self.onBildloeschen)
+        self.pushButtonVerz.clicked.connect(self.onVerzeichnisWechseln)
+        self.pushButtonBildbeschneiden.clicked.connect(self.onBildbeschneiden)
         
         self.pushButtonNeuOK.setDefault(True)
         
@@ -141,7 +141,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.listWidgetW.clear()
         initial = ' '
         for i in darsteller_w:
-            newitem = QtGui.QListWidgetItem(i)
+            newitem = QtWidgets.QListWidgetItem(i)
             if i[0] != initial:
                 initial = i[0]
                 newitem.setTextColor(QtGui.QColor('red'))
@@ -150,7 +150,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             self.listWidgetW.addItem(newitem)
         initial = ' '
         for i in darsteller_m:
-            newitem = QtGui.QListWidgetItem(i)
+            newitem = QtWidgets.QListWidgetItem(i)
             if i[0] != initial:
                 initial = i[0]
                 newitem.setTextColor(QtGui.QColor('red'))
@@ -401,7 +401,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.close()
             
     def onVerzeichnisWechseln(self):
-        self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), os.path.dirname(str(self.bilddatei)), self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+        self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), os.path.dirname(str(self.bilddatei)), self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
         if not self.file:
             return
         self.bilddatei = str(self.file)
@@ -419,9 +419,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         self.bilddarstellen()
         
     def bilddarstellen(self):
-        bild = QtGui.QPixmap(self.bilddatei).scaled(sizeneu, QtCore.Qt.KeepAspectRatio)
+        bild = QtWidgets.QPixmap(self.bilddatei).scaled(sizeneu, QtCore.Qt.KeepAspectRatio)
         self.labelNeuBildanzeige.setPixmap(bild)
-        text = str(QtGui.QPixmap(self.bilddatei).width()) +"x" +str(QtGui.QPixmap(self.bilddatei).height())
+        text = str(QtWidgets.QPixmap(self.bilddatei).width()) +"x" +str(QtWidgets.QPixmap(self.bilddatei).height())
         self.groupBox_2.setTitle(text)
         
     def accept(self):
@@ -436,14 +436,14 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                     self.lese_func = DBLesen(self, zu_lesen, darsteller[fehler_index].title().strip())
                     res = DBLesen.get_data(self.lese_func)
                     if res:
-                        messageBox = QtGui.QMessageBox()
-                        messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
-                        messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
-                        messageBox.addButton(self.trUtf8("No, add new actor"), QtGui.QMessageBox.ActionRole)
-                        messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias."))
-                        messageBox.setIcon(QtGui.QMessageBox.Question)
-                        messageBox.setText(self.trUtf8("Do you want to take this actor instead?"))
-                        messageBox.setDetailedText(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias. If you want to take this actor, click on yes, else change your entry or add a new actor to the database."))
+                        messageBox = QtWidgets.QMessageBox()
+                        messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+                        messageBox.addButton(self.tr("No, correct entry"), QtWidgets.QMessageBox.RejectRole)
+                        messageBox.addButton(self.tr("No, add new actor"), QtWidgets.QMessageBox.ActionRole)
+                        messageBox.setWindowTitle(darsteller[fehler_index] +self.tr(" does not exist") +self.tr(", but I have found ") +res[0][0].strip() +self.tr(" as alias."))
+                        messageBox.setIcon(QtWidgets.QMessageBox.Question)
+                        messageBox.setText(self.tr("Do you want to take this actor instead?"))
+                        messageBox.setDetailedText(darsteller[fehler_index] +self.tr(" does not exist") +self.tr(", but I have found ") +res[0][0].strip() +self.tr(" as alias. If you want to take this actor, click on yes, else change your entry or add a new actor to the database."))
                         message = messageBox.exec_()
                         if message == 0:
                             darsteller_alt = str(self.lineEditNeuDarsteller.text()).title().strip()
@@ -457,7 +457,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                             self.darsteller_addieren(darsteller, fehler_index)
                             actor_added = True
                 elif fehler == 2:
-                    message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You have entered some actors twice, please correct"))
+                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You have entered some actors twice, please correct"))
                     return
                 if actor_adding_asked:
                     return
@@ -472,12 +472,12 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         try:
             cd = int(self.lineEditNeuCD.text())
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("CD is not a number"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
             return
         bild = self.lineEditNeuBild.text()
 
         if not self.radioButtonVorhandenJa.isChecked() and not self.radioButtonVorhandenNein.isChecked():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is available"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please mark whether movie is available"))
             return
         if self.radioButtonVorhandenJa.isChecked():
             vorhanden = "x"
@@ -485,7 +485,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             vorhanden = ""
 
         if not self.radioButtonGesehenNein.isChecked() and not self.radioButtonGesehenJa.isChecked():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie has been watched"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please mark whether movie has been watched"))
             return
         if self.radioButtonGesehenNein.isChecked():
             gesehen = " "
@@ -495,23 +495,23 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         try:
             original = str(self.lineEditNeuOriginal.text()).title().split()
         except:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error: original title has invalid characters"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error: original title has invalid characters"))
             return
         
         # get rid of double spaces
         original = " ".join(original)
 
         if len(original) > 256:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error, original title is longer than 256 characters."))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error, original title is longer than 256 characters."))
             return
         if not self.radioButtonCoverJa.isChecked() and not self.radioButtonCoverNein.isChecked():
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please check if image file is a cover"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please check if image file is a cover"))
             return
         if self.radioButtonVorhandenJa.isChecked() and self.comboBoxDefinition.currentIndex() == 0 and not self.cover_austauschen:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select a resolution"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select a resolution"))
             return
         if self.radioButtonVorhandenNein.isChecked() and self.comboBoxDefinition.currentIndex() != 0:
-            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Video is not in stock: resolution deleted"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Video is not in stock: resolution deleted"))
             self.comboBoxDefinition.setCurrentIndex(0)
         zu_erfassen = []
         if self.korrektur and not self.undo:
@@ -533,7 +533,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                         if bilddatei.save(bilddatei_alt):
                             os.remove(self.bilddatei)
                         else:
-                            message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
+                            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
                             return
             werte = []
             werte.append(self.cd_alt)
@@ -627,7 +627,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                     os.rename(self.bilddatei, os.path.join(self.verzeichnis_cover, self.bild.strip()))
         else:
             if self.radioButtonCoverJa.isChecked() and not original:
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("When adding a cover you must also enter a movie title"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("When adding a cover you must also enter a movie title"))
                 return
             if self.undo:
                 bilddatei = QtGui.QImage(os.path.join(self.verzeichnis_trash, bild))
@@ -652,7 +652,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                         bild = neue_bilddatei.lineEditDateiname.text()
                         titel = str(bild.split('.')[0])
                     except:
-                        message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error on renaming image file"))
+                        message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error on renaming image file"))
                         return
                 else:
                     return
@@ -663,7 +663,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
                 if not self.undo:
                     os.remove(os.path.join(self.verzeichnis, str(bild)))
             else:
-                message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
+                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
                 return
             werte = []
             werte.append("pordb_vid_primkey_seq")
@@ -861,17 +861,17 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
             DBUpdate.update_data(update_func)
         
         self.close()
-        QtGui.QDialog.accept(self)
+        QtWidgets.QDialog.accept(self)
     # end of accept
     
     def darsteller_addieren (self, darsteller, fehler_index):
-        messageBox = QtGui.QMessageBox()
-        messageBox.addButton(self.trUtf8("Yes, image exists"), QtGui.QMessageBox.AcceptRole)
-        messageBox.addButton(self.trUtf8("Yes, no image"), QtGui.QMessageBox.YesRole)
-        messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
-        messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist"))
-        messageBox.setIcon(QtGui.QMessageBox.Question)
-        messageBox.setText(self.trUtf8("Do you want to add this actor?"))
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.addButton(self.tr("Yes, image exists"), QtWidgets.QMessageBox.AcceptRole)
+        messageBox.addButton(self.tr("Yes, no image"), QtWidgets.QMessageBox.YesRole)
+        messageBox.addButton(self.tr("No, correct entry"), QtWidgets.QMessageBox.RejectRole)
+        messageBox.setWindowTitle(darsteller[fehler_index] +self.tr(" does not exist"))
+        messageBox.setIcon(QtWidgets.QMessageBox.Question)
+        messageBox.setText(self.tr("Do you want to add this actor?"))
         message = messageBox.exec_()
         if message == 2:
             korrekt = DarstellerKorrigieren(self.lineEditNeuDarsteller.text())
@@ -887,15 +887,15 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
         if message == 0:
             actor_file = False
             while not actor_file:
-                self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor ") +darsteller[fehler_index] +": " +self.trUtf8("please select one"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+                self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image of the actor ") +darsteller[fehler_index] +": " +self.tr("please select one"), self.verzeichnis, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
                 if self.file:
                     if self.file == self.bilddatei:
-                        message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Selected image is the one which should be added to the database. Please select another one."))
+                        message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Selected image is the one which should be added to the database. Please select another one."))
                         continue
                     else:
                         bild = QtGui.QImage(self.file)
                         if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
-                            message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
+                            message = QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Image of the actor is very big"))
                         zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
                         self.lese_func = DBLesen(self, zu_lesen, darsteller[fehler_index].strip())
                         res = DBLesen.get_data(self.lese_func)

@@ -44,14 +44,14 @@ class Cover(QtWidgets.QDialog, pordb_cover):
         self.bildQImage = QtGui.QImage(cover[0])
         self.labelBild1.setAlignment(QtCore.Qt.AlignTop)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild1.setPixmap(QtWidgets.QPixmap.fromImage(image))
+        self.labelBild1.setPixmap(QtGui.QPixmap.fromImage(image))
         self.labelBilddatei1.setText(cover[0])
         self.labelSize1.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
         
         self.bildQImage = QtGui.QImage(cover[1])
         self.labelBild2.setAlignment(QtCore.Qt.AlignTop)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild2.setPixmap(QtWidgets.QPixmap.fromImage(image))
+        self.labelBild2.setPixmap(QtGui.QPixmap.fromImage(image))
         self.labelBilddatei2.setText(cover[1])
         self.labelSize2.setText(str(self.bildQImage.width()) +"x" +str(self.bildQImage.height()))
         
@@ -92,11 +92,11 @@ class Cover(QtWidgets.QDialog, pordb_cover):
         if self.radioButtonBild2.isChecked():
             self.cover.reverse()
             
-        bild1 = QtWidgets.QPixmap(self.cover[0])
-        bild2 = QtWidgets.QPixmap(self.cover[1])
+        bild1 = QtGui.QPixmap(self.cover[0])
+        bild2 = QtGui.QPixmap(self.cover[1])
         w = bild1.width() + bild2.width()
         h = max(bild1.height(), bild2.height())
-        bild = QtWidgets.QPixmap(w, h)
+        bild = QtGui.QPixmap(w, h)
         bild.fill(QtGui.QColor("white"))
         
         p = QtWidgets.QPainter(bild)

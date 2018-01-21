@@ -98,7 +98,7 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
                 break
             except:
                 pass
-        bild = QtWidgets.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))
+        bild = QtGui.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))
         self.labelBild.setPixmap(bild)
             
         # Darsteller Geschlecht

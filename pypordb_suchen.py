@@ -39,7 +39,7 @@ class Suchen(QtWidgets.QDialog, pordb_suchen):
         
         self.set_stars = 0
         self.icon_starred = QtWidgets.QIcon()
-        self.icon_starred.addPixmap(QtWidgets.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_starred.addPixmap(QtGui.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.icon_nonstarred = QtGui.QIcon()
         self.icon_nonstarred.addPixmap(QtGui.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         

@@ -67,9 +67,9 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.high_definition = high_definition
         self.access_from_iafd = access_from_iafd
         self.icon_starred = QtGui.QIcon()
-        self.icon_starred.addPixmap(QtWidgets.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_starred.addPixmap(QtGui.QPixmap("pypordb/starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.icon_nonstarred = QtGui.QIcon()
-        self.icon_nonstarred.addPixmap(QtWidgets.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.icon_nonstarred.addPixmap(QtGui.QPixmap("pypordb/non-starred.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.set_stars = stars
         
         self.pushButtonNeuOK.clicked.connect(self.accept)
@@ -144,18 +144,18 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
             newitem = QtWidgets.QListWidgetItem(i)
             if i[0] != initial:
                 initial = i[0]
-                newitem.setTextColor(QtGui.QColor('red'))
+                newitem.setForeground(QtGui.QColor('red'))
             else:
-                newitem.setTextColor(QtGui.QColor('black'))
+                newitem.setForeground(QtGui.QColor('black'))
             self.listWidgetW.addItem(newitem)
         initial = ' '
         for i in darsteller_m:
             newitem = QtWidgets.QListWidgetItem(i)
             if i[0] != initial:
                 initial = i[0]
-                newitem.setTextColor(QtGui.QColor('red'))
+                newitem.setForeground(QtGui.QColor('red'))
             else:
-                newitem.setTextColor(QtGui.QColor('black'))
+                newitem.setForeground(QtGui.QColor('black'))
             self.listWidgetM.addItem(newitem)
             
         self.bilddarstellen()
@@ -419,9 +419,9 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.bilddarstellen()
         
     def bilddarstellen(self):
-        bild = QtWidgets.QPixmap(self.bilddatei).scaled(sizeneu, QtCore.Qt.KeepAspectRatio)
+        bild = QtGui.QPixmap(self.bilddatei).scaled(sizeneu, QtCore.Qt.KeepAspectRatio)
         self.labelNeuBildanzeige.setPixmap(bild)
-        text = str(QtWidgets.QPixmap(self.bilddatei).width()) +"x" +str(QtWidgets.QPixmap(self.bilddatei).height())
+        text = str(QtGui.QPixmap(self.bilddatei).width()) +"x" +str(QtGui.QPixmap(self.bilddatei).height())
         self.groupBox_2.setTitle(text)
         
     def accept(self):

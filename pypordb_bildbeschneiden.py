@@ -57,7 +57,7 @@ class Bildbeschneiden(QtWidgets.QDialog, pordb_bildschneiden):
         self.labelBild.setMinimumSize(QtCore.QSize(width, height))
         self.labelBild.setAlignment(QtCore.Qt.AlignTop)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild.setPixmap(QtWidgets.QPixmap.fromImage(image))
+        self.labelBild.setPixmap(QtGui.QPixmap.fromImage(image))
         self.sa.horizontalScrollBar().setMaximum(positionX)
         self.sa.verticalScrollBar().setMaximum(positionY)
         self.sa.horizontalScrollBar().setValue(positionX)

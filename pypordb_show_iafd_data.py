@@ -98,7 +98,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                             bilddatei = self.getBilddatei(res[0][0], res[0][1])
                         else:
                             bilddatei = self.getBilddatei(wert2.replace("'", "_apostroph_").title())
-                        pixmap = QtWidgets.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
+                        pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
                         if pixmap.height() > max_height:
                             max_height = pixmap.height()
                         pixmapitem = QtWidgets.QGraphicsPixmapItem(pixmap)
@@ -162,7 +162,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             max_height = 0
             for i in dateiliste:
                 bilddatei = os.path.join(self.verzeichnis, i)
-                pixmap = QtWidgets.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
+                pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
                 if pixmap.height() > max_height:
                     max_height = pixmap.height()
                 self.pixmapitem_scene = QtWidgets.QGraphicsPixmapItem(pixmap)

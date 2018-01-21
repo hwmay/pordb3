@@ -57,7 +57,7 @@ class ActorDetails(QtWidgets.QDialog, pordb_actor_details):
         self.bildQImage = QtGui.QImage(bilddarsteller)
         self.labelBild1.setAlignment(QtCore.Qt.AlignCenter)
         image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
-        self.labelBild1.setPixmap(QtWidgets.QPixmap.fromImage(image))
+        self.labelBild1.setPixmap(QtGui.QPixmap.fromImage(image))
 
         self.labelName.setText(self.darsteller)
         

@@ -1950,7 +1950,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.tableWidgetBilder.setColumnCount(self.columns)
         for i in res:
             cover = ""
-            dateiname = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3].strip())
+            dateiname = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3])
             if not os.path.exists(dateiname) or self.actionCheckBoxDVDCover.isChecked():
                 dateiname = os.path.join(self.verzeichnis_cover, i[3].strip())
                 if os.path.exists(dateiname):
@@ -4061,14 +4061,14 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 newitem.setData(0, res[0][0])
             else:
                 newitem.setData(0, 0)
-            newitem.setTextAlignment(QtCore.Qt.AlignRight)
+            newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, 1, newitem)
         newitem = QtWidgets.QTableWidgetItem(self.tr("Summary"))
         j += 1
         self.tableWidgetStatistik.setItem(j, 0, newitem)
         newitem = QtWidgets.QTableWidgetItem()
         newitem.setData(0, gesamt)
-        newitem.setTextAlignment(QtCore.Qt.AlignRight)
+        newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
         self.tableWidgetStatistik.setItem(j, 1, newitem)
         self.tableWidgetStatistik.resizeColumnsToContents()
         self.tableWidgetStatistik.resizeRowsToContents()
@@ -4120,12 +4120,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.tableWidgetStatistik.setItem(j, 0, newitem)
             newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, i[1])
-            newitem.setTextAlignment(QtCore.Qt.AlignRight)
-            newitem.setTextAlignment(QtCore.Qt.AlignVCenter)
+            newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, 1, newitem)
             newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, i[2])
-            newitem.setTextAlignment(QtCore.Qt.AlignRight)
+            newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, 2, newitem)
             if i[3]:
                 newitem = QtWidgets.QTableWidgetItem(i[3])
@@ -4150,7 +4149,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 newitem.setData(0, i[5])
             else:
                 newitem.setData(0, 0)
-            newitem.setTextAlignment(QtCore.Qt.AlignRight)
+            newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, 5, newitem)
         self.tableWidgetStatistik.setHorizontalHeaderLabels([self.tr("Actor"), self.tr("Quantity"), self.tr("Partner"), self.tr("Nation"), self.tr("Age"), self.tr("Movies")])
         self.tableWidgetStatistik.resizeColumnsToContents()
@@ -4219,7 +4218,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             k = 0
             newitem = QtWidgets.QTableWidgetItem()
             newitem.setData(0, i)
-            newitem.setTextAlignment(QtCore.Qt.AlignRight)
+            newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, k, newitem)
             k = 1
             newitem = QtWidgets.QTableWidgetItem()
@@ -4227,7 +4226,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 newitem.setData(0, jahre[i])
             except:
                 newitem.setData(0, 0)
-            newitem.setTextAlignment(QtCore.Qt.AlignRight)
+            newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, k, newitem)
             try:
                 gesamt += jahre[i]

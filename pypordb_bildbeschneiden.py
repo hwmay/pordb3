@@ -95,7 +95,7 @@ class Bildbeschneiden(QtWidgets.QDialog, pordb_bildschneiden):
     def onSpeichernAls(self):
         filename = QtWidgets.QFileDialog.getSaveFileName(self, self.tr("jpg files"), self.bilddatei, self.tr("jpg files (*.jpg)"))
         self.bildQImage = self.bildQImage.scaled(size, QtCore.Qt.KeepAspectRatio)
-        if self.bildQImage.save(filename):
+        if self.bildQImage.save(filename[0]):
             self.close()
         else:
             message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error, image file could not be saved"))

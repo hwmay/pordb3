@@ -99,7 +99,7 @@ class Cover(QtWidgets.QDialog, pordb_cover):
         bild = QtGui.QPixmap(w, h)
         bild.fill(QtGui.QColor("white"))
         
-        p = QtWidgets.QPainter(bild)
+        p = QtGui.QPainter(bild)
         p.drawPixmap(0, 0, bild1)
         p.drawPixmap(bild1.width(), 0, bild2)
         p.end()

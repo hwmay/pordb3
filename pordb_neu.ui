@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1388</width>
-    <height>516</height>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -211,6 +211,12 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBoxDefinition">
+           <property name="iconSize">
+            <size>
+             <width>10</width>
+             <height>10</height>
+            </size>
+           </property>
            <item>
             <property name="text">
              <string/>
@@ -367,6 +373,12 @@
            <property name="icon">
             <iconset>
              <normaloff>pypordb/clear_l.png</normaloff>pypordb/clear_l.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>10</width>
+             <height>10</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -636,6 +648,12 @@ First click with the left mouse button in the left top corner, then click with t
           <iconset>
            <normaloff>pypordb/transform-crop.png</normaloff>pypordb/transform-crop.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item>
@@ -653,6 +671,12 @@ First click with the left mouse button in the left top corner, then click with t
           <iconset>
            <normaloff>pypordb/user-trash.png</normaloff>pypordb/user-trash.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item>
@@ -669,6 +693,12 @@ First click with the left mouse button in the left top corner, then click with t
          <property name="icon">
           <iconset>
            <normaloff>pypordb/media-floppy.png</normaloff>pypordb/media-floppy.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
          </property>
          <property name="shortcut">
           <string>Enter, Return</string>
@@ -696,6 +726,12 @@ First click with the left mouse button in the left top corner, then click with t
           <iconset>
            <normaloff>pypordb/dialog-cancel.svg</normaloff>pypordb/dialog-cancel.svg</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item>
@@ -713,6 +749,12 @@ First click with the left mouse button in the left top corner, then click with t
           <iconset>
            <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item>
@@ -729,6 +771,12 @@ First click with the left mouse button in the left top corner, then click with t
          <property name="icon">
           <iconset>
            <normaloff>pypordb/folder.svg</normaloff>pypordb/folder.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -826,6 +874,12 @@ First click with the left mouse button in the left top corner, then click with t
          <normalon>pypordb/appointment-recurring.png</normalon>
         </iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
        <property name="shortcut">
         <string>Ctrl+Y</string>
        </property>
@@ -873,6 +927,12 @@ First click with the left mouse button in the left top corner, then click with t
         <iconset>
          <normaloff>pypordb/go-next.svg</normaloff>pypordb/go-next.svg</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
       </widget>
      </item>
      <item row="0" column="0">
@@ -914,6 +974,12 @@ First click with the left mouse button in the left top corner, then click with t
         <iconset>
          <normaloff>pypordb/x-office-calendar-symbolic.svg</normaloff>pypordb/x-office-calendar-symbolic.svg</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
        <property name="shortcut">
         <string>Alt+Q</string>
        </property>
@@ -940,6 +1006,12 @@ First click with the left mouse button in the left top corner, then click with t
        <property name="icon">
         <iconset>
          <normaloff>pypordb/repeat.svg</normaloff>pypordb/repeat.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
        </property>
        <property name="shortcut">
         <string>F12</string>

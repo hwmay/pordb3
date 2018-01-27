@@ -2884,7 +2884,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             except:
                 stars = 0
             if j != 1:
-                self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), self.verzeichnis_trash, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+                self.file, _ = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), self.verzeichnis_trash, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
             eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, remarks, stars, "", undo, original_cover=trash_cover, high_definition = definition)
         else:
             if not cover_anlegen:
@@ -2912,10 +2912,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                         j += 1
                         self.file = os.path.join(self.verzeichnis, i)
                 if j != 1:
-                    self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), self.verzeichnis, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+                    self.file, _ = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), self.verzeichnis, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
                     if self.file:
                         self.verzeichnis = os.path.dirname(str(self.file))
             # In case we have just stored a cover, this part of program is already done
+            print (self.file)
             if self.file and os.path.exists(self.file):
                 eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, original = original)
         if not self.file:

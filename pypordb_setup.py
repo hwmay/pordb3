@@ -63,7 +63,7 @@ class Dialog(QtGui.QDialog, Dialog):
             self.labelDirectory.setText(self.tr("Directory: ") +self.verzeichnis)
             
     def onZipFile(self):
-        datei = QtGui.QFileDialog.getOpenFileName(self, self.tr("Zip file"), os.path.expanduser("~"), self.tr("Zip files (*.zip *.ZIP);;all files (*.*)"))
+        datei, _ = QtGui.QFileDialog.getOpenFileName(self, self.tr("Zip file"), os.path.expanduser("~"), self.tr("Zip files (*.zip *.ZIP);;all files (*.*)"))
         if datei:
             self.file = str(datei)
             self.labelFile.setText(self.tr("File: ") +self.file)

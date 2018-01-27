@@ -401,7 +401,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.close()
             
     def onVerzeichnisWechseln(self):
-        self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), os.path.dirname(str(self.bilddatei)), self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+        self.file, _ = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image files"), os.path.dirname(str(self.bilddatei)), self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
         if not self.file:
             return
         self.bilddatei = str(self.file)
@@ -887,7 +887,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         if message == 0:
             actor_file = False
             while not actor_file:
-                self.file = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image of the actor ") +darsteller[fehler_index] +": " +self.tr("please select one"), self.verzeichnis, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+                self.file, _ = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Image of the actor ") +darsteller[fehler_index] +": " +self.tr("please select one"), self.verzeichnis, self.tr("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
                 if self.file:
                     if self.file == self.bilddatei:
                         message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Selected image is the one which should be added to the database. Please select another one."))

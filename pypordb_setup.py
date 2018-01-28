@@ -3,13 +3,13 @@
 
 import sys
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_setup import Ui_Dialog as Dialog
 import zipfile
 
-class Dialog(QtGui.QDialog, Dialog):
+class Dialog(QtWidgets.QDialog, Dialog):
     def __init__(self):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
         self.setupUi(self)   
         
         self.connect(self.pushButtonNext, QtCore.SIGNAL("clicked()"), self.onNext)
@@ -57,13 +57,13 @@ class Dialog(QtGui.QDialog, Dialog):
             self.pushButtonNext.setText(self.tr("Next"))
             
     def onDirectory(self):
-        datei = QtGui.QFileDialog.getExistingDirectory(self, self.tr("Select directory or create a new one"), self.verzeichnis)
+        datei = QtWidgets.QFileDialog.getExistingDirectory(self, self.tr("Select directory or create a new one"), self.verzeichnis)
         if datei:
             self.verzeichnis = str(datei)
             self.labelDirectory.setText(self.tr("Directory: ") +self.verzeichnis)
             
     def onZipFile(self):
-        datei, _ = QtGui.QFileDialog.getOpenFileName(self, self.tr("Zip file"), os.path.expanduser("~"), self.tr("Zip files (*.zip *.ZIP);;all files (*.*)"))
+        datei, _ = QtWidgets.QFileDialog.getOpenFileName(self, self.tr("Zip file"), os.path.expanduser("~"), self.tr("Zip files (*.zip *.ZIP);;all files (*.*)"))
         if datei:
             self.file = str(datei)
             self.labelFile.setText(self.tr("File: ") +self.file)
@@ -120,7 +120,7 @@ class Dialog(QtGui.QDialog, Dialog):
         try:
             os.mkdir(directory)
         except:
-            message = QtGui.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
+            message = QtWidgets.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
             self.error = True
             return
         self.listWidget.addItem(self.tr("Directory ") +directory +self.tr(" created"))
@@ -132,7 +132,7 @@ class Dialog(QtGui.QDialog, Dialog):
             import psycopg2.extensions
         except:
             app.restoreOverrideCursor()
-            message = QtGui.QMessageBox.critical(self, self.tr("Fatal error "), self.tr("Package psycopg2 not found. You have to install this package first."))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Fatal error "), self.tr("Package psycopg2 not found. You have to install this package first."))
             self.error = True
             return
         db_host='localhost'
@@ -144,13 +144,13 @@ class Dialog(QtGui.QDialog, Dialog):
         try:
             cur.execute("CREATE DATABASE " +database  +" ENCODING='UTF8' TEMPLATE=template0 OWNER=postgres TABLESPACE=pg_default LC_COLLATE = 'C' LC_CTYPE = 'C' CONNECTION LIMIT = -1")
         except Exception as e:
-            messageBox = QtGui.QMessageBox()
-            messageBox.addButton(self.tr("Yes, delete database and all data in it"), QtGui.QMessageBox.AcceptRole)
-            messageBox.addButton(self.tr("No, abort installation"), QtGui.QMessageBox.RejectRole)
-            button_No = messageBox.addButton(self.tr("No, only software installation"), QtGui.QMessageBox.YesRole)
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.addButton(self.tr("Yes, delete database and all data in it"), QtWidgets.QMessageBox.AcceptRole)
+            messageBox.addButton(self.tr("No, abort installation"), QtWidgets.QMessageBox.RejectRole)
+            button_No = messageBox.addButton(self.tr("No, only software installation"), QtWidgets.QMessageBox.YesRole)
             messageBox.setDefaultButton(button_No)
             messageBox.setWindowTitle(self.tr("Database already exists"))
-            messageBox.setIcon(QtGui.QMessageBox.Warning)
+            messageBox.setIcon(QtWidgets.QMessageBox.Warning)
             messageBox.setText(self.tr("Should I drop the existing database and create a new one?"))
             message = messageBox.exec_()
             if message == 2: # Only software will be installed
@@ -679,13 +679,13 @@ class Dialog(QtGui.QDialog, Dialog):
             self.listWidgetDB.addItem(self.tr("Database created"))
             self.listWidgetDB.addItem(self.tr("Database tables created"))
         except Exception as e:
-            message = QtGui.QMessageBox.critical(self, self.tr("Error "), self.tr("Errors occured"))
+            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Errors occured"))
             sys.exit()
         cur.close()
         conn.close()
         app.restoreOverrideCursor()
         
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 locale = QtCore.QLocale.system().name()
 locale = 'en_EN'
 appTranslator = QtCore.QTranslator()

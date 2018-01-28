@@ -2916,7 +2916,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                     if self.file:
                         self.verzeichnis = os.path.dirname(str(self.file))
             # In case we have just stored a cover, this part of program is already done
-            print (self.file)
             if self.file and os.path.exists(self.file):
                 eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, original = original)
         if not self.file:

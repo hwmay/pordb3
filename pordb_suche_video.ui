@@ -28,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>989</width>
-        <height>675</height>
+        <width>987</width>
+        <height>664</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -39,13 +39,13 @@
           <widget class="QListWidget" name="listWidgetVideo">
            <property name="minimumSize">
             <size>
-             <width>20</width>
+             <width>45</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>20</width>
+             <width>45</width>
              <height>16777215</height>
             </size>
            </property>
@@ -67,14 +67,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QTextEdit" name="textEditVideo">
-           <property name="whatsThis">
-            <string>Insert text (Ctrl+v)</string>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-          </widget>
+          <widget class="QListWidget" name="listWidgetTitle"/>
          </item>
         </layout>
        </item>

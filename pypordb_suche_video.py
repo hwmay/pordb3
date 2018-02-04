@@ -31,20 +31,19 @@ class SucheVideo(QtWidgets.QDialog, pordb_suche_video):
         self.pushButtonSuchen.clicked.connect(self.onSuchen)
         self.pushButtonAnzeigen.clicked.connect(self.onAnzeigen)
         self.pushButtonAbbrechen.clicked.connect(self.close)
+        self.listWidgetVideo.verticalScrollBar().valueChanged.connect(self.listWidgetTitle.verticalScrollBar().setValue)
+        self.listWidgetTitle.verticalScrollBar().valueChanged.connect(self.listWidgetVideo.verticalScrollBar().setValue)
         
         self.app = app
         
         self.zu_lesen = ""
-        self.textEditVideo.setFocus()
+        self.listWidgetTitle.setFocus()
         self.res_alle = []
         self.titel = titel
         self.werte = []
         if self.titel:
             self.pushButtonSuchen.setEnabled(False)
-            j = ""
-            for i in self.titel:
-                j += i + "\n"
-            self.textEditVideo.setText(j)
+            self.listWidgetTitle.addItems(self.titel)
             self.onSuchen()
         else:
             self.pushButtonSuchen.setEnabled(True)
@@ -66,7 +65,7 @@ class SucheVideo(QtWidgets.QDialog, pordb_suche_video):
                     vorhanden.append(" ")
         self.label_insgesamt.setText(str(len(self.titel)))
         self.label_vorhanden.setText(str(len(self.res_alle)))
-        self.listWidgetVideo.setMinimumHeight(len(self.titel) * 20)
+        #self.listWidgetVideo.setMinimumHeight(len(self.titel))
         self.listWidgetVideo.addItems(vorhanden)
         self.app.restoreOverrideCursor()
         

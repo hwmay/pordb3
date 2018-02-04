@@ -875,6 +875,9 @@ class Ui_MainWindow(object):
         self.pushButtonVerwalten.setIcon(icon39)
         self.pushButtonVerwalten.setObjectName("pushButtonVerwalten")
         self.horizontalLayout_16.addWidget(self.pushButtonVerwalten)
+        self.checkBoxSubdirectories = QtWidgets.QCheckBox(self.frame_Dateikatalog)
+        self.checkBoxSubdirectories.setObjectName("checkBoxSubdirectories")
+        self.horizontalLayout_16.addWidget(self.checkBoxSubdirectories)
         self.pushButtonStart = QtWidgets.QPushButton(self.frame_Dateikatalog)
         icon40 = QtGui.QIcon()
         icon40.addPixmap(QtGui.QPixmap("pypordb/run.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -1373,6 +1376,7 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Select a device name. Device names must be unambiguous .</p></body></html>"))
         self.pushButtonVerwalten.setText(_translate("MainWindow", "Maintain device names"))
+        self.checkBoxSubdirectories.setText(_translate("MainWindow", "with subdirectories"))
         self.pushButtonStart.setText(_translate("MainWindow", "Start"))
         self.label_15.setText(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

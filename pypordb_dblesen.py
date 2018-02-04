@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtWidgets
 
 import psycopg2
 import psycopg2.extensions
@@ -47,7 +47,7 @@ class DBLesen():
             self.conn = psycopg2.connect(database="por", host=db_host)
         except Exception as e:
             print(e)
-            message = QtWidgets.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
+            QtWidgets.QMessageBox.critical(self.fenster, self.fenster.tr("Error "), str(e))
             self.cur.close()
             return 
         self.cur = self.conn.cursor()
@@ -61,7 +61,7 @@ class DBLesen():
         except Exception as e:
             print(self.zu_lesen, type(self.zu_lesen))
             print(e)
-            message = QtWidgets.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
+            QtWidgets.QMessageBox.critical(self.fenster, self.fenster.tr("Error "), str(e))
             self.cur.close()
             return 
         self.res = self.cur.fetchall()

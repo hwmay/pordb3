@@ -27,13 +27,10 @@ import datetime
 import platform
 import urllib.request, urllib.error, urllib.parse
 import socket
-from operator import itemgetter, attrgetter
+from operator import itemgetter
 import psycopg2
 import subprocess
 from PyQt5 import QtGui, QtCore, QtWidgets, QtPrintSupport
-from PyQt5.QtWebKitWidgets import QWebPage, QWebFrame
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-import PyQt5.QtWebKitWidgets as webkit
 from pordb_hauptdialog import Ui_MainWindow as MainWindow
 
 from pypordb_suchen import Suchen
@@ -60,7 +57,7 @@ from pypordb_devices import Devices
 from pypordb_update_version import UpdateVersion
 from pypordb_mass_change import MassChange
 from pypordb_actordata import ActorData
-from pypordb_genericthread import GenericThread            
+#from pypordb_genericthread import GenericThread            
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(500, 400)
@@ -638,7 +635,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             else:
                 os.remove(datei)
         else:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
             return
             
         self.ausgabe_in_table()
@@ -660,7 +657,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 return
             bild = QtGui.QImage(dateien[0])
             if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
-                message = QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Image of the actor is very big"))
+                QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Image of the actor is very big"))
             zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
             lese_func = DBLesen(self, zu_lesen, name)
             res = DBLesen.get_data(lese_func)
@@ -1036,7 +1033,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         else:
             original = ""
         if not original:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("There is no original title: cannot be renamed"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("There is no original title: cannot be renamed"))
             app.restoreOverrideCursor()
             return
         umbenennen = DarstellerUmbenennen(original)
@@ -1111,7 +1108,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         else:
             original = ""
         if not original:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Movie has no original title"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Movie has no original title"))
             app.restoreOverrideCursor()
             return
         zu_lesen = "SELECT primkey FROM pordb_vid WHERE original = %s"
@@ -1170,7 +1167,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         dateiliste = os.listdir(self.verzeichnis_trash)
         if not dateiliste:
             return
-        j = 0
         bilddatei_trash = None
         for i in dateiliste:
             if os.path.splitext(i)[0] == "pypordb_bildalt":
@@ -1220,10 +1216,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         column = self.tableWidgetBilder.column(item)
         row = self.tableWidgetBilder.row(item)
         index = int(row * self.columns + column + self.start_bilder)
-        if self.aktuelles_res[index][5]:
-            original = self.aktuelles_res[index][5]
-        else:
-            original = ""
         cover = os.path.join(self.verzeichnis_cover, self.aktuelles_res[index][3].strip())
         if os.path.exists(cover):
             bilddialog = DarstellerAnzeigeGross(cover)
@@ -1277,7 +1269,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 if self.partner:
                     painter.drawText(x + 300, y, "- " +str(seite) +" -")
                     y += 15
-                    darsteller = str(self.labelDarsteller.text()).strip()
                     verzeichnis_m = os.path.join(self.verzeichnis_thumbs, "darsteller_m")
                     verzeichnis_w = os.path.join(self.verzeichnis_thumbs, "darsteller_w")
                     randunten = 50
@@ -1686,7 +1677,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).title().strip()
         except:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
             return
         if not ein or ein == "=":
             return
@@ -1725,7 +1716,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         try:
             ein = int(self.suchfeld.currentText())
         except:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
             return
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         werte = []
@@ -1749,7 +1740,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).lower().strip()
         except:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
             return
         if not ein:
             return
@@ -1775,7 +1766,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).replace("#","").lower().strip()
         except:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems to be an invalid character in the search field"))
             return
         if not ein or ein == "=":
             return
@@ -2182,7 +2173,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 try:
                     cd = int(self.suche_cd)
                 except:
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("CD is not a number"))
                     return
                 if argument == 1:
                     zu_lesen += " AND "
@@ -2362,7 +2353,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if not res:
             return
         gesucht = res[0][0].strip()
-        geschlecht = res[0][1]
         # Get the complete list of partners of the actor
         zu_lesen = "SELECT partner, cd, bild FROM pordb_partner WHERE darsteller = %s ORDER BY partner"
         lese_func = DBLesen(self, zu_lesen, gesucht)
@@ -2404,7 +2394,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                     if res1[0][0] != 0:
                         mengeCs.add(i[0])
                 except: 
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("There is something wrong with partners: ") + zu_lesen + "(" + str(i[1]) + ", " + i[2] + ")")
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("There is something wrong with partners: ") + zu_lesen + "(" + str(i[1]) + ", " + i[2] + ")")
                     return
             if ethnic:
                 menge = mengeEthnic & mengeCs
@@ -2436,7 +2426,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         try:
             ein = str(self.suchfeld.currentText()).strip().title()
         except:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Illegal characters in search field"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Illegal characters in search field"))
             return
         if not ein and not ignorelist:
             selected = self.listWidgetDarsteller.selectedItems()
@@ -2481,7 +2471,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             lese_func = DBLesen(self, zu_lesen, "%" + eingabe + "%")
             res1 = DBLesen.get_data(lese_func)
             if len(res) == 0 and len(res1) > 0:
-                message = QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Actor has been found as pseudonym only!"))
+                QtWidgets.QMessageBox.warning(self, self.tr("Caution! "), self.tr("Actor has been found as pseudonym only!"))
             if res1:
                 for i in res1:
                     werte = []
@@ -2616,12 +2606,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             try:
                 geboren = datetime.date(int(geboren[0]), int(geboren[1]),int(geboren[2]))
             except ValueError:
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Invalid birthday"))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Invalid birthday"))
                 return
             geboren = str(self.lineEditGeboren.text())
         else:
             geboren = "0001-01-01"
-        datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
         werte = []
         werte.append(str(ein))
         werte.append(str(self.comboBoxHaarfarbe.currentText()))
@@ -2670,7 +2659,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("utf-8")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
                 return
             app.restoreOverrideCursor()
             bilddialog = DarstellerdatenAnzeigen(app, res[0][11], seite, self.verzeichnis_thumbs, name = res[0][0])
@@ -2742,7 +2731,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 if actor_birthplace == "No data":
                     actor_birthplace = "-"
                 app.restoreOverrideCursor()
-                message = QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors country in \nPorDB --> ({0}) \ndiffers from actors country in the \nIAFD --> ({1}, birthplace: {2}).\nMaybe you should check the actor in PorDB.").format(res[0][5].strip(), res_iso_land[0][0], actor_birthplace))
+                QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors country in \nPorDB --> ({0}) \ndiffers from actors country in the \nIAFD --> ({1}, birthplace: {2}).\nMaybe you should check the actor in PorDB.").format(res[0][5].strip(), res_iso_land[0][0], actor_birthplace))
             
             # Darsteller Anzahl Filme
             filme = ActorData.actor_movies(actordata)
@@ -3546,7 +3535,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                     try:
                         os.rename(datei_alt, datei_neu)
                     except:
-                        message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
+                        QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
                         
         if neuer_name:
             self.labelDarsteller.setText(neuer_name.replace("''", "'").title())
@@ -3563,7 +3552,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             return
         if not res:
             return
-        geschlecht = res[0][1]
         werte = []
         if ein[0] == '=':
             zu_lesen = "SELECT DISTINCT ON (original) original FROM pordb_vid WHERE darsteller = %s OR darsteller LIKE %s OR darsteller LIKE %s OR darsteller LIKE %s"
@@ -3737,7 +3725,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         zu_lesen += " ORDER BY file"
         if len(ein) < 3 and not filesizefrom:
             self.lineEditSuchen.setFocus()
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please enter at least 3 characters in the searchfield"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please enter at least 3 characters in the searchfield"))
             return
             
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -3762,7 +3750,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.tableWidget.setHorizontalHeaderLabels(self.fieldnames_mpg)
         for i in range(len(zeilen)):
             for j in range(len(zeilen[i])):
-                mb = 0
                 try:    # fieldtype is char
                     newitem = QtWidgets.QTableWidgetItem(zeilen[i][j].strip())
                 except:
@@ -3899,7 +3886,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if zu_erfassen:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Information "), str(anzahl_werte) + self.tr(" line(s) deleted"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Information "), str(anzahl_werte) + self.tr(" line(s) deleted"))
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         self.onSuchen()
         app.restoreOverrideCursor()
@@ -3983,7 +3970,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         except:
             fehler = True
         if fehler:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems IAFD site is offline"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems IAFD site is offline"))
             return
 
         bilddialog.exec_()
@@ -4202,7 +4189,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             jahre_titel[j] = str(i)
 
         datum_akt = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-        akt_jahr = datum_akt[0:4]
         
         self.tableWidgetStatistik.setSortingEnabled(False)
         self.tableWidgetStatistik.clear()
@@ -4212,7 +4198,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         j = -1
         datum_alt = "1900-01-01"
         gesamt = 0
-        datum = []
         for i in jahre_titel:
             j += 1
             k = 0
@@ -4422,7 +4407,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 except:
                     self.suchfeld.setFocus()
                     message = QtWidgets.QMessageBox(self)
-                    message.setText(self.tr("Restore from directory ") +self.verzeichnis + self.tr(" failed. In most cases there is a file with an invalid creation/change date."))
+                    message.setText(self.tr("Restore from directory ") + self.verzeichnis + self.tr(" failed. In most cases there is a file with an invalid creation/change date."))
                     message.exec_()
                     app.restoreOverrideCursor()
                     return
@@ -4431,12 +4416,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 self.suchfeld.setFocus()
                 app.restoreOverrideCursor()
                 message = QtWidgets.QMessageBox(self)
-                message.setText(self.tr("Restore from directory ") +self.verzeichnis + self.tr(" failed. No backup files found."))
+                message.setText(self.tr("Restore from directory ") + self.verzeichnis + self.tr(" failed. No backup files found."))
                 message.exec_()
                 return
-            if dateien_gefunden:
-                nachricht += "; "
-            nachricht += self.tr("Backup in directory ") +self.verzeichnis + self.tr(" restored. You can now copy the complete directory to its origin place.")
+            
+            nachricht += "; " + self.tr("Backup in directory ") + self.verzeichnis + self.tr(" restored. You can now copy the complete directory to its origin place.")
 
         app.restoreOverrideCursor()
         self.suchfeld.setFocus()
@@ -4478,7 +4462,14 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             
         self.verzeichnis_tools = str(QtWidgets.QFileDialog.getExistingDirectory(self, self.tr("Select directory"), "/"))
         if self.verzeichnis_tools:
-            self.dateien = os.listdir(self.verzeichnis_tools)
+            if self.checkBoxSubdirectories.isChecked():
+                self.dateien = []
+                liste = os.walk(self.verzeichnis_tools)
+                for root, dirs, files in liste:
+                    for file_ in files:
+                        self.dateien.append([root, file_])
+            else:
+                self.dateien = os.listdir(self.verzeichnis_tools)
             self.dateien.sort()
         else:
             return
@@ -4515,30 +4506,31 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         zu_erfassen = []
         
         for i in self.dateien:
-            if os.path.isfile(os.path.join(self.verzeichnis_tools, i.strip())):
+            if os.path.isfile(os.path.join(i[0], i[1].strip())):
                 #self.emit(QtCore.SIGNAL("add(QString)"), i)
                 zu_lesen = "SELECT * FROM pordb_mpg_katalog WHERE file = %s OR groesse = %s"
-                lese_func = DBLesen(self, zu_lesen, (i, str(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip())))))
+                lese_func = DBLesen(self, zu_lesen, (i[1], str(os.path.getsize(os.path.join(i[0].strip(), i[1].strip())))))
                 res = DBLesen.get_data(lese_func)
                 in_datenbank = True
                 for j in res:
-                    if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(self.verzeichnis_tools) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
+                    if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(i[0]) and j[2].replace("'", "''").strip() == i[1].replace("'", "''").strip():
+                    #if j[0].strip() == os.path.basename(i[0]).strip() and j[1].strip() == i[0] and j[2].replace("'", "''").strip() == i[1].replace("'", "''").strip():
                         in_datenbank = False
                     
                 if in_datenbank:
                     for j in res:
                         # put only in duplicate list, when actual directory is another one than that in database
-                        if j[1].strip() != os.path.basename(self.verzeichnis_tools).strip(): 
+                        if j[1].strip() != i[0].strip(): 
                             a = list(j)
-                            a.append(i)
-                            a.append(int(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip()))))
+                            a.append(i[1])
+                            a.append(int(os.path.getsize(os.path.join(i[0].strip(), i[1].strip()))))
                             self.res_duplicates.append(a)
                     werte = []
                     werte.append(str(self.comboBoxDevice.currentText()))
-                    werte.append(os.path.basename(self.verzeichnis_tools))
-                    werte.append(i)
+                    werte.append(os.path.basename(i[0]))
+                    werte.append(i[1])
                     werte.append(None)
-                    werte.append(os.path.getsize(os.path.join(self.verzeichnis_tools, i.strip())))
+                    werte.append(os.path.getsize(os.path.join(i[0].strip(), i[1].strip())))
                     zu_erfassen.append(["INSERT INTO pordb_mpg_katalog VALUES (%s, %s, %s, %s, %s)", werte])
                     
         update_func = DBUpdate(self, zu_erfassen)

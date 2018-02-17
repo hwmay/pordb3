@@ -1638,7 +1638,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             res = DBLesen.get_data(lese_func)
             if res[0][0]:
                 clipboard = QtWidgets.QApplication.clipboard()
-                clipboard.setText(res[0][0], mode=QtGui.clipboard.Clipboard)
+                clipboard.setText(res[0][0])
         self.suchfeld.setFocus()
         
     def onGoToUrl(self):

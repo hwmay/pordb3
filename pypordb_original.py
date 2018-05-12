@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from pordb_original import Ui_Dialog as pordb_original
 
 class OriginalErfassen(QtWidgets.QDialog, pordb_original):
@@ -32,7 +32,11 @@ class OriginalErfassen(QtWidgets.QDialog, pordb_original):
         if self.original_weitere:
             self.tableWidget.clearContents()
             for i in self.original_weitere:
-                newitem = QtWidgets.QTableWidgetItem(i.title().strip())
+                if type(i) == str:
+                    titel = i
+                else:
+                    titel = i.decode()
+                newitem = QtWidgets.QTableWidgetItem(titel.title().strip())
                 self.tableWidget.setItem(row, 0, newitem)
                 row += 1
         newitem = QtWidgets.QTableWidgetItem("")

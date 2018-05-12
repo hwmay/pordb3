@@ -593,13 +593,13 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         for i in items:
             dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         if len(dateien) > 2:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 or 2 pictures"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 or 2 pictures"))
             return    
         else:
             bilddatei_alt = os.path.join(self.verzeichnis_thumbs, "cd" + str(cd), bild.rstrip())
             if len(dateien) == 2:
                 if os.path.exists(bilddatei_alt):
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 picture"))
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 picture"))
                     return    
                 original = self.aktuelles_res[index][5]
                 dialog = Cover(dateien, self.verzeichnis_original, original)
@@ -611,7 +611,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 if ext == ".jpeg":
                     ext = "jpg"
                 if not os.path.exists(bilddatei_alt):
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image to replace does not exist"))
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image to replace does not exist"))
                     return
                 os.rename(bilddatei_alt, os.path.join(self.verzeichnis_trash, "pypordb_bildalt" + ext))
             else:
@@ -649,7 +649,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         for i in items:
             dateien.append(os.path.join(self.verzeichnis, i.text().split("\n")[0]))
         if len(dateien) > 1:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 picture"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("You can only drag 1 picture"))
             return    
         else:
             name = str(self.labelDarsteller.text()).strip().lstrip("=")
@@ -2597,7 +2597,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         try:
             ein = int(self.lineEditAnzahl.text())
         except:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Quantity is not a number"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Quantity is not a number"))
             self.lineEditAnzahl.setSelection(0, len(self.lineEditAnzahl.text()))
             return
         # update-Anweisung aufbauen
@@ -2684,7 +2684,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("utf-8")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
                 return
             
             actordata = ActorData(seite)
@@ -2693,11 +2693,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             actor_name = ActorData.actor_name(actordata)
             if not actor_name:
                 app.restoreOverrideCursor()
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems IAFD site is offline"))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems IAFD site is offline"))
                 return
             if res[0][0].lower().strip() != actor_name.lower():
                 app.restoreOverrideCursor()
-                message = QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
+                QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(res[0][0].strip(), actor_name))
             
             # Darsteller Geboren
             geboren = ActorData.actor_born(actordata)
@@ -3362,7 +3362,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 res = DBLesen.get_data(lese_func)
                 if res:
                     app.restoreOverrideCursor()
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("New name already exists as alias, please first edit/delete the aliases"))
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("New name already exists as alias, please first edit/delete the aliases"))
                     return
                 werte = []
                 if vorname:
@@ -3520,14 +3520,14 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                             os.remove(datei_neu)
                             os.rename(datei_alt, datei_neu)
                         except:
-                            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
+                            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
                     elif datei == 2:
                         try:
                             os.remove(datei_alt)
                         except:
-                            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
+                            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not be renamed"))
                     else:
-                        message = QtWidgets.QMessageBox.information(self, self.tr("Information "), self.tr("Renaming canceled"))
+                        QtWidgets.QMessageBox.information(self, self.tr("Information "), self.tr("Renaming canceled"))
                         self.suchfeld.setCurrentIndex(-1)
                         self.suchfeld.setFocus()
                         return
@@ -3672,7 +3672,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             except:
                 self.lineEditFilesizeFrom.setFocus()
                 self.lineEditFilesizeFrom.selectAll()
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Only digits allowed as filesize"))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Only digits allowed as filesize"))
                 return
         if self.lineEditFilesizeTo.text():
             try:
@@ -3680,7 +3680,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             except:
                 self.lineEditFilesizeTo.setFocus()
                 self.lineEditFilesizeTo.selectAll()
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Only digits allowed as filesize"))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Only digits allowed as filesize"))
                 return
         
         if not ein and not filesizefrom and not filesizeto:
@@ -3709,7 +3709,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 if groesse2 <= groesse1:
                     self.lineEditFilesizeTo.setFocus()
                     self.lineEditFilesizeTo.selectAll()
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Filesize to must be bigger than filesize from"))
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Filesize to must be bigger than filesize from"))
                     return
                     
             else:
@@ -3966,7 +3966,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         bilddialog = DarstellerdatenAnzeigen(app, url, text, self.verzeichnis_thumbs)
         fehler = False
         try:
-            geschlecht = bilddialog.geschlecht
+            bilddialog.geschlecht
         except:
             fehler = True
         if fehler:
@@ -4188,7 +4188,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             j += 1
             jahre_titel[j] = str(i)
 
-        datum_akt = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
+        #datum_akt = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
         
         self.tableWidgetStatistik.setSortingEnabled(False)
         self.tableWidgetStatistik.clear()

@@ -27,7 +27,6 @@ from pypordb_bilddatei_umbenennen import BilddateiUmbenennen
 from pypordb_bildbeschneiden import Bildbeschneiden
 from pypordb_neueingabe_darsteller import NeueingabeDarsteller
 from pypordb_darsteller_korrigieren import DarstellerKorrigieren
-from pypordb_cover import Cover
 from pypordb_original import OriginalErfassen
 import os
 import datetime
@@ -1000,7 +999,6 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
 
         # Textdatei erstellen mit alten Daten
         textdatei = open(os.path.join(self.verzeichnis_trash, self.bild[-2] + ".txt"), "w")
-        zaehler = 0
         for i in res:
             for j in i:
                 try:

@@ -414,10 +414,10 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             try:
                 seite = urllib.request.urlopen("http://www.iafd.com/", timeout=10).read()
                 
-                if seite:
-                    self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
-                else:
-                    pass
+                #if seite:
+                    #self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
+                #else:
+                    #pass
             except (urllib.error.URLError, socket.timeout):
                 pass
             

@@ -3767,9 +3767,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                         newitem = QtWidgets.QTableWidgetItem(" ")
                 self.tableWidget.setItem(i, j, newitem)
         try:
+            self.tableWidget.setSortingEnabled(True)
             self.tableWidget.resizeColumnsToContents()
             self.tableWidget.resizeRowsToContents()
-            self.tableWidget.setSortingEnabled(True)
         except:
             pass
         self.tableWidget.scrollToTop()
@@ -3827,9 +3827,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                             newitem = QtWidgets.QTableWidgetItem(" ")
                     self.tableWidget1.setItem(i, j, newitem)
             try:
+                self.tableWidget1.setSortingEnabled(True)
                 self.tableWidget1.resizeColumnsToContents()
                 self.tableWidget1.resizeRowsToContents()
-                self.tableWidget1.setSortingEnabled(True)
             except:
                 pass
             self.tableWidget1.scrollToTop()

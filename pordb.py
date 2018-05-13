@@ -4139,10 +4139,10 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             newitem.setTextAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
             self.tableWidgetStatistik.setItem(j, 5, newitem)
         self.tableWidgetStatistik.setHorizontalHeaderLabels([self.tr("Actor"), self.tr("Quantity"), self.tr("Partner"), self.tr("Nation"), self.tr("Age"), self.tr("Movies")])
-        self.tableWidgetStatistik.resizeColumnsToContents()
-        self.tableWidgetStatistik.resizeRowsToContents()
         self.tableWidgetStatistik.setSortingEnabled(True)
         self.tableWidgetStatistik.sortItems(2, 1)
+        self.tableWidgetStatistik.resizeColumnsToContents()
+        self.tableWidgetStatistik.resizeRowsToContents()
         self.tableWidgetStatistik.scrollToTop()
         self.suchfeld.setFocus()
         

@@ -22,6 +22,7 @@
 from PyQt5 import QtGui, QtCore, QtWidgets
 from pordb_actor_details import Ui_Dialog as pordb_actor_details
 from pypordb_dblesen import DBLesen
+from pypordb_dbupdate import DBUpdate
 import os
 
 class ActorDetails(QtWidgets.QDialog, pordb_actor_details):
@@ -61,14 +62,27 @@ class ActorDetails(QtWidgets.QDialog, pordb_actor_details):
 
         self.labelName.setText(self.darsteller)
         
-        self.plainTextEditTattoos.setPlainText(res[0][6])
+        self.tattoo = res[0][6]
+        self.plainTextEditTattoos.setPlainText(self.tattoo)
         
         if res[0][11]:
-            self.lineEditUrl.setText(res[0][11])
+            self.url = res[0][11]
+            self.lineEditUrl.setText(self.url)
+        else:
+            self.url = ""
         
         self.lineEditDate.setText(str(res[0][3]))
         
     def closeEvent(self, event):
+        if self.tattoo != self.plainTextEditTattoos.toPlainText() or self.url != self.lineEditUrl.text():
+            zu_erfassen = []
+            werte = []
+            werte.append(self.plainTextEditTattoos.toPlainText())
+            werte.append(self.lineEditUrl.text())
+            werte.append(self.darsteller)
+            zu_erfassen.append(["UPDATE pordb_darsteller SET tattoo = %s, url = %s WHERE darsteller = %s", werte])
+            update_func = DBUpdate(self, zu_erfassen)
+            DBUpdate.update_data(update_func)
         settings = QtCore.QSettings()
         settings.setValue("ActorDetails/Size", self.size())
         settings.setValue("ActorDetails/Position", self.pos())

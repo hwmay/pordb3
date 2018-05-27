@@ -3868,7 +3868,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         for element in items:
             # the first 3 elements build the table key
             if element.column() > 2:
-                break
+                continue
             gesamttabelle.append(self.tableWidget.item(element.row(), element.column()).text())
         anzahl_werte = int(len(gesamttabelle) / 3)
         laufindex1 = -1
@@ -3882,7 +3882,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             laufindex1 += 1
             werte[laufindex1][laufindex2] = wert
         for i in werte:
-            zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and dir = %s and file = %s", i])
+            zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and file = %s and dir = %s", i])
         if zu_erfassen:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)

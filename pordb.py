@@ -3861,28 +3861,15 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.onSuchen(str(self.lineEditSearchMpg.text()).lower(), str(self.lineEditSearchVid.text()).lower())
             
     def onDeleteMpgKatalog(self):
-        items = self.tableWidget.selectedIndexes()
+        items = self.tableWidget.selectedItems()
         zu_erfassen = []
-        gesamttabelle = []
-        werte = []
-        for element in items:
-            # the first 3 elements build the table key
-            if element.column() > 2:
-                continue
-            gesamttabelle.append(self.tableWidget.item(element.row(), element.column()).text())
-        anzahl_werte = int(len(gesamttabelle) / 3)
-        laufindex1 = -1
-        laufindex2 = 0
+        anzahl_werte = int(len(items) / len(self.fieldnames_mpg))
         for i in range(anzahl_werte):
-            werte.extend([["", "", ""]])
-        for i, wert in enumerate(gesamttabelle):
-            if i > 0 and i % anzahl_werte == 0:
-                laufindex1 = -1
-                laufindex2 += 1            
-            laufindex1 += 1
-            werte[laufindex1][laufindex2] = wert
-        for i in werte:
-            zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and file = %s and dir = %s", i])
+            werte = []
+            werte.append(items[i * len(self.fieldnames_mpg)].text().strip())
+            werte.append(items[i * len(self.fieldnames_mpg) + 1].text().strip())
+            werte.append(items[i * len(self.fieldnames_mpg) + 2].text().strip())
+            zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and dir = %s and file = %s", werte])
         if zu_erfassen:
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)

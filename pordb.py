@@ -229,10 +229,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 zu_erfassen.append(["DELETE FROM pordb_history WHERE time < %s", werte])
                 update_func = DBUpdate(self, zu_erfassen)
                 DBUpdate.update_data(update_func)
-            #TODO Hier muss noch eine Lösung her, vlt. Verzeichnisauswahl über den Installer
-            self.verzeichnis = os.path.join(os.path.expanduser("~"), "sdb/ich", "mpg")
+            self.verzeichnis = os.path.join(os.curdir, "mpg")
             self.verzeichnis_original = self.verzeichnis
-            self.verzeichnis_thumbs = os.path.join(os.path.expanduser("~"), "sdb/ich", "thumbs_sammlung")
+            self.verzeichnis_thumbs = os.path.join(os.curdir, "thumbs_sammlung")
             self.verzeichnis_trash = os.path.join(self.verzeichnis_thumbs, "trash")
             self.verzeichnis_cover = os.path.join(self.verzeichnis_thumbs, "cover")
             self.verzeichnis_tools = None
@@ -283,8 +282,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.toolBar.removeAction(self.actionAnzahlBilder)
         
         self.setWindowTitle("PorDB3")
-        #self.screen = QtGui.QDesktopWidget().screenGeometry()
-        #print self.screen.width(), self.screen.height()
         if self.initial_run:
             splash.showMessage("Loading history", color = QtGui.QColor("red"))
             app.processEvents()

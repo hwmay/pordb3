@@ -90,12 +90,12 @@ class Dialog(QtWidgets.QDialog, Dialog):
             
     def install(self):
         # Create all directories
-        directory = os.path.join(os.path.expanduser("~"), "mpg")
+        directory = os.path.join(self.verzeichnis, "pordb3", "mpg")
         self.create_directory(directory)
         if self.error:
             pass
         
-        directory = os.path.join(os.path.expanduser("~"), "thumbs_sammlung")
+        directory = os.path.join(self.verzeichnis, "pordb3", "thumbs_sammlung")
         self.create_directory(directory)
         if self.error:
             pass
@@ -132,14 +132,14 @@ class Dialog(QtWidgets.QDialog, Dialog):
         self.listWidget.addItem("")
         self.listWidget.addItem(self.tr("How to start?"))
         self.listWidget.addItem(self.tr("Postgresql database server must be running!"))
-        self.listWidget.addItem(self.tr("Go to install directory ") + os.path.join(self.verzeichnis, "pordb-master"))
+        self.listWidget.addItem(self.tr("Go to install directory ") + os.path.join(self.verzeichnis, "pordb3 or pordb-master"))
         self.listWidget.addItem(self.tr("Start the PorDB3 with command 'python3 pordb.py &'"))
         
     def create_directory(self, directory):
         try:
             os.mkdir(directory)
         except:
-            message = QtWidgets.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
+            QtWidgets.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
             self.error = True
             return
         self.listWidget.addItem(self.tr("Directory ") +directory +self.tr(" created"))
@@ -162,7 +162,8 @@ class Dialog(QtWidgets.QDialog, Dialog):
         cur = conn.cursor()
         try:
             cur.execute("CREATE DATABASE " +database  +" ENCODING='UTF8' TEMPLATE=template0 OWNER=postgres TABLESPACE=pg_default LC_COLLATE = 'C' LC_CTYPE = 'C' CONNECTION LIMIT = -1")
-        except Exception as e:
+        except psycopg2.ProgrammingError as e:
+            app.restoreOverrideCursor()
             messageBox = QtWidgets.QMessageBox()
             messageBox.addButton(self.tr("Yes, delete database and all data in it"), QtWidgets.QMessageBox.AcceptRole)
             messageBox.addButton(self.tr("No, abort installation"), QtWidgets.QMessageBox.RejectRole)
@@ -172,6 +173,7 @@ class Dialog(QtWidgets.QDialog, Dialog):
             messageBox.setIcon(QtWidgets.QMessageBox.Warning)
             messageBox.setText(self.tr("Should I drop the existing database and create a new one?"))
             message = messageBox.exec_()
+            app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             if message == 2: # Only software will be installed
                 cur.close()
                 conn.close()

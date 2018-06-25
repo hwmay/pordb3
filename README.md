@@ -1,4 +1,4 @@
-pordb3
+﻿pordb3
 ======
 
 This is PorDB3
@@ -18,5 +18,5 @@ PorDB3 is a collection application for managing your erotic video collection.
  Dependencies (should be found in every Linux distribution repository):
  Python >= 3.2
  PostgreSQL >= 9.0
- PyQT >= 4.10
- psycopg2 2.5.1
+ PyQT >= 5.6
+ psycopg2 2.6.1

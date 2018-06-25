@@ -41,7 +41,6 @@ class Dialog(QtWidgets.QDialog, Dialog):
         self.file = None
         self.pushButtonBack.setEnabled(False)
         self.pushButtonNext.setEnabled(True)
-        self.error = False
 
     def onNext(self):
         if self.neuer_tab == 0:
@@ -92,38 +91,24 @@ class Dialog(QtWidgets.QDialog, Dialog):
         # Create all directories
         directory = os.path.join(self.verzeichnis, "pordb3", "mpg")
         self.create_directory(directory)
-        if self.error:
-            pass
         
         directory = os.path.join(self.verzeichnis, "pordb3", "thumbs_sammlung")
         self.create_directory(directory)
-        if self.error:
-            pass
         
         directory_new = os.path.join(directory, "cover")
-        self.create_directory(directory)
-        if self.error:
-            pass
+        self.create_directory(directory_new)
         
         directory_new = os.path.join(directory, "darsteller_m")
         self.create_directory(directory_new)
-        if self.error:
-            pass
         
         directory_new = os.path.join(directory, "darsteller_w")
         self.create_directory(directory_new)
-        if self.error:
-            pass
         
         directory_new = os.path.join(directory, "nichtvorhanden")
         self.create_directory(directory_new)
-        if self.error:
-            pass
         
         directory_new = os.path.join(directory, "trash")
         self.create_directory(directory_new)
-        if self.error:
-            pass
         
         # Unzip and move all files to installation directory
         file = zipfile.ZipFile(self.file, "r")
@@ -140,7 +125,6 @@ class Dialog(QtWidgets.QDialog, Dialog):
             os.mkdir(directory)
         except:
             QtWidgets.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
-            self.error = True
             return
         self.listWidget.addItem(self.tr("Directory ") +directory +self.tr(" created"))
         
@@ -152,7 +136,6 @@ class Dialog(QtWidgets.QDialog, Dialog):
         except:
             app.restoreOverrideCursor()
             message = QtWidgets.QMessageBox.critical(self, self.tr("Fatal error "), self.tr("Package psycopg2 not found. You have to install this package first."))
-            self.error = True
             return
         db_host='localhost'
         # Create database

@@ -1028,6 +1028,7 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>lineEditNeuCD</tabstop>
   <tabstop>lineEditNeuBild</tabstop>
   <tabstop>lineEditNeuOriginal</tabstop>
+  <tabstop>pushButtonRepeat</tabstop>
   <tabstop>pushButtonOriginalAlt</tabstop>
   <tabstop>comboBoxYear</tabstop>
   <tabstop>pushButtonAddYear</tabstop>
@@ -1040,6 +1041,12 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>radioButtonCoverNein</tabstop>
   <tabstop>checkBoxUninteressant</tabstop>
   <tabstop>comboBoxDefinition</tabstop>
+  <tabstop>pushButtonStar1</tabstop>
+  <tabstop>pushButtonStar2</tabstop>
+  <tabstop>pushButtonStar3</tabstop>
+  <tabstop>pushButtonStar4</tabstop>
+  <tabstop>pushButtonStar5</tabstop>
+  <tabstop>pushButtonClearRating</tabstop>
   <tabstop>spinBoxF</tabstop>
   <tabstop>spinBoxH</tabstop>
   <tabstop>spinBoxT</tabstop>
@@ -1054,7 +1061,13 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>pushButtonNeuDarstelleruebernehmen</tabstop>
   <tabstop>listWidgetW</tabstop>
   <tabstop>listWidgetM</tabstop>
+  <tabstop>plainTextEditRemarks</tabstop>
   <tabstop>pushButtonBildbeschneiden</tabstop>
+  <tabstop>pushButtonBildloeschen</tabstop>
+  <tabstop>pushButtonNeuOK</tabstop>
+  <tabstop>pushButtonNeuCancel</tabstop>
+  <tabstop>pushButtonNeuDelete</tabstop>
+  <tabstop>pushButtonVerz</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -2384,7 +2384,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if self.comboBoxCSFilter.currentText():
             cs = str(self.comboBoxCSFilter.currentText())[0:1]
             for i in res:
-                zu_lesen = "SELECT cs" +cs +" FROM pordb_vid WHERE cd = %s AND bild = %s"
+                zu_lesen = "SELECT cs" + cs + " FROM pordb_vid WHERE cd = %s AND bild = %s"
                 lese_func = DBLesen(self, zu_lesen, (str(i[1]), i[2]))
                 res1 = DBLesen.get_data(lese_func)
                 try:

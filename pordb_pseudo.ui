@@ -130,7 +130,7 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../pordb/pypordb/go-up.svg</normaloff>../pordb/pypordb/go-up.svg</iconset>
+             <normaloff>pypordb/go-up.svg</normaloff>pypordb/go-up.svg</iconset>
            </property>
           </widget>
          </item>

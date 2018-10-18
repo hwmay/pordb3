@@ -46,7 +46,7 @@ class Ui_Pseudo(object):
         self.pushButtonPseudo = QtWidgets.QPushButton(Pseudo)
         self.pushButtonPseudo.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../pordb/pypordb/go-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("pypordb/go-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonPseudo.setIcon(icon1)
         self.pushButtonPseudo.setObjectName("pushButtonPseudo")
         self.horizontalLayout.addWidget(self.pushButtonPseudo)

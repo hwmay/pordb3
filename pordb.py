@@ -1625,6 +1625,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         ein = str(self.labelDarsteller.text()).strip().title()
         dialog = ActorDetails(ein, self.verzeichnis_thumbs)
         dialog.exec_()
+        self.onbildAnzeige()
         self.suchfeld.setFocus()
         
     def onGetUrl(self):

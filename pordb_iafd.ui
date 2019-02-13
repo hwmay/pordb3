@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>937</width>
-    <height>573</height>
+    <height>632</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -311,6 +311,15 @@
        </item>
        <item>
         <property name="text">
+         <string>gr</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>pypordb/grey.svg</normaloff>pypordb/grey.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>r</string>
         </property>
         <property name="icon">
@@ -325,6 +334,15 @@
         <property name="icon">
          <iconset>
           <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ba</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
         </property>
        </item>
       </widget>

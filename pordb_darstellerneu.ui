@@ -29,7 +29,7 @@
         <x>10</x>
         <y>36</y>
         <width>711</width>
-        <height>151</height>
+        <height>172</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -120,6 +120,15 @@
          </item>
          <item>
           <property name="text">
+           <string>gr</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/grey.svg</normaloff>pypordb/grey.svg</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>r</string>
           </property>
           <property name="icon">
@@ -134,6 +143,15 @@
           <property name="icon">
            <iconset>
             <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>bald</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
           </property>
          </item>
         </widget>

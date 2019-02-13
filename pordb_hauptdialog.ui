@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1920</width>
-    <height>999</height>
+    <height>997</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>5</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1032,6 +1032,15 @@ p, li { white-space: pre-wrap; }
                         </item>
                         <item>
                          <property name="text">
+                          <string>gr</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/grey.svg</normaloff>pypordb/grey.svg</iconset>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
                           <string>r</string>
                          </property>
                          <property name="icon">
@@ -1046,6 +1055,15 @@ p, li { white-space: pre-wrap; }
                          <property name="icon">
                           <iconset>
                            <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>ba</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
                          </property>
                         </item>
                        </widget>

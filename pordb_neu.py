@@ -420,10 +420,10 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        Dialog.setTabOrder(self.lineEditNeuTitel, self.lineEditNeuDarsteller)
         Dialog.setTabOrder(self.lineEditNeuDarsteller, self.lineEditNeuCD)
         Dialog.setTabOrder(self.lineEditNeuCD, self.lineEditNeuBild)
-        Dialog.setTabOrder(self.lineEditNeuBild, self.lineEditNeuTitel)
-        Dialog.setTabOrder(self.lineEditNeuTitel, self.pushButtonRepeat)
+        Dialog.setTabOrder(self.lineEditNeuBild, self.pushButtonRepeat)
         Dialog.setTabOrder(self.pushButtonRepeat, self.lineEditNeuOriginal)
         Dialog.setTabOrder(self.lineEditNeuOriginal, self.pushButtonOriginalAlt)
         Dialog.setTabOrder(self.pushButtonOriginalAlt, self.comboBoxYear)

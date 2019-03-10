@@ -1023,10 +1023,10 @@ First click with the left mouse button in the left top corner, then click with t
   </layout>
  </widget>
  <tabstops>
+  <tabstop>lineEditNeuTitel</tabstop>
   <tabstop>lineEditNeuDarsteller</tabstop>
   <tabstop>lineEditNeuCD</tabstop>
   <tabstop>lineEditNeuBild</tabstop>
-  <tabstop>lineEditNeuTitel</tabstop>
   <tabstop>pushButtonRepeat</tabstop>
   <tabstop>lineEditNeuOriginal</tabstop>
   <tabstop>pushButtonOriginalAlt</tabstop>

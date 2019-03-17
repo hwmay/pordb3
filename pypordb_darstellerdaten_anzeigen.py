@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2019 HWM
     
     This file is part of PorDB3.
 
@@ -62,7 +62,7 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
         self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         
         monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
-        haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r"}
+        haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r", "Grey":"gr", "Bald":"ba"}
         ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
         
         actordata = ActorData(self.darstellerseite)

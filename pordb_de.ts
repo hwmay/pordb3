@@ -318,7 +318,7 @@
     <message>
         <location filename="pordb_darsteller_suchen.py" line="220"/>
         <source>ba</source>
-        <translation>Gl</translation>
+        <translation type="unfinished">ba</translation>
     </message>
 </context>
 <context>
@@ -662,7 +662,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pordb_iafd.py" line="262"/>
         <source>ba</source>
-        <translation>Gl</translation>
+        <translation type="unfinished">ba</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3866,7 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
     <message>
         <location filename="pordb_hauptdialog.py" line="1254"/>
         <source>ba</source>
-        <translation>Gl</translation>
+        <translation type="unfinished">ba</translation>
     </message>
 </context>
 <context>

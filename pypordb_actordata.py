@@ -28,9 +28,9 @@ class ActorData():
         anfang = self.seite.find("Vital Stats")
         if anfang < 0:
             return False
-        anfang = self.seite.find('<h1>')
+        anfang = self.seite.find('<h1 id="top">')
         ende = self.seite.find('</h1>')
-        return self.seite[anfang+4:ende].strip()
+        return self.seite[anfang+13:ende].strip()
     
     def actor_image(self):
         anfang = self.seite.find('id="headshot"')

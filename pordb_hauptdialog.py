@@ -1195,7 +1195,7 @@ class Ui_MainWindow(object):
         self.pushButtonDarstellerSuchen.setToolTip(_translate("MainWindow", "Search actor, Ctrl+shift+F"))
         self.pushButtonDarstellerSuchen.setWhatsThis(_translate("MainWindow", "Search for actors"))
         self.pushButtonDarstellerSuchen.setShortcut(_translate("MainWindow", "Ctrl+Shift+F"))
-        self.pushButtonUmbenennen.setToolTip(_translate("MainWindow", "Rename actor, Ctrl+U"))
+        self.pushButtonUmbenennen.setToolTip(_translate("MainWindow", "<html><head/><body><p>Rename actor, Ctrl+Shift+U</p></body></html>"))
         self.pushButtonUmbenennen.setWhatsThis(_translate("MainWindow", "Rename actor"))
         self.pushButtonUmbenennen.setShortcut(_translate("MainWindow", "Ctrl+U"))
         self.labelAktiv.setToolTip(_translate("MainWindow", "<html><head/><body><p>Active from ... to according IAFD and last visit of IAFD with this actor</p></body></html>"))

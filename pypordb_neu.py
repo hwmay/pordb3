@@ -291,6 +291,14 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                 if event.key() == QtCore.Qt.Key_Y:
                     self.onOriginalAlt()
                     self.update()
+                elif event.key() == QtCore.Qt.Key_B:
+                    self.onBildbeschneiden()
+                elif event.key() == QtCore.Qt.Key_D:
+                    self.onVerzeichnisWechseln()
+            elif event.modifiers() & QtCore.Qt.ShiftModifier and event.key() == QtCore.Qt.Key_Minus:
+                self.onDelete()
+            elif event.modifiers() & QtCore.Qt.ControlModifier and event.key() == QtCore.Qt.Key_Minus:
+                self.onBildloeschen()
             elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
                 self.accept()
             elif event.key() == QtCore.Qt.Key_Escape:

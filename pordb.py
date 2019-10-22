@@ -566,6 +566,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.webView.forward()
         elif event.key() == QtCore.Qt.Key_S and self.tabWidget.currentIndex() == 3:
             self.webView.stop()
+        elif event.key() == QtCore.Qt.Key_U and self.tabWidget.currentIndex() == 1:
+            self.onDarstellerUmbenennen()
         elif event.modifiers() & QtCore.Qt.ControlModifier:
             if event.key() == QtCore.Qt.Key_B:
                 self.tabWidget.setCurrentIndex(1)

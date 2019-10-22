@@ -448,7 +448,7 @@ Ctrl+B</string>
                    </size>
                   </property>
                   <property name="toolTip">
-                   <string>Rename actor, Ctrl+U</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rename actor, Ctrl+Shift+U&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="whatsThis">
                    <string>Rename actor</string>

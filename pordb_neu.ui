@@ -632,7 +632,7 @@
        <item>
         <widget class="QPushButton" name="pushButtonBildbeschneiden">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Crop image&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Crop image, Ctrl+B&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="whatsThis">
           <string>Crop image.
@@ -654,35 +654,15 @@ First click with the left mouse button in the left top corner, then click with t
            <height>10</height>
           </size>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButtonBildloeschen">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete image file from working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="whatsThis">
-          <string>Delete image file in working directory</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>pypordb/user-trash.png</normaloff>pypordb/user-trash.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>10</width>
-           <height>10</height>
-          </size>
+         <property name="shortcut">
+          <string>Ctrl+B</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonNeuOK">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save, Enter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="whatsThis">
           <string>Save</string>
@@ -700,9 +680,6 @@ First click with the left mouse button in the left top corner, then click with t
            <height>10</height>
           </size>
          </property>
-         <property name="shortcut">
-          <string>Enter, Return</string>
-         </property>
          <property name="autoDefault">
           <bool>false</bool>
          </property>
@@ -714,7 +691,7 @@ First click with the left mouse button in the left top corner, then click with t
        <item>
         <widget class="QPushButton" name="pushButtonNeuCancel">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel, Esc&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="whatsThis">
           <string>Cancel</string>
@@ -735,32 +712,9 @@ First click with the left mouse button in the left top corner, then click with t
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButtonNeuDelete">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete from database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="whatsThis">
-          <string>Entry in database will be deleted, inclusive image file</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>10</width>
-           <height>10</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushButtonVerz">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change working directory, Ctrl+D&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="whatsThis">
           <string>Change the working directory</string>
@@ -778,6 +732,9 @@ First click with the left mouse button in the left top corner, then click with t
            <height>10</height>
           </size>
          </property>
+         <property name="shortcut">
+          <string>Ctrl+D</string>
+         </property>
         </widget>
        </item>
        <item>
@@ -792,6 +749,61 @@ First click with the left mouse button in the left top corner, then click with t
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonBildloeschen">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete image file from working directory, Ctrl+-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>Delete image file in working directory</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/user-trash.png</normaloff>pypordb/user-trash.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonNeuDelete">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete from database, Ctrl+Shift+-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>Entry in database will be deleted, inclusive image file</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>pypordb/user-trash.svg</normaloff>pypordb/user-trash.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+Shift+-</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1063,10 +1075,8 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>listWidgetM</tabstop>
   <tabstop>plainTextEditRemarks</tabstop>
   <tabstop>pushButtonBildbeschneiden</tabstop>
-  <tabstop>pushButtonBildloeschen</tabstop>
   <tabstop>pushButtonNeuOK</tabstop>
   <tabstop>pushButtonNeuCancel</tabstop>
-  <tabstop>pushButtonNeuDelete</tabstop>
   <tabstop>pushButtonVerz</tabstop>
  </tabstops>
  <resources/>

@@ -1551,6 +1551,13 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item>
+                  <widget class="QLabel" name="labelMpgFound">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <spacer name="horizontalSpacer_2">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1586,13 +1593,6 @@ p, li { white-space: pre-wrap; }
                    </property>
                    <property name="shortcut">
                     <string>Alt+L</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="labelMpgFound">
-                   <property name="text">
-                    <string/>
                    </property>
                   </widget>
                  </item>

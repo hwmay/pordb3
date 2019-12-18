@@ -418,8 +418,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             except (urllib.error.URLError, socket.timeout):
                 pass
             
-            #TODO: linkclicked funktioniert nicht mehr
-            #self.webView.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
             if not seite:
                 self.statusBar.showMessage(self.tr("Either your computer is not online or the IAFD is not reachable"))
                 

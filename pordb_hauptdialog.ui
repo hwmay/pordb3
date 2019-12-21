@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -917,6 +917,26 @@ p, li { white-space: pre-wrap; }
                   </item>
                   <item>
                    <layout class="QGridLayout" name="gridLayout">
+                    <item row="1" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_15">
+                      <item>
+                       <widget class="QLabel" name="label_4">
+                        <property name="maximumSize">
+                         <size>
+                          <width>45</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Nation</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxNation"/>
+                      </item>
+                     </layout>
+                    </item>
                     <item row="0" column="0">
                      <layout class="QHBoxLayout" name="horizontalLayout_10">
                       <item>
@@ -1083,26 +1103,6 @@ p, li { white-space: pre-wrap; }
                       </item>
                      </layout>
                     </item>
-                    <item row="1" column="0">
-                     <layout class="QHBoxLayout" name="horizontalLayout_15">
-                      <item>
-                       <widget class="QLabel" name="label_4">
-                        <property name="maximumSize">
-                         <size>
-                          <width>45</width>
-                          <height>18</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string>Nation</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="comboBoxNation"/>
-                      </item>
-                     </layout>
-                    </item>
                     <item row="2" column="0">
                      <layout class="QHBoxLayout" name="horizontalLayout_12">
                       <item>
@@ -1217,35 +1217,6 @@ p, li { white-space: pre-wrap; }
                        </widget>
                       </item>
                       <item>
-                       <widget class="QPushButton" name="pushButtonDarstellerLoeschen">
-                        <property name="maximumSize">
-                         <size>
-                          <width>24</width>
-                          <height>24</height>
-                         </size>
-                        </property>
-                        <property name="toolTip">
-                         <string>Delete all information from this actor inclusive the image, Ctrl+L</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset>
-                          <normaloff>pypordb/user-trash.png</normaloff>pypordb/user-trash.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>10</width>
-                          <height>10</height>
-                         </size>
-                        </property>
-                        <property name="shortcut">
-                         <string>Ctrl+L</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
                        <widget class="QPushButton" name="pushButtonDarstellerspeichern">
                         <property name="maximumSize">
                          <size>
@@ -1315,6 +1286,35 @@ p, li { white-space: pre-wrap; }
                          </size>
                         </property>
                        </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonDarstellerLoeschen">
+                        <property name="maximumSize">
+                         <size>
+                          <width>24</width>
+                          <height>24</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Delete all information from this actor inclusive the image, Ctrl+L</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>pypordb/user-trash.png</normaloff>pypordb/user-trash.png</iconset>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>10</width>
+                          <height>10</height>
+                         </size>
+                        </property>
+                        <property name="shortcut">
+                         <string>Ctrl+L</string>
+                        </property>
+                       </widget>
                       </item>
                      </layout>
                     </item>
@@ -3025,7 +3025,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>lineEditTattoo</tabstop>
   <tabstop>comboBoxEthnic</tabstop>
   <tabstop>pushButtonIAFDholen</tabstop>
-  <tabstop>pushButtonDarstellerLoeschen</tabstop>
   <tabstop>pushButtonDarstellerspeichern</tabstop>
   <tabstop>pushButtonIAFDBackground</tabstop>
   <tabstop>pushButtonClear</tabstop>

@@ -16,7 +16,7 @@ PorDB3 is a collection application for managing your erotic video collection.
   Hint: when only upgrading on a new version, always click on "No, only software installation" after starting the installation! 
 
  Dependencies (should be found in every Linux distribution repository):
- Python >= 3.2
+ Python >= 3.7.5
  PostgreSQL >= 9.0
  PyQT >= 5.6
- psycopg2 2.6.1
+ psycopg2 2.8.4

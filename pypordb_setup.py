@@ -122,7 +122,7 @@ class Dialog(QtWidgets.QDialog, Dialog):
         
     def create_directory(self, directory):
         try:
-            os.mkdir(directory)
+            os.makedirs(directory)
         except:
             QtWidgets.QMessageBox.information(self, self.tr("Warning "), self.tr("Directory ") +directory +self.tr(" already exists, nothing changed"))
             return

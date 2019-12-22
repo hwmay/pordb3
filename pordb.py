@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2020 HWM
     
     This file is part of PorDB3.
 

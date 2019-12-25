@@ -3754,10 +3754,10 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                     try:    # fieldtype is int
                         newitem = QtWidgets.QTableWidgetItem()
                         if type(zeilen[i][j]) == int:
-                            wert = locale.format("%d", zeilen[i][j], grouping=True)
+                            wert = locale.format_string("%d", zeilen[i][j], grouping=True)
                             newitem.setData(0, wert)
                         elif type(zeilen[i][j]) == float:
-                            wert = locale.format("%.2f", zeilen[i][j], grouping=True)
+                            wert = locale.format_string("%.2f", zeilen[i][j], grouping=True)
                             newitem.setData(0, wert)
                         else:
                             newitem.setData(0, str(int(zeilen[i][j])))

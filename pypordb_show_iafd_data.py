@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2020 HWM
     
     This file is part of PorDB3.
 
@@ -60,12 +60,15 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         self.populate_from_working_directory()
         
         # set original title
+        self.y_pos = 0
+        self.x_pos = self.imagesize + 30
         self.font.setBold(True)
         textitem = QtWidgets.QGraphicsTextItem(self.video[0])
-        textitem.setPos(0, self.y_pos)
+        textitem.setPos(self.x_pos, self.y_pos)
         textitem.setFont(self.font)
         self.scene.addItem(textitem)
         self.y_pos += 40
+        self.start_y_pos = self.y_pos
         
         # set alternate titles
         for i, wert in enumerate(self.video[1]):
@@ -74,6 +77,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             textitem.setPos(self.x_pos, self.y_pos)
             self.scene.addItem(textitem)
             self.y_pos += 30
+            self.start_y_pos += self.y_pos
             
         # set scene and actors
         for i, wert in enumerate(self.video[2]): 
@@ -84,7 +88,6 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                 for k, wert2 in enumerate(darsteller_liste):
                     textitem = QtWidgets.QGraphicsTextItem(wert2)
                     if wert1.startswith("Scene "):
-                        self.y_pos += 30
                         self.font.setBold(True)
                         textitem.setFont(self.font)
                         textitem.setPos(self.x_pos, self.y_pos)
@@ -107,11 +110,10 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                         itemgroup.setPos(self.x_pos, self.y_pos)
                         itemgroup.setData(1, wert2)
                         itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
-                        self.x_pos += self.imagesize + 20
+                        self.y_pos += pixmap.height() + 20
                         image_shown = True
-                self.x_pos = self.left_margin
-                if image_shown:
-                    self.y_pos += max_height + 20
+            self.x_pos += self.imagesize + 30
+            self.y_pos = self.start_y_pos
             
         self.graphicsView.setScene(self.scene)
         self.graphicsView.centerOn(0, 0)
@@ -175,9 +177,8 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                 itemgroup.setPos(self.x_pos, self.y_pos)
                 itemgroup.setData(0, i)
                 itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
-                self.x_pos += self.imagesize + 20
+                self.y_pos += pixmap.height() + 20
             self.x_pos = self.left_margin
-            self.y_pos += max_height + 50
         else:
             self.close()
         self.scene.clearSelection()

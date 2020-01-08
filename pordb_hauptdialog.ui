@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1807,7 +1807,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QPushButton" name="pushButtonSearchWebsite">
                <property name="toolTip">
-                <string>Search in website, Ctrl+shift+F</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search in website, Alt+S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
                 <string/>
@@ -1823,14 +1823,14 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="shortcut">
-                <string>Ctrl+Shift+F</string>
+                <string>Alt+S</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonVideo">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Movies available in PorDB?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Movies available in PorDB?, Alt+F&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="whatsThis">
                 <string>Check which movies are in database.</string>
@@ -1849,14 +1849,14 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="shortcut">
-                <string>Ctrl+E</string>
+                <string>Alt+F</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonAbholen">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get actor data&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get actor data, Alt+D&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="whatsThis">
                 <string>Adopt actors data from the IAFD.</string>
@@ -1874,12 +1874,15 @@ p, li { white-space: pre-wrap; }
                  <height>10</height>
                 </size>
                </property>
+               <property name="shortcut">
+                <string>Alt+D</string>
+               </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonMovie">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add clips for current video&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add clips for current video, Alt+F5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="whatsThis">
                 <string>Adopt movie data from the IAFD.
@@ -1898,6 +1901,9 @@ This is very useful for adding new scenes from the selected movie.</string>
                  <width>10</width>
                  <height>10</height>
                 </size>
+               </property>
+               <property name="shortcut">
+                <string>Alt+F5</string>
                </property>
               </widget>
              </item>

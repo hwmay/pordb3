@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'pordb_show_iafd_data.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -39,7 +40,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Select items for adding a new scene"))
-        self.graphicsView.setWhatsThis(_translate("Dialog", "For adding a scene mark the scene at the top of this window and the involved actors, then press the \"add scene\" button."))
+        self.graphicsView.setWhatsThis(_translate("Dialog", "<html><head/><body><p>For adding a scene mark the scene at the left of this window and the involved actors, then press the &quot;add scene&quot; button.</p></body></html>"))
         self.pushButtonOK.setText(_translate("Dialog", "Add scene"))
         self.pushButtonCancel.setText(_translate("Dialog", "Cancel"))
+
 

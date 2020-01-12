@@ -21,7 +21,7 @@
    <item>
     <widget class="QGraphicsView" name="graphicsView">
      <property name="whatsThis">
-      <string>For adding a scene mark the scene at the top of this window and the involved actors, then press the &quot;add scene&quot; button.</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For adding a scene mark the scene at the left of this window and the involved actors, then press the &amp;quot;add scene&amp;quot; button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>

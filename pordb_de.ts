@@ -1551,8 +1551,8 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
     </message>
     <message>
         <location filename="pordb_show_iafd_data.ui" line="24"/>
-        <source>For adding a scene mark the scene at the top of this window and the involved actors, then press the &quot;add scene&quot; button.</source>
-        <translation>Um eine Scene hinzuzufügen, die Scene oben markieren und die beteiligten Darsteller, dann auf &quot;Scene hinzufügen&quot; klicken.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For adding a scene mark the scene at the left of this window and the involved actors, then press the &amp;quot;add scene&amp;quot; button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>Um eine Scene hinzuzufügen, die Scene links markieren und die beteiligten Darsteller, dann auf &quot;Scene hinzufügen&quot; klicken.</translation>
     </message>
     <message>
         <location filename="pordb_show_iafd_data.ui" line="46"/>

@@ -2580,8 +2580,16 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             lese_func = DBLesen(self, zu_lesen, werte)
             res1 = DBLesen.get_data(lese_func)
             if res1:
-                ein = "=" + res1[0][1].strip()
-                res = self.darsteller_lesen(ein)
+                if len(res1) > 1:
+                    self.listWidgetDarsteller.clear()
+                    for i in res1:
+                        self.listWidgetDarsteller.addItem(i[1])
+                        res.append(i[1])
+                    self.labelText.setText("<font color=red>" +self.tr("Please select:") +"</font>")
+                    self.suchfeld.setCurrentIndex(-1)
+                else:
+                    ein = "=" + res1[0][1].strip()
+                    res = self.darsteller_lesen(ein)
             else:
                 self.labelFehler.setText("<font color=red>" +self.tr("Actor not available") +"</font>")
         self.suchfeld.setFocus()

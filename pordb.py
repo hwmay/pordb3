@@ -186,6 +186,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.pushButtonClearURL.clicked.connect(self.onClearURL)
         self.pushButtonUrl.clicked.connect(self.onUrlVerwalten)
         self.pushButtonSearchWebsite.clicked.connect(self.onSearchWebsite)
+        self.pushButtonClearSearch.clicked.connect(self.onClearSearch)
         self.webView.loadStarted.connect(self.onLoadStarted)
         self.webView.loadFinished.connect(self.onLoadFinished)
         #self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
@@ -3929,6 +3930,10 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     def onClearURL(self):
         self.lineEditURL.clear()
         self.lineEditURL.setFocus()
+        
+    def onClearSearch(self):
+        self.lineEditSearchWebsite.clear()
+        self.lineEditSearchWebsite.setFocus()        
         
     def onLoadStarted(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

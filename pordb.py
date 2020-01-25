@@ -74,7 +74,7 @@ IMAGE_FILES = (".jpg", ".jpeg", ".png")
 db_host = "localhost"
 try:
     conn = psycopg2.connect(database=DBNAME, host=db_host)
-except Exception as e:
+except Exception:
     print("FATAL PorDB3: Database server not running")
     sys.exit()
 
@@ -119,6 +119,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.actionMassChange.triggered.connect(self.onMassChange)
         self.actionOriginal_umbenennen.triggered.connect(self.onOriginal_umbenennen)
         self.actionOriginal_weitere.triggered.connect(self.onOriginal_weitere)
+        self.actionAddInformationFromIAFD.triggered.connect(self.onAddInformationFromIAFD)
         self.actionRedoImageChange.triggered.connect(self.onRedoImageChange)
         self.actionSortieren_nach_Original.triggered.connect(self.onSortieren_nach_Original)
         self.actionOriginalIntoClipboard.triggered.connect(self.onOriginalIntoClipboard)
@@ -855,6 +856,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             menu.addAction(self.actionSortieren_nach_Titel)
             menu.addAction(self.actionOriginal_umbenennen)
             menu.addAction(self.actionMassChange)
+            menu.addAction(self.actionAddInformationFromIAFD)
             menu.addAction(self.actionOriginal_weitere)
             dateiliste = os.listdir(self.verzeichnis_trash)
             for i in dateiliste:
@@ -1093,6 +1095,19 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         self.bilder_aktuell()
         self.suchfeld.setFocus()
+        
+    def onAddInformationFromIAFD(self):
+        item = self.tableWidgetBilder.currentItem()
+        if not item:
+            return
+        column = self.tableWidgetBilder.column(item)
+        row = self.tableWidgetBilder.row(item)
+        index = int(row * self.columns + column + self.start_bilder)
+        cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition = self.fillParameterChange(index)
+        self.onMovieData(titel=titel, cd=cd, bild=bild, darsteller=darsteller, gesehen=gesehen, original=original, cs=cs, vorhanden=vorhanden, high_definition=definition, remarks=remarks, stars=stars, cover=cover, original_weitere=original_weitere)
+        self.bilder_aktuell()
+        self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
+        self.suchfeld.setFocus()        
                 
     def onOriginal_weitere(self):
         item = self.tableWidgetBilder.currentItem()
@@ -2958,47 +2973,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 self.onbildAnzeige()
                 self.changeTab("F3")
                 return
-            cd = self.aktuelles_res[index][2]
-            bild = self.aktuelles_res[index][3]
-            titel = self.aktuelles_res[index][0]
-            darsteller = self.aktuelles_res[index][1]
-            gesehen = self.aktuelles_res[index][4]
-            if self.aktuelles_res[index][5]:
-                original = self.aktuelles_res[index][5]
-            else:
-                original = ""
-            cs = []
-            cs.append(str(self.aktuelles_res[index][9]) +'f')
-            cs.append(str(self.aktuelles_res[index][10]) +'h')
-            cs.append(str(self.aktuelles_res[index][11]) +'t')
-            cs.append(str(self.aktuelles_res[index][12]) +'c')
-            cs.append(str(self.aktuelles_res[index][13]) +'x')
-            cs.append(str(self.aktuelles_res[index][14]) +'o')
-            cs.append(str(self.aktuelles_res[index][15]) +'v')
-            cs.append(str(self.aktuelles_res[index][16]) +'b')
-            cs.append(str(self.aktuelles_res[index][17]) +'a')
-            cs.append(str(self.aktuelles_res[index][18]) +'s')
-            cs.append(str(self.aktuelles_res[index][19]) +'k')
-            if self.aktuelles_res[index][7]:
-                vorhanden = self.aktuelles_res[index][7]
-            else:
-                vorhanden = ""
-            definition = self.aktuelles_res[index][20]
-            remarks = self.aktuelles_res[index][21]
-            stars = self.aktuelles_res[index][22]
-            self.file = os.path.join(self.verzeichnis_thumbs, "cd" +str(cd), self.aktuelles_res[index][3].strip())
-            cover = False
-            if not os.path.exists(self.file):
-                self.file = os.path.join(self.verzeichnis_cover, self.aktuelles_res[index][3].strip())
-                cover = True
-            zu_lesen = "SELECT * FROM pordb_original WHERE foreign_key_pordb_vid = %s"
-            werte = []
-            werte.append(str(self.aktuelles_res[index][8]))
-            lese_func = DBLesen(self, zu_lesen, werte)
-            res2 = DBLesen.get_data(lese_func)
-            original_weitere = []
-            for i in res2:
-                original_weitere.append(i[1])
+            cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition = self.fillParameterChange(index)
             eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, remarks, stars, cover, None, None, original_weitere, high_definition = definition)
             change_flag = None
             res_alt = self.aktuelles_res
@@ -3012,6 +2987,51 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 self.onbildAnzeige()
         self.suchfeld.setFocus()
     # end of onKorrektur
+    
+    def fillParameterChange(self, index):
+        cd = self.aktuelles_res[index][2]
+        bild = self.aktuelles_res[index][3]
+        titel = self.aktuelles_res[index][0]
+        darsteller = self.aktuelles_res[index][1]
+        gesehen = self.aktuelles_res[index][4]
+        if self.aktuelles_res[index][5]:
+            original = self.aktuelles_res[index][5]
+        else:
+            original = ""
+        cs = []
+        cs.append(str(self.aktuelles_res[index][9]) +'f')
+        cs.append(str(self.aktuelles_res[index][10]) +'h')
+        cs.append(str(self.aktuelles_res[index][11]) +'t')
+        cs.append(str(self.aktuelles_res[index][12]) +'c')
+        cs.append(str(self.aktuelles_res[index][13]) +'x')
+        cs.append(str(self.aktuelles_res[index][14]) +'o')
+        cs.append(str(self.aktuelles_res[index][15]) +'v')
+        cs.append(str(self.aktuelles_res[index][16]) +'b')
+        cs.append(str(self.aktuelles_res[index][17]) +'a')
+        cs.append(str(self.aktuelles_res[index][18]) +'s')
+        cs.append(str(self.aktuelles_res[index][19]) +'k')
+        if self.aktuelles_res[index][7]:
+            vorhanden = self.aktuelles_res[index][7]
+        else:
+            vorhanden = ""
+        definition = self.aktuelles_res[index][20]
+        remarks = self.aktuelles_res[index][21]
+        stars = self.aktuelles_res[index][22]
+        self.file = os.path.join(self.verzeichnis_thumbs, "cd" +str(cd), self.aktuelles_res[index][3].strip())
+        cover = False
+        if not os.path.exists(self.file):
+            self.file = os.path.join(self.verzeichnis_cover, self.aktuelles_res[index][3].strip())
+            cover = True
+        zu_lesen = "SELECT * FROM pordb_original WHERE foreign_key_pordb_vid = %s"
+        werte = []
+        werte.append(str(self.aktuelles_res[index][8]))
+        lese_func = DBLesen(self, zu_lesen, werte)
+        res2 = DBLesen.get_data(lese_func)
+        original_weitere = []
+        for i in res2:
+            original_weitere.append(i[1])
+        high_definition = self.aktuelles_res[index][20]
+        return(cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition)
         
     def onDarstellerSuchen(self):
         def partner_reduzieren(zu_lesen, werte):
@@ -3977,13 +3997,13 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.darsteller_lesen("=" +bilddialog.name)
         self.onbildAnzeige()
         
-    def onMovieData(self):
+    def onMovieData(self, titel=None, cd=None, bild=None, darsteller=None, gesehen=None, original=None, cs=None, vorhanden=None, definition=None, remarks=None, stars=None, cover=None, original_weitere=None, high_definition=None):
         url = self.webView.url().toString()
         text = str(self.webView.page().mainFrame().toHtml())
         movie_data = SaveMovieData(app, url, text)
         res = SaveMovieData.get_data(movie_data)
         if res and res[2]:
-            show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res)
+            show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res, titel, cd, bild, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, high_definition)
             show_iafd_data.exec_()
         if str(self.labelDarsteller.text()) != "":
             self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())

@@ -26,7 +26,7 @@ from pypordb_neu import Neueingabe
 import os
 
 class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
-    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, video):
+    def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, video, titel=None, cd=None, bild=None, darsteller=None, gesehen=None, original=None, cs=None, vorhanden=None, definition=None, remarks=None, stars=None, cover=None, high_definition=None):
         
         QtWidgets.QDialog.__init__(self)
         self.setupUi(self)
@@ -37,6 +37,19 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         self.verzeichnis_trash = verzeichnis_trash
         self.verzeichnis_cover = verzeichnis_cover
         self.video = video
+        self.titel = titel
+        self.cd = cd
+        self.bild = bild
+        self.darsteller = darsteller
+        self.gesehen = gesehen
+        self.original = original
+        self.cs = cs
+        self.vorhanden = vorhanden
+        self.definition = definition
+        self.remarks = remarks
+        self.stars = stars
+        self.cover = cover
+        self.high_definition = high_definition
         
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonOK.clicked.connect(self.accept)
@@ -83,7 +96,6 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         for i, wert in enumerate(self.video[2]): 
             for j, wert1 in enumerate(wert):
                 darsteller_liste = wert1.split(", ")
-                image_shown = False
                 max_height = 0
                 for k, wert2 in enumerate(darsteller_liste):
                     textitem = QtWidgets.QGraphicsTextItem(wert2)
@@ -111,7 +123,6 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                         itemgroup.setData(1, wert2)
                         itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
                         self.y_pos += pixmap.height() + 20
-                        image_shown = True
             self.x_pos += self.imagesize + 30
             self.y_pos = self.start_y_pos
             
@@ -124,7 +135,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         for i in self.scene.selectedItems():
             if i.data(0):
                 if scene_to_add:
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select only one scene"))
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select only one scene"))
                     return
                 else:
                     scene_to_add = str(i.data(0))
@@ -132,25 +143,36 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                 actor_to_add.append(str(i.data(1)))
                 
         if not scene_to_add:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No scene selected"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No scene selected"))
             return
         if not actor_to_add:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No actors selected"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No actors selected"))
             return
         darsteller = ", ".join(actor_to_add)
-        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(self.verzeichnis, scene_to_add), titel=None, darsteller=darsteller, cd=None, bild=None, gesehen=None, original=self.video[0], cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=self.video[1], access_from_iafd=True)
+        if self.titel:
+            verzeichnis = self.verzeichnis_thumbs
+        else: 
+            verzeichnis = self.verzeichnis
+        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(verzeichnis, scene_to_add), titel=self.titel, darsteller=darsteller, cd=self.cd, bild=self.bild, gesehen=self.gesehen, original=self.video[0], cs=self.cs, vorhanden=self.vorhanden, cover=self.cover, undo=None, cover_anlegen=None, original_weitere=self.video[1], access_from_iafd=True, high_definition=self.high_definition)
         if eingabedialog.exec_():
             for i in list(self.scene.items()):
                 if i.data(0):
                     self.scene.removeItem(i)
-            self.populate_from_working_directory(close = 1)
+            if not self.titel:
+                self.populate_from_working_directory()
+            else:
+                self.close()
         
-    def populate_from_working_directory(self, close = None):
+    def populate_from_working_directory(self):
         self.x_pos = self.left_margin
         self.y_pos = 0
-        # get imagefiles from working directory
-        dateiliste = [f for f in os.listdir(self.verzeichnis) if f.lower().endswith(".jpeg") or f.lower().endswith(".jpg") or f.lower().endswith(".png")]
-        zeile = -1
+        if self.titel:
+            # get imagefile from thumbs directory
+            dateiliste = []
+            dateiliste.append(os.path.join("cd" + str(self.cd), self.bild.rstrip()))
+        else:
+            # get imagefiles from working directory
+            dateiliste = [f for f in os.listdir(self.verzeichnis) if f.lower().endswith(".jpeg") or f.lower().endswith(".jpg") or f.lower().endswith(".png")]
         if dateiliste:
             dateiliste.sort()
             textitem = QtWidgets.QGraphicsTextItem(self.tr("Clips to add:"))
@@ -163,7 +185,10 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             self.y_pos += 30
             max_height = 0
             for i in dateiliste:
-                bilddatei = os.path.join(self.verzeichnis, i)
+                if self.titel:
+                    bilddatei = os.path.join(self.verzeichnis_thumbs, i)
+                else:
+                    bilddatei = os.path.join(self.verzeichnis, i)
                 pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
                 if pixmap.height() > max_height:
                     max_height = pixmap.height()
@@ -183,7 +208,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             self.close()
         self.scene.clearSelection()
         self.scene.update()
-    
+        
     def getBilddatei(self, actor, sex = None):
         bilddatei = None
         if actor:

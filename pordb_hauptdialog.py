@@ -1064,6 +1064,8 @@ class Ui_MainWindow(object):
         self.actionShowDetails.setObjectName("actionShowDetails")
         self.actionMassChange = QtWidgets.QAction(MainWindow)
         self.actionMassChange.setObjectName("actionMassChange")
+        self.actionAddInformationFromIAFD = QtWidgets.QAction(MainWindow)
+        self.actionAddInformationFromIAFD.setObjectName("actionAddInformationFromIAFD")
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -1492,6 +1494,8 @@ class Ui_MainWindow(object):
         self.actionShowDetails.setToolTip(_translate("MainWindow", "<html><head/><body><p>Show actors details</p></body></html>"))
         self.actionMassChange.setText(_translate("MainWindow", "Make a mass change"))
         self.actionMassChange.setToolTip(_translate("MainWindow", "<html><head/><body><p>Make a mass change</p></body></html>"))
+        self.actionAddInformationFromIAFD.setText(_translate("MainWindow", "Add data from IAFD"))
+        self.actionAddInformationFromIAFD.setToolTip(_translate("MainWindow", "Add data from IAFD"))
 
 
 from PyQt5 import QtWebKitWidgets

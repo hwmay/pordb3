@@ -3020,6 +3020,14 @@ p, li { white-space: pre-wrap; }
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Make a mass change&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
+  <action name="actionAddInformationFromIAFD">
+   <property name="text">
+    <string>Add data from IAFD</string>
+   </property>
+   <property name="toolTip">
+    <string>Add data from IAFD</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

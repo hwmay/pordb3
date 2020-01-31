@@ -437,12 +437,23 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.suchfeld.setFocus()
     
     def closeEvent(self, event):
-        settings = QtCore.QSettings()
-        settings.setValue("MeinDialog/Size", self.size())
-        settings.setValue("MeinDialog/Position", self.pos())
-        settings.setValue("MeinDialog/State", self.saveState())
-        settings.setValue("splitter", self.splitter.saveState())
-        self.onDarstellerspeichern(refresh=False)
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+        messageBox.addButton(self.tr("No"), QtWidgets.QMessageBox.RejectRole)
+        messageBox.setWindowTitle(self.tr("Application will be closed"))
+        messageBox.setIcon(QtWidgets.QMessageBox.Question)
+        messageBox.setText(self.tr("Do you really want to close the application ?"))
+        message = messageBox.exec_()
+        if message == 0:
+            settings = QtCore.QSettings()
+            settings.setValue("MeinDialog/Size", self.size())
+            settings.setValue("MeinDialog/Position", self.pos())
+            settings.setValue("MeinDialog/State", self.saveState())
+            settings.setValue("splitter", self.splitter.saveState())
+            self.onDarstellerspeichern(refresh=False)
+            event.accept()
+        else:
+            event.ignore()
         
     def bilder_aktuell(self, force = False):
         self.label_akt_verzeichnis.setText(self.verzeichnis)

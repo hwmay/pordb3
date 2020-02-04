@@ -122,6 +122,8 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                         itemgroup.setPos(self.x_pos, self.y_pos)
                         itemgroup.setData(1, wert2)
                         itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
+                        if self.titel: # imagefile is from thumbs directory
+                            itemgroup.setSelected(True)
                         self.y_pos += pixmap.height() + 20
             self.x_pos += self.imagesize + 30
             self.y_pos = self.start_y_pos
@@ -202,11 +204,13 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                 itemgroup.setPos(self.x_pos, self.y_pos)
                 itemgroup.setData(0, i)
                 itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
+                if self.titel: # imagefile is from thumbs directory
+                    itemgroup.setSelected(True)
                 self.y_pos += pixmap.height() + 20
             self.x_pos = self.left_margin
         else:
             self.close()
-        self.scene.clearSelection()
+        #self.scene.clearSelection()
         self.scene.update()
         
     def getBilddatei(self, actor, sex = None):

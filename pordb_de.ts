@@ -1315,9 +1315,9 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Keinen</translation>
     </message>
     <message>
-        <location filename="pordb_neu.py" line="379"/>
+        <location filename="pordb_show_iafd_data.ui" line="67"/>
         <source>Ctrl+A</source>
-        <translation type="obsolete">Ctrl+A</translation>
+        <translation>Strg+A</translation>
     </message>
     <message>
         <location filename="pordb_neu.py" line="377"/>
@@ -1556,8 +1556,8 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
     </message>
     <message>
         <location filename="pordb_show_iafd_data.ui" line="46"/>
-        <source>Add scene</source>
-        <translation>Scene hinzufügen</translation>
+        <source>Add scene, Enter</source>
+        <translation>Scene hinzufügen, Enter</translation>
     </message>
     <message>
         <location filename="pordb_bilddatei_umbenennen.py" line="77"/>
@@ -1894,6 +1894,16 @@ p, li { white-space: pre-wrap; }
         <location filename="pordb_neu.py" line="532"/>
         <source>Ctrl+Shift+-</source>
         <translation>Strg+Umschalt+-</translation>
+    </message>
+    <message>
+        <location filename="pordb_show_iafd_data.ui" line="60"/>
+        <source>Select all, Ctrl+A</source>
+        <translation>Alles auswählen, Strg+A</translation>
+    </message>
+    <message>
+        <location filename="pordb_show_iafd_data.ui" line="74"/>
+        <source>Cancel, Esc</source>
+        <translation>Abbrechen, Esc</translation>
     </message>
 </context>
 <context>
@@ -5079,27 +5089,27 @@ Vielleicht solltest Du den Darsteller in der PorDB überprüfen.</translation>
 <context>
     <name>ShowIafdData</name>
     <message>
-        <location filename="pypordb_show_iafd_data.py" line="178"/>
+        <location filename="pypordb_show_iafd_data.py" line="180"/>
         <source>Clips to add:</source>
         <translation>Clips hinzufügen:</translation>
     </message>
     <message>
-        <location filename="pypordb_show_iafd_data.py" line="149"/>
+        <location filename="pypordb_show_iafd_data.py" line="151"/>
         <source>Error </source>
         <translation>Fehler </translation>
     </message>
     <message>
-        <location filename="pypordb_show_iafd_data.py" line="146"/>
+        <location filename="pypordb_show_iafd_data.py" line="148"/>
         <source>No scene selected</source>
         <translation>Keine Scene ausgewählt</translation>
     </message>
     <message>
-        <location filename="pypordb_show_iafd_data.py" line="149"/>
+        <location filename="pypordb_show_iafd_data.py" line="151"/>
         <source>No actors selected</source>
         <translation>Keine Darsteller ausgewählt</translation>
     </message>
     <message>
-        <location filename="pypordb_show_iafd_data.py" line="138"/>
+        <location filename="pypordb_show_iafd_data.py" line="140"/>
         <source>Please select only one scene</source>
         <translation>Bitte nur eine Scene auswählen</translation>
     </message>

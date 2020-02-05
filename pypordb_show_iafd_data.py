@@ -51,8 +51,9 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         self.cover = cover
         self.high_definition = high_definition
         
-        self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonOK.clicked.connect(self.accept)
+        self.pushButtonSelectAll.clicked.connect(self.selectAll)
+        self.pushButtonCancel.clicked.connect(self.close)
         
         self.imagesize = 200
         self.complete_size = QtCore.QSize(self.imagesize, self.imagesize)
@@ -69,9 +70,69 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         
         self.font = QtGui.QFont()
         
+        if self.titel:
+            self.selection = True
+        else:
+            self.selection = False
+        
         # set imagefiles from working directory
         self.populate_from_working_directory()
         
+        # set the scene from IAFD
+        self.populate_scene()
+        
+    def populate_from_working_directory(self):
+        self.x_pos = self.left_margin
+        self.y_pos = 0
+        if self.selection:
+            # get imagefile from thumbs directory
+            dateiliste = []
+            try:
+                dateiliste.append(os.path.join("cd" + str(self.cd), self.bild.rstrip()))
+            except AttributeError:
+                pass
+        else:
+            # get imagefiles from working directory
+            dateiliste = [f for f in os.listdir(self.verzeichnis) if f.lower().endswith(".jpeg") or f.lower().endswith(".jpg") or f.lower().endswith(".png")]
+        if dateiliste:
+            dateiliste.sort()
+            textitem = QtWidgets.QGraphicsTextItem(self.tr("Clips to add:"))
+            self.font.setPointSize(16)
+            self.font.setWeight(75)
+            self.font.setBold(True)
+            textitem.setFont(self.font)
+            textitem.setPos(0, self.y_pos)
+            self.scene.addItem(textitem)
+            self.y_pos += 30
+            max_height = 0
+            for i in dateiliste:
+                if self.selection:
+                    bilddatei = os.path.join(self.verzeichnis_thumbs, i)
+                else:
+                    bilddatei = os.path.join(self.verzeichnis, i)
+                pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
+                if pixmap.height() > max_height:
+                    max_height = pixmap.height()
+                self.pixmapitem_scene = QtWidgets.QGraphicsPixmapItem(pixmap)
+                self.pixmapitem_scene.setPos(0, 20)
+                datei = i[0:24]
+                if len(i) > 25:
+                    datei += "..."
+                self.textitem_scene = QtWidgets.QGraphicsTextItem(datei)
+                itemgroup = self.scene.createItemGroup([self.textitem_scene, self.pixmapitem_scene])
+                itemgroup.setPos(self.x_pos, self.y_pos)
+                itemgroup.setData(0, i)
+                itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
+                if self.selection: # imagefile is from thumbs directory
+                    itemgroup.setSelected(True)
+                self.y_pos += pixmap.height() + 20
+            self.x_pos = self.left_margin
+        else:
+            self.close()
+        #self.scene.clearSelection()
+        self.scene.update()        
+        
+    def populate_scene(self):
         # set original title
         self.y_pos = 0
         self.x_pos = self.imagesize + 30
@@ -117,12 +178,14 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                         if pixmap.height() > max_height:
                             max_height = pixmap.height()
                         pixmapitem = QtWidgets.QGraphicsPixmapItem(pixmap)
-                        pixmapitem.setPos(0, 20)
+                        pixmapitem.setPos(0, 20)        
+
+
                         itemgroup = self.scene.createItemGroup([textitem, pixmapitem])
                         itemgroup.setPos(self.x_pos, self.y_pos)
                         itemgroup.setData(1, wert2)
                         itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
-                        if self.titel: # imagefile is from thumbs directory
+                        if self.selection: # imagefile is from thumbs directory
                             itemgroup.setSelected(True)
                         self.y_pos += pixmap.height() + 20
             self.x_pos += self.imagesize + 30
@@ -135,7 +198,9 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         scene_to_add = None
         actor_to_add = []
         for i in self.scene.selectedItems():
-            if i.data(0):
+            if i.data(0):        
+
+
                 if scene_to_add:
                     QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select only one scene"))
                     return
@@ -151,7 +216,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("No actors selected"))
             return
         darsteller = ", ".join(actor_to_add)
-        if self.titel:
+        if self.selection:
             verzeichnis = self.verzeichnis_thumbs
         else: 
             verzeichnis = self.verzeichnis
@@ -160,60 +225,12 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             for i in list(self.scene.items()):
                 if i.data(0):
                     self.scene.removeItem(i)
-            if not self.titel:
+            if not self.selection:
                 self.populate_from_working_directory()
             else:
                 self.close()
         
-    def populate_from_working_directory(self):
-        self.x_pos = self.left_margin
-        self.y_pos = 0
-        if self.titel:
-            # get imagefile from thumbs directory
-            dateiliste = []
-            dateiliste.append(os.path.join("cd" + str(self.cd), self.bild.rstrip()))
-        else:
-            # get imagefiles from working directory
-            dateiliste = [f for f in os.listdir(self.verzeichnis) if f.lower().endswith(".jpeg") or f.lower().endswith(".jpg") or f.lower().endswith(".png")]
-        if dateiliste:
-            dateiliste.sort()
-            textitem = QtWidgets.QGraphicsTextItem(self.tr("Clips to add:"))
-            self.font.setPointSize(16)
-            self.font.setWeight(75)
-            self.font.setBold(True)
-            textitem.setFont(self.font)
-            textitem.setPos(0, self.y_pos)
-            self.scene.addItem(textitem)
-            self.y_pos += 30
-            max_height = 0
-            for i in dateiliste:
-                if self.titel:
-                    bilddatei = os.path.join(self.verzeichnis_thumbs, i)
-                else:
-                    bilddatei = os.path.join(self.verzeichnis, i)
-                pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
-                if pixmap.height() > max_height:
-                    max_height = pixmap.height()
-                self.pixmapitem_scene = QtWidgets.QGraphicsPixmapItem(pixmap)
-                self.pixmapitem_scene.setPos(0, 20)
-                datei = i[0:24]
-                if len(i) > 25:
-                    datei += "..."
-                self.textitem_scene = QtWidgets.QGraphicsTextItem(datei)
-                itemgroup = self.scene.createItemGroup([self.textitem_scene, self.pixmapitem_scene])
-                itemgroup.setPos(self.x_pos, self.y_pos)
-                itemgroup.setData(0, i)
-                itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
-                if self.titel: # imagefile is from thumbs directory
-                    itemgroup.setSelected(True)
-                self.y_pos += pixmap.height() + 20
-            self.x_pos = self.left_margin
-        else:
-            self.close()
-        #self.scene.clearSelection()
-        self.scene.update()
-        
-    def getBilddatei(self, actor, sex = None):
+    def getBilddatei(self, actor, sex=None):
         bilddatei = None
         if actor:
             if sex:
@@ -225,6 +242,11 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         if not bilddatei or not os.path.exists(bilddatei):
             bilddatei = os.path.join(self.verzeichnis_thumbs, "nichtvorhanden", "nicht_vorhanden.jpg")
         return bilddatei
+    
+    def selectAll(self):
+        for item in self.scene.items():
+            if isinstance(item, QtWidgets.QGraphicsItemGroup):
+                item.setSelected(True)
     
     def closeEvent(self, event):
         settings = QtCore.QSettings()

@@ -43,7 +43,11 @@
      <item>
       <widget class="QPushButton" name="pushButtonOK">
        <property name="text">
-        <string>Add scene</string>
+        <string>Add scene, Enter</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/add.svg</normaloff>pypordb/add.svg</iconset>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -51,9 +55,27 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButtonSelectAll">
+       <property name="text">
+        <string>Select all, Ctrl+A</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/select-all.svg</normaloff>pypordb/select-all.svg</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+A</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButtonCancel">
        <property name="text">
-        <string>Cancel</string>
+        <string>Cancel, Esc</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>pypordb/cancel.gif</normaloff>pypordb/cancel.gif</iconset>
        </property>
       </widget>
      </item>

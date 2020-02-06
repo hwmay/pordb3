@@ -322,7 +322,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.clear()
         self.partner = 0
         self.anzeige_komplett = False
-        self.angezeigt_komplett = False
         self.url = ""
         self.searchResultsMpg = None
         self.searchResultsVid = None
@@ -564,7 +563,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         elif event.key() == QtCore.Qt.Key_Delete:
             self.onBildLoeschen()
         elif event.key() == QtCore.Qt.Key_F12 and self.tabWidget.currentIndex() == 0 and self.aktuelle_ausgabe == "Bilder":
-            if self.angezeigt_komplett == False:
+            if self.anzeige_komplett == False:
                 self.anzeige_komplett = True
             else:
                 self.anzeige_komplett = False
@@ -2061,9 +2060,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                     bild_liste.append(bild_element)
                 bild_element = "\n".join(bild_liste)
                 text += self.tr("Title: ") +"\n" +titel +"\n" +self.tr("Image: ") +"\n" +bild_element +"\n------------------------------\n"
-                self.angezeigt_komplett = True
-            else:
-                self.angezeigt_komplett = False
             if darsteller_ausgabe:
                 text += darsteller_ausgabe +"\n------------------------------\n" 
             text += "CD=" +ort +" "
@@ -2102,7 +2098,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.tableWidgetBilder.setItem(zeile, spalte, newitem)
         self.restarbeiten_bilder()
         self.aktuelle_ausgabe = "Bilder"
-        self.anzeige_komplett = False
 
     # end of ausgabe_in_table    
         

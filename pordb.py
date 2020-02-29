@@ -3386,10 +3386,13 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         umbenennen = DarstellerUmbenennen(ein)
         neuer_name = None
         if umbenennen.exec_():
+            neuer_name = str(umbenennen.lineEditNeuerName.text()).strip().title()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-            neuer_name = str(umbenennen.lineEditNeuerName.text())
             if neuer_name:
-                neuer_name = neuer_name.strip().title()
+                if neuer_name == eingabe:
+                    app.restoreOverrideCursor()
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("New name is equal to old name"))
+                    return
                 zu_lesen = "SELECT * FROM pordb_pseudo WHERE darsteller = %s and pseudo = %s"
                 lese_func = DBLesen(self, zu_lesen, (eingabe, neuer_name))
                 res = DBLesen.get_data(lese_func)

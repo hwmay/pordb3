@@ -646,7 +646,7 @@ First click with the left mouse button in the left top corner, then click with t
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>pypordb/transform-crop.png</normaloff>pypordb/transform-crop.png</iconset>
+           <normaloff>pypordb/crop.svg</normaloff>pypordb/crop.svg</iconset>
          </property>
          <property name="iconSize">
           <size>

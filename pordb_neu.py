@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -278,7 +279,7 @@ class Ui_Dialog(object):
         self.pushButtonBildbeschneiden = QtWidgets.QPushButton(Dialog)
         self.pushButtonBildbeschneiden.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("pypordb/transform-crop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("pypordb/crop.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonBildbeschneiden.setIcon(icon4)
         self.pushButtonBildbeschneiden.setIconSize(QtCore.QSize(10, 10))
         self.pushButtonBildbeschneiden.setObjectName("pushButtonBildbeschneiden")
@@ -553,4 +554,5 @@ class Ui_Dialog(object):
         self.label_3.setText(_translate("Dialog", "CD"))
         self.pushButtonRepeat.setToolTip(_translate("Dialog", "<html><head/><body><p>Repeat you last input, F12</p></body></html>"))
         self.pushButtonRepeat.setShortcut(_translate("Dialog", "F12"))
+
 

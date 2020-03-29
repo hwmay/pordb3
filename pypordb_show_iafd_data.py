@@ -199,8 +199,6 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         actor_to_add = []
         for i in self.scene.selectedItems():
             if i.data(0):        
-
-
                 if scene_to_add:
                     QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select only one scene"))
                     return

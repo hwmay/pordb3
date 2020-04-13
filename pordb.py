@@ -1337,7 +1337,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                     else:
                         filename = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3].strip())
                         if not os.path.exists(filename):
-                            filename = os.path.join(self.verzeichnis_cover, + i[3].strip())
+                            filename = os.path.join(self.verzeichnis_cover, i[3].strip())
                     bild = QtGui.QPixmap(filename)
                     if bild.height() > self.printer.pageRect().height() - 60 or bild.width() > self.printer.pageRect().width() - 60:
                         bild = QtGui.QPixmap(bild).scaled(self.printer.pageRect().width() - 60, self.printer.pageRect().height() - 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)

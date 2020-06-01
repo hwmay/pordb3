@@ -147,8 +147,10 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
         # set alternate titles
         for i, wert in enumerate(self.video[1]):
             alt_title = wert
-            textitem = QtWidgets.QGraphicsTextItem(alt_title)
+            textitem = QtWidgets.QGraphicsSimpleTextItem(alt_title)
             textitem.setPos(self.x_pos, self.y_pos)
+            textitem.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
+            textitem.setSelected(True)
             self.scene.addItem(textitem)
             self.y_pos += 30
             self.start_y_pos += self.y_pos
@@ -179,8 +181,6 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                             max_height = pixmap.height()
                         pixmapitem = QtWidgets.QGraphicsPixmapItem(pixmap)
                         pixmapitem.setPos(0, 20)        
-
-
                         itemgroup = self.scene.createItemGroup([textitem, pixmapitem])
                         itemgroup.setPos(self.x_pos, self.y_pos)
                         itemgroup.setData(1, wert2)
@@ -197,13 +197,19 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
     def accept(self):
         scene_to_add = None
         actor_to_add = []
+        title_to_add = []
         for i in self.scene.selectedItems():
+            # Add alternate titles
+            if isinstance(i, QtWidgets.QGraphicsSimpleTextItem):
+                title_to_add.append(i.text())
+            # Add scene
             if i.data(0):        
                 if scene_to_add:
                     QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please select only one scene"))
                     return
                 else:
                     scene_to_add = str(i.data(0))
+            # Add actors
             if i.data(1):
                 actor_to_add.append(str(i.data(1)))
                 
@@ -218,7 +224,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             verzeichnis = self.verzeichnis_thumbs
         else: 
             verzeichnis = self.verzeichnis
-        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(verzeichnis, scene_to_add), titel=self.titel, darsteller=darsteller, cd=self.cd, bild=self.bild, gesehen=self.gesehen, original=self.video[0], cs=self.cs, vorhanden=self.vorhanden, cover=self.cover, undo=None, cover_anlegen=None, original_weitere=self.video[1], access_from_iafd=True, high_definition=self.high_definition)
+        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(verzeichnis, scene_to_add), titel=self.titel, darsteller=darsteller, cd=self.cd, bild=self.bild, gesehen=self.gesehen, original=self.video[0], cs=self.cs, vorhanden=self.vorhanden, cover=self.cover, undo=None, cover_anlegen=None, original_weitere=title_to_add, access_from_iafd=True, high_definition=self.high_definition)
         if eingabedialog.exec_():
             for i in list(self.scene.items()):
                 if i.data(0):

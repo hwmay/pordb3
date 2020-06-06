@@ -269,7 +269,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                 datei = os.path.splitext(i)[0]
                 ext = os.path.splitext(i)[1].lower()
                 if ext in videodateien: 
-                    if videodatei == datei or videodatei[0:len(videodatei) -1] == datei or videodatei[0:len(videodatei) -2] == datei: 
+                    if videodatei == datei or videodatei[0:len(videodatei) - 1] == datei or videodatei[0:len(videodatei) - 2] == datei or videodatei[0:len(videodatei) - 3] == datei: 
                         self.lineEditNeuTitel.setText(os.path.basename(i))
                         self.lineEditNeuDarsteller.setFocus()
                         break

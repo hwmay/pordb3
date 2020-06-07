@@ -807,6 +807,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             else:
                 self.letzter_select = zu_lesen
             self.ausgabe(zu_lesen, zu_lesen, werte)
+            self.tabWidget.setCurrentIndex(0)
         else:
             self.suchfeld.setFocus()
             
@@ -968,6 +969,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 self.letzter_select_komplett_werte = werte
                 self.partner = 0
                 self.ausgabe(ein, zu_lesen, werte)
+                self.tabWidget.setCurrentIndex(0)
                 app.restoreOverrideCursor()
         
     def onAnzeigenOriginal(self):
@@ -1690,6 +1692,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.start_bilder = 0
             self.partner = 0
             self.ausgabe(zu_lesen, zu_lesen, werte)
+            self.tabWidget.setCurrentIndex(0)
             self.letzter_select_komplett = zu_lesen
             self.letzter_select_komplett_werte = werte
         app.restoreOverrideCursor()
@@ -1732,6 +1735,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.letzter_select_komplett_werte = werte
         self.partner = 0
         self.ausgabe(ein, zu_lesen, werte)
+        self.tabWidget.setCurrentIndex(0)
         app.restoreOverrideCursor()
 
     def onCD(self):
@@ -1756,6 +1760,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.letzter_select_komplett_werte = werte
         self.partner = 0
         self.ausgabe(str(ein), zu_lesen, werte)
+        self.tabWidget.setCurrentIndex(0)
         app.restoreOverrideCursor()
             
     def onTitel(self):
@@ -1782,6 +1787,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.letzter_select_komplett_werte = werte
         self.partner = 0
         self.ausgabe(ein, zu_lesen, werte)
+        self.tabWidget.setCurrentIndex(0)
         app.restoreOverrideCursor()
             
     def onOriginal(self):
@@ -1847,6 +1853,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.letzter_select_komplett_werte = werte
         self.partner = 0
         self.ausgabe(ein3, zu_lesen, werte)
+        self.tabWidget.setCurrentIndex(0)
         app.restoreOverrideCursor()
         
     def onHelp(self):
@@ -1949,7 +1956,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.statusBar.showMessage(self.tr("Search was: ") +ein)
             self.suchhistorie(ein)
         self.suchfeld.setCurrentIndex(-1)
-        self.tabWidget.setCurrentIndex(0)
         self.suchfeld.setFocus()
     # end of ausgabe
     
@@ -2270,6 +2276,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 self.start_bilder = 0
                 self.partner = 0
                 self.ausgabe(zu_lesen, zu_lesen, werte)
+                self.tabWidget.setCurrentIndex(0)
             app.restoreOverrideCursor()
         self.suchfeld.setFocus()
     # end of onSuche
@@ -2963,8 +2970,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.letzter_select_komplett_werte.append(os.path.basename(self.file))
             self.letzter_select_komplett = "SELECT * FROM pordb_vid WHERE cd = %s AND bild = %s"
             
-        if self.tabWidget.currentIndex() == 0:
-            self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
+        self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         
     # end of onNeueingabe
         

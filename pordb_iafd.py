@@ -2,16 +2,17 @@
 
 # Form implementation generated from reading ui file 'pordb_iafd.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_DatenausderIAFD(object):
     def setupUi(self, DatenausderIAFD):
         DatenausderIAFD.setObjectName("DatenausderIAFD")
-        DatenausderIAFD.resize(937, 632)
+        DatenausderIAFD.resize(937, 633)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("pypordb/8027068_splash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         DatenausderIAFD.setWindowIcon(icon)
@@ -111,7 +112,6 @@ class Ui_DatenausderIAFD(object):
         self.label_9.setObjectName("label_9")
         self.gridLayout.addWidget(self.label_9, 5, 1, 1, 1)
         self.lineEditGeschlecht = QtWidgets.QLineEdit(DatenausderIAFD)
-        self.lineEditGeschlecht.setReadOnly(True)
         self.lineEditGeschlecht.setObjectName("lineEditGeschlecht")
         self.gridLayout.addWidget(self.lineEditGeschlecht, 1, 2, 1, 1)
         self.labelBirthplace = QtWidgets.QLabel(DatenausderIAFD)
@@ -264,4 +264,5 @@ class Ui_DatenausderIAFD(object):
         self.pushButtonRemoveBrackets.setShortcut(_translate("DatenausderIAFD", "Ctrl+D"))
         self.pushButtonUebernehmen.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Adopt marked data (enter)</p></body></html>"))
         self.pushButtonCancel.setToolTip(_translate("DatenausderIAFD", "<html><head/><body><p>Cancel (escape)</p></body></html>"))
+
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>937</width>
-    <height>632</height>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -204,11 +204,7 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLineEdit" name="lineEditGeschlecht">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="lineEditGeschlecht"/>
      </item>
      <item row="5" column="2">
       <widget class="QLabel" name="labelBirthplace">

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2020 HWM
     
     This file is part of PorDB3.
 
@@ -19,7 +19,7 @@
     along with Foobar.  If not, see <http:  www.gnu.org licenses >.
 '''
 
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from pordb_historie import Ui_Dialog as pordb_historie
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
@@ -45,7 +45,6 @@ class Historie(QtWidgets.QDialog, pordb_historie):
         self.zu_lesen = "SELECT * FROM pordb_history ORDER BY time DESC"
         self.lese_func = DBLesen(self, self.zu_lesen)
         self.res = DBLesen.get_data(self.lese_func)
-        res = DBLesen.get_data(self.lese_func)
         self.tableWidgetHistory.setRowCount(len(self.res))
         for i in self.res:
             # Checkbox
@@ -93,14 +92,16 @@ class Historie(QtWidgets.QDialog, pordb_historie):
             if self.tableWidgetHistory.item(i, 0).checkState():
                 text = str(self.tableWidgetHistory.item(i, 1).text())
                 index = text.find("ORDER BY")
+                if index == -1:
+                    index = 0
                 index += text[index : ].find(" (")
-                self.werte = str(self.tableWidgetHistory.item(i, 1).text())[index :].lstrip(" (")
+                self.werte = str(text)[index :].lstrip(" (")
                 if self.werte.endswith(")"):
                     self.werte = self.werte[:-1]
-                self.zu_lesen = str(self.tableWidgetHistory.item(i, 1).text())[0 : index]
+                self.zu_lesen = str(text)[0 : index]
                 break
         if not text:
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please check one history entry"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Please check one history entry"))
             return
         else:
             self.close()

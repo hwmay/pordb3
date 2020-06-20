@@ -2970,7 +2970,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.letzter_select_komplett_werte.append(os.path.basename(self.file))
             self.letzter_select_komplett = "SELECT * FROM pordb_vid WHERE cd = %s AND bild = %s"
             
-        print (self.letzter_select_komplett, self.letzter_select_komplett_werte)
         if not "SELECT * FROM pordb_darsteller" in self.letzter_select_komplett:
             self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         

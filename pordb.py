@@ -3976,7 +3976,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         
     def onLoadFinished(self, arg):
         app.restoreOverrideCursor()
-        self.suchfeld.setFocus()
+        self.webView.setFocus()
         
     def onVideoSuchen(self):
         text = str(self.webView.page().mainFrame().toHtml())

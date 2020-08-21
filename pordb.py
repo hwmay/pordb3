@@ -456,7 +456,10 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         
     def bilder_aktuell(self, force = False):
         self.label_akt_verzeichnis.setText(self.verzeichnis)
-        dateiliste = os.listdir(self.verzeichnis)
+        try:
+            dateiliste = os.listdir(self.verzeichnis)
+        except FileNotFoundError:
+            return
         dateiliste_bereinigt = []
         for i in dateiliste:
             if os.path.splitext(i)[-1].lower() in IMAGE_FILES:

@@ -4024,7 +4024,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if res and res[2]:
             show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res, titel, cd, bild, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, high_definition)
             show_iafd_data.exec_()
-            self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
+            if self.letzter_select_komplett:
+                self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         if str(self.labelDarsteller.text()) != "":
             self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
             self.onbildAnzeige()

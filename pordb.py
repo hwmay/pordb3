@@ -581,6 +581,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.webView.stop()
         elif event.key() == QtCore.Qt.Key_U and self.tabWidget.currentIndex() == 1:
             self.onDarstellerUmbenennen()
+        elif event.key() == QtCore.Qt.Key_Pause:
+            app.restoreOverrideCursor()
         elif event.modifiers() & QtCore.Qt.ControlModifier:
             if event.key() == QtCore.Qt.Key_B:
                 self.tabWidget.setCurrentIndex(1)
@@ -3005,6 +3007,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     # end of onKorrektur
     
     def fillParameterChange(self, index):
+        print ("self.aktuelles_res:", self.aktuelles_res)
+        print ("#########################################################################################")
         cd = self.aktuelles_res[index][2]
         bild = self.aktuelles_res[index][3]
         titel = self.aktuelles_res[index][0]

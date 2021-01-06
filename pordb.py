@@ -1970,6 +1970,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         spalte = -1
         res = self.aktuelles_res[int(self.start_bilder):int(self.start_bilder) + int(self.anzahl_bilder)]
         self.tableWidgetBilder.setRowCount(round(len(res) / self.columns + 0.4))
+        print ("self.aktuelles_res:", self.aktuelles_res, "self.start_bilder:", self.start_bilder, "self.anzahl_bilder:", self.anzahl_bilder)
+        print ("#########################################################################################")
         if len(res) < self.columns:
             self.tableWidgetBilder.setColumnCount(len(res))
         else:
@@ -2070,7 +2072,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 else:
                     bild_liste.append(bild_element)
                 bild_element = "\n".join(bild_liste)
-                text += self.tr("Title: ") +"\n" +titel +"\n" +self.tr("Image: ") +"\n" +bild_element +"\n------------------------------\n"
+                text += self.tr("Title: ") + titel +"\n" +self.tr("Image: ") + bild_element + "\n------------------------------\n"
             if darsteller_ausgabe:
                 text += darsteller_ausgabe +"\n------------------------------\n" 
             text += "CD=" +ort +" "
@@ -3007,8 +3009,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     # end of onKorrektur
     
     def fillParameterChange(self, index):
-        print ("self.aktuelles_res:", self.aktuelles_res)
-        print ("#########################################################################################")
         cd = self.aktuelles_res[index][2]
         bild = self.aktuelles_res[index][3]
         titel = self.aktuelles_res[index][0]

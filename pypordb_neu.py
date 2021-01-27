@@ -172,28 +172,38 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                 self.radioButtonGesehenNein.setChecked(True)
             self.lineEditNeuOriginal.setText(self.original.strip())
             for i in cs:
-                anzahl = i[0]
-                if i[1] == "f":
+                if i[-1] == "f":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxF.setValue(int(anzahl))
-                elif i[1] == "h":
+                elif i[-1] == "h":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxH.setValue(int(anzahl))
-                elif i[1] == "t":
+                elif i[-1] == "t":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxT.setValue(int(anzahl))
-                elif i[1] == "c":
+                elif i[-1] == "c":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxC.setValue(int(anzahl))
-                elif i[1] == "x":
+                elif i[-1] == "x":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxX.setValue(int(anzahl))
-                elif i[1] == "o":
+                elif i[-1] == "o":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxO.setValue(int(anzahl))
-                elif i[1] == "v":
+                elif i[-1] == "v":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxV.setValue(int(anzahl))
-                elif i[1] == "b":
+                elif i[-1] == "b":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxB.setValue(int(anzahl))
-                elif i[1] == "a":
+                elif i[-1] == "a":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxA.setValue(int(anzahl))
-                elif i[1] == "s":
+                elif i[-1] == "s":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxS.setValue(int(anzahl))
-                elif i[1] == "k":
+                elif i[-1] == "k":
+                    anzahl = i[0:len(i) - 1]
                     self.spinBoxK.setValue(int(anzahl))
             if self.vorhanden == "x":
                 self.radioButtonVorhandenJa.setChecked(True)

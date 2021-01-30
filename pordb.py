@@ -1970,8 +1970,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         spalte = -1
         res = self.aktuelles_res[int(self.start_bilder):int(self.start_bilder) + int(self.anzahl_bilder)]
         self.tableWidgetBilder.setRowCount(round(len(res) / self.columns + 0.4))
-        print ("self.aktuelles_res:", self.aktuelles_res, "self.start_bilder:", self.start_bilder, "self.anzahl_bilder:", self.anzahl_bilder)
-        print ("#########################################################################################")
         if len(res) < self.columns:
             self.tableWidgetBilder.setColumnCount(len(res))
         else:
@@ -4028,7 +4026,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if res and res[2]:
             show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res, titel, cd, bild, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, high_definition)
             show_iafd_data.exec_()
-            if self.letzter_select_komplett:
+            if self.letzter_select_komplett and self.aktuelle_ausgabe != "Darsteller":
                 self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
         if str(self.labelDarsteller.text()) != "":
             self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())

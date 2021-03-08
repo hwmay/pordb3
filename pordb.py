@@ -2346,7 +2346,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     def bildSetzen(self):
         if self.bilddarsteller:
             # Multiplikation mit 0.05, da es eine Wechselwirkung mit dem Parent Frame gibt
-            bild = QtGui.QPixmap(self.bilddarsteller).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
+            bild = QtGui.QPixmap(self.bilddarsteller).scaled(self.labelBildanzeige.parentWidget().width() - int(self.labelBildanzeige.parentWidget().width() * 0.05), self.labelBildanzeige.parentWidget().height() - int(self.labelBildanzeige.parentWidget().height() * 0.05), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
             self.labelBildanzeige.setPixmap(bild)
             
     def clear_actor_tab(self, actor_found):

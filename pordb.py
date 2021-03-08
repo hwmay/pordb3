@@ -308,7 +308,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.notpresent = True
         self.notwatched = True
         self.bilddarsteller = None
-        self.columns = 3.0
+        self.columns = 3
         self.tableWidgetBilder.setColumnCount(self.columns)
         self.tableWidgetBilder.setIconSize(size)
         self.letzter_select = ""
@@ -759,7 +759,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         zu_erfassen.append(["UPDATE pordb_vid_neu SET anzahl_bilder = %s", werte])
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)
-        self.rows = float(self.spinBoxZeilen.value())
+        self.rows = int(self.spinBoxZeilen.value())
         self.tableWidgetBilder.setRowCount(self.rows)
         self.anzahl_bilder = self.rows
         if self.aktuelle_ausgabe == "Darsteller" or not self.letzter_select_komplett:

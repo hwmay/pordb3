@@ -408,19 +408,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if self.initial_run: 
             splash.showMessage("Loading IAFD", color = QtGui.QColor("red"))
             app.processEvents()
-            seite = None
-            try:
-                seite = urllib.request.urlopen("http://www.iafd.com/", timeout=10).read()
-                
-                if seite:
-                    self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
-                else:
-                    pass
-            except (urllib.error.URLError, socket.timeout):
-                pass
-            
-            if not seite:
-                self.statusBar.showMessage(self.tr("Either your computer is not online or the IAFD is not reachable"))
+            self.onIAFDSeite()
                 
         if self.initial_run:
             splash.showMessage("Ready", color = QtGui.QColor("green"))

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2019 HWM
+    Copyright 2012-2021 HWM
     
     This file is part of PorDB3.
 
@@ -71,11 +71,11 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
         self.name_iafd = ActorData.actor_name(actordata)
         if not self.name_iafd:
             self.app.restoreOverrideCursor()
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
             return
         if self.name and self.name.lower() != self.name_iafd.lower():
             self.app.restoreOverrideCursor()
-            message = QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(self.name, self.name_iafd))
+            QtWidgets.QMessageBox.warning(self, self.tr("Warning "), self.tr("Actors name in \nPorDB --> ({0}) \ndiffers from actors name in the \nIAFD --> ({1}).\nMaybe you should rename the actor in PorDB.").format(self.name, self.name_iafd))
         if not self.name:
             self.name = self.name_iafd
         self.labelName.setText(self.name)
@@ -85,19 +85,17 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
         self.bild = ActorData.actor_image(actordata)
         if not self.bild:
             self.app.restoreOverrideCursor()
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
             return
         url = self.bild
         self.verz = self.verzeichnis_thumbs
-        urllib.request._urlopener=urllib.request.URLopener()
-        urllib.request.URLopener.version="Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461)"
-        urllib.request.FancyURLopener.prompt_user_passwd = lambda self, host, realm: (None, None)
-        while True:
-            try:
-                bild=urllib.request.urlretrieve(url, os.path.join(self.verz, os.path.basename(self.bild)))
-                break
-            except:
-                pass
+        #urllib.request._urlopener=urllib.request.URLopener()
+        #urllib.request.URLopener.version="Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461)"
+        #urllib.request.FancyURLopener.prompt_user_passwd = lambda self, host, realm: (None, None)
+        try:
+            bild=urllib.request.urlretrieve(url, os.path.join(self.verz, os.path.basename(self.bild)))
+        except:
+            pass
         bild = QtGui.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))
         self.labelBild.setPixmap(bild)
             
@@ -105,7 +103,7 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
         self.geschlecht = ActorData.actor_sex(actordata)
         if not self.bild:
             self.app.restoreOverrideCursor()
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be an actor site of the IAFD"))
             return
         if self.geschlecht:
             self.lineEditGeschlecht.setText(self.geschlecht)
@@ -214,7 +212,7 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
         
     def onUebernehmen(self):
         if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Invalid gender"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Invalid gender"))
             self.app.restoreOverrideCursor()
             self.lineEditGeschlecht.setReadOnly(False)
             self.lineEditGeschlecht.setFocus()
@@ -270,7 +268,10 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
                     extension = ".jpg"
                 if extension != ".gif":
                     newfilename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + str(self.lineEditGeschlecht.text()), name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension)
-                    os.rename(os.path.join(self.verz, os.path.basename(self.bild)), newfilename)
+                    try:
+                        os.rename(os.path.join(self.verz, os.path.basename(self.bild)), newfilename)
+                    except FileNotFoundError:
+                        QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Download of image of actor not possible"))
             else:
                 self.onClose()
         # Darsteller existiert bereits
@@ -320,7 +321,7 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
                 zu_erfassen.append(["UPDATE pordb_darsteller SET haarfarbe = %s WHERE darsteller = %s", werte])
             if self.checkBoxTattos.isChecked() and str(self.lineEditTattos.text()):
                 if len((self.lineEditTattos.text())) > 500:
-                    message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
+                    QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
                     return
                 werte = []
                 werte.append(str(self.lineEditTattos.text()))

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
-   xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -15,9 +12,9 @@
    height="128"
    id="svg1307"
    sodipodi:version="0.32"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    version="1.0"
-   sodipodi:docname="x-mail-distribution-list.svgz"
+   sodipodi:docname="darsteller.svg"
    inkscape:output_extension="org.inkscape.output.svgz.inkscape"
    enable-background="new"
    inkscape:export-filename="/home/pinheiro/pics/oxygen/scalable/apps/system-users.png"
@@ -285,14 +282,6 @@
        y1="-131.93112"
        x2="-45.096584"
        y2="-131.93112" />
-    <filter
-       inkscape:collect="always"
-       id="filter7317">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="2.8805897"
-         id="feGaussianBlur7319" />
-    </filter>
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath5163">
@@ -1229,10 +1218,7 @@
        width="1"
        y="0"
        x="0"
-       requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/">
-      <i:pgfRef
-         xlink:href="#adobe_illustrator_pgf" />
-    </foreignObject>
+       requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/" />
     <radialGradient
        r="139.55859"
        cy="112.3047"
@@ -5827,10 +5813,7 @@
        y="0"
        width="1"
        height="1"
-       id="foreignObject4690">
-      <i:pgfRef
-         xlink:href="#adobe_illustrator_pgf" />
-    </foreignObject>
+       id="foreignObject4690" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#XMLID_2_"
@@ -11500,10 +11483,7 @@
        y="0"
        width="1"
        height="1"
-       id="foreignObject7555">
-      <i:pgfRef
-         xlink:href="#adobe_illustrator_pgf" />
-    </foreignObject>
+       id="foreignObject7555" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#XMLID_2_"
@@ -15079,7 +15059,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.1876116"
-     inkscape:cx="117.10939"
+     inkscape:cx="16.314532"
      inkscape:cy="25.363604"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -15092,7 +15072,8 @@
      inkscape:window-height="958"
      inkscape:window-x="285"
      inkscape:window-y="23"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     inkscape:document-rotation="0">
     <sodipodi:guide
        orientation="horizontal"
        position="32.487481"
@@ -15100,9 +15081,11 @@
     <inkscape:grid
        type="xygrid"
        id="grid9230"
-       spacingx="4px"
-       spacingy="4px"
-       empspacing="2" />
+       spacingx="4"
+       spacingy="4"
+       empspacing="2"
+       originx="0"
+       originy="0" />
   </sodipodi:namedview>
   <metadata
      id="metadata1312">
@@ -15119,7 +15102,7 @@
             <dc:title>Oxygen team</dc:title>
           </cc:Agent>
         </dc:contributor>
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
       <cc:License
          rdf:about="http://creativecommons.org/licenses/LGPL/2.1/">

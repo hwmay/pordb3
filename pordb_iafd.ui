@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>937</width>
-    <height>633</height>
+    <height>671</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -289,6 +289,15 @@
       <widget class="QComboBox" name="comboBoxHaare">
        <item>
         <property name="text">
+         <string>ba</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>bl</string>
         </property>
         <property name="icon">
@@ -330,15 +339,6 @@
         <property name="icon">
          <iconset>
           <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>ba</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
         </property>
        </item>
       </widget>

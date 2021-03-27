@@ -716,9 +716,8 @@ class Ui_MainWindow(object):
         self.pushButtonUrl.setObjectName("pushButtonUrl")
         self.horizontalLayout_14.addWidget(self.pushButtonUrl)
         self.verticalLayout_10.addLayout(self.horizontalLayout_14)
-        self.webView = QtWebKitWidgets.QWebView(self.tab_4)
+        self.webView = QtWebEngineWidgets.QWebEngineView(self.tab_4)
         self.webView.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.webView.setProperty("url", QtCore.QUrl("about:blank"))
         self.webView.setObjectName("webView")
         self.verticalLayout_10.addWidget(self.webView)
         self.gridLayout_10.addLayout(self.verticalLayout_10, 0, 0, 1, 1)
@@ -1093,7 +1092,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)
@@ -1499,4 +1498,4 @@ class Ui_MainWindow(object):
         self.actionMassChange.setToolTip(_translate("MainWindow", "<html><head/><body><p>Make a mass change</p></body></html>"))
         self.actionAddInformationFromIAFD.setText(_translate("MainWindow", "Add data from IAFD"))
         self.actionAddInformationFromIAFD.setToolTip(_translate("MainWindow", "Add data from IAFD"))
-from PyQt5 import QtWebKitWidgets
+from PyQt5 import QtWebEngineWidgets

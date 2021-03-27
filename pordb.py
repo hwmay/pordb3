@@ -328,6 +328,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.context_actor_image = False
         self.files_added = ""
         self.forced_image_refresh_done = False
+        self.html = None
         
         self.pushButtonIAFDBackground.setEnabled(False)
         
@@ -1594,7 +1595,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 return
             elif self.tabWidget.currentIndex() == 3:
                 painter.end()
-                self.webView.print_(self.printer)
+                self.webView.print(self.printer)
                 app.restoreOverrideCursor()
             else:
                 app.restoreOverrideCursor()
@@ -3968,12 +3969,15 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         
     def onLoadFinished(self, arg):
+        self.webView.page().toHtml(self.callBackToHtml)
         app.restoreOverrideCursor()
         self.webView.setFocus()
         
+    def callBackToHtml(self, html):
+        self.html = html
+        
     def onVideoSuchen(self):
-        text = str(self.webView.page().mainFrame().toHtml())
-        actordata = ActorData(text)
+        actordata = ActorData(self.html)
         titel = ActorData.actor_list_of_movies(actordata)
         if titel:
             self.video_anzeigen(titel)
@@ -3989,8 +3993,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         url = self.webView.url().toString()
         ende = url.find("gender=") + 8
         url = url[0:ende]
-        text = str(self.webView.page().mainFrame().toHtml())
-        bilddialog = DarstellerdatenAnzeigen(app, url, text, self.verzeichnis_thumbs)
+        bilddialog = DarstellerdatenAnzeigen(app, url, self.html, self.verzeichnis_thumbs)
         fehler = False
         try:
             bilddialog.geschlecht
@@ -4008,8 +4011,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         
     def onMovieData(self, titel=None, cd=None, bild=None, darsteller=None, gesehen=None, original=None, cs=None, vorhanden=None, definition=None, remarks=None, stars=None, cover=None, original_weitere=None, high_definition=None):
         url = self.webView.url().toString()
-        text = str(self.webView.page().mainFrame().toHtml())
-        movie_data = SaveMovieData(app, url, text)
+        movie_data = SaveMovieData(app, url, self.html)
         res = SaveMovieData.get_data(movie_data)
         if res and res[2]:
             show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res, titel, cd, bild, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, high_definition)

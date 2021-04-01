@@ -89,11 +89,11 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
             return
         url = self.bild
         self.verz = self.verzeichnis_thumbs
-        #urllib.request._urlopener=urllib.request.URLopener()
-        #urllib.request.URLopener.version="Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461)"
-        #urllib.request.FancyURLopener.prompt_user_passwd = lambda self, host, realm: (None, None)
         try:
-            bild=urllib.request.urlretrieve(url, os.path.join(self.verz, os.path.basename(self.bild)))
+            opener=urllib.request.build_opener()
+            opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
+            urllib.request.install_opener(opener)
+            urllib.request.urlretrieve(url, os.path.join(self.verz, os.path.basename(self.bild)))
         except:
             pass
         bild = QtGui.QPixmap(os.path.join(self.verz, os.path.basename(self.bild)))

@@ -2685,7 +2685,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if res and res[0][11] and res[0][11] != "0":
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             try:
-                seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("utf-8")
+                req = urllib.request.Request(res[0][11], headers={'User-Agent': 'Mozilla 5.0'})
+                seite = urllib.request.urlopen(req, timeout=10).read().decode("utf-8")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
                 QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))
@@ -2710,7 +2711,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r"}
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             try:
-                seite = urllib.request.urlopen(res[0][11], timeout=10).read().decode("utf-8")
+                req = urllib.request.Request(res[0][11], headers={'User-Agent': 'Mozilla 5.0'})
+                seite = urllib.request.urlopen(req, timeout=10).read().decode("utf-8")
             except (urllib.error.URLError, socket.timeout) as e:
                 app.restoreOverrideCursor()
                 QtWidgets.QMessageBox.critical(self, self.tr("Error "), str(e))

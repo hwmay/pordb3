@@ -1595,7 +1595,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 return
             elif self.tabWidget.currentIndex() == 3:
                 painter.end()
-                self.webView.print(self.printer)
+                self.webView.page().print(self.printer, self.callBackPrint)
                 app.restoreOverrideCursor()
             else:
                 app.restoreOverrideCursor()
@@ -1611,6 +1611,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if not self.preview.exec_():
             app.restoreOverrideCursor()
             return
+        
+    def callBackPrint(self, printbool):
+        self.printbool = printbool
         
     def onDarstellerGross(self):
         if self.tabWidget.currentIndex() == 0:
@@ -2998,6 +3001,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     # end of onKorrektur
     
     def fillParameterChange(self, index):
+        print ("######################### index:", index, self.aktuelles_res)
         cd = self.aktuelles_res[index][2]
         bild = self.aktuelles_res[index][3]
         titel = self.aktuelles_res[index][0]

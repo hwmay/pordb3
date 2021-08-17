@@ -693,17 +693,12 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     
     def onPageUp(self):
         self.start_bilder = self.start_bilder - self.anzahl_bilder
-        if self.start_bilder > -1:
-            if self.aktuelle_ausgabe == "Darsteller":
-                self.ausgabedarsteller()
-            else:
-                self.ausgabe_in_table()
-        else:
+        if self.start_bilder < 0:
             self.start_bilder = 0
-            if self.aktuelle_ausgabe == "Darsteller":
-                self.ausgabedarsteller()
-            else:
-                self.ausgabe_in_table()
+        if self.aktuelle_ausgabe == "Darsteller":
+            self.ausgabedarsteller()
+        else:
+            self.ausgabe_in_table()
             
     def onPageDown(self):
         self.start_bilder = self.start_bilder + self.anzahl_bilder
@@ -719,17 +714,12 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.start_bilder = int(len(self.aktuelles_res) / self.anzahl_bilder) * self.anzahl_bilder
         if self.start_bilder == len(self.aktuelles_res):
             self.start_bilder = self.start_bilder - self.anzahl_bilder
-        if self.start_bilder > -1:
-            if self.aktuelle_ausgabe == "Darsteller":
-                self.ausgabedarsteller()
-            else:
-                self.ausgabe_in_table()
-        else:
+        if self.start_bilder < 0:
             self.start_bilder = 0
-            if self.aktuelle_ausgabe == "Darsteller":
-                self.ausgabedarsteller()
-            else:
-                self.ausgabe_in_table()
+        if self.aktuelle_ausgabe == "Darsteller":
+            self.ausgabedarsteller()
+        else:
+            self.ausgabe_in_table()
     
     def onNeuDoubleClick(self):
         items = self.tableWidgetBilderAktuell.selectedItems()
@@ -1108,6 +1098,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             return
         column = self.tableWidgetBilder.column(item)
         row = self.tableWidgetBilder.row(item)
+        print ("################################", row, self.columns, column, self.start_bilder)
         index = int(row * self.columns + column + self.start_bilder)
         cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition = self.fillParameterChange(index)
         self.onMovieData(titel=titel, cd=cd, bild=bild, darsteller=darsteller, gesehen=gesehen, original=original, cs=cs, vorhanden=vorhanden, high_definition=definition, remarks=remarks, stars=stars, cover=cover, original_weitere=original_weitere)
@@ -3001,7 +2992,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     # end of onKorrektur
     
     def fillParameterChange(self, index):
-        print ("######################### index:", index, self.aktuelles_res)
+        print ("index:", index, self.aktuelles_res)
         cd = self.aktuelles_res[index][2]
         bild = self.aktuelles_res[index][3]
         titel = self.aktuelles_res[index][0]

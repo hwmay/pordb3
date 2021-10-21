@@ -2993,7 +2993,12 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     
     def fillParameterChange(self, index):
         print ("index:", index, self.aktuelles_res)
-        cd = self.aktuelles_res[index][2]
+        try:
+            cd = self.aktuelles_res[index][2]
+        except IndexError:
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Index error"))
+            return
+            
         bild = self.aktuelles_res[index][3]
         titel = self.aktuelles_res[index][0]
         darsteller = self.aktuelles_res[index][1]

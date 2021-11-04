@@ -2363,7 +2363,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.pushButtonPseudo.setEnabled(False)
             
     def onTabwechsel(self, tab):
-        if tab == 4 or tab == 5:
+        if tab in (3, 4, 5):
             self.actionDrucken.setEnabled(False)
         else:
             self.actionDrucken.setEnabled(True)

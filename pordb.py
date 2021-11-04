@@ -1100,7 +1100,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         row = self.tableWidgetBilder.row(item)
         print ("################################", row, self.columns, column, self.start_bilder)
         index = int(row * self.columns + column + self.start_bilder)
-        cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition = self.fillParameterChange(index)
+        try:
+            cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition = self.fillParameterChange(index)
+        except TypeError:
+            self.suchfeld.setFocus()
+            return
         self.onMovieData(titel=titel, cd=cd, bild=bild, darsteller=darsteller, gesehen=gesehen, original=original, cs=cs, vorhanden=vorhanden, high_definition=definition, remarks=remarks, stars=stars, cover=cover, original_weitere=original_weitere)
         self.bilder_aktuell()
         self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)

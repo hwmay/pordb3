@@ -1098,7 +1098,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             return
         column = self.tableWidgetBilder.column(item)
         row = self.tableWidgetBilder.row(item)
-        print ("################################", row, self.columns, column, self.start_bilder)
+        #print ("################################", row, self.columns, column, self.start_bilder)
         index = int(row * self.columns + column + self.start_bilder)
         try:
             cd, bild, titel, darsteller, gesehen, original, cs, vorhanden, definition, remarks, stars, cover, original_weitere, high_definition = self.fillParameterChange(index)
@@ -2996,7 +2996,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     # end of onKorrektur
     
     def fillParameterChange(self, index):
-        print ("index:", index, self.aktuelles_res)
+        #print ("index:", index, self.aktuelles_res)
         try:
             cd = self.aktuelles_res[index][2]
         except IndexError:

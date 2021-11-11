@@ -1129,7 +1129,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         lese_func = DBLesen(self, zu_lesen, str(original))
         res_primkey = DBLesen.get_data(lese_func)
         for i in res_primkey:
-            zu_lesen = "SELECT original FROM pordb_original WHERE foreign_key_pordb_vid = %s"
+            zu_lesen = "SELECT original FROM pordb_original WHERE foreign_key_pordb_vid = %s order by original"
             lese_func = DBLesen(self, zu_lesen, str(i[0]))
             res = DBLesen.get_data(lese_func)
             if res:

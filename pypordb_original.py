@@ -30,6 +30,7 @@ class OriginalErfassen(QtWidgets.QDialog, pordb_original):
         self.original_weitere = original_weitere
         row = 0
         if self.original_weitere:
+            self.original_weitere.sort()
             self.tableWidget.clearContents()
             for i in self.original_weitere:
                 if type(i) == str:

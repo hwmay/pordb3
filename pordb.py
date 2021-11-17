@@ -2996,10 +2996,10 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     # end of onKorrektur
     
     def fillParameterChange(self, index):
-        #print ("index:", index, self.aktuelles_res)
         try:
             cd = self.aktuelles_res[index][2]
         except IndexError:
+            print ("index:", index, self.aktuelles_res)
             QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Index error"))
             return
             

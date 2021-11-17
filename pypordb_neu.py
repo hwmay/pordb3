@@ -99,7 +99,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         window_position = settings.value("Neueingabe/Position", QtCore.QPoint(0, 0))
         self.move(window_position)
         
-        # populate combox for years
+        # populate combobox for years
         today = datetime.date.today()
         self.comboBoxYear.clear()
         for i in range(today.year + 1, 1899, -1):

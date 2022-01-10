@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>956</width>
-    <height>359</height>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,26 +26,27 @@
         <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
        </property>
        <property name="rowCount">
-        <number>10</number>
+        <number>20</number>
        </property>
        <attribute name="horizontalHeaderVisible">
         <bool>false</bool>
        </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>900</number>
-       </attribute>
-       <attribute name="horizontalHeaderMinimumSectionSize">
-        <number>26</number>
-       </attribute>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
        <attribute name="horizontalHeaderMinimumSectionSize">
         <number>26</number>
        </attribute>
        <attribute name="horizontalHeaderDefaultSectionSize">
         <number>900</number>
        </attribute>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
        <row/>
        <row/>
        <row/>

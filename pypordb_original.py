@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2022 HWM
     
     This file is part of PorDB3.
 
@@ -51,7 +51,7 @@ class OriginalErfassen(QtWidgets.QDialog, pordb_original):
         
     def onSpeichern(self):
         self.original = []
-        for i in range(10):
+        for i in range(20):
             tableItem = self.tableWidget.item(i, 0)
             if tableItem:
                 cellItem = str(QtWidgets.QTableWidgetItem(tableItem).text()).encode("utf-8")

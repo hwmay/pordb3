@@ -66,7 +66,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 
 DBNAME = "por"
 
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
 IMAGE_FILES = (".jpg", ".jpeg", ".png")
 
@@ -138,7 +138,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         # Slots einrichten für Darsteller
         self.bildAnzeige.clicked.connect(self.onbildAnzeige)
         self.comboBoxSex.currentIndexChanged[int].connect(self.setFocus)
-        
         self.pushButtonDarstellerspeichern.clicked.connect(self.onDarstellerspeichern)
         self.pushButtonIAFDholen.clicked.connect(self.onIAFD)
         self.pushButtonIAFDBackground.clicked.connect(self.onIAFDBackground)

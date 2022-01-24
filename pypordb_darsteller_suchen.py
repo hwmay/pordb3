@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2022 HWM
     
     This file is part of PorDB3.
 
@@ -39,17 +39,21 @@ class DarstellerSuchen(QtWidgets.QDialog, pordb_darsteller_suchen):
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonRefresh.clicked.connect(self.onRefresh)
         
-        # Combobox für Nation füllen
+        # Fill comboboxes nation
         zu_lesen = "SELECT * FROM pordb_iso_land WHERE aktiv = %s ORDER BY land"
         lese_func = DBLesen(self, zu_lesen, "x")
         res = DBLesen.get_data(lese_func)
-        self.comboBoxDarstellerSucheNation.addItem("")
+        self.comboBoxDarstellerSucheNation1.addItem("")
+        self.comboBoxDarstellerSucheNation2.addItem("")
+        self.comboBoxDarstellerSucheNation3.addItem("")
         for i in res:
             text = '%2s %-50s' % (i[0], i[1])
             bild = os.path.join(os.curdir, "pypordb", i[0] + ".svg")
             icon = QtGui.QIcon()
             icon.addFile(bild, QtCore.QSize(16, 16), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-            self.comboBoxDarstellerSucheNation.addItem(icon, text)
+            self.comboBoxDarstellerSucheNation1.addItem(icon, text)
+            self.comboBoxDarstellerSucheNation2.addItem(icon, text)
+            self.comboBoxDarstellerSucheNation3.addItem(icon, text)
         
     def onRefresh(self):
         self.lineEditDarstellerSuche.setText("")
@@ -60,7 +64,9 @@ class DarstellerSuchen(QtWidgets.QDialog, pordb_darsteller_suchen):
         self.dateEditDarstellerSucheAb.setDate(self.minimum)
         self.dateEditDarstellerSucheBis.setDate(self.maximum)
         self.comboBoxDarstellerSucheHaar.setCurrentIndex(-1)
-        self.comboBoxDarstellerSucheNation.setCurrentIndex(0)
+        self.comboBoxDarstellerSucheNation1.setCurrentIndex(0)
+        self.comboBoxDarstellerSucheNation2.setCurrentIndex(0)
+        self.comboBoxDarstellerSucheNation3.setCurrentIndex(0)
         self.comboBoxDarstellerSucheTattoo.setCurrentIndex(-1)
         self.lineEditDarstellerSucheTattoo.setText("")
         self.comboBoxDarstellerSucheEthnic.setCurrentIndex(-1)

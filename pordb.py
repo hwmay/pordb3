@@ -66,7 +66,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 
 DBNAME = "por"
 
-__version__ = "2.1.1"
+__version__ = "2.1.2"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
 IMAGE_FILES = (".jpg", ".jpeg", ".png")
 
@@ -296,7 +296,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.aktuelle_ausgabe = " "
         self.suche_darsteller = self.suche_cd = self.suche_titel = self.suche_original = self.suche_cs = self.suche_remarks = ""
         self.suche_stars = 0
-        self.sucheD_darsteller = self.sucheD_geschlecht = self.sucheD_haar = self.sucheD_nation = self.sucheD_tattoo = self.sucheD_etattoo = self.sucheD_ethnic = ""
+        self.sucheD_darsteller = self.sucheD_geschlecht = self.sucheD_haar = self.sucheD_nation1 = self.sucheD_nation2 = self.sucheD_nation3 = self.sucheD_tattoo = self.sucheD_etattoo = self.sucheD_ethnic = ""
         self.sucheD_actor1 = self.sucheD_actor2 = self.sucheD_actor3 = ""
         self.sucheD_ab = ""
         self.sucheD_bis = ""
@@ -3067,7 +3067,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         suche.dateEditDarstellerSucheAb.setDate(QtCore.QDate.fromString(self.sucheD_ab, "yyyyMMdd"))
         suche.dateEditDarstellerSucheBis.setDate(QtCore.QDate.fromString(self.sucheD_bis, "yyyyMMdd"))
         suche.comboBoxDarstellerSucheHaar.setCurrentIndex(suche.comboBoxDarstellerSucheHaar.findText(self.sucheD_haar))
-        suche.comboBoxDarstellerSucheNation.setCurrentIndex(suche.comboBoxDarstellerSucheNation.findText(self.sucheD_nation))
+        suche.comboBoxDarstellerSucheNation1.setCurrentIndex(suche.comboBoxDarstellerSucheNation1.findText(self.sucheD_nation1))
+        suche.comboBoxDarstellerSucheNation2.setCurrentIndex(suche.comboBoxDarstellerSucheNation2.findText(self.sucheD_nation2))
+        suche.comboBoxDarstellerSucheNation3.setCurrentIndex(suche.comboBoxDarstellerSucheNation3.findText(self.sucheD_nation3))
         suche.comboBoxDarstellerSucheTattoo.setCurrentIndex(suche.comboBoxDarstellerSucheTattoo.findText(self.sucheD_tattoo))
         suche.lineEditDarstellerSucheTattoo.setText(self.sucheD_etattoo)
         suche.comboBoxDarstellerSucheEthnic.setCurrentIndex(suche.comboBoxDarstellerSucheEthnic.findText(self.sucheD_ethnic))
@@ -3082,7 +3084,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.sucheD_ab = suche.dateEditDarstellerSucheAb.date().toString("yyyyMMdd")
             self.sucheD_bis = suche.dateEditDarstellerSucheBis.date().toString("yyyyMMdd")
             self.sucheD_haar = suche.comboBoxDarstellerSucheHaar.currentText()
-            self.sucheD_nation = suche.comboBoxDarstellerSucheNation.currentText()
+            self.sucheD_nation1 = suche.comboBoxDarstellerSucheNation1.currentText()
+            self.sucheD_nation2 = suche.comboBoxDarstellerSucheNation2.currentText()
+            self.sucheD_nation3 = suche.comboBoxDarstellerSucheNation3.currentText()
             self.sucheD_tattoo = suche.comboBoxDarstellerSucheTattoo.currentText()
             self.sucheD_etattoo = suche.lineEditDarstellerSucheTattoo.text()
             self.sucheD_ethnic = suche.comboBoxDarstellerSucheEthnic.currentText()
@@ -3138,12 +3142,25 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 werte.append(self.sucheD_haar)
     
             # Nation
-            if self.sucheD_nation:
+            if self.sucheD_nation1:
                 if argument == 1:
-                    zu_lesen += " AND "
+                    zu_lesen += " AND ("
                 argument = 1
                 zu_lesen += "nation = %s"
-                werte.append(self.sucheD_nation[0:2])
+                werte.append(self.sucheD_nation1[0:2])
+            if self.sucheD_nation2:
+                if argument == 1:
+                    zu_lesen += " OR "
+                argument = 1
+                zu_lesen += "nation = %s"
+                werte.append(self.sucheD_nation2[0:2])
+            if self.sucheD_nation3:
+                if argument == 1:
+                    zu_lesen += " OR "
+                argument = 1
+                zu_lesen += "nation = %s"
+                werte.append(self.sucheD_nation3[0:2])
+            zu_lesen += ")"
     
             # Tattoo
             if self.sucheD_tattoo == self.tr("yes"):

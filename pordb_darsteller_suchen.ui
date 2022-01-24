@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>867</width>
-    <height>399</height>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,15 +25,25 @@
        <property name="title">
         <string>Search criteria</string>
        </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0">
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEditDarstellerSuche"/>
+        </item>
+        <item row="3" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
            <string>Gender</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="3" column="1">
          <widget class="QComboBox" name="comboBoxDarstellerSucheGeschlecht">
           <item>
            <property name="text">
@@ -55,7 +65,61 @@
           </item>
          </widget>
         </item>
-        <item row="3" column="1" colspan="2">
+        <item row="4" column="1">
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>661</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Has acted with</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLineEdit" name="lineEditActor1"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>and</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditActor2"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>and</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditActor3"/>
+          </item>
+         </layout>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Date from</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
          <widget class="QDateEdit" name="dateEditDarstellerSucheAb">
           <property name="whatsThis">
            <string>Date when the actor has been added to the PorDB database</string>
@@ -75,37 +139,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Has acted with</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2" colspan="2">
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>661</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Date from</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1" colspan="3">
-         <widget class="QComboBox" name="comboBoxDarstellerSucheNation"/>
-        </item>
-        <item row="3" column="3">
+        <item row="11" column="1">
          <spacer>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -118,69 +152,34 @@
           </property>
          </spacer>
         </item>
-        <item row="8" column="1">
-         <widget class="QComboBox" name="comboBoxDarstellerSucheEthnic">
-          <item>
-           <property name="text">
-            <string/>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>w</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>a</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>s</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>l</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEditDarstellerSuche"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Hair color</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
+        <item row="12" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
            <string>Date to</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="3">
+        <item row="12" column="1">
+         <widget class="QDateEdit" name="dateEditDarstellerSucheBis">
+          <property name="whatsThis">
+           <string>Date when the actor has been added to the PorDB database</string>
+          </property>
+          <property name="displayFormat">
+           <string>dd.MM.yyyy</string>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+          <property name="date">
+           <date>
+            <year>2000</year>
+            <month>1</month>
+            <day>1</day>
+           </date>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="1">
          <spacer>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -193,76 +192,14 @@
           </property>
          </spacer>
         </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_7">
+        <item row="15" column="0">
+         <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Tattoo</string>
+           <string>Hair color</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="1">
-         <widget class="QComboBox" name="comboBoxDarstellerSucheTattoo">
-          <item>
-           <property name="text">
-            <string/>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>yes</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>no</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="7" column="2" colspan="2">
-         <widget class="QLineEdit" name="lineEditDarstellerSucheTattoo"/>
-        </item>
-        <item row="5" column="2" colspan="2">
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>661</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="8" column="2" colspan="2">
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>491</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>Ethnic</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Nation</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
+        <item row="15" column="1">
          <widget class="QComboBox" name="comboBoxDarstellerSucheHaar">
           <item>
            <property name="text">
@@ -325,59 +262,167 @@
           </item>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
+        <item row="16" column="1">
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>661</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="18" column="0">
+         <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Name</string>
+           <string>Nation</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1" colspan="2">
-         <widget class="QDateEdit" name="dateEditDarstellerSucheBis">
-          <property name="whatsThis">
-           <string>Date when the actor has been added to the PorDB database</string>
-          </property>
-          <property name="displayFormat">
-           <string>dd.MM.yyyy</string>
-          </property>
-          <property name="calendarPopup">
-           <bool>true</bool>
-          </property>
-          <property name="date">
-           <date>
-            <year>2000</year>
-            <month>1</month>
-            <day>1</day>
-           </date>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" colspan="3">
-         <layout class="QHBoxLayout" name="horizontalLayout">
+        <item row="18" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLineEdit" name="lineEditActor1"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>and</string>
+           <widget class="QComboBox" name="comboBoxDarstellerSucheNation1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEditActor2"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_11">
+           <widget class="QLabel" name="label_12">
             <property name="text">
-             <string>and</string>
+             <string>or</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEditActor3"/>
+           <widget class="QComboBox" name="comboBoxDarstellerSucheNation2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>or</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxDarstellerSucheNation3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
          </layout>
+        </item>
+        <item row="21" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Tattoo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="21" column="1">
+         <widget class="QComboBox" name="comboBoxDarstellerSucheTattoo">
+          <item>
+           <property name="text">
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>yes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>no</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="22" column="1">
+         <widget class="QLineEdit" name="lineEditDarstellerSucheTattoo"/>
+        </item>
+        <item row="24" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Ethnic</string>
+          </property>
+         </widget>
+        </item>
+        <item row="24" column="1">
+         <widget class="QComboBox" name="comboBoxDarstellerSucheEthnic">
+          <item>
+           <property name="text">
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>w</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>a</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>s</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>l</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="25" column="1">
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>491</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -447,7 +492,7 @@
   <tabstop>dateEditDarstellerSucheAb</tabstop>
   <tabstop>dateEditDarstellerSucheBis</tabstop>
   <tabstop>comboBoxDarstellerSucheHaar</tabstop>
-  <tabstop>comboBoxDarstellerSucheNation</tabstop>
+  <tabstop>comboBoxDarstellerSucheNation1</tabstop>
   <tabstop>comboBoxDarstellerSucheTattoo</tabstop>
   <tabstop>lineEditDarstellerSucheTattoo</tabstop>
   <tabstop>comboBoxDarstellerSucheEthnic</tabstop>

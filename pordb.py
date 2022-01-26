@@ -3150,13 +3150,19 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 werte.append(self.sucheD_nation1[0:2])
             if self.sucheD_nation2:
                 if argument == 1:
-                    zu_lesen += " OR "
+                    if not self.sucheD_nation1:
+                        zu_lesen += " AND ("
+                    else:
+                        zu_lesen += " OR "
                 argument = 1
                 zu_lesen += "nation = %s"
                 werte.append(self.sucheD_nation2[0:2])
             if self.sucheD_nation3:
                 if argument == 1:
-                    zu_lesen += " OR "
+                    if not self.sucheD_nation1 and not self.sucheD_nation2: 
+                        zu_lesen += " AND ("
+                    else:
+                        zu_lesen += " OR "
                 argument = 1
                 zu_lesen += "nation = %s"
                 werte.append(self.sucheD_nation3[0:2])

@@ -3166,7 +3166,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 argument = 1
                 zu_lesen += "nation = %s"
                 werte.append(self.sucheD_nation3[0:2])
-            zu_lesen += ")"
+            if self.sucheD_nation1 or self.sucheD_nation2 or self.sucheD_nation3:
+                zu_lesen += ")"
     
             # Tattoo
             if self.sucheD_tattoo == self.tr("yes"):

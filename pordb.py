@@ -66,7 +66,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 
 DBNAME = "por"
 
-__version__ = "2.1.4"
+__version__ = "2.1.5"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
 IMAGE_FILES = (".jpg", ".jpeg", ".png")
 
@@ -1322,7 +1322,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 y += 15
                 for i in res:
                     if self.aktuelle_ausgabe == "Darsteller":
-                        sex = str(self.letzter_select_komplett)[str(self.letzter_select_komplett).find("sex") + 7]
+                        sex = res[0][1]
                         filename = os.path.join(self.verzeichnis_thumbs, "darsteller_" + sex, i[0].strip().lower().replace(" ", "_") + ".jpg")
                     else:
                         filename = os.path.join(self.verzeichnis_thumbs, "cd" + str(i[2]), i[3].strip())

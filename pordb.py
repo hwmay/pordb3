@@ -111,6 +111,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.tableWidgetBilderAktuell.__class__.dragEnterEvent = self.tableWidgetBilderAktuelldragEnterEvent
         self.tableWidgetBilder.__class__.dropEvent = self.tableWidgetBilderdropEvent
         self.actionDarstellerUebernehmen.triggered.connect(self.onDarstellerUebernehmen)
+        self.actionDeleteImageFromView.triggered.connect(self.onDeleteImageFromView)
         self.actionAnzeigenOriginal.triggered.connect(self.onAnzeigenOriginal)
         self.actionAnzeigenTitle.triggered.connect(self.onAnzeigenTitle)
         self.actionSortieren_nach_Darsteller.triggered.connect(self.onSortieren_nach_Darsteller)
@@ -840,6 +841,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         menu = QtWidgets.QMenu(self.tableWidgetBilder)
         if self.aktuelle_ausgabe == "Darsteller":
             menu.addAction(self.actionDarstellerUebernehmen)
+            menu.addAction(self.actionDeleteImageFromView)
             menu.addAction(self.actionBildanzeigegross)
         else:
             menu.addAction(self.actionAnzeigenOriginal)
@@ -878,7 +880,24 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if text:
             self.suchfeld.insertItem(0, "=" + text[0])
             self.suchfeld.setCurrentIndex(0)
-    
+            
+    def onDeleteImageFromView(self):
+        items = self.tableWidgetBilder.selectedItems()
+        sorttable = []
+        for i in items:
+            column = self.tableWidgetBilder.column(i)
+            row = self.tableWidgetBilder.row(i)
+            sorttable.append([column, row])
+        sorttable = sorted(sorttable, key=itemgetter(1), reverse=True)
+            
+        for i in sorttable:
+            column = i[0]
+            row = i[1]
+            index = int(row * self.columns + column + self.start_bilder)
+            del self.aktuelles_res[index]
+            
+        self.ausgabedarsteller()
+        
     def onBildgross(self, event):
         menu = QtWidgets.QMenu(self.labelBildanzeige)
         menu.addAction(self.actionBildanzeigegross)

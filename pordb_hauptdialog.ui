@@ -3024,6 +3024,14 @@ p, li { white-space: pre-wrap; }
     <string>Add data from IAFD</string>
    </property>
   </action>
+  <action name="actionDeleteImageFromView">
+   <property name="text">
+    <string>Delete Image From View</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete Image From View</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

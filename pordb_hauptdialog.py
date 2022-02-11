@@ -1068,6 +1068,8 @@ class Ui_MainWindow(object):
         self.actionMassChange.setObjectName("actionMassChange")
         self.actionAddInformationFromIAFD = QtWidgets.QAction(MainWindow)
         self.actionAddInformationFromIAFD.setObjectName("actionAddInformationFromIAFD")
+        self.actionDeleteImageFromView = QtWidgets.QAction(MainWindow)
+        self.actionDeleteImageFromView.setObjectName("actionDeleteImageFromView")
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -1498,4 +1500,6 @@ class Ui_MainWindow(object):
         self.actionMassChange.setToolTip(_translate("MainWindow", "<html><head/><body><p>Make a mass change</p></body></html>"))
         self.actionAddInformationFromIAFD.setText(_translate("MainWindow", "Add data from IAFD"))
         self.actionAddInformationFromIAFD.setToolTip(_translate("MainWindow", "Add data from IAFD"))
+        self.actionDeleteImageFromView.setText(_translate("MainWindow", "Delete Image From View"))
+        self.actionDeleteImageFromView.setToolTip(_translate("MainWindow", "Delete Image From View"))
 from PyQt5 import QtWebEngineWidgets

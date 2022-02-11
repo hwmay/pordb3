@@ -308,8 +308,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.notpresent = True
         self.notwatched = True
         self.bilddarsteller = None
-        self.columns = 3
-        self.tableWidgetBilder.setColumnCount(self.columns)
         self.tableWidgetBilder.setIconSize(size)
         self.letzter_select = ""
         self.letzter_select_komplett = ""
@@ -349,6 +347,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.spinBoxAktuell.setValue(res[0][0])
         self.lineEditAnzahlM.setText(str(res[0][2]))
         self.lineEditAnzahlW.setText(str(res[0][1]))
+        self.columns = res[0][4]
+        self.tableWidgetBilder.setColumnCount(self.columns)
         
         self.spinBoxZeilen = QtWidgets.QSpinBox()
         self.spinBoxZeilen.setRange(1, 99)
@@ -730,7 +730,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.bilder_aktuell()
                 
     def onAnzahlZeilen(self):
-        if self.columns == float(self.spinBoxZeilen.value()):
+        if self.anzahl_bilder == int(self.spinBoxZeilen.value()):
             return
         werte = []
         werte.append(str(int(self.spinBoxZeilen.value())))
@@ -748,7 +748,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett, self.letzter_select_komplett_werte)
     
     def onAnzahlSpalten(self):
-        if self.columns == float(self.spinBoxSpalten.value()):
+        if self.columns == int(self.spinBoxSpalten.value()):
             return
         werte = []
         werte.append(str(int(self.spinBoxSpalten.value())))
@@ -756,7 +756,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         zu_erfassen.append(["UPDATE pordb_vid_neu SET anzahl_spalten = %s", werte])
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)
-        self.columns = float(self.spinBoxSpalten.value())
+        self.columns = int(self.spinBoxSpalten.value())
         self.tableWidgetBilder.setColumnCount(self.columns)
         if self.aktuelle_ausgabe == "Darsteller" or not self.letzter_select_komplett:
             self.ausgabedarsteller()

@@ -885,15 +885,15 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         items = self.tableWidgetBilder.selectedItems()
         sorttable = []
         for i in items:
-            column = self.tableWidgetBilder.column(i)
             row = self.tableWidgetBilder.row(i)
-            sorttable.append([column, row])
-        sorttable = sorted(sorttable, key=itemgetter(1), reverse=True)
+            column = self.tableWidgetBilder.column(i)
+            sorttable.append([row, column])
+        sorttable = sorted(sorttable, reverse=True)
             
         for i in sorttable:
-            column = i[0]
-            row = i[1]
-            index = int(row * self.columns + column + self.start_bilder)
+            row = i[0]
+            column = i[1]
+            index = row * self.columns + column + self.start_bilder
             del self.aktuelles_res[index]
             
         self.ausgabedarsteller()

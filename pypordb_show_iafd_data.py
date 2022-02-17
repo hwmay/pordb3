@@ -224,7 +224,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             verzeichnis = self.verzeichnis_thumbs
         else: 
             verzeichnis = self.verzeichnis
-        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(verzeichnis, scene_to_add), titel=self.titel, darsteller=darsteller, cd=self.cd, bild=self.bild, gesehen=self.gesehen, original=self.video[0], cs=self.cs, vorhanden=self.vorhanden, cover=self.cover, undo=None, cover_anlegen=None, original_weitere=title_to_add, access_from_iafd=True, high_definition=self.high_definition)
+        eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, os.path.join(verzeichnis, scene_to_add), titel=self.titel, darsteller=darsteller, cd=self.cd, bild=self.bild, gesehen=self.gesehen, original=self.video[0], cs=self.cs, vorhanden=self.vorhanden, remarks=self.remarks, cover=self.cover, undo=None, cover_anlegen=None, original_weitere=title_to_add, access_from_iafd=True, high_definition=self.high_definition)
         if eingabedialog.exec_():
             for i in list(self.scene.items()):
                 if i.data(0):

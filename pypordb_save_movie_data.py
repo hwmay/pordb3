@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2022 HWM
     
     This file is part of PorDB3.
 
@@ -19,10 +19,7 @@
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import os
-import urllib.request, urllib.parse, urllib.error
-import time
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtWidgets
 
 class SaveMovieData(QtWidgets.QDialog):
     def __init__(self, app, url, text):
@@ -36,7 +33,7 @@ class SaveMovieData(QtWidgets.QDialog):
         anfang = self.text.find("<h1>")
         if anfang < 0:
             self.app.restoreOverrideCursor()
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be a movie site of the IAFD"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("This site seams not to be a movie site of the IAFD"))
             return
         ende = self.text.find("</h1>", anfang)
         movie = str(self.text[anfang + 4:ende].strip())
@@ -58,12 +55,12 @@ class SaveMovieData(QtWidgets.QDialog):
             anfang_scene = self.text.find("Scene ", anfang + 1)
             if anfang_scene < 0:
                 self.app.restoreOverrideCursor()
-                message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems there are no scenes on the IAFD"))
+                QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems there are no scenes on the IAFD"))
                 return
             while True:
                 anfang_scene = self.text.find("Scene ", anfang + 1)
                 try:
-                    zahl = int(self.text[anfang_scene + 6])
+                    int(self.text[anfang_scene + 6])
                 except:
                     break
                 ende_scene = self.text.find(". ", anfang_scene + 1)
@@ -81,7 +78,7 @@ class SaveMovieData(QtWidgets.QDialog):
         anfang_actors = self.text.find("<h3>Performers</h3>")
         if anfang_actors < 0:
             self.app.restoreOverrideCursor()
-            message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems there are no scenes/actors on the IAFD"))
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Seems there are no scenes/actors on the IAFD"))
             return
         scenes = []
         # get the actors

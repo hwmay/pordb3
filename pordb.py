@@ -30,6 +30,7 @@ import socket
 from operator import itemgetter
 import psycopg2
 import subprocess
+import shutil
 from PyQt5 import QtGui, QtCore, QtWidgets, QtPrintSupport
 from pordb_hauptdialog import Ui_MainWindow as MainWindow
 
@@ -112,6 +113,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.tableWidgetBilder.__class__.dropEvent = self.tableWidgetBilderdropEvent
         self.actionDarstellerUebernehmen.triggered.connect(self.onDarstellerUebernehmen)
         self.actionDeleteImageFromView.triggered.connect(self.onDeleteImageFromView)
+        self.actionCopyImageToWorkingDirectory.triggered.connect(self.onCopyImageToWorkingDirectory)
         self.actionAnzeigenOriginal.triggered.connect(self.onAnzeigenOriginal)
         self.actionAnzeigenTitle.triggered.connect(self.onAnzeigenTitle)
         self.actionSortieren_nach_Darsteller.triggered.connect(self.onSortieren_nach_Darsteller)
@@ -854,6 +856,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             menu.addAction(self.actionMassChange)
             menu.addAction(self.actionAddInformationFromIAFD)
             menu.addAction(self.actionOriginal_weitere)
+            menu.addAction(self.actionCopyImageToWorkingDirectory)
             dateiliste = os.listdir(self.verzeichnis_trash)
             for i in dateiliste:
                 if os.path.splitext(i)[0] == "pypordb_bildalt":
@@ -897,6 +900,22 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             del self.aktuelles_res[index]
             
         self.ausgabedarsteller()
+        
+    def onCopyImageToWorkingDirectory(self):
+        item = self.tableWidgetBilder.currentItem()
+        if not item:
+            return
+        column = self.tableWidgetBilder.column(item)
+        row = self.tableWidgetBilder.row(item)
+        index = int(row * self.columns + column + self.start_bilder)
+        bilddatei = os.path.join(self.verzeichnis_thumbs, "cd" +str(self.aktuelles_res[index][2]), self.aktuelles_res[index][3].rstrip())
+        if not os.path.exists(bilddatei):
+            bilddatei = os.path.join(self.verzeichnis_cover, self.aktuelles_res[index][3].rstrip())
+        datei_neu = os.path.join(self.verzeichnis, self.aktuelles_res[index][3].rstrip())
+        try:
+            shutil.copy(bilddatei, datei_neu)
+        except:
+            QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Image file could not been copied"))
         
     def onBildgross(self, event):
         menu = QtWidgets.QMenu(self.labelBildanzeige)

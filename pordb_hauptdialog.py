@@ -1070,6 +1070,8 @@ class Ui_MainWindow(object):
         self.actionAddInformationFromIAFD.setObjectName("actionAddInformationFromIAFD")
         self.actionDeleteImageFromView = QtWidgets.QAction(MainWindow)
         self.actionDeleteImageFromView.setObjectName("actionDeleteImageFromView")
+        self.actionCopyImageToWorkingDirectory = QtWidgets.QAction(MainWindow)
+        self.actionCopyImageToWorkingDirectory.setObjectName("actionCopyImageToWorkingDirectory")
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -1502,4 +1504,6 @@ class Ui_MainWindow(object):
         self.actionAddInformationFromIAFD.setToolTip(_translate("MainWindow", "Add data from IAFD"))
         self.actionDeleteImageFromView.setText(_translate("MainWindow", "Delete Image From View"))
         self.actionDeleteImageFromView.setToolTip(_translate("MainWindow", "Delete Image From View"))
+        self.actionCopyImageToWorkingDirectory.setText(_translate("MainWindow", "Copy image to working directory"))
+        self.actionCopyImageToWorkingDirectory.setToolTip(_translate("MainWindow", "Copy image to working directory"))
 from PyQt5 import QtWebEngineWidgets

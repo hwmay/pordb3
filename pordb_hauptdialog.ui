@@ -3032,6 +3032,14 @@ p, li { white-space: pre-wrap; }
     <string>Delete Image From View</string>
    </property>
   </action>
+  <action name="actionCopyImageToWorkingDirectory">
+   <property name="text">
+    <string>Copy image to working directory</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy image to working directory</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

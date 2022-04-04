@@ -1096,7 +1096,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)

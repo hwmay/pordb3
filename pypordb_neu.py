@@ -30,6 +30,7 @@ from pypordb_darsteller_korrigieren import DarstellerKorrigieren
 from pypordb_original import OriginalErfassen
 import os
 import datetime
+import pickle
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(300, 300)
@@ -99,6 +100,8 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         window_position = settings.value("Neueingabe/Position", QtCore.QPoint(0, 0))
         self.move(window_position)
         
+        self.lastvid = os.path.join(os.getcwd(), "pypordb", ".lastvid")
+                
         # populate combobox for years
         today = datetime.date.today()
         self.comboBoxYear.clear()
@@ -171,65 +174,13 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
             else:
                 self.radioButtonGesehenNein.setChecked(True)
             self.lineEditNeuOriginal.setText(self.original.strip())
-            for i in cs:
-                if i[-1] == "f":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxF.setValue(int(anzahl))
-                elif i[-1] == "h":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxH.setValue(int(anzahl))
-                elif i[-1] == "t":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxT.setValue(int(anzahl))
-                elif i[-1] == "c":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxC.setValue(int(anzahl))
-                elif i[-1] == "x":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxX.setValue(int(anzahl))
-                elif i[-1] == "o":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxO.setValue(int(anzahl))
-                elif i[-1] == "v":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxV.setValue(int(anzahl))
-                elif i[-1] == "b":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxB.setValue(int(anzahl))
-                elif i[-1] == "a":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxA.setValue(int(anzahl))
-                elif i[-1] == "s":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxS.setValue(int(anzahl))
-                elif i[-1] == "k":
-                    anzahl = i[0:len(i) - 1]
-                    self.spinBoxK.setValue(int(anzahl))
+            self.setCs(cs)
             if self.vorhanden == "x":
                 self.radioButtonVorhandenJa.setChecked(True)
             else:
                 self.radioButtonVorhandenNein.setChecked(True)
             self.plainTextEditRemarks.setPlainText(self.remarks)
-            if self.stars == 1:
-                self.pushButtonStar1.setIcon(self.icon_starred)
-            elif self.stars == 2:
-                self.pushButtonStar1.setIcon(self.icon_starred)
-                self.pushButtonStar2.setIcon(self.icon_starred)
-            elif self.stars == 3:
-                self.pushButtonStar1.setIcon(self.icon_starred)
-                self.pushButtonStar2.setIcon(self.icon_starred)
-                self.pushButtonStar3.setIcon(self.icon_starred)
-            elif self.stars == 4:
-                self.pushButtonStar1.setIcon(self.icon_starred)
-                self.pushButtonStar2.setIcon(self.icon_starred)
-                self.pushButtonStar3.setIcon(self.icon_starred)
-                self.pushButtonStar4.setIcon(self.icon_starred)
-            elif self.stars == 5:
-                self.pushButtonStar1.setIcon(self.icon_starred)
-                self.pushButtonStar2.setIcon(self.icon_starred)
-                self.pushButtonStar3.setIcon(self.icon_starred)
-                self.pushButtonStar4.setIcon(self.icon_starred)
-                self.pushButtonStar5.setIcon(self.icon_starred)                 
+            self.setStars(self.stars)
             self.pushButtonBildloeschen.setEnabled(False)
             self.pushButtonBildbeschneiden.setEnabled(False)
             if self.undo:
@@ -294,6 +245,54 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                 self.pushButtonBildbeschneiden.setEnabled(True)
                 self.pushButtonVerz.setEnabled(True)
             self.pushButtonNeuDelete.setEnabled(False)
+            
+    def setStars(self, stars):
+        if stars == 1:
+            self.onStar1()
+        elif stars == 2:
+            self.onStar2()
+        elif stars == 3:
+            self.onStar3()
+        elif stars == 4:
+            self.onStar4()
+        elif stars == 5:
+            self.onStar5()
+           
+    def setCs(self, cs):
+        for i in cs:
+            if i[1] == "f":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxF.setValue(int(anzahl))
+            elif i[1] == "h":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxH.setValue(int(anzahl))
+            elif i[1] == "t":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxT.setValue(int(anzahl))
+            elif i[1] == "c":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxC.setValue(int(anzahl))
+            elif i[1] == "x":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxX.setValue(int(anzahl))
+            elif i[1] == "o":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxO.setValue(int(anzahl))
+            elif i[1] == "v":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxV.setValue(int(anzahl))
+            elif i[1] == "b":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxB.setValue(int(anzahl))
+            elif i[1] == "a":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxA.setValue(int(anzahl))
+            elif i[1] == "s":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxS.setValue(int(anzahl))
+            elif i[1] == "k":
+                anzahl = i[0:len(i) - 1]
+                self.spinBoxK.setValue(int(anzahl))        
                 
     def keyPressEvent(self, event):
         try:
@@ -333,10 +332,40 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.pushButtonNeuOK.setFocus()
         
     def onRepeat(self):
+        if os.path.exists(self.lastvid):
+            with open(self.lastvid, "rb") as f:
+                a = pickle.load(f)
+                darsteller = self.res_vid_neu[0][1]
+                if a[0] == "u":
+                    darsteller += "(Uninteressant)"
+                if not a[1]:
+                    self.comboBoxDefinition.setCurrentIndex(0)
+                elif a[1] == "0":
+                    self.comboBoxDefinition.setCurrentIndex(1)
+                elif a[1] == "1":
+                    self.comboBoxDefinition.setCurrentIndex(2)
+                elif a[1] == "2":
+                    self.comboBoxDefinition.setCurrentIndex(3)
+                elif a[1] == "3":
+                    self.comboBoxDefinition.setCurrentIndex(4)
+                elif a[1] == "9":
+                    self.comboBoxDefinition.setCurrentIndex(5)
+        else:
+            return
+        self.setStars(a[2])
+        self.setCs(a[3])
+        if a[4] == "x":
+            self.radioButtonGesehenJa.setChecked(True)
+        else:
+            self.radioButtonGesehenNein.setChecked(True)
+        if a[5] == "x":
+            self.radioButtonVorhandenJa.setChecked(True)
+        else:
+            self.radioButtonVorhandenNein.setChecked(True)
         if self.res_vid_neu[0][0]:
             self.lineEditNeuTitel.setText(self.res_vid_neu[0][0])
         if self.res_vid_neu[0][1]:
-            self.lineEditNeuDarsteller.setText(self.res_vid_neu[0][1])
+            self.lineEditNeuDarsteller.setText(darsteller)
         if self.res_vid_neu[0][2]:
             self.lineEditNeuCD.setText(str(self.res_vid_neu[0][2]))
         if self.res_vid_neu[0][3]:
@@ -619,7 +648,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
             else:
                 werte.append(0)
             if self.comboBoxDefinition.currentIndex() == 0:
-                werte.append(None)
+                werte.append("n")
             elif self.comboBoxDefinition.currentIndex() == 1:
                 werte.append("0")
             elif self.comboBoxDefinition.currentIndex() == 2:
@@ -642,7 +671,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                     os.rename(self.bilddatei, os.path.join(self.verzeichnis_cover, self.bild.strip()))
                 else:
                     os.rename(self.bilddatei, os.path.join(self.verzeichnis_cover, self.bild.strip()))
-        else:
+        else: # new entry
             if self.radioButtonCoverJa.isChecked() and not original:
                 message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("When adding a cover you must also enter a movie title"))
                 return
@@ -683,6 +712,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                 message = QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
                 return
             werte = []
+            lastvid_cs = []
             werte.append("pordb_vid_primkey_seq")
             zu_lesen = "SELECT nextval(%s)"
             self.lese_func = DBLesen(self, zu_lesen, werte)
@@ -697,88 +727,101 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
             werte.append("")
             werte.append(vorhanden)
             werte.append(res[0][0])
+            lastvid_gesehen = gesehen
+            lastvid_vorhanden = vorhanden
             zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             if self.spinBoxF.value() > 0:
-                cs = self.spinBoxF.value()
+                cs = self.spinBoxF.value() + "f"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "f"
+            lastvid_cs.append(cs)
             
             if self.spinBoxH.value() > 0:
-                cs = self.spinBoxH.value()
+                cs = str(self.spinBoxH.value()) + "h"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "h"
+            lastvid_cs.append(cs)
             
             if self.spinBoxT.value() > 0:
-                cs = self.spinBoxT.value()
+                cs = str(self.spinBoxT.value()) +"t"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "t"
+            lastvid_cs.append(cs)
             
             if self.spinBoxC.value() > 0:
-                cs = self.spinBoxC.value()
+                cs = str(self.spinBoxC.value()) + "c"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "c"
+            lastvid_cs.append(cs)
             
             if self.spinBoxX.value() > 0:
-                cs = self.spinBoxX.value()
+                cs = str(self.spinBoxX.value()) + "x"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "x"
+            lastvid_cs.append(cs)
             
             if self.spinBoxO.value() > 0:
-                cs = self.spinBoxO.value()
+                cs = str(self.spinBoxO.value()) + "o"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "o"
+            lastvid_cs.append(cs)
             
             if self.spinBoxV.value() > 0:
-                cs = self.spinBoxV.value()
+                cs = str(self.spinBoxV.value()) + "v"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "v"
+            lastvid_cs.append(cs)
             
             if self.spinBoxB.value() > 0:
-                cs = self.spinBoxB.value()
+                cs = str(self.spinBoxB.value()) + "b"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "b"
+            lastvid_cs.append(cs)
             
             if self.spinBoxA.value() > 0:
-                cs = self.spinBoxA.value()
+                cs = str(self.spinBoxA.value()) + "a"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "a"
+            lastvid_cs.append(cs)
             
             if self.spinBoxS.value() > 0:
-                cs = self.spinBoxS.value()
+                cs = str(self.spinBoxS.value()) + "s"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "s"
+            lastvid_cs.append(cs)
             
             if self.spinBoxK.value() > 0:
-                cs = self.spinBoxK.value()
+                cs = str(self.spinBoxK.value()) + "k"
             else:
-                cs = 0
-            werte.append(cs)
+                cs = "0" + "k"
+            lastvid_cs.append(cs)
+            for i in lastvid_cs:
+                werte.append(i[0])
                 
             if self.comboBoxDefinition.currentIndex() == 0:
                 werte.append(None)
+                lastvid_resolution = None
             elif self.comboBoxDefinition.currentIndex() == 1:
                 werte.append("0")
+                lastvid_resolution = "0"
             elif self.comboBoxDefinition.currentIndex() == 2:
                 werte.append("1")
+                lastvid_resolution = "1"
             elif self.comboBoxDefinition.currentIndex() == 3:
                 werte.append("2")
+                lastvid_resolution = "2"
             elif self.comboBoxDefinition.currentIndex() == 4:
                 werte.append("3")
+                lastvid_resolution = "3"
             elif self.comboBoxDefinition.currentIndex() == 5:
                 werte.append("9")
+                lastvid_resolution = "9"
                 
             werte.append(self.plainTextEditRemarks.toPlainText())
             werte.append(self.set_stars)
+            lastvid_stars = self.set_stars
+            
+        lastvid_uninteressant = "n"
             
         zu_erfassen.append([zu_erfassen_zw, werte])
             
@@ -788,19 +831,19 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
             werte = []
             werte.append(i)
             zu_erfassen.append(["UPDATE pordb_darsteller SET anzahl = anzahl + 1 WHERE darsteller = %s", werte])
-            if i == "" or i == "?" or i == "(Uninteressant)" or i == "(Komplett)" or i == "(Schlechte Qualitaet)":
+            if i == "" or i == "?" or i == "(Uninteressant)":
                 continue
             zu_erfassen.append(["DELETE FROM pordb_darsteller100 WHERE darsteller = %s", werte])
             zu_erfassen.append(["INSERT INTO pordb_darsteller100 (darsteller) VALUES (%s)", werte])
             
             partner_zaehler = 0
-            if i.strip() != "(Uninteressant)" and i.strip() != "Defekt":
+            if i.strip() != "(Uninteressant)":
                 zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
                 self.lese_func = DBLesen(self, zu_lesen, i)
                 res = DBLesen.get_data(self.lese_func)
                 geschlecht = res[0][0]
                 for j in darsteller:
-                    if j.strip() != "(Uninteressant)" and j.strip() != "Defekt" and i != j:
+                    if j.strip() != "(Uninteressant)" and i != j:
                         zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
                         self.lese_func = DBLesen(self, zu_lesen, j)
                         res2 = DBLesen.get_data(self.lese_func)
@@ -817,6 +860,8 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                             res3 = DBLesen.get_data(self.lese_func)
                             if not res3:
                                 partner_zaehler += 1
+            else:
+                lastvid_uninteressant = "u"
                             
             if partner_zaehler > 0:
                 werte = []
@@ -844,6 +889,9 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
                 zu_erfassen.append(["UPDATE pordb_vid_neu SET titel = %s, darsteller = %s, cd = %s, original = %s", werte])
             else:
                 zu_erfassen.append(["UPDATE pordb_vid_neu SET titel = %s, darsteller = %s, cd = %s", werte])
+            f = open(self.lastvid, "wb")
+            pickle.dump([lastvid_uninteressant, lastvid_resolution, lastvid_stars, lastvid_cs, lastvid_gesehen, lastvid_vorhanden], f)
+            f.close()
         
         update_func = DBUpdate(self, zu_erfassen)
         DBUpdate.update_data(update_func)
@@ -938,7 +986,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         k = -1
         for i in darsteller:
             k += 1
-            if i and i != "Defekt":
+            if i:
                 zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
                 self.lese_func = DBLesen(self, zu_lesen, i.strip().title())
                 res = DBLesen.get_data(self.lese_func)
@@ -955,11 +1003,8 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
     def darsteller_sortieren(self, darsteller):
         darsteller_m = []
         darsteller_w = []
-        defekt_schalter = False
         for i in darsteller:
             if i:
-                if i == "Defekt":
-                    defekt_schalter = True
                 zu_lesen = "SELECT sex FROM pordb_darsteller WHERE darsteller = %s"
                 self.lese_func = DBLesen(self, zu_lesen, i.strip().replace("''''", "''").title()) # 2nd replace when coming from actor renaming function
                 res = DBLesen.get_data(self.lese_func)
@@ -977,8 +1022,6 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         darsteller_w.sort()
         darsteller_m.sort()
         darsteller_liste = darsteller_w + darsteller_m
-        if defekt_schalter:
-            darsteller_liste.append("Defekt")
         return darsteller_liste
                     
     def onDelete(self):

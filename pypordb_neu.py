@@ -731,7 +731,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
             lastvid_vorhanden = vorhanden
             zu_erfassen_zw = "INSERT INTO pordb_vid VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             if self.spinBoxF.value() > 0:
-                cs = self.spinBoxF.value() + "f"
+                cs = str(self.spinBoxF.value()) + "f"
             else:
                 cs = "0" + "f"
             lastvid_cs.append(cs)

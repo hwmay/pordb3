@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2020 HWM
+    Copyright 2012-2022 HWM
     
     This file is part of PorDB3.
 
@@ -105,6 +105,7 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
             self.scene.addItem(textitem)
             self.y_pos += 30
             max_height = 0
+            select_first_image = True
             for i in dateiliste:
                 if self.selection:
                     bilddatei = os.path.join(self.verzeichnis_thumbs, i)
@@ -124,6 +125,9 @@ class ShowIafdData(QtWidgets.QDialog, pordb_show_iafd_data):
                 itemgroup.setData(0, i)
                 itemgroup.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
                 if self.selection: # imagefile is from thumbs directory
+                    itemgroup.setSelected(True)
+                elif select_first_image: # 1st image from working directory is selected
+                    select_first_image = False
                     itemgroup.setSelected(True)
                 self.y_pos += pixmap.height() + 20
             self.x_pos = self.left_margin

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2022 HWM
     
     This file is part of PorDB3.
 
@@ -77,6 +77,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.pushButtonNeuDelete.clicked.connect(self.onDelete)
         self.pushButtonOriginal.clicked.connect(self.onOriginal)
         self.pushButtonOriginalAlt.clicked.connect(self.onOriginalAlt)
+        self.pushButtonClearOriginal.clicked.connect(self.onClearOriginal)
         self.pushButtonRepeat.clicked.connect(self.onRepeat)
         self.pushButtonAddYear.clicked.connect(self.onAddYear)
         self.pushButtonStar1.clicked.connect(self.onStar1)
@@ -421,6 +422,16 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.pushButtonStar5.setIcon(self.icon_starred)
         self.pushButtonNeuOK.setFocus()
         self.set_stars = 5
+        
+    def onClearOriginal(self):
+        self.labelOriginal.clear()
+        zu_erfassen = []
+        werte = []
+        werte.append("")
+        zu_erfassen.append(["UPDATE pordb_vid_neu SET original = %s", werte])
+        update_func = DBUpdate(self, zu_erfassen)
+        DBUpdate.update_data(update_func)
+        self.pushButtonNeuOK.setFocus()
         
     def onClearRating(self):
         self.pushButtonStar1.setIcon(self.icon_nonstarred)

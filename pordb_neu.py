@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(1388, 590)
+        Dialog.resize(1920, 993)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("pypordb/8027068_splash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
@@ -447,7 +447,8 @@ class Ui_Dialog(object):
         Dialog.setTabOrder(self.radioButtonGesehenJa, self.radioButtonGesehenNein)
         Dialog.setTabOrder(self.radioButtonGesehenNein, self.radioButtonCoverJa)
         Dialog.setTabOrder(self.radioButtonCoverJa, self.radioButtonCoverNein)
-        Dialog.setTabOrder(self.radioButtonCoverNein, self.checkBoxUninteressant)
+        Dialog.setTabOrder(self.radioButtonCoverNein, self.pushButtonClearOriginal)
+        Dialog.setTabOrder(self.pushButtonClearOriginal, self.checkBoxUninteressant)
         Dialog.setTabOrder(self.checkBoxUninteressant, self.comboBoxDefinition)
         Dialog.setTabOrder(self.comboBoxDefinition, self.pushButtonStar1)
         Dialog.setTabOrder(self.pushButtonStar1, self.pushButtonStar2)
@@ -474,6 +475,7 @@ class Ui_Dialog(object):
         Dialog.setTabOrder(self.pushButtonBildbeschneiden, self.pushButtonNeuOK)
         Dialog.setTabOrder(self.pushButtonNeuOK, self.pushButtonNeuCancel)
         Dialog.setTabOrder(self.pushButtonNeuCancel, self.pushButtonVerz)
+        Dialog.setTabOrder(self.pushButtonVerz, self.pushButtonBildloeschen)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate

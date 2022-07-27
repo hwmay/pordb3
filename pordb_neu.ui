@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1388</width>
-    <height>590</height>
+    <width>1920</width>
+    <height>993</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1083,6 +1083,7 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>radioButtonGesehenNein</tabstop>
   <tabstop>radioButtonCoverJa</tabstop>
   <tabstop>radioButtonCoverNein</tabstop>
+  <tabstop>pushButtonClearOriginal</tabstop>
   <tabstop>checkBoxUninteressant</tabstop>
   <tabstop>comboBoxDefinition</tabstop>
   <tabstop>pushButtonStar1</tabstop>
@@ -1110,6 +1111,7 @@ First click with the left mouse button in the left top corner, then click with t
   <tabstop>pushButtonNeuOK</tabstop>
   <tabstop>pushButtonNeuCancel</tabstop>
   <tabstop>pushButtonVerz</tabstop>
+  <tabstop>pushButtonBildloeschen</tabstop>
  </tabstops>
  <resources/>
  <connections/>

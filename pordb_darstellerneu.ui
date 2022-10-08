@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>747</width>
-    <height>262</height>
+    <height>280</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,232 +23,226 @@
      <property name="title">
       <string>Enter new actor</string>
      </property>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>36</y>
-        <width>711</width>
-        <height>172</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Gender</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QComboBox" name="comboBoxDarstellerneuGeschlecht">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
-           <string/>
+           <string>Gender</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxDarstellerneuGeschlecht">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <item>
+           <property name="text">
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>m</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/male.png</normaloff>pypordb/male.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>w</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/female.png</normaloff>pypordb/female.png</iconset>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
-           <string>m</string>
+           <string>Hair color</string>
           </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/male.png</normaloff>pypordb/male.png</iconset>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="comboBoxDarstellerneuHaarfarbe">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
+          <item>
+           <property name="text">
+            <string>bl</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/blond.png</normaloff>pypordb/blond.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>br</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gr</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/grey.svg</normaloff>pypordb/grey.svg</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>r</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/red.png</normaloff>pypordb/red.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>s</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>bald</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
-           <string>w</string>
+           <string>Nation</string>
           </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/female.png</normaloff>pypordb/female.png</iconset>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="comboBoxDarstellerneuNation"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Hair color</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="comboBoxDarstellerneuHaarfarbe">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <item>
           <property name="text">
-           <string>bl</string>
+           <string>Tattoo</string>
           </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/blond.png</normaloff>pypordb/blond.png</iconset>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lineEditDarstellerneuTattoo"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
           <property name="text">
-           <string>br</string>
+           <string>Ethnic</string>
           </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="comboBoxDarstellerneuEthnic">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>gr</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/grey.svg</normaloff>pypordb/grey.svg</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>r</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/red.png</normaloff>pypordb/red.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>s</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>bald</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/bald.svg</normaloff>pypordb/bald.svg</iconset>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Nation</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QComboBox" name="comboBoxDarstellerneuNation"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Tattoo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEditDarstellerneuTattoo"/>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Ethnic</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QComboBox" name="comboBoxDarstellerneuEthnic">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <item>
-          <property name="text">
-           <string>w</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>a</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>s</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>l</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+          <item>
+           <property name="text">
+            <string>w</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/white.png</normaloff>pypordb/white.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>a</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/yellow.png</normaloff>pypordb/yellow.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>s</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/black.png</normaloff>pypordb/black.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>l</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>pypordb/brown.png</normaloff>pypordb/brown.png</iconset>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="1" column="0">

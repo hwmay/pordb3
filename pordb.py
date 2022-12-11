@@ -641,6 +641,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             QtWidgets.QMessageBox.critical(self, self.tr("Error "), self.tr("Error saving image file"))
             return
             
+        self.tableWidgetBilder.setCurrentItem(None)
         self.ausgabe_in_table()
         self.bilder_aktuell()
         self.suchfeld.setFocus()
@@ -882,6 +883,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         if text:
             self.suchfeld.insertItem(0, "=" + text[0])
             self.suchfeld.setCurrentIndex(0)
+        self.tableWidgetBilder.setCurrentItem(None)
             
     def onDeleteImageFromView(self):
         items = self.tableWidgetBilder.selectedItems()
@@ -1008,6 +1010,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             self.suchfeld.insertItem(0, original)
             self.suchfeld.setCurrentIndex(0)
             self.onOriginal()
+        self.tableWidgetBilder.setCurrentItem(None)
             
     def onAnzeigenTitle(self):
         item = self.tableWidgetBilder.currentItem()
@@ -1019,7 +1022,9 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         titel = self.aktuelles_res[index][0]
         self.suchfeld.insertItem(0, titel)
         self.suchfeld.setCurrentIndex(0)
+        self.tableWidgetBilder.setCurrentItem(None)
         self.onTitel()
+        
             
     def onSortieren_nach_Darsteller(self):
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -1144,6 +1149,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         self.onMovieData(titel=titel, cd=cd, bild=bild, darsteller=darsteller, gesehen=gesehen, original=original, cs=cs, vorhanden=vorhanden, high_definition=definition, remarks=remarks, stars=stars, cover=cover, original_weitere=original_weitere)
         self.bilder_aktuell()
         self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
+        self.tableWidgetBilder.setCurrentItem(None)
         self.suchfeld.setFocus()        
                 
     def onOriginal_weitere(self):
@@ -1202,6 +1208,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             DBUpdate.update_data(update_func)
             self.ausgabe("", self.letzter_select_komplett, self.letzter_select_komplett_werte)
                         
+        self.tableWidgetBilder.setCurrentItem(None)
         self.suchfeld.setFocus()
     # end of onOriginal_weitere
         
@@ -1238,6 +1245,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             
         self.ausgabe_in_table()
         self.bilder_aktuell()
+        self.tableWidgetBilder.setCurrentItem(None)
         self.suchfeld.setFocus()
         
     def onOriginalIntoClipboard(self):
@@ -1259,6 +1267,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
             self.statusBar.showMessage('"' +original +'"' +self.tr(" transferred into clipboard"))
+        self.tableWidgetBilder.setCurrentItem(None)
         self.suchfeld.setFocus()
         
     def onCovergross(self):
@@ -3028,6 +3037,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             if str(self.labelDarsteller.text()) != "":
                 self.darsteller_lesen("=" +str(self.labelDarsteller.text()).strip().title())
                 self.onbildAnzeige()
+        self.tableWidgetBilder.setCurrentItem(None)
         self.suchfeld.setFocus()
     # end of onKorrektur
     

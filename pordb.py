@@ -387,8 +387,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         felder.sort(key = lambda x: x[4])
         self.fieldnames_vid = []
         for i in felder:
-            x = i[3]
-            self.fieldnames_vid.append(x.title())
+            self.fieldnames_vid.append(i[3].title())
             
         zu_lesen = "SELECT * FROM information_schema.columns WHERE table_name = %s"
         lese_func = DBLesen(self, zu_lesen, "pordb_mpg_katalog")
@@ -396,8 +395,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         felder.sort(key = lambda x: x[4])
         self.fieldnames_mpg = []
         for i in felder:
-            x = i[3]
-            self.fieldnames_mpg.append(x.title())
+            self.fieldnames_mpg.append(i[3].title())
         self.fieldnames_mpg.append("MB")
         self.fieldnames_mpg.append("GB")
         self.cumshots = {"f":"Facial", "h":"Handjob", "t":str(self.tr("Tits")), "c":"Creampie", "x":"Analcreampie", "o":"Oralcreampie", "v":str(self.tr("Cunt")), "b":str(self.tr("Belly")), "a":str(self.tr("Ass")), "s":str(self.tr("Others"))}

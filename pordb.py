@@ -866,8 +866,8 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
                 if "Cover (" in text:
                     menu.addAction(self.actionCovergross)
             menu.addAction(self.actionOriginalIntoClipboard)
-        self.tableWidgetBilder.setCurrentItem(None)
         menu.exec_(self.tableWidgetBilder.mapToGlobal(event))
+        self.tableWidgetBilder.setCurrentItem(None)
             
     def onContexttableWidgetBilderAktuell(self, event):
         if len(self.bilderliste) > 0:

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2022 HWM
+    Copyright 2012-2023 HWM
     
     This file is part of PorDB3.
 
@@ -67,7 +67,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 
 DBNAME = "por"
 
-__version__ = "2.3.0"
+__version__ = "2.3.1"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
 IMAGE_FILES = (".jpg", ".jpeg", ".png")
 

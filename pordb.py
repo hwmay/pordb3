@@ -1747,7 +1747,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             return
         app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
         vorname = False
-        if ein.find("=") == 0:
+        if ein.startswith("="):
             vorname = True
             eingabe = ein.lstrip("=")
         else:

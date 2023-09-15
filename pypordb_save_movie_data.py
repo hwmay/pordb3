@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 
 '''
-    Copyright 2012-2022 HWM
+    Copyright 2012-2023 HWM
     
     This file is part of PorDB3.
 
@@ -63,12 +63,12 @@ class SaveMovieData(QtWidgets.QDialog):
                     int(self.text[anfang_scene + 6])
                 except:
                     break
-                ende_scene = self.text.find(". ", anfang_scene + 1)
+                ende_scene = self.text.find("</td>", anfang_scene + 1)
                 if anfang_scene < 0:
                     break
                 scene = self.text[anfang_scene : ende_scene].strip()
-                anfang = self.text.find(". ", anfang_scene + 1)
-                ende = self.text.find("</li>", anfang)
+                anfang = self.text.find('">', anfang_scene + 1)
+                ende = self.text.find("</td>", anfang)
                 darsteller = self.text[anfang + 2 : ende].strip()
                 scenes.append((scene, darsteller))
             

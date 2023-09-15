@@ -1894,7 +1894,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         app.restoreOverrideCursor()
         
     def onHelp(self):
-        QtWidgets.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2020 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
+        QtWidgets.QMessageBox.about(self, "About PorDB3", """<b>PorDB3</b> v %s <p>Copyright &copy; 2012-2023 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB3.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
         self.suchfeld.setFocus()
         
     def ausgabe(self, ein, zu_lesen, werte = None):
@@ -4371,7 +4371,7 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
     
         if seite:
             begin = str(seite).find("pordbversion")
-            version = str(seite)[begin + 21 : begin + 21 + str(seite)[begin + 21 :].find("&")]
+            version = str(seite)[begin + 18 : begin + 18 + str(seite)[begin + 18 :].find("\\")]
             if version != __version__:
                 begin = str(seite).find("whatsnew")
                 whatsnew = str(seite)[begin + 17 : begin + 17 + str(seite)[begin + 17 :].find("&")]

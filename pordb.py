@@ -67,7 +67,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 
 DBNAME = "por"
 
-__version__ = "2.3.1"
+__version__ = "2.3.2"
 FILE_VERSION = "https://github.com/hwmay/pordb3/blob/master/version"
 IMAGE_FILES = (".jpg", ".jpeg", ".png")
 

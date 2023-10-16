@@ -140,10 +140,10 @@ class ActorData():
         while True:
             anfang = self.seite.find('Info on the movie', anfang)
             if anfang > -1:
-                anfang = self.seite.find('.htm">', anfang)
+                anfang = self.seite.find('">', anfang)
                 if anfang > -1:
                     ende = self.seite.find('</a></td><td>', anfang)
-                    titel.append(self.seite[anfang+6:ende].strip())
+                    titel.append(self.seite[anfang+2:ende].strip())
             else:
                 break
         return titel

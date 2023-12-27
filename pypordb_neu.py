@@ -80,6 +80,7 @@ class Neueingabe(QtWidgets.QDialog, pordb_neu):
         self.pushButtonClearOriginal.clicked.connect(self.onClearOriginal)
         self.pushButtonRepeat.clicked.connect(self.onRepeat)
         self.pushButtonAddYear.clicked.connect(self.onAddYear)
+        self.comboBoxDefinition.currentIndexChanged[int].connect(self.pushButtonNeuOK.setFocus)
         self.pushButtonStar1.clicked.connect(self.onStar1)
         self.pushButtonStar2.clicked.connect(self.onStar2)
         self.pushButtonStar3.clicked.connect(self.onStar3)

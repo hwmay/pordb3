@@ -143,7 +143,7 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1906,7 +1906,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QPushButton" name="pushButtonMovie">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add clips for current video, Alt+F5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add clips for current video, F6&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="whatsThis">
                 <string>Adopt movie data from the IAFD.
@@ -1927,7 +1927,7 @@ This is very useful for adding new scenes from the selected movie.</string>
                 </size>
                </property>
                <property name="shortcut">
-                <string>Alt+F5</string>
+                <string>F6</string>
                </property>
               </widget>
              </item>

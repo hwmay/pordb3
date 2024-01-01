@@ -1096,7 +1096,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButtonRefresh, self.pushButtonDir)
         MainWindow.setTabOrder(self.pushButtonDir, self.tableWidgetBilderAktuell)
@@ -1324,11 +1324,11 @@ class Ui_MainWindow(object):
         self.pushButtonAbholen.setToolTip(_translate("MainWindow", "<html><head/><body><p>Get actor data, Alt+D</p></body></html>"))
         self.pushButtonAbholen.setWhatsThis(_translate("MainWindow", "Adopt actors data from the IAFD."))
         self.pushButtonAbholen.setShortcut(_translate("MainWindow", "Alt+D"))
-        self.pushButtonMovie.setToolTip(_translate("MainWindow", "<html><head/><body><p>Add clips for current video, Alt+F5</p></body></html>"))
+        self.pushButtonMovie.setToolTip(_translate("MainWindow", "<html><head/><body><p>Add clips for current video, F6</p></body></html>"))
         self.pushButtonMovie.setWhatsThis(_translate("MainWindow", "Adopt movie data from the IAFD.\n"
 "\n"
 "This is very useful for adding new scenes from the selected movie."))
-        self.pushButtonMovie.setShortcut(_translate("MainWindow", "Alt+F5"))
+        self.pushButtonMovie.setShortcut(_translate("MainWindow", "F6"))
         self.lineEditURL.setWhatsThis(_translate("MainWindow", "Adress bar"))
         self.pushButtonClearURL.setToolTip(_translate("MainWindow", "<html><head/><body><p>Clear the address bar, CTRL+L</p></body></html>"))
         self.pushButtonClearURL.setShortcut(_translate("MainWindow", "Ctrl+L"))

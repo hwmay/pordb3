@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
+    <width>1188</width>
     <height>993</height>
    </rect>
   </property>
@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>pypordb/8027068_splash.png</normaloff>pypordb/8027068_splash.png</iconset>
+    <normaloff>pypordb/8027068_splash.svg</normaloff>pypordb/8027068_splash.svg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">

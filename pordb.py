@@ -3977,19 +3977,27 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         items = self.tableWidget.selectedItems()
         zu_erfassen = []
         anzahl_werte = int(len(items) / len(self.fieldnames_mpg))
-        for i in range(anzahl_werte):
-            werte = []
-            werte.append(items[i * len(self.fieldnames_mpg)].text().strip())
-            werte.append(items[i * len(self.fieldnames_mpg) + 1].text().strip())
-            werte.append(items[i * len(self.fieldnames_mpg) + 2].text().strip())
-            zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and dir = %s and file = %s", werte])
-        if zu_erfassen:
-            update_func = DBUpdate(self, zu_erfassen)
-            DBUpdate.update_data(update_func)
-            QtWidgets.QMessageBox.critical(self, self.tr("Information "), str(anzahl_werte) + self.tr(" line(s) deleted"))
-        app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-        self.onSuchen()
-        app.restoreOverrideCursor()
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.addButton(self.tr("Yes"), QtWidgets.QMessageBox.AcceptRole)
+        messageBox.addButton(self.tr("No"), QtWidgets.QMessageBox.RejectRole)
+        messageBox.setWindowTitle(self.tr("Database entries will be deleted"))
+        messageBox.setIcon(QtWidgets.QMessageBox.Question)
+        messageBox.setText(self.tr("Do you really want to delete marked entries?"))
+        message = messageBox.exec_()
+        if message == 0:        
+            for i in range(anzahl_werte):
+                werte = []
+                werte.append(items[i * len(self.fieldnames_mpg)].text().strip())
+                werte.append(items[i * len(self.fieldnames_mpg) + 1].text().strip())
+                werte.append(items[i * len(self.fieldnames_mpg) + 2].text().strip())
+                zu_erfassen.append(["DELETE FROM pordb_mpg_katalog WHERE device = %s and dir = %s and file = %s", werte])
+            if zu_erfassen:
+                update_func = DBUpdate(self, zu_erfassen)
+                DBUpdate.update_data(update_func)
+                QtWidgets.QMessageBox.critical(self, self.tr("Information "), str(anzahl_werte) + self.tr(" line(s) deleted"))
+            app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+            self.onSuchen()
+            app.restoreOverrideCursor()
         
     def searchResults(self, lineEdit, tableWidget, rows, column):
         tableWidget.clearSelection()

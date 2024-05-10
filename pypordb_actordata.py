@@ -53,7 +53,7 @@ class ActorData():
     def actor_alias(self):
         anfang = self.seite.find('AKA</p><div class="biodata">')
         ende = self.seite.find('</div>', anfang)
-        pseudonyme = self.seite[anfang+28:ende]
+        pseudonyme = self.seite[anfang+28:ende].strip()
         if pseudonyme == "No known aliases":
             return ""
         else:

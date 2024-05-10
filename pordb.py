@@ -4075,8 +4075,6 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
         
     def onDarstellerdatenAbholen(self):
         url = self.webView.url().toString()
-        ende = url.find("gender=") + 8
-        url = url[0:ende]
         bilddialog = DarstellerdatenAnzeigen(app, url, self.html, self.verzeichnis_thumbs)
         fehler = False
         try:

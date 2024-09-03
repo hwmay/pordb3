@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2017 HWM
+    Copyright 2012-2024 HWM
     
     This file is part of PorDB3.
 
@@ -16,7 +16,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http:  www.gnu.org licenses >.
+    along with Foobar.  If not, see <http://www.gnu.org/licenses >.
 '''
 
 class ActorData():

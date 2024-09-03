@@ -138,7 +138,7 @@ class ActorData():
         titel = []
         anfang = 0
         while True:
-            anfang = self.seite.find('Info on the movie', anfang)
+            anfang = self.seite.find('title.rme', anfang)
             if anfang > -1:
                 anfang = self.seite.find('">', anfang)
                 if anfang > -1:

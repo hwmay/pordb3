@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2024 HWM
+    Copyright 2012-2025 HWM
     
     This file is part of PorDB3.
 
@@ -53,7 +53,7 @@ class ActorData():
     def actor_alias(self):
         anfang = self.seite.find('AKA</p><div class="biodata">')
         ende = self.seite.find('</div>', anfang)
-        pseudonyme = self.seite[anfang+28:ende].strip()
+        pseudonyme = self.seite[anfang+28:ende].strip().replace("<br>", ", ")
         if pseudonyme == "No known aliases":
             return ""
         else:

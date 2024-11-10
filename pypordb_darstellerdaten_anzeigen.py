@@ -109,7 +109,7 @@ class DarstellerdatenAnzeigen(QtWidgets.QDialog, pordb_iafd):
             self.lineEditGeschlecht.setText(self.geschlecht)
         
         # Darsteller Pseudonyme
-        self.pseudonyme = ActorData.actor_alias(actordata)
+        self.pseudonyme = ActorData.actor_alias(actordata).replace("<BR>", ", ")
         self.lineEditPseudo.setText(self.pseudonyme)
     
         # Darsteller Land

@@ -41,11 +41,13 @@ class ActorData():
         return self.seite[anfang+5:ende].replace(" ", "%20")
     
     def actor_sex(self):
-        anfang = self.seite.find('name="Gender" value="')
-        ende = self.seite.find('">', anfang)
-        geschlecht = self.seite[anfang+21:ende]
-        if geschlecht == "f":
+        anfang = self.seite.find('Gender</p><p class="biodata">')
+        ende = self.seite.find('<', anfang+29)
+        geschlecht = self.seite[anfang+29:ende]
+        if geschlecht == "Woman":
             geschlecht = "w"
+        elif geschlecht == "Man":
+            geschlecht = "m"
         elif geschlecht != "m":
             return False
         return geschlecht
@@ -68,7 +70,7 @@ class ActorData():
         anfang = self.seite.find('Birthplace</p><p class="biodata">')
         if anfang < 0:
             return False
-        ende = self.seite.find(';</p><p', anfang)
+        ende = self.seite.find(';</p>', anfang)
         return self.seite[anfang+33:ende].strip("&nbsp;")
     
     def actor_ethnic(self):

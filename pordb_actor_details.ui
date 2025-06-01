@@ -67,8 +67,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>622</width>
-          <height>340</height>
+          <width>616</width>
+          <height>330</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
@@ -100,25 +100,7 @@
            </item>
            <item>
             <layout class="QGridLayout" name="gridLayout_2">
-             <item row="0" column="0">
-              <widget class="QLabel" name="labelTattoosC">
-               <property name="text">
-                <string>Tattoos:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QPlainTextEdit" name="plainTextEditTattoos">
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="labelUrl">
-               <property name="text">
-                <string>Url on IAFD:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
+             <item row="3" column="0">
               <widget class="QLabel" name="labelDateC">
                <property name="text">
                 <string>Date added in PorDB:</string>
@@ -126,15 +108,41 @@
               </widget>
              </item>
              <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEditUrl"/>
+             </item>
+             <item row="3" column="1">
               <widget class="QLineEdit" name="lineEditDate">
                <property name="readOnly">
                 <bool>true</bool>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="lineEditUrl">
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelTattoosC">
+               <property name="text">
+                <string>Tattoos:</string>
+               </property>
               </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QPlainTextEdit" name="plainTextEditTattoos"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelUrl">
+               <property name="text">
+                <string>Url on IAFD:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelComment">
+               <property name="text">
+                <string>Comment:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QPlainTextEdit" name="plainTextEditComment"/>
              </item>
             </layout>
            </item>

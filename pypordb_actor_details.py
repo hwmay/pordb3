@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2025 HWM
     
     This file is part of PorDB3.
 
@@ -65,6 +65,9 @@ class ActorDetails(QtWidgets.QDialog, pordb_actor_details):
         self.tattoo = res[0][6]
         self.plainTextEditTattoos.setPlainText(self.tattoo)
         
+        self.comment = res[0][15]
+        self.plainTextEditComment.setPlainText(self.comment)        
+        
         if res[0][11]:
             self.url = res[0][11]
             self.lineEditUrl.setText(self.url)
@@ -74,13 +77,14 @@ class ActorDetails(QtWidgets.QDialog, pordb_actor_details):
         self.lineEditDate.setText(str(res[0][3]))
         
     def closeEvent(self, event):
-        if self.tattoo != self.plainTextEditTattoos.toPlainText() or self.url != self.lineEditUrl.text():
+        if self.tattoo != self.plainTextEditTattoos.toPlainText() or self.url != self.lineEditUrl.text() or self.comment != self.plainTextEditComment.toPlainText():
             zu_erfassen = []
             werte = []
             werte.append(self.plainTextEditTattoos.toPlainText())
             werte.append(self.lineEditUrl.text())
+            werte.append(self.plainTextEditComment.toPlainText())
             werte.append(self.darsteller)
-            zu_erfassen.append(["UPDATE pordb_darsteller SET tattoo = %s, url = %s WHERE darsteller = %s", werte])
+            zu_erfassen.append(["UPDATE pordb_darsteller SET tattoo = %s, url = %s, comment = %s WHERE darsteller = %s", werte])
             update_func = DBUpdate(self, zu_erfassen)
             DBUpdate.update_data(update_func)
         settings = QtCore.QSettings()

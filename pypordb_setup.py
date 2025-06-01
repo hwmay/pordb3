@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Copyright 2012-2018 HWM
+    Copyright 2012-2025 HWM
     
     This file is part of PorDB3.
 
@@ -198,7 +198,8 @@ class Dialog(QtWidgets.QDialog, Dialog):
     url character varying,
     aktivvon integer,
     aktivbis integer,
-    besuch date
+    besuch date,
+    comment character varying(256)
 );''')
         cur.execute("ALTER TABLE public.pordb_darsteller OWNER TO postgres;")
         

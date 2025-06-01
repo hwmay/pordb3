@@ -4360,6 +4360,11 @@ class MeinDialog(QtWidgets.QMainWindow, MainWindow):
             res = DBLesen.get_data(lese_func)
             if not res:
                 zu_erfassen.append(["ALTER TABLE pordb_vid ADD COLUMN stars INTEGER", werte])
+            zu_lesen = "SELECT Column_Name from information_schema.columns where table_name = 'pordb_darsteller' and Column_Name = 'comment'"
+            lese_func = DBLesen(self, zu_lesen)
+            res = DBLesen.get_data(lese_func)
+            if not res:
+                zu_erfassen.append(["ALTER TABLE pordb_darsteller ADD COLUMN comment VARCHAR(256)", werte])                
             if zu_erfassen:
                 update_func = DBUpdate(self, zu_erfassen)
                 DBUpdate.update_data(update_func)
